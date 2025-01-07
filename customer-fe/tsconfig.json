@@ -27,7 +27,7 @@
 			"@hook/*": ["./src/hooks/*"],
 			"@provider/*": ["./src/providers/*"],
 			"@redux/*": ["./src/redux/*"],
-			"@root/*": ["./*"]   
+			"@root/*": ["./*"]  ,
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
