@@ -4,16 +4,15 @@ import AuthSvg from "@asset/svg/svg-auth.svg";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { InputText } from "@component/form";
 import { Link, Loading } from "@component/ui";
-import { useCookies, useRouter, useTranslation } from "@hook/index";
+import { useCookies, useRouter } from "@hook/index";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLoginMutate } from "@root/src/hooks/mutations";
+import { useLoginMutate } from "@hook/mutations";
 import { defaultLoginValues, getLoginSchema } from "@schema/index";
 import { LoginType } from "@type/common";
 import { useSearchParams } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 
 const LoginPage = () => {
-  const { t } = useTranslation();
   const router = useRouter();
   const cookies = useCookies();
   const loginMutate = useLoginMutate();
@@ -58,7 +57,7 @@ const LoginPage = () => {
         >
           <Link mb={5} href="home">
             <Text fontSize="4xl" fontWeight="bold">
-              {t("app:name")}
+              VShop
             </Text>
           </Link>
 
@@ -81,11 +80,11 @@ const LoginPage = () => {
           px={10}
         >
           <Text mb={2} fontWeight="medium" fontSize="lg" textColor="gray.500">
-            {t("auth:welcome_back")}
+            welcome back
           </Text>
 
           <Text mb={9} fontSize="3xl" fontWeight="bold">
-            {t("auth:login_to_continue")}
+            Login to continue
           </Text>
 
           <Flex flexDirection="column" width="100%" gap={5}>
@@ -102,8 +101,8 @@ const LoginPage = () => {
                     value,
                     onChange,
                     message: error?.message,
-                    label: t("common:userName"),
-                    placeholder: t("common:userName"),
+                    label: "Username",
+                    placeholder: "Username",
                   }}
                 />
               )}
@@ -122,22 +121,22 @@ const LoginPage = () => {
                     onChange,
                     message: error?.message,
                     type: "password",
-                    label: t("auth:password"),
-                    placeholder: t("auth:password"),
+                    label: "password",
+                    placeholder: "password",
                   }}
                 />
               )}
             />
 
             <Button colorScheme="green" onClick={handleSubmit(onSubmit)}>
-              {t("auth:login")}
+              {"Login"}
             </Button>
 
             <Box mt={4}>
               <Text fontWeight="medium">
-                {t("auth:dont_have_any_account")}{" "}
+                {"Dont have account?"}{" "}
                 <Link href="register" color="green" display="inline">
-                  {t("auth:register")}
+                  {"Register here"}
                 </Link>
               </Text>
             </Box>
