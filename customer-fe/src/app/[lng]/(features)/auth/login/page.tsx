@@ -15,7 +15,6 @@ import { Controller, useForm } from "react-hook-form";
 const LoginPage = () => {
   const { t } = useTranslation();
   const router = useRouter();
-  const cookies = useCookies();
   const loginMutate = useLoginMutate();
   const params = useSearchParams();
 
