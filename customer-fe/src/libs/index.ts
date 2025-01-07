@@ -1,2 +1,2 @@
 export * from './cookies';
-export * from './util';
+export * from './request';
