@@ -5,4 +5,4 @@ export { MAX_WIDTH };
 export * from './api-config';
 export * from './cookie-config';
 export * from './icon-config';
-
+export * from './i18n';
