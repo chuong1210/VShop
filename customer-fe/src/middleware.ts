@@ -6,17 +6,23 @@ export const config = {
 	matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 };
 
-const middleware = (req: NextRequest, _res: NextResponse): NextResponse => {
+const middleware = (req: NextRequest): NextResponse => {
 	let lng = FALLBACK_LNG;
-	const { pathUrl } = req.nextUrl;
+	const { pathname } = req.nextUrl;
 
+	if (req.cookies.has(cookieConfig.i18n)) {
 		const cookieValue = req.cookies.get(cookieConfig.i18n)?.value;
 
 		if (cookieValue) {
 			lng = cookieValue;
 		}
+	}
 
-	
+	const urlPattern = new RegExp(`^/${lng}(/|$)`);
+
+	if (!urlPattern.test(pathname)) {
+		return NextResponse.redirect(new URL(`/${lng}${pathname}`, req.url));
+	}
 
 	const response = NextResponse.next();
 
