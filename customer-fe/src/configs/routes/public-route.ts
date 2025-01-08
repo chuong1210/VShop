@@ -1,6 +1,7 @@
 const pubicRoute = {
 	'root': '/',
-
+	'product-detail': '/product-detail',
+	'category-detail': '/category-detail',
 };
 
 const pubicRoutes: string[] = Object.keys(pubicRoute).map((key) => {
