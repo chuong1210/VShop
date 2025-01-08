@@ -5,11 +5,12 @@ import {
 	type TypedUseSelectorHook,
 } from 'react-redux';
 import { reduxMiddlewares } from '../middleware/redux-middleware';
-import {  productDetailSlice, tokenExpiresSlice } from './slices';
+import {  cartSlice, productDetailSlice, tokenExpiresSlice } from './slices';
 
 const reducer = {
 	tokenExpires: tokenExpiresSlice.reducer,
 	productDetail: productDetailSlice.reducer,
+	cart: cartSlice.reducer,
 
 
 };
