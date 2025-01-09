@@ -29,7 +29,7 @@ const SearchPage = () => {
           </Text>
 
           <Text fontWeight="600" fontSize="2xl" display="inline" color="green">
-            "{param.keyword}&quot;
+            &quot;{param.keyword}&quot;
           </Text>
         </Box>
 
