@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Image } from "@component/ui";
-import { useTranslation } from "@hook/index";
 import { usePost } from "@hook/mutations";
 import { useDispatch } from "@redux/index";
 import { cartSlice } from "@redux/slices";
@@ -26,7 +25,6 @@ const CartProductItem = ({
   readonly?: boolean;
   index: number;
 }) => {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
   const updateQuantityMutate = usePost<
     any,

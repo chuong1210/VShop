@@ -21,7 +21,7 @@ const CartPage = () => {
 
   useEffect(() => {
     dispatch(cartSlice.actions.setData(productCartsQuery.data?.data));
-  }, [productCartsQuery.data?.data]);
+  }, [dispatch, productCartsQuery.data?.data]);
 
   return (
     <BaseLayout>
