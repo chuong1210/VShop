@@ -1,6 +1,8 @@
 
 
-using Core.Application;
+
+using api_be;
+using api_be.DB;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationServices();
+builder.Services.AddPersistenceBusinessDataServices(builder.Configuration);
+
 
 var app = builder.Build();
 
@@ -28,3 +32,9 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+//dotnet ef migrations add InitialTable --context SupermarketDbContext --output-dir DB/Migrations
+//dotnet ef database update --context SupermarketDbContext
+
+

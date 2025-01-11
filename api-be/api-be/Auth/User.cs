@@ -2,7 +2,7 @@
 using api_be.Domain.Entities;
 using Sieve.Attributes;
 
-namespace Core.Domain.Auth
+namespace api_be.Auth
 {
     public class User : AuditableEntity
 	{
@@ -28,6 +28,8 @@ namespace Core.Domain.Auth
         public UserType Type { get; set; } = UserType.User;
 
         public List<UserRole>? UserRoles { get; set; }
+
+        public List<UserPermission>? UserPermissions { get; set; } // Thêm thuộc tính này
 
         //Khoá ngoại
         [Sieve(CanFilter = true, CanSort = true)]
