@@ -5,6 +5,7 @@ namespace api_be.Domain.Common
 {
     public abstract class AuditableEntity : IAuditableEntity
     {
+
         public int Id { get; set; } = default!;
 
         [Sieve(CanFilter = true, CanSort = true)]

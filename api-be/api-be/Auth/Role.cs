@@ -1,7 +1,7 @@
 ﻿using api_be.Domain.Common;
 using Sieve.Attributes;
 
-namespace Core.Domain.Auth
+namespace api_be.Auth
 {
     public class Role : AuditableEntity
 	{

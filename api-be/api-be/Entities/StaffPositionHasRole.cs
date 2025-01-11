@@ -1,4 +1,4 @@
-﻿using Core.Domain.Auth;
+﻿using api_be.Auth;
 using api_be.Domain.Common;
 
 namespace api_be.Domain.Entities

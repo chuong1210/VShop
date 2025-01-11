@@ -1,9 +1,9 @@
 ﻿using api_be.Domain.Common;
 using Sieve.Attributes;
 
-namespace Core.Domain.Auth
+namespace api_be.Auth
 {
-	public class Permission : HardDeleteEntity
+    public class Permission : HardDeleteEntity
 	{
         [Sieve(CanFilter = true, CanSort = true)]
         public string? Name { get; set; }
