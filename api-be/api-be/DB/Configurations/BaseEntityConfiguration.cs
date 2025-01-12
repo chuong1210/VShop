@@ -9,6 +9,28 @@ namespace api_be.DB.Configurations
         {
             builder.Property<DateTime>("CreatedAt").HasDefaultValueSql("GETDATE()");
             builder.Property<DateTime?>("UpdatedAt").HasDefaultValueSql("GETDATE()");
+
+
+
+            //builder.Property(c => c.CreatedAt)
+            //    .HasDefaultValueSql("GETDATE()")
+            //    .IsRequired(false);
+
+            //builder.Property(c => c.CreatedBy)
+            //    .HasMaxLength(255)
+            //    .IsRequired(false);
+
+            //builder.Property(c => c.UpdatedAt)
+            //    .HasDefaultValueSql("GETDATE()")
+            //    .IsRequired(false);
+
+            //builder.Property(c => c.UpdatedBy)
+            //    .HasMaxLength(255)
+            //    .IsRequired(false);
+
+            //builder.Property(c => c.IsDeleted)
+            //    .HasDefaultValue(false)
+            //    .IsRequired();
         }
     }
 }

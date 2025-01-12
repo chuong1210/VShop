@@ -1,4 +1,4 @@
-﻿namespace api_be.Responses.Interfaces
+﻿namespace api_be.Models.Responses.Interfaces
 {
     public interface IResult<T>
     {

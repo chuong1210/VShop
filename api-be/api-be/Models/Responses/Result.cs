@@ -1,6 +1,6 @@
-﻿using api_be.Responses.Interfaces;
+﻿using api_be.Models.Responses.Interfaces;
 
-namespace api_be.Responses
+namespace api_be.Models.Responses
 {
     public class Result<T> : IResult<T>
     {

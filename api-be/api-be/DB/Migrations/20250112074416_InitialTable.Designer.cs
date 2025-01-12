@@ -12,7 +12,7 @@ using api_be.DB;
 namespace api_be.DB.Migrations
 {
     [DbContext(typeof(SupermarketDbContext))]
-    [Migration("20250111085833_InitialTable")]
+    [Migration("20250112074416_InitialTable")]
     partial class InitialTable
     {
         /// <inheritdoc />
@@ -322,10 +322,14 @@ namespace api_be.DB.Migrations
             modelBuilder.Entity("api_be.Domain.Entities.Customer", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -334,22 +338,23 @@ namespace api_be.DB.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<bool?>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -831,7 +836,10 @@ namespace api_be.DB.Migrations
             modelBuilder.Entity("api_be.Domain.Entities.Staff", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -1044,12 +1052,12 @@ namespace api_be.DB.Migrations
             modelBuilder.Entity("api_be.Auth.User", b =>
                 {
                     b.HasOne("api_be.Domain.Entities.Customer", "Customer")
-                        .WithOne()
+                        .WithOne("User")
                         .HasForeignKey("api_be.Auth.User", "CustomerId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("api_be.Domain.Entities.Staff", "Staff")
-                        .WithOne()
+                        .WithOne("User")
                         .HasForeignKey("api_be.Auth.User", "StaffId")
                         .OnDelete(DeleteBehavior.Restrict);
 
@@ -1112,17 +1120,6 @@ namespace api_be.DB.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Customer");
-                });
-
-            modelBuilder.Entity("api_be.Domain.Entities.Customer", b =>
-                {
-                    b.HasOne("api_be.Auth.User", "User")
-                        .WithOne()
-                        .HasForeignKey("api_be.Domain.Entities.Customer", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("api_be.Domain.Entities.Delivery", b =>
@@ -1248,19 +1245,11 @@ namespace api_be.DB.Migrations
 
             modelBuilder.Entity("api_be.Domain.Entities.Staff", b =>
                 {
-                    b.HasOne("api_be.Auth.User", "User")
-                        .WithOne()
-                        .HasForeignKey("api_be.Domain.Entities.Staff", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("api_be.Domain.Entities.StaffPosition", "Position")
                         .WithMany()
                         .HasForeignKey("PositionId");
 
                     b.Navigation("Position");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("api_be.Domain.Entities.StaffPositionHasRole", b =>
@@ -1318,6 +1307,16 @@ namespace api_be.DB.Migrations
                     b.Navigation("UserPermissions");
 
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("api_be.Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("api_be.Domain.Entities.Staff", b =>
+                {
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }
