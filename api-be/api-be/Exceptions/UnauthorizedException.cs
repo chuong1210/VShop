@@ -1,5 +1,4 @@
-﻿using api_be.Responses;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace api_be.Exceptions
 {

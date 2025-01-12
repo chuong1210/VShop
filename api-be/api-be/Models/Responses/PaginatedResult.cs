@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace api_be.Responses
+namespace api_be.Models.Responses
 {
     public class Extra
     {

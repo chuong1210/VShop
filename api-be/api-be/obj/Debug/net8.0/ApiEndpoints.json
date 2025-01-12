@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "Login",
+    "RelativePath": "smw-api/user/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Models.Request.LoginAccountRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "Register",
+    "RelativePath": "smw-api/user/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_be.Models.Request.RegisterAccountRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

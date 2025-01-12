@@ -20,9 +20,9 @@ namespace api_be.DB.Configurations
                    .WithMany()
                    .HasForeignKey(x => x.PositionId);
 
-            builder.HasOne(x => x.User)
-                   .WithOne()
-                   .HasForeignKey<Staff>(x => x.Id);
+            //builder.HasOne(x => x.User)
+            //       .WithOne()
+            //       .HasForeignKey<Staff>(x => x.Id);
         }
     }
 }

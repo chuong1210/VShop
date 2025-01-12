@@ -9,12 +9,12 @@ namespace api_be.DB.Services
     public class PermissionService : IPermissionService
     {
         private readonly ISupermarketDbContext _context;
-        private readonly IMapper _mapper;
+        //private readonly IMapper _mapper;
 
-        public PermissionService(ISupermarketDbContext pContext, IMapper pMapper)
+        public PermissionService(ISupermarketDbContext pContext)
         {
             _context = pContext;
-            _mapper = pMapper;
+            //_mapper = pMapper;
         }
 
         public async Task Create(List<string> pPermissions)

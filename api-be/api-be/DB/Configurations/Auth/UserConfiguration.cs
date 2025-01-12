@@ -18,11 +18,11 @@ namespace api_be.DB.Configurations.Auth
             //       .ValueGeneratedOnAdd();  // GUID tự động tạo khi thêm mới
 
 
-            //// Cấu hình Id tăng dần tự động
-            //builder.Property(x => x.Id)
-            //       .ValueGeneratedOnAdd(); // Thiết lập Id tự động tăng dần
+         
             builder.HasKey(u => u.Id);
-
+            //// Cấu hình Id tăng dần tự động
+            builder.Property(x => x.Id)
+                   .ValueGeneratedOnAdd(); // Thiết lập Id tự động tăng dần
             builder.Property(u => u.UserName).HasMaxLength(255);
             builder.Property(u => u.Password).HasMaxLength(255);
             builder.Property(u => u.Email).HasMaxLength(255);
@@ -33,15 +33,18 @@ namespace api_be.DB.Configurations.Auth
                    .HasForeignKey(ur => ur.UserId)
                    .OnDelete(DeleteBehavior.Cascade);
 
+
             builder.HasOne(u => u.Staff)
-                   .WithOne()
+                   .WithOne(up=>up.User)
                    .HasForeignKey<User>(u => u.StaffId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Restrict).IsRequired(false);  // Chỉ ra rằng StaffId có thể null
+
 
             builder.HasOne(u => u.Customer)
-                   .WithOne()
-                   .HasForeignKey<User>(u => u.CustomerId)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .WithOne(up=>up.User)
+                   .HasForeignKey<User>(u => u.CustomerId)  // Đảm bảo chỉ có một khóa ngoại.
+                   .OnDelete(DeleteBehavior.Restrict).IsRequired(false);  // Chỉ ra rằng CustomerID có thể null
+
 
             builder.HasMany(u => u.UserPermissions)
                    .WithOne(up => up.User)
