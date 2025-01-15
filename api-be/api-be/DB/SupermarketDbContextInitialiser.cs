@@ -1,8 +1,8 @@
 ﻿using api_be.DB;
-using api_be.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using api_be.Entities.Auth;
 
 namespace Persistence.BusinessData
 {

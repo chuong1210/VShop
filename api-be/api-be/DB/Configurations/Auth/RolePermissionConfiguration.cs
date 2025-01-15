@@ -1,6 +1,6 @@
-﻿using api_be.Auth;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using api_be.Entities.Auth;
 
 namespace api_be.DB.Configurations.Auth
 {

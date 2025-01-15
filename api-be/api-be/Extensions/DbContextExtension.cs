@@ -1,6 +1,5 @@
-﻿
-using api_be.Common.Interfaces;
-using api_be.Domain.Common;
+﻿using api_be.Domain.Common;
+using api_be.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace api_be.Extensions

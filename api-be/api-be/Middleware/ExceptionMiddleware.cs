@@ -1,5 +1,4 @@
-﻿
-using api_be.Common.Constants;
+﻿using api_be.Constants;
 using api_be.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;

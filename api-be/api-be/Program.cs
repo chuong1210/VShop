@@ -2,7 +2,6 @@
 
 
 using api_be;
-using api_be.Common.Interfaces;
 using api_be.DB;
 using api_be.Middleware;
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +9,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using api_be.Domain.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,6 +80,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 
 builder.Services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPermissionPoliciesFromAttributes(Assembly.GetExecutingAssembly());
+
+    //options.AddPolicy("AdminOnly", policy => policy.RequireClaim("type", "Admin"));
+
+});
+
+
+
 builder.Services.AddTransient<ExceptionMiddleware>();
 
 builder.Services.AddControllers();

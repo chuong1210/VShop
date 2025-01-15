@@ -1,5 +1,5 @@
-﻿using api_be.Auth;
-using api_be.Domain.Common;
+﻿using api_be.Domain.Common;
+using api_be.Entities.Auth;
 
 namespace api_be.Domain.Entities
 {

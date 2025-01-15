@@ -1,5 +1,4 @@
-﻿
-using api_be.Common.Interfaces;
+﻿using api_be.Domain.Interfaces;
 
 namespace api_be.DB.Services
 {

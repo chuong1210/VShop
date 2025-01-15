@@ -1,4 +1,4 @@
-﻿using api_be.Interfaces;
+﻿using api_be.Domain.Interfaces;
 using api_be.Models.Responses;
 
 namespace api_be.Models.Request
