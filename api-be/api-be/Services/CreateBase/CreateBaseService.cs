@@ -1,5 +1,5 @@
-﻿using api_be.Common.Interfaces;
-using api_be.Domain.Common;
+﻿using api_be.Domain.Common;
+using api_be.Domain.Interfaces;
 using api_be.Models.Responses;
 using api_be.Transforms;
 using AutoMapper;
@@ -8,7 +8,7 @@ using FluentValidation;
 namespace api_be.Services.CreateBase
 {
 
-        public abstract class CreateBaseService<TValidator, TRequest, Dto, TEntity>
+    public abstract class CreateBaseService<TValidator, TRequest, Dto, TEntity>
             where TValidator : AbstractValidator<TRequest>
             where TRequest : class
             where TEntity : AuditableEntity

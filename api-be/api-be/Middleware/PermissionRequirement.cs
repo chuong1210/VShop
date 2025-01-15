@@ -1,4 +1,4 @@
-﻿using api_be.Common.Constants;
+﻿using api_be.Constants;
 using Microsoft.AspNetCore.Authorization;
 
 namespace api_be.Middleware

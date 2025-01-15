@@ -1,4 +1,4 @@
-﻿using api_be.Interfaces;
+﻿using api_be.Domain.Interfaces;
 using api_be.Models.Common;
 using Core.Application.Features.Base.Records;
 using static api_be.Domain.Entities.Staff;

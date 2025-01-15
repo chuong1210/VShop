@@ -1,8 +1,7 @@
-﻿
-using api_be.Common.Interfaces;
-using api_be.Auth;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using api_be.Domain.Interfaces;
+using api_be.Entities.Auth;
 
 namespace api_be.DB.Services
 {

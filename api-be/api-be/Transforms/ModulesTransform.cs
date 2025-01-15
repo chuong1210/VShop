@@ -41,7 +41,13 @@
             public const string LastName = "LastName";
             public const string UserName = "UserName";
             public const string Password = "Password";
+            public const string CurrentPassword = "CurrentPassword";
+
+            public const string NewPassword = "NewPassword";
+
             public const string ConfirmPassword = "ConfirmPassword";
+            public const string Id = "UserId";
+
         }
 
         public static class Role

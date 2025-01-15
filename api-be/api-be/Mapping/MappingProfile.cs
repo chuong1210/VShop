@@ -1,8 +1,9 @@
-﻿using api_be.Auth;
-using api_be.Domain.Entities;
+﻿using api_be.Domain.Entities;
+using api_be.Entities.Auth;
 using api_be.Models;
 using api_be.Models.Request;
 using AutoMapper;
+using Sieve.Models;
 
 namespace api_be.Mapping
 {
@@ -52,6 +53,15 @@ namespace api_be.Mapping
             CreateMap<SupplierOrder, ImportGoodDto>().ReverseMap();
 
             CreateMap<Delivery, DeliveryDto>().ReverseMap();
+
+
+            CreateMap<SieveModel, GetListUserRequest>().ReverseMap();
+
+            CreateMap<User, CreateUserRequest>().ReverseMap();
+            CreateMap<User, UpdateUserRequest>().ReverseMap();
+
+
+
 
         }
     }

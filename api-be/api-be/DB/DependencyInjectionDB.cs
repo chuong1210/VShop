@@ -1,8 +1,6 @@
-﻿
-
-using api_be.Common.Interfaces;
-using api_be.DB.Interceptors;
+﻿using api_be.DB.Interceptors;
 using api_be.DB.Services;
+using api_be.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Persistence.BusinessData;
 

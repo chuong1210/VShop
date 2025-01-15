@@ -1,12 +1,10 @@
-﻿
-
-using api_be.Common.Interfaces;
-using api_be.DB.Interceptors;
-using api_be.Auth;
+﻿using api_be.DB.Interceptors;
 using api_be.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using api_be.DB.Configurations;
+using api_be.Domain.Interfaces;
+using api_be.Entities.Auth;
 
 namespace api_be.DB
 {

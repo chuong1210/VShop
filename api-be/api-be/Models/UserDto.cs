@@ -1,7 +1,6 @@
-﻿using api_be.Interfaces;
-using api_be.Models.Common;
-using api_be.Auth;
-using static api_be.Auth.User;
+﻿using api_be.Models.Common;
+using static api_be.Entities.Auth.User;
+using api_be.Domain.Interfaces;
 namespace api_be.Models
 {
     public record UserDto : BaseDto, IBaseUser

@@ -1,7 +1,7 @@
 ﻿using api_be.Domain.Common;
 using Sieve.Attributes;
 using System.ComponentModel.DataAnnotations.Schema;
-using api_be.Auth;
+using api_be.Entities.Auth;
 namespace api_be.Domain.Entities
 {
     public class Staff : AuditableEntity

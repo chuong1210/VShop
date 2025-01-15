@@ -1,5 +1,4 @@
-﻿using api_be.Common.Interfaces;
-using api_be.DB.Common;
+﻿using api_be.DB.Common;
 using api_be.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
