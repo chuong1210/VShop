@@ -1,4 +1,5 @@
-﻿using Core.Application.Features.Base.Records;
+﻿
+using api_be.Models.Responses;
 
 namespace api_be.Domain.Interfaces
 {

@@ -10,8 +10,9 @@ using api_be.Models.Responses;
 using api_be.Models.ValidatorRequest;
 using api_be.Transforms;
 using api_be.Validator;
-using api_be.ValidatorRequest.ListBase;
+using api_be.ValidatorRequest.DefaultBase;
 using AutoMapper;
+using Azure.Core;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -37,19 +38,20 @@ namespace api_be.Services.Imps
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly ISieveProcessor _sieveProcessor;
+        private readonly IEmailService _emailService;
 
 
 
 
         public AuthService(ISupermarketDbContext pContext,
-       IPasswordHasher<User> passwordHasher, IConfiguration pConfiguration, IMapper pMapper, ISieveProcessor pSieveProcessor)
+       IPasswordHasher<User> passwordHasher, IConfiguration pConfiguration, IMapper pMapper, ISieveProcessor pSieveProcessor, IEmailService emailService)
         {
             _context = pContext;
             _passwordHasher = passwordHasher;
             _configuration = pConfiguration;
             _mapper = pMapper;
             _sieveProcessor = pSieveProcessor;
-
+            _emailService = emailService;
         }
 
         public async Task<PaginatedResult<List<UserDto>>> GetListUser(GetListUserRequest request)
@@ -216,13 +218,17 @@ namespace api_be.Services.Imps
                     return Result<LoginDto>.Failure("Thông tin xác thực không hợp lệ!", StatusCodes.Status400BadRequest);
                 }
 
-                JwtSecurityToken jwtSecurityToken = await GenerateToken(user);
+                JwtSecurityToken jwtSecurityToken = await JwtExtension.GenerateToken(user,_context,_configuration);
+                var refreshToken = await JwtExtension.GenerateRefreshToken(user.Id,_context,_configuration);
+                await _context.SaveChangesAsync();
 
                 LoginDto auth = new LoginDto
                 {
                     Id = user.Id,
                     Exp = DateTime.Now.AddMinutes(int.Parse(_configuration["JwtSettings:DurationInMinutes"])),
                     Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
+                    RefreshToken = refreshToken.Token
+
                 };
 
                 return Result<LoginDto>.Success(auth, StatusCodes.Status200OK);
@@ -251,9 +257,23 @@ namespace api_be.Services.Imps
                 var user = _mapper.Map<User>(request);
                 user.Password = _passwordHasher.HashPassword(user, request.Password);
                 user.Type = User.UserType.User;
+                user.IsEmailVerified = false; // Set email as unverified
+
 
                 // Save user to database
-                var newUser = await _context.Users.AddAsync(user);
+                var newUser = await _context.Set<User>().AddAsync(user);
+                await _context.SaveChangesAsync();
+
+                var verificationToken = new EmailVerification
+                {
+                    UserId = user.Id,
+                    Token = Convert.ToBase64String(Guid.NewGuid().ToByteArray()),
+                    ExpiryDate = DateTime.UtcNow.AddHours(24),
+                    CreatedAt = DateTime.UtcNow,
+                    IsUsed = false
+                };
+
+                await _context.EmailVerifications.AddAsync(verificationToken);
                 await _context.SaveChangesAsync();
 
                 // Publish events or additional logic if needed
@@ -295,6 +315,17 @@ namespace api_be.Services.Imps
                 }
                 await _context.SaveChangesAsync();
 
+
+
+                await _context.Set<EmailVerification>().AddAsync(verificationToken);
+                await _context.SaveChangesAsync();
+
+                // Generate verification link
+                var verificationLink = $"{_configuration["AppSettings:FrontendUrl"]}/verify-email?token={verificationToken.Token}";
+
+                // Send verification email
+                await _emailService.SendVerificationEmailAsync(user.Email, verificationLink);
+
                 // Map to DTO and return result
                 var userDto = _mapper.Map<UserDto>(newUser.Entity);
                 return Result<UserDto>.Success(userDto, StatusCodes.Status201Created);
@@ -307,6 +338,175 @@ namespace api_be.Services.Imps
 
         }
 
+
+        // Add method to verify email
+        public async Task<Result<bool>> VerifyEmail(VerifyEmailRequest request)
+        {
+            try
+            {
+                var validator = new VerifyEmailValidator();
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (!validationResult.IsValid)
+                {
+                    var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+                    return Result<bool>.Failure(errorMessages, StatusCodes.Status400BadRequest);
+                }
+
+                var verificationToken = await _context.Set<EmailVerification>()
+                    .Include(t => t.User)
+                    .FirstOrDefaultAsync(t => t.Token == request.Token);
+
+                if (verificationToken == null)
+                {
+                    return Result<bool>.Failure(IdentityTransform.InvalidAccessToken(), StatusCodes.Status400BadRequest);
+                }
+
+                if (verificationToken.IsUsed)
+                {
+                    return Result<bool>.Failure(IdentityTransform.RefreshTokenUsed(), StatusCodes.Status400BadRequest);
+                }
+
+                if (verificationToken.ExpiryDate < DateTime.UtcNow)
+                {
+                    return Result<bool>.Failure("Token đã hết hạn", StatusCodes.Status400BadRequest);
+                }
+
+                verificationToken.IsUsed = true;
+                verificationToken.User.IsEmailVerified = true;
+
+                await _context.SaveChangesAsync();
+
+                return Result<bool>.Success(true, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        // Add method to resend verification email
+        public async Task<Result<bool>> ResendVerificationEmail(ResendVerificationEmailRequest request)
+        {
+            try
+            {
+                var validator = new ResendVerificationEmailValidator(_context);
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (!validationResult.IsValid)
+                {
+                    var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+                    return Result<bool>.Failure(errorMessages, StatusCodes.Status400BadRequest);
+                }
+
+                var user = await _context.Set<User>()
+                    .FirstOrDefaultAsync(u => u.Email == request.Email);
+
+                if (user.IsEmailVerified == true)
+                {
+                    return Result<bool>.Failure("Email đã được xác nhận", StatusCodes.Status400BadRequest);
+                }
+
+                // Generate new verification token
+                var verificationToken = new EmailVerification
+                {
+                    UserId = user.Id,
+                    Token = Convert.ToBase64String(Guid.NewGuid().ToByteArray()),
+                    ExpiryDate = DateTime.UtcNow.AddHours(24),
+                    CreatedAt = DateTime.UtcNow,
+                    IsUsed = false
+                };
+
+                await _context.Set<EmailVerification>().AddAsync(verificationToken);
+                await _context.SaveChangesAsync();
+
+                // Generate verification link
+                var verificationLink = $"{_configuration["AppSettings:FrontendUrl"]}/verify-email?token={verificationToken.Token}";
+
+                // Send verification email
+                await _emailService.SendVerificationEmailAsync(user.Email, verificationLink);
+
+                return Result<bool>.Success(true, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+            }
+        }
+
+
+        public async Task<Result<LoginDto>> RefreshToken(RefreshTokenRequest request)
+        {
+            try
+            {
+                // Validate request
+                var validator = new RefreshTokenValidator(_context,_configuration);
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (!validationResult.IsValid)
+                {
+                    var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+                    return Result<LoginDto>.Failure(errorMessages, StatusCodes.Status400BadRequest);
+                }
+
+                // Find the refresh token
+                var refreshToken = await _context.Set<RefreshToken>()
+                    .Include(r => r.User)
+                    .FirstOrDefaultAsync(r => r.Token == request.RefreshToken);
+                var user = await ValidateTokenAsync(request.AccessToken);
+
+
+                if (refreshToken == null)
+                {
+                    return Result<LoginDto>.Failure(IdentityTransform.InvalidRefreshToken(), StatusCodes.Status400BadRequest);
+                }
+
+                // Check if token is valid
+                if (refreshToken.IsUsed || refreshToken.IsRevoked || refreshToken.ExpiryDate < DateTime.UtcNow)
+                {
+
+                    var userTokens = await _context.RefreshTokens
+               .Where(t => t.UserId == refreshToken.UserId)
+               .ToListAsync();
+
+                    foreach (var token in userTokens)
+                    {
+                        token.IsRevoked = true;
+                    }
+                    await _context.SaveChangesAsync();
+
+                    return Result<LoginDto>.Failure(IdentityTransform.InvalidRefreshToken(), StatusCodes.Status400BadRequest);
+                }
+
+                // Mark current token as used
+                refreshToken.IsUsed = true;
+                _context.Set<RefreshToken>().Update(refreshToken);
+
+                // Generate new JWT token
+                var jwtToken = await JwtExtension.GenerateToken(refreshToken.User,_context,_configuration);
+
+                // Generate new refresh token
+                var newRefreshToken = await JwtExtension.GenerateRefreshToken(refreshToken.User.Id, _context, _configuration);
+                await _context.SaveChangesAsync();
+
+                // Create response
+                var response = new LoginDto
+                {
+                    Id = refreshToken.User.Id,
+                    Token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
+                    RefreshToken = newRefreshToken.Token,
+                    Exp = DateTime.Now.AddMinutes(int.Parse(_configuration["JwtSettings:DurationInMinutes"]))
+
+
+                };
+
+                return Result<LoginDto>.Success(response, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<LoginDto>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+            }
+        }
         public async Task<User> ValidateTokenAsync(string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -339,56 +539,7 @@ namespace api_be.Services.Imps
             }
         }
 
-        private async Task<JwtSecurityToken> GenerateToken(User pUser)
-        {
-            var roles = await _context.Roles
-                    .Where(x => x.UserRoles.Any(x => x.UserId == pUser.Id))
-                    .ToListAsync();
-            var permissions = await _context.Permissions
-                    .Where(x => x.RolePermissions.Any(x => x.Role.UserRoles.Any(x => x.UserId == pUser.Id)) ||
-                                x.UserPermissions.Any(x => x.UserId == pUser.Id))
-                    .ToListAsync();
-
-            var positionId = await _context.Users
-                .Where(x => x.Id == pUser.Id)
-                .Select(x => x.Staff.PositionId)
-                .SingleOrDefaultAsync();
-            if (positionId != null)
-            {
-                var per = await _context.StaffPositionHasRoles
-                    .Where(x => x.StaffPositionId == positionId)
-                    .SelectMany(x => x.Role.RolePermissions.Select(p => p.Permission))
-                    .ToListAsync();
-                permissions = permissions.Union(per).Distinct().ToList();
-            }
-
-            var roleClaims = roles.Select(role => new Claim(ClaimTypes.Role, role.Name));
-            var permissionClaims = permissions.Select(permission => new Claim(CONSTANT_CLAIM_TYPES.Permission, permission.Name));
-
-            var claims = new[]
-            {
-                new Claim(CONSTANT_CLAIM_TYPES.Uid, pUser.Id.ToString()),
-                new Claim(CONSTANT_CLAIM_TYPES.Type, pUser.Type.ToString()),
-                new Claim(CONSTANT_CLAIM_TYPES.Staff, pUser.StaffId.ToString()),
-                new Claim(CONSTANT_CLAIM_TYPES.Customer, pUser.CustomerId.ToString()),
-                //new Claim(ClaimTypes.Role, pUser.Type.ToString()) ,
-                new Claim(CONSTANT_CLAIM_TYPES.UserName, pUser.UserName),
-
-            }
-            .Union(permissionClaims)
-            .Union(roleClaims);
-
-            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));
-            var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
-
-            var jwtSecurityToken = new JwtSecurityToken(
-                issuer: _configuration["JwtSettings:Issuer"],
-                audience: _configuration["JwtSettings:Audience"],
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(int.Parse(_configuration["JwtSettings:DurationInMinutes"])),
-                signingCredentials: signingCredentials);
-            return jwtSecurityToken;
-        }
+    
 
         public async Task<Result<UserDto>> Create(CreateUserRequest request)
         {
@@ -546,6 +697,7 @@ namespace api_be.Services.Imps
 
         }
 
+      
         public async Task<Result<bool>> Delete(int userId, int currentUserId)
         {
             // Kiểm tra xem người thực hiện hành động có phải là admin không
@@ -561,10 +713,45 @@ namespace api_be.Services.Imps
             {
                 return Result<bool>.Failure(IdentityTransform.UserNotExists(userId.ToString()), StatusCodes.Status401Unauthorized);
             }
-            _context.Users.Remove(userToDelete);
-            await _context.SaveChangesAsync();
 
-            return Result<bool>.Success(true, StatusCodes.Status200OK);
+
+
+            var entity = await _context.Set<User>().FirstOrDefaultAsync(x => x.Id == userId && x.IsDeleted == false);
+
+            if (entity == null)
+                throw new NotFoundException(Modules.Id, userId.ToString());
+
+            entity.IsDeleted = true;
+
+
+            _context.Set<User>().Remove(entity);
+            //_context.Set<User>().Update(entity);
+
+
+
+            //_context.Users.Remove(userToDelete);
+            await _context.SaveChangesAsync();
+            var result = Result<bool>.Success(true, StatusCodes.Status200OK);
+            result.Messages.Add(EventTransform.DeleteObjectSuccess(objectStr: Modules.User.Module.ToString(), userId.ToString()));
+
+            return result;
         }
+
+        public async Task<Result<UserDto>> Detail(int id)
+        {
+            var UserDetail = await _context.Users.FindAsync(id.ToString());
+            if (UserDetail == null)
+            {
+                return Result<UserDto>.Failure(IdentityTransform.UserNotExists(id.ToString()), StatusCodes.Status401Unauthorized);
+            }
+            var userDto = _mapper.Map<UserDto>(UserDetail);
+            return Result<UserDto>.Success(userDto, StatusCodes.Status200OK);
+        }
+        public Task<Result<LoginDto>> LoginSocial(LoginAccountRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

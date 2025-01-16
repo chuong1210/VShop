@@ -1,4 +1,4 @@
-﻿using api_be.ValidatorRequest.ListBase;
+﻿using api_be.ValidatorRequest.DefaultBase;
 
 namespace api_be.Models.Request
 {

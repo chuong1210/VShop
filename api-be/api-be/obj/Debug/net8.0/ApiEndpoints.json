@@ -81,6 +81,22 @@
   },
   {
     "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "Refresh",
+    "RelativePath": "smw-api/user/refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Models.Request.RefreshTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
     "Method": "Register",
     "RelativePath": "smw-api/user/register",
     "HttpMethod": "POST",
@@ -90,6 +106,22 @@
       {
         "Name": "request",
         "Type": "api_be.Models.Request.RegisterAccountRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "ResendVerificationEmail",
+    "RelativePath": "smw-api/user/resend-verification-email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_be.Models.Request.ResendVerificationEmailRequest",
         "IsRequired": true
       }
     ],
@@ -148,6 +180,22 @@
         "Name": "SearchKeyword",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "VerifyEmail",
+    "RelativePath": "smw-api/user/verify-email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_be.Models.Request.VerifyEmailRequest",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

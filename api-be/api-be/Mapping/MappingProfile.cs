@@ -4,7 +4,7 @@ using api_be.Models;
 using api_be.Models.Request;
 using AutoMapper;
 using Sieve.Models;
-
+using api_be.Models.Responses;
 namespace api_be.Mapping
 {
     public class MappingProfile : Profile

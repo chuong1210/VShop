@@ -2,7 +2,6 @@
 using api_be.DB.Services;
 using api_be.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Persistence.BusinessData;
 
 namespace api_be.DB
 {
@@ -20,6 +19,7 @@ namespace api_be.DB
                     builder.MigrationsAssembly(typeof(DependencyInjectionDB).Assembly.FullName);
                     builder.EnableRetryOnFailure();
                 }));
+
 
             services.AddScoped<SupermarketDbContextInitialiser>();
 

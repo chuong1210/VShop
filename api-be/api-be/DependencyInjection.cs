@@ -34,6 +34,8 @@ namespace api_be
 
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IEmailService, EmailService>();
+
 
 
             //services.AddAuthorization(options =>
