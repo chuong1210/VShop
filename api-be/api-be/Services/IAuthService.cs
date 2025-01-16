@@ -7,13 +7,23 @@ namespace api_be.Services
 {
     public interface IAuthService
     {
+
         public Task<Result<LoginDto>> Login(LoginAccountRequest request);
+        public Task<Result<LoginDto>> LoginSocial(LoginAccountRequest request);
+
+        public Task<Result<LoginDto>> RefreshToken(RefreshTokenRequest request);
+
         public Task<Result<UserDto>> Register(RegisterAccountRequest request);
         public Task<Result<UserDto>> Create(CreateUserRequest request);
         public Task<Result<UserDto>> Update(UpdateUserRequest request);
         public Task<Result<Boolean>> Delete(int userId, int currentUserId);
-        public Task<Result<UserDto>> ChangePassword(ChangePasswordRequest request);
 
+        public Task<Result<UserDto>> Detail(int id);
+
+        public Task<Result<UserDto>> ChangePassword(ChangePasswordRequest request);
+        public Task<Result<bool>> ResendVerificationEmail(ResendVerificationEmailRequest request);
+
+        public Task<Result<bool>> VerifyEmail(VerifyEmailRequest request);
 
 
         public Task<User> ValidateTokenAsync(string request);

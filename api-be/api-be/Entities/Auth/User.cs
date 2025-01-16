@@ -42,5 +42,10 @@ namespace api_be.Entities.Auth
         public int? CustomerId { get; set; }
 
         public virtual Customer? Customer { get; set; }
+        public bool? IsEmailVerified { get; set; }
+
+
+        public virtual ICollection<EmailVerification> EmailVerificationTokens { get; set; }
+
     }
 }

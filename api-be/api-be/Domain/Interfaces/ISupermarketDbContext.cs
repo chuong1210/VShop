@@ -1,4 +1,5 @@
 ﻿using api_be.Domain.Entities;
+using api_be.Entities;
 using api_be.Entities.Auth;
 using Microsoft.EntityFrameworkCore;
 
@@ -49,6 +50,11 @@ namespace api_be.Domain.Interfaces
         DbSet<DetailOrder> DetailOrders { get; }
 
         DbSet<StaffPositionHasRole> StaffPositionHasRoles { get; }
+        DbSet<Message> Messages { get; }
+        DbSet<RefreshToken> RefreshTokens { get; }
+        DbSet<EmailVerification> EmailVerifications { get; }
+
+
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 

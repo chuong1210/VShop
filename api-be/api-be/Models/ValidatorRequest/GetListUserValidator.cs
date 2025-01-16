@@ -2,7 +2,7 @@
 
 using api_be.Domain.Interfaces;
 using api_be.Models.Request;
-using api_be.ValidatorRequest.ListBase;
+using api_be.ValidatorRequest.DefaultBase;
 using FluentValidation;
 
 namespace api_be.Validator

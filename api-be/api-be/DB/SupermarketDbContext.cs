@@ -5,6 +5,8 @@ using System.Reflection;
 using api_be.DB.Configurations;
 using api_be.Domain.Interfaces;
 using api_be.Entities.Auth;
+using api_be.Entities;
+using api_be.DB.Configurations.Auth;
 
 namespace api_be.DB
 {
@@ -64,14 +66,20 @@ namespace api_be.DB
 
         public DbSet<StaffPositionHasRole> StaffPositionHasRoles => Set<StaffPositionHasRole>();
 
+        public DbSet<Message> Messages  => Set<Message>();
+        public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+        public DbSet<EmailVerification> EmailVerifications => Set<EmailVerification>();
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
 
 
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(SupermarketDbContext).Assembly);
+
             //modelBuilder.ApplyConfiguration(new BaseEntityConfiguration<Role> ());
 
         }

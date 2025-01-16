@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using api_be.Entities.Auth;
 
-namespace Persistence.BusinessData
+namespace api_be.DB
 {
     public class SupermarketDbContextInitialiser
     {

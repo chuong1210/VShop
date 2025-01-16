@@ -50,11 +50,28 @@ namespace UI.WebApi.Controllers
             }
             catch (UnauthorizedAccessException)
             {
-                return Unauthorized("Invalid credentials");
+                return Unauthorized(IdentityTransform.UnauthorizedException());
             }
 
         }
 
+        [HttpPost("refresh-token")]
+        [AllowAnonymous]
+        public async Task<ActionResult> Refresh([FromBody] RefreshTokenRequest pRequest)
+        {
+            try
+            {
+                var response = await _authService.RefreshToken(pRequest);
+                //return Ok(new { Token = token });
+                return StatusCode(response.Code, response);
+
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized(IdentityTransform.UnauthorizedException());
+            }
+
+        }
 
 
 
@@ -129,6 +146,19 @@ namespace UI.WebApi.Controllers
             //return CreatedAtAction(nameof(Register), new { id = response.Data.Id }, response.Data);
         }
 
+        [HttpPost("verify-email")]
+        public async Task<IActionResult> VerifyEmail([FromBody] VerifyEmailRequest request)
+        {
+            var result = await _authService.VerifyEmail(request);
+            return StatusCode(result.Code, result);
+        }
+
+        [HttpPost("resend-verification-email")]
+        public async Task<IActionResult> ResendVerificationEmail([FromBody] ResendVerificationEmailRequest request)
+        {
+            var result = await _authService.ResendVerificationEmail(request);
+            return StatusCode(result.Code, result);
+        }
         ///// <summary>
         ///// Gán vai trò cho người dùng
         ///// </summary>
@@ -203,11 +233,22 @@ namespace UI.WebApi.Controllers
         [Authorize(Roles = "Admin")]  // Chỉ cho phép người dùng có quyền "Admin" mới được phép gọi endpoint này
         public async Task<IActionResult> DeleteUser(int userId)
         {
+            var user = User.Identity;
             // Kiểm tra xem người dùng có quyền admin hay không
-            var currentUserId = int.Parse(User.Identity.Name); // Giả sử User.Identity.Name chứa UserId trong token
+            //var currentUserId = int.Parse(User.Identity.Name); // Giả sử User.Identity.Name chứa UserId trong token
 
             // Gọi service để xóa người dùng
-            var response = await _authService.Delete(userId, currentUserId);
+            var response = await _authService.Delete(userId,(int) _userService.UserId);
+
+            return StatusCode(response.Code, response);
+
+        }
+
+        [HttpGet("{userId}")]
+        [Permission("user.view")]  // Chỉ cho phép người dùng có quyền "Admin" mới được phép gọi endpoint này
+        public async Task<IActionResult> GetUser(int userId)
+        {
+            var response = await _authService.Detail(userId);
 
             return StatusCode(response.Code, response);
 

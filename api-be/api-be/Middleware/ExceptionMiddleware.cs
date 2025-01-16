@@ -1,5 +1,6 @@
 ﻿using api_be.Constants;
 using api_be.Exceptions;
+using api_be.Transforms;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
@@ -41,36 +42,56 @@ namespace api_be.Middleware
                     }
 
                     var token = authorizationHeader.Substring("Bearer ".Length).Trim();
+
                     var tokenHandler = new JwtSecurityTokenHandler();
-                    var jwtToken = tokenHandler.ReadToken(token) as JwtSecurityToken;
-
-                    if (jwtToken == null)
+                    try
                     {
-                        break;
+                        var jwtToken = tokenHandler.ReadJwtToken(token) as JwtSecurityToken;
+
+                        // Kiểm tra thời gian hết hạn
+                        if (jwtToken.ValidTo < DateTime.UtcNow)
+                        {
+                            httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                            await httpContext.Response.WriteAsync(IdentityTransform.AccessTokenNotExpired());
+                            return;
+                        }
+
+
+                        if (jwtToken == null)
+                        {
+                            break;
+                        }
+
+                        // Lấy danh sách quyền của người dùng từ token
+                        var permissions = jwtToken.Claims
+                                                .Where(c => c.Type == CONSTANT_CLAIM_TYPES.Permission)
+                                                .Select(c => c.Value).ToList();
+
+                        var authorizeAttributes = endpoint?.Metadata.GetOrderedMetadata<AuthorizeAttribute>();
+
+                        if ((authorizeAttributes != null && authorizeAttributes.Any()) == false)
+                        {
+                            break;
+                        }
+
+                        var requiredRoles = authorizeAttributes
+                                                .SelectMany(attr => (attr.Policy ?? "").Split(','))
+                                                .Where(role => !string.IsNullOrEmpty(role))
+                                                .Distinct().ToList();
+
+                        if (requiredRoles.Except(permissions).Any())
+                        {
+                            httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
+                            break;
+                        }
                     }
-
-                    // Lấy danh sách quyền của người dùng từ token
-                    var permissions = jwtToken.Claims
-                                            .Where(c => c.Type == CONSTANT_CLAIM_TYPES.Permission)
-                                            .Select(c => c.Value).ToList();
-
-                    var authorizeAttributes = endpoint?.Metadata.GetOrderedMetadata<AuthorizeAttribute>();
-
-                    if ((authorizeAttributes != null && authorizeAttributes.Any()) == false)
+                    catch (Exception ex)
                     {
-                        break;
+                        httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        await httpContext.Response.WriteAsync("Invalid token: " + ex.Message);
+                        return;
                     }
-
-                    var requiredRoles = authorizeAttributes
-                                            .SelectMany(attr => (attr.Policy ?? "").Split(','))
-                                            .Where(role => !string.IsNullOrEmpty(role))
-                                            .Distinct().ToList();
-
-                    if (requiredRoles.Except(permissions).Any())
-                    {
-                        httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
-                        break;
-                    }
+             
 
 
                 } while (false);

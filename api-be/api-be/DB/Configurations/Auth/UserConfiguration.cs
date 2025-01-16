@@ -23,6 +23,12 @@ namespace api_be.DB.Configurations.Auth
             //// Cấu hình Id tăng dần tự động
             builder.Property(x => x.Id)
                    .ValueGeneratedOnAdd(); // Thiết lập Id tự động tăng dần
+                                           //// Cấu hình Id tăng dần tự động
+            builder.Property(x => x.IsEmailVerified).
+              IsRequired(false).
+              HasDefaultValue(false);
+
+
             builder.Property(u => u.UserName).HasMaxLength(255);
             builder.Property(u => u.Password).HasMaxLength(255);
             builder.Property(u => u.Email).HasMaxLength(255);
@@ -50,6 +56,12 @@ namespace api_be.DB.Configurations.Auth
                    .WithOne(up => up.User)
                    .HasForeignKey(up => up.UserId)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(u => u.EmailVerificationTokens)
+               .WithOne(ev => ev.User) // Điều kiện để `EmailVerification` tham chiếu đến `User`
+               .HasForeignKey(ev => ev.UserId) // Đảm bảo có khóa ngoại trong bảng `EmailVerification`
+               .OnDelete(DeleteBehavior.Cascade); // Xóa tất cả các `EmailVerification` khi `User` bị xóa
+
         }
     }
 }
