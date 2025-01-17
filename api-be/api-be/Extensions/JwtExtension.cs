@@ -1,6 +1,7 @@
 ﻿using api_be.Constants;
 using api_be.Domain.Interfaces;
 using api_be.Entities.Auth;
+using api_be.Transforms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -78,6 +79,27 @@ namespace api_be.Extensions
             }
         }
 
+        public static ClaimsPrincipal? GetPrincipalFromExpiredToken(string token, IConfiguration configuration)
+        {
+            var tokenParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Key"])),
+                ValidateLifetime = false,
+                ValidAudience = configuration["JwtSettings:Audience"],
+
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var principal = tokenHandler.ValidateToken(token, tokenParameters, out SecurityToken securityToken);
+
+            if (securityToken is not JwtSecurityToken jwtSecurityToken || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+                throw new SecurityTokenException(IdentityTransform.InvalidAccessToken());
+
+            return principal;
+        }
         public static DateTime? GetTokenExpirationTime(string token)
         {
             var jwtToken = DecodeJwtToken(token);

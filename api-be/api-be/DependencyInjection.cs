@@ -12,6 +12,7 @@ using api_be.Middleware;
 using Microsoft.AspNetCore.Authorization;
 using api_be.Domain.Interfaces;
 using api_be.Entities.Auth;
+using api_be.DB;
 
 namespace api_be
 {
@@ -34,8 +35,13 @@ namespace api_be
 
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+
+
             services.AddScoped<IEmailService, EmailService>();
 
+            //services.AddScoped<ISupermarketDbContext>(provider => provider.GetService<SupermarketDbContext>());
 
 
             //services.AddAuthorization(options =>

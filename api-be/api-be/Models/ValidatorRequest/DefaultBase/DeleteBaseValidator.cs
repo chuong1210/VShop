@@ -7,7 +7,7 @@ namespace  api_be.Models.ValidatorRequest.DefaultBase
 {
     public class DeleteBaseValidator<T> : AbstractValidator<T> where T : BaseDto
     {
-        public DeleteBaseValidator(ISupermarketDbContext pContext)
+        public DeleteBaseValidator(ISupermarketDbContext? pContext)
         {
             RuleFor(x => x.Id)
                 .NotEmpty().WithMessage(ValidatorTransform.Required(Modules.Id));

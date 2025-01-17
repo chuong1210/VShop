@@ -164,3 +164,8 @@ C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\BouncyCastle.Cryptog
 C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\MimeKit.dll
 C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\client_secret.Development.json
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\client_secret.json
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Twitter.dll

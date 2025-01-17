@@ -38,7 +38,7 @@ namespace api_be.Models.Responses
 
 
         #region Failure Methods 
-        public static Result<T> Failure()
+        public static Result<T> Failure(int status500InternalServerError)
         {
             return new Result<T>
             {

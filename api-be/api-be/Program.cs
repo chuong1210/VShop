@@ -12,6 +12,11 @@ using System.Text;
 using api_be.Domain.Interfaces;
 using System.IO;
 using api_be.Services.Imps;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
+using System.Security.Claims;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
@@ -22,6 +27,7 @@ var JWTSetting = builder.Configuration.GetSection("JWTSetting");
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 builder.Services.AddSignalR();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -38,6 +44,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     };
 
 
+                    options.SaveToken = true;
 
                     options.Events = new JwtBearerEvents
                     {
@@ -93,7 +100,48 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     };
                     options.RequireHttpsMetadata = false;
 
+                })
+                .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+                {
+                    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+                    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+                })
+                .AddOAuth("GitHub", options =>
+                {
+                    options.ClientId = builder.Configuration["Authentication:GitHub:ClientId"];
+                    options.ClientSecret = builder.Configuration["Authentication:GitHub:ClientSecret"];
+                    options.CallbackPath = new PathString("/signin-github");
+
+                    options.AuthorizationEndpoint = "https://github.com/login/oauth/authorize";
+                    options.TokenEndpoint = "https://github.com/login/oauth/access_token";
+                    options.UserInformationEndpoint = "https://api.github.com/user";
+                    options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
+                    options.ClaimActions.MapJsonKey(ClaimTypes.Name, "login");
+
+                    options.ClaimActions.MapJsonKey("urn:github:login", "login");
+                    options.ClaimActions.MapJsonKey("urn:github:url", "html_url");
+                    options.ClaimActions.MapJsonKey("urn:github:avatar", "avatar_url");
+                    options.ClaimActions.MapJsonKey("urn:github:email", "email");
+
+
+                    options.Events = new OAuthEvents
+                    {
+                        OnCreatingTicket = async context =>
+                        {
+                            var request = new HttpRequestMessage(HttpMethod.Get, context.Options.UserInformationEndpoint);
+                            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                            request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", context.AccessToken);
+
+                            var response = await context.Backchannel.SendAsync(request);
+                            response.EnsureSuccessStatusCode();
+
+                            var user = System.Text.Json.JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+                            context.RunClaimActions(user.RootElement);
+                        }
+                    };
                 });
+                    
+                
 
 
 builder.Services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
@@ -113,7 +161,15 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddTransient<ExceptionMiddleware>();
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        //options.JsonSerializerOptions.MaxDepth = 3; // Set the desired maximum depth
+        //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+
+    });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -183,6 +239,7 @@ async Task InitializePermissions(IServiceProvider serviceProvider)
             .GetPermissionPoliciesFromAttributes(Assembly.GetExecutingAssembly());
     await permissionService.Create(permissions);
 }
+
 
 //dotnet ef migrations add InitialTable --context SupermarketDbContext --output-dir DB/Migrations
 //dotnet ef database update --context SupermarketDbContext
