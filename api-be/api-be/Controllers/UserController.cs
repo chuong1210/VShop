@@ -7,9 +7,14 @@ using api_be.Services;
 using api_be.Transforms;
 using Azure;
 using Azure.Core;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace UI.WebApi.Controllers
 {
@@ -19,6 +24,8 @@ namespace UI.WebApi.Controllers
     {
         private readonly IAuthService _authService;
         private readonly ICurrentUserService _userService;
+        private readonly IUserService _userDomainService;
+
 
 
 
@@ -55,6 +62,47 @@ namespace UI.WebApi.Controllers
 
         }
 
+        [HttpGet("callback")]
+        public async Task<IActionResult> Callback(string provider)
+        {
+            var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            if (!authenticateResult.Succeeded)
+                return Unauthorized("Authentication failed.");
+
+            // Lấy thông tin người dùng từ claims
+            var userId = authenticateResult.Principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var email = authenticateResult.Principal.FindFirst(ClaimTypes.Email)?.Value;
+            var name = authenticateResult.Principal.FindFirst(ClaimTypes.Name)?.Value;
+
+            // Tạo JWT Token
+            var claims = new[]
+            {
+        new Claim(ClaimTypes.NameIdentifier, userId),
+        new Claim(ClaimTypes.Name, name),
+        new Claim(ClaimTypes.Email, email),
+        new Claim("Provider", provider)
+    };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("YourSuperSecretKey"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(
+                issuer: "your-app",
+                audience: "your-app",
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds
+            );
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return Ok(new
+            {
+                Token = jwt,
+                Expires = DateTime.Now.AddHours(1)
+            });
+        }
+
         [HttpPost("refresh-token")]
         [AllowAnonymous]
         public async Task<ActionResult> Refresh([FromBody] RefreshTokenRequest pRequest)
@@ -88,7 +136,7 @@ namespace UI.WebApi.Controllers
         {
             try
             {
-                var response = await _authService.GetListUser(pRequest);
+                var response = await _userDomainService.GetListUser(pRequest);
 
                 if (!response.Succeeded)
                 {
@@ -118,7 +166,7 @@ namespace UI.WebApi.Controllers
         [Permission("user.create")]
         public async Task<ActionResult> Post([FromBody] CreateUserRequest pRequest)
         {
-            var response = await _authService.Create(pRequest);
+            var response = await _userDomainService.Create(pRequest);
 
             return StatusCode(response.Code, response);
         }
@@ -204,7 +252,7 @@ namespace UI.WebApi.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Put([FromBody] UpdateUserRequest pRequest)
         {
-            var response = await _authService.Update(pRequest);
+            var response = await _userDomainService.Update(pRequest);
 
             return StatusCode(response.Code, response);
         }
@@ -238,7 +286,7 @@ namespace UI.WebApi.Controllers
             //var currentUserId = int.Parse(User.Identity.Name); // Giả sử User.Identity.Name chứa UserId trong token
 
             // Gọi service để xóa người dùng
-            var response = await _authService.Delete(userId,(int) _userService.UserId);
+            var response = await _userDomainService.Delete(userId,(int) _userService.UserId);
 
             return StatusCode(response.Code, response);
 
@@ -248,10 +296,28 @@ namespace UI.WebApi.Controllers
         [Permission("user.view")]  // Chỉ cho phép người dùng có quyền "Admin" mới được phép gọi endpoint này
         public async Task<IActionResult> GetUser(int userId)
         {
-            var response = await _authService.Detail(userId);
+            var response = await _userDomainService.Detail(userId);
 
             return StatusCode(response.Code, response);
 
         }
+
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)
+        {
+            var result = await _authService.ForgotPassword(request);
+            return StatusCode(result.Code, result);
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            var result = await _authService.ResetPassword(request);
+            return StatusCode(result.Code, result);
+        }
     }
+
+
+
 }

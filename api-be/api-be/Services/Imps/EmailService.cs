@@ -27,6 +27,24 @@ namespace api_be.Services.Imps
 
         }
 
+        public async Task SendPasswordResetEmailAsync(string email, string resetLink)
+        {
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(_configuration["EmailSettings:FromEmail"]),
+                Subject = "Đặt lại mật khẩu",
+                IsBodyHtml = true,
+                Body = $@"
+                <h3>Đặt lại mật khẩu</h3>
+                <p>Bạn đã yêu cầu đặt lại mật khẩu. Vui lòng nhấp vào liên kết dưới đây để đặt lại mật khẩu:</p>
+                <p><a href='{resetLink}'>Đặt lại mật khẩu</a></p>
+                <p>Liên kết này sẽ hết hạn sau 1 giờ.</p>
+                <p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.</p>"
+            };
+            mailMessage.To.Add(email);
+
+            await _smtpClient.SendMailAsync(mailMessage);
+        }
 
         public async Task SendVerificationEmailAsync(string email, string verificationLink)
         {
@@ -45,6 +63,24 @@ namespace api_be.Services.Imps
             mailMessage.To.Add(email);
 
             await _smtpClient.SendMailAsync(mailMessage);
+        }
+
+
+
+        public async Task SendMailResetPasswordAsycn(string email)
+        {
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(_configuration["EmailSettings:FromEmail"]),
+                Subject = "Mật khẩu đã được đặt lại",
+                IsBodyHtml = true,
+                Body = @"
+                    <h3>Mật khẩu đã được đặt lại thành công</h3>
+                    <p>Mật khẩu của bạn đã được đặt lại thành công. Nếu bạn không thực hiện thay đổi này, vui lòng liên hệ với chúng tôi ngay lập tức.</p>"
+            };
+            mailMessage.To.Add(email);
+            await _smtpClient.SendMailAsync(mailMessage);
+
         }
     }
 }

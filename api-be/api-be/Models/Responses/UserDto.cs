@@ -1,13 +1,17 @@
 ﻿using api_be.Models.Common;
 using static api_be.Entities.Auth.User;
 using api_be.Domain.Interfaces;
+using Newtonsoft.Json;
 namespace api_be.Models.Responses
 {
     public record UserDto : BaseDto, IBaseUser
     {
         public string? UserName { get; set; }
 
+        [JsonProperty("email")]
+
         public string? Email { get; set; }
+        [JsonProperty("phoneNumber")]
 
         public string? PhoneNumber { get; set; }
 

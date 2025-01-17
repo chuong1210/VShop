@@ -7,5 +7,6 @@ namespace api_be.Models.Request
 
 
         public string? Password { get; set; }
+        public string? ExternalAccessToken { get; set; }
     }
 }

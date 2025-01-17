@@ -5,6 +5,7 @@ using api_be.Models.Request;
 using AutoMapper;
 using Sieve.Models;
 using api_be.Models.Responses;
+using api_be.ValidatorRequest.DefaultBase;
 namespace api_be.Mapping
 {
     public class MappingProfile : Profile
@@ -56,6 +57,8 @@ namespace api_be.Mapping
 
 
             CreateMap<SieveModel, GetListUserRequest>().ReverseMap();
+            CreateMap<SieveModel, ListBaseCommand>().ReverseMap();
+
 
             CreateMap<User, CreateUserRequest>().ReverseMap();
             CreateMap<User, UpdateUserRequest>().ReverseMap();
