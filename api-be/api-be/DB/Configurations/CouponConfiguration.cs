@@ -1,4 +1,4 @@
-﻿using api_be.Domain.Entities;
+﻿using api_be.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

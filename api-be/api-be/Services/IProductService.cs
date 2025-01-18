@@ -1,15 +1,22 @@
 ﻿using api_be.Models.Request;
 using api_be.Models.Responses;
+using api_be.Models.ValidatorRequest.DefaultBase;
 using api_be.ValidatorRequest.DefaultBase;
 
 namespace api_be.Services
 {
     public interface IProductService
     {
-        public Task<Result<CategoryDto>> Create(CreateCategoryRequest request);
-        public Task<Result<CategoryDto>> Update(UpdateCategoryRequest request);
+        public Task<Result<ProductDto>> Create(CreateProductRequest request);
+        public Task<Result<ProductDto>> Update(UpdateProductRequest request);
         public Task<Result<Boolean>> Delete(int id);
-        public Task<Result<CategoryDto>> Detail(int id);
-        public Task<PaginatedResult<List<CategoryDto>>> GetList(ListBaseCommand request);
+        public Task<Result<Boolean>> ChangeStatus(ChangeStatusProductRequest request);
+
+        public Task<Result<ProductDto>> Detail(DetailBaseCommand request );
+        public Task<PaginatedResult<List<ProductDto>>> GetList(ListBaseCommand request);
+        public Task<PaginatedResult<List<PromotionComboProductDto>>> GetListPromotionComBo(ListBaseCommand request);
+        public Task<Result<bool>> upload(IFormFile file);
+
+
     }
 }

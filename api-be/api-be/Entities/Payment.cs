@@ -1,7 +1,7 @@
 ﻿using api_be.Domain.Common;
 using Sieve.Attributes;
 
-namespace api_be.Domain.Entities
+namespace api_be.Entities
 {
     public class Payment : AuditableEntity
     {

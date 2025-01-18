@@ -169,3 +169,10 @@ C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\client_secret.json
 C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Facebook.dll
 C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Twitter.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\CloudinaryDotNet.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\DnsClient.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\SharpCompress.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\Snappier.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\ZstdSharp.dll

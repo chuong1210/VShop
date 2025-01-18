@@ -1,7 +1,7 @@
 ﻿using api_be.Domain.Common;
 using api_be.Entities.Auth;
 
-namespace api_be.Domain.Entities
+namespace api_be.Entities
 {
     public class StaffPositionHasRole : HardDeleteEntity
     {

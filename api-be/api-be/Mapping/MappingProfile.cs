@@ -1,4 +1,4 @@
-﻿using api_be.Domain.Entities;
+﻿using api_be.Entities;
 using api_be.Entities.Auth;
 using api_be.Models;
 using api_be.Models.Request;
@@ -27,6 +27,7 @@ namespace api_be.Mapping
             CreateMap<Category, CategoryDto>().ReverseMap();
 
             CreateMap<Product, ProductDto>().ReverseMap();
+            CreateMap<CreateProductRequest, Product>().ReverseMap();
 
 
             CreateMap<SupplierOrder, SupplierOrderDto>().ReverseMap();

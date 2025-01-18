@@ -1,5 +1,5 @@
 ﻿using api_be.Models.Common;
-using static api_be.Domain.Entities.SupplierOrder;
+using static api_be.Entities.SupplierOrder;
 
 namespace api_be.Models.Responses
 {

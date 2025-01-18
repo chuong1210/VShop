@@ -1,5 +1,5 @@
 ﻿using api_be.Domain.Common;
-using api_be.Domain.Entities;
+using api_be.Entities;
 using Sieve.Attributes;
 
 namespace api_be.Entities.Auth

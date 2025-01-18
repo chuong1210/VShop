@@ -1,6 +1,6 @@
 ﻿using api_be.Models.Common;
-using api_be.Domain.Entities;
-using static api_be.Domain.Entities.Product;
+using api_be.Entities;
+using static api_be.Entities.Product;
 
 namespace api_be.Models.Responses
 {

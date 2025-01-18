@@ -1,6 +1,6 @@
 ﻿using api_be.Domain.Common;
 
-namespace api_be.Domain.Entities
+namespace api_be.Entities
 {
     public class PromotionProductRequirement : HardDeleteEntity
     {

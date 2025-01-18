@@ -3,6 +3,7 @@ using api_be.Models.Request;
 using api_be.Models.Responses;
 using api_be.Models.ValidatorRequest.DefaultBase;
 using api_be.Services;
+using api_be.Transforms;
 using api_be.ValidatorRequest.DefaultBase;
 using Azure;
 using Microsoft.AspNetCore.Authorization;
@@ -76,9 +77,9 @@ namespace api_be.Controllers
             var result = await _categoryService.Detail(request);
             if (result.Succeeded)
             {
-                return Ok(result.Data); // Return category details
+                return StatusCode(result.Code, result);
             }
-            return NotFound(result.Messages); // Return not found message
+            throw new NotFoundException(Modules.Category.Module, id.ToString());
         }
 
         // 4. Get List of Categories (with Pagination)

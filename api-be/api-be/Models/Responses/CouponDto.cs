@@ -1,5 +1,5 @@
 ﻿using api_be.Models.Common;
-using static api_be.Domain.Entities.Coupon;
+using static api_be.Entities.Coupon;
 
 namespace api_be.Models.Responses
 {

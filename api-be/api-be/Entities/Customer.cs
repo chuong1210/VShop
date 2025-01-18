@@ -2,7 +2,7 @@
 using api_be.Entities.Auth;
 using Sieve.Attributes;
 
-namespace api_be.Domain.Entities
+namespace api_be.Entities
 {
     public class Customer : AuditableEntity
     {

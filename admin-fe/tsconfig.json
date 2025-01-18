@@ -22,7 +22,19 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+		"baseUrl": "./src",
+		"paths": {
+			"@asset/*": ["./src/assets/*"],
+			"@config/*": ["./src/config/*"],
+			"@core/*": ["./src/core/*"],
+			"@data/*": ["./src/data/*"],
+			"@domain/*": ["./src/domain/*"],
+			"@environments/*": ["./src/environments/*"],
+			"@app/*": ["./src/*"]
+		}
+
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

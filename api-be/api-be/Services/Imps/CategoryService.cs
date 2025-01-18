@@ -1,4 +1,4 @@
-﻿using api_be.Domain.Entities;
+﻿using api_be.Entities;
 using api_be.Domain.Interfaces;
 using api_be.Exceptions;
 using api_be.Extensions;
@@ -221,11 +221,7 @@ namespace api_be.Services.Imps
                 {
                     return Result<CategoryDto>.Failure("Category not found.", StatusCodes.Status404NotFound);
                 }
-
-                category.Name = request.Name;
-                category.InternalCode = request.InternalCode;
-                category.Icon = request.Icon;
-                category.ParentId = request.ParentId;
+                category.CopyPropertiesFrom(request);
 
                 _context.Categories.Update(category);
                 await _context.SaveChangesAsync();

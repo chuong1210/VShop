@@ -1,6 +1,6 @@
 ﻿using api_be.Domain.Interfaces;
 using api_be.Models.Common;
-using static api_be.Domain.Entities.Staff;
+using static api_be.Entities.Staff;
 
 namespace api_be.Models.Responses
 {
