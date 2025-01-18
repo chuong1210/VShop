@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using api_be.Domain.Interfaces;
 using api_be.Entities.Auth;
 using api_be.DB;
+using CloudinaryDotNet;
 
 namespace api_be
 {
@@ -25,6 +26,8 @@ namespace api_be
             //services.AddSingleton(provider => new MapperConfiguration(cfg =>
             //{
             //    cfg.AddProfile(new MappingProfile());
+            //    cfg.AddProfile(new CommonMappingProfile());
+
             //}).CreateMapper());
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -40,6 +43,8 @@ namespace api_be
 
 
             services.AddScoped<IEmailService, EmailService>();
+
+            RegisterAllServices(services);
 
             //services.AddScoped<ISupermarketDbContext>(provider => provider.GetService<SupermarketDbContext>());
 
@@ -58,6 +63,7 @@ namespace api_be
 
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
+
             services.AddEndpointsApiExplorer();
 
 
@@ -65,5 +71,42 @@ namespace api_be
 
             return services;
         }
-    }
+
+
+
+
+        private static void RegisterAllServices(IServiceCollection services)
+        {
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+            foreach (var assembly in assemblies)
+            {
+                var typesWithAttribute = assembly.GetTypes()
+                    .Where(type => type.IsClass && !type.IsAbstract &&
+                                   type.GetCustomAttributes(typeof(RegisterServiceAttribute), true).Any());
+
+                foreach (var type in typesWithAttribute)
+                {
+                    var attribute = type.GetCustomAttribute<RegisterServiceAttribute>();
+                    var serviceInterfaces = type.GetInterfaces();
+
+                    foreach (var serviceInterface in serviceInterfaces)
+                    {
+                        switch (attribute.Lifetime)
+                        {
+                            case ServiceLifetime.Singleton:
+                                services.AddSingleton(serviceInterface, type);
+                                break;
+                            case ServiceLifetime.Scoped:
+                                services.AddScoped(serviceInterface, type);
+                                break;
+                            case ServiceLifetime.Transient:
+                                services.AddTransient(serviceInterface, type);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+        }
 }

@@ -32,6 +32,13 @@ namespace api_be.Middleware
                         await next(httpContext);
                         return;
                     }
+                    //var pathUpload = httpContext.Request.Path;
+                    //if (pathUpload.StartsWithSegments("/smw-api/product/upload"))
+                    //{
+                    //    await next(httpContext);
+                    //    return;
+                    //}
+
 
                     var authorizationHeader = httpContext.Request.Headers["Authorization"].ToString();
                     if ((string.IsNullOrEmpty(authorizationHeader) == false &&
@@ -136,7 +143,7 @@ namespace api_be.Middleware
                 case BadRequestException badRequestException:
                     statusCode = HttpStatusCode.BadRequest;
                     break;
-                case ValidationException validationException:
+                case api_be.Exceptions.ValidationException validationException:
                     statusCode = HttpStatusCode.BadRequest;
                     result = JsonConvert.SerializeObject(validationException.Errors);
                     break;

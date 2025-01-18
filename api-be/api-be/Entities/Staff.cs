@@ -2,7 +2,7 @@
 using Sieve.Attributes;
 using System.ComponentModel.DataAnnotations.Schema;
 using api_be.Entities.Auth;
-namespace api_be.Domain.Entities
+namespace api_be.Entities
 {
     public class Staff : AuditableEntity
     {

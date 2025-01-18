@@ -1,7 +1,4 @@
-﻿
-
-
-using api_be;
+﻿using api_be;
 using api_be.DB;
 using api_be.Middleware;
 using Microsoft.AspNetCore.Authorization;
@@ -17,6 +14,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using System.Security.Claims;
 using System.Text.Json.Serialization;
+using CloudinaryDotNet;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
@@ -128,7 +126,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     {
                         OnCreatingTicket = async context =>
                         {
-                            var request = new HttpRequestMessage(HttpMethod.Get, context.Options.UserInformationEndpoint);
+                            var request = new HttpRequestMessage(System.Net.Http.HttpMethod.Get, context.Options.UserInformationEndpoint);
                             request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                             request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", context.AccessToken);
 
@@ -145,6 +143,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 
 builder.Services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
+builder.Services.AddSingleton(sp =>
+{
+    var config = builder.Configuration.GetSection("Cloudinary");
+    return new Cloudinary(new Account(
+        config["CloudName"],
+        config["ApiKey"],
+        config["ApiSecret"]
+    ));
+});
 
 builder.Services.AddAuthorization(options =>
 {
@@ -208,7 +215,6 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-app.UseAuthentication();
 
 app.UseHttpsRedirection();
 app.UseCors("MyCors");
@@ -216,6 +222,7 @@ app.UseCors("MyCors");
 app.UseRouting();
 
 app.UseMiddleware<ExceptionMiddleware>();
+app.UseAuthentication();
 
 
 app.UseAuthorization();

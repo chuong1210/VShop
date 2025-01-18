@@ -1,5 +1,5 @@
 ﻿using api_be.Models.Common;
-using static api_be.Domain.Entities.Delivery;
+using static api_be.Entities.Delivery;
 
 namespace api_be.Models.Responses
 {

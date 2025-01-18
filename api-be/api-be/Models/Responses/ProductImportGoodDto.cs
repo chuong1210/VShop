@@ -2,9 +2,9 @@
 using api_be.Models;
 using api_be.Models.Common;
 using api_be.Models.Responses;
-using static api_be.Domain.Entities.Product;
+using static api_be.Entities.Product;
 
-namespace  api_be.In
+namespace api_be.Models.Responses
 {
     public record ProductImportGoodDto : BaseDto
     {

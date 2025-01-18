@@ -1,5 +1,5 @@
 ﻿using api_be.Constants;
-using api_be.Domain.Entities;
+using api_be.Entities;
 using api_be.Domain.Interfaces;
 using api_be.Entities.Auth;
 using api_be.Exceptions;
@@ -214,7 +214,7 @@ namespace api_be.Services.Imps
                 await _context.SaveChangesAsync();
 
                 // Publish events or additional logic if needed
-                var customer = new Domain.Entities.Customer
+                var customer = new Entities.Customer
 
                 {
                     Name = request.Name,

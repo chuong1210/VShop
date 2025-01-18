@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using api_be.Domain.Entities;
+using api_be.Entities;
 
 namespace api_be.DB.Configurations
 {

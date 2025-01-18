@@ -1,4 +1,4 @@
-﻿using api_be.Domain.Entities;
+﻿using api_be.Entities;
 using Sieve.Services;
 
 namespace api_be.Config

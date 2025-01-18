@@ -8,9 +8,8 @@ using static Sieve.Extensions.MethodInfoExtended;
 
 namespace api_be.Models.ValidatorRequest.DefaultBase
 {
-    public record UpdateBaseCommand
+    public record UpdateBaseCommand:BaseDto
     {
-        public int? Id { get; set; }
     }
     public class UpdateBaseValidator<T> : AbstractValidator<T> where T : BaseDto
     {

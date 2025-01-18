@@ -1,11 +1,10 @@
 ﻿using api_be.DB.Interceptors;
-using api_be.Domain.Entities;
+using api_be.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using api_be.DB.Configurations;
 using api_be.Domain.Interfaces;
 using api_be.Entities.Auth;
-using api_be.Entities;
 using api_be.DB.Configurations.Auth;
 
 namespace api_be.DB
