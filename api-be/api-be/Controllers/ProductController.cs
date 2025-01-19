@@ -5,6 +5,8 @@ using api_be.Models.Request;
 using api_be.Models.Responses;
 using api_be.Models.ValidatorRequest.DefaultBase;
 using api_be.Services;
+using api_be.Services.Imps;
+using api_be.Transforms;
 using api_be.ValidatorRequest.DefaultBase;
 using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authorization;
@@ -18,13 +20,15 @@ namespace UI.WebApi.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
+        private readonly IImageSerivce _imageSerivce;
         private readonly Cloudinary _cloudinary;
 
 
-        public ProductController(IProductService productService,Cloudinary cloudinary)
+        public ProductController(IProductService productService,Cloudinary cloudinary, IImageSerivce imageSerivce)
         {
             _productService = productService;
             _cloudinary = cloudinary;
+            _imageSerivce = imageSerivce;
         }
 
         /// <summary>
@@ -167,17 +171,38 @@ namespace UI.WebApi.Controllers
         }
 
 
+
         [HttpPost("upload")]
         public async Task<IActionResult> UploadFile([FromForm] IFormFile file)
         {
+           
+                var responses = await _imageSerivce.uploadImage(file);
+                return StatusCode(responses.Code, responses);
+
+      
+        }
+
+        [HttpGet("{id}/images")]
+        public async Task<IActionResult> GetProductImage(int id, [FromQuery] int? index = null)
+        {
             try
             {
-                var result = await _productService.upload(file);
-                return Ok(new { Url = result });
+                var result = await _imageSerivce.GetProductImageAsync(id, index);
+                return result;
             }
-            catch (Exception ex)
+            catch (KeyNotFoundException ex)
+            {
+                var responses = Result<ProductDto>.Failure(ex.Message, StatusCodes.Status404NotFound);
+                return StatusCode(responses.Code, responses);
+
+            }
+            catch (ArgumentOutOfRangeException ex)
             {
                 return BadRequest(new { Message = ex.Message });
+            }
+            catch (HttpRequestException ex)
+            {
+                return StatusCode(500, new { Message = ex.Message });
             }
         }
     }

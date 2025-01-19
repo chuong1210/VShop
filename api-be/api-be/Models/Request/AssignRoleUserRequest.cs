@@ -1,6 +1,6 @@
 ﻿namespace api_be.Models.Request
 {
-    public class AssignRoleUserRequest
+    public record AssignRoleUserRequest
     {
         public int UserId { get; set; }
 

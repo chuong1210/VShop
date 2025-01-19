@@ -2,7 +2,7 @@
 
 namespace api_be.Models.Request
 {
-    public class CreateCategoryRequest:IBaseCategory
+    public record CreateCategoryRequest:IBaseCategory
     {
         public string? InternalCode { get; set; }
 

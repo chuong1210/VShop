@@ -176,3 +176,4 @@ C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\MongoDB.Driver.dll
 C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\SharpCompress.dll
 C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\Snappier.dll
 C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\ZstdSharp.dll
+C:\Users\chuon\Desktop\VShop\api-be\api-be\bin\Debug\net8.0\Twilio.dll

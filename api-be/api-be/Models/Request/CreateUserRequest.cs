@@ -2,7 +2,7 @@
 
 namespace api_be.Models.Request
 {
-    public class CreateUserRequest:IBaseUser
+    public record CreateUserRequest:IBaseUser
     {
         public string? UserName { get; set; }
 

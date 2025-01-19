@@ -104,6 +104,10 @@
               "target": "Package",
               "version": "[8.0.10, )"
             },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
             "MimeKit": {
               "target": "Package",
               "version": "[4.9.0, )"
@@ -127,6 +131,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "Twilio": {
+              "target": "Package",
+              "version": "[7.8.2, )"
             }
           },
           "imports": [

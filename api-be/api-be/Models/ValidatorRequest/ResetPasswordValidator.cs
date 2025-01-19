@@ -42,7 +42,7 @@ namespace api_be.Models.ValidatorRequest
         RuleFor(x => x.Token)
                 .MustAsync(async (token, cancellation) =>
                 {
-                    var resetToken = await _context.Set<EmailVerification>()
+                    var resetToken = await _context.Set<UserVerification>()
                         .FirstOrDefaultAsync(t => t.Token == token);
                     return resetToken != null && !resetToken.IsUsed && resetToken.ExpiryDate > DateTime.UtcNow;
                 }).WithMessage(IdentityTransform.InvalidAccessToken());

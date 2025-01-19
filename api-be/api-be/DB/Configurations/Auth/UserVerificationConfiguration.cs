@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api_be.DB.Configurations.Auth
 {
-    public class EmailVerificationConfiguration : IEntityTypeConfiguration<EmailVerification>
+    public class UserVerificationConfiguration : IEntityTypeConfiguration<UserVerification>
     {
-        public void Configure(EntityTypeBuilder<EmailVerification> builder)
+        public void Configure(EntityTypeBuilder<UserVerification> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Token).IsRequired();

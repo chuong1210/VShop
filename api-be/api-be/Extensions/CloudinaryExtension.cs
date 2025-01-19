@@ -13,12 +13,32 @@ namespace api_be.Extensions
             if (file == null || file.Length == 0)
                 throw new ArgumentException("Invalid file.");
 
+            // Lấy tên tệp từ file
+            var originalFileName = Path.GetFileNameWithoutExtension(file.FileName);
+            var fileExtension = Path.GetExtension(file.FileName);
+
+            // Tạo PublicId từ tên file (tránh ký tự đặc biệt)
+            var safeFileName = $"{Guid.NewGuid()}_{originalFileName}"
+                .Replace(" ", "_")
+                .Replace("-", "_")
+                .Replace("!", "")
+                .Replace("@", "")
+                .Replace("#", "")
+                .Replace("$", "")
+                .Replace("%", "")
+                .Replace("^", "")
+                .Replace("&", "")
+                .Replace("*", "")
+                .Replace("(", "")
+                .Replace(")", "");
             using (var stream = file.OpenReadStream())
             {
                 var uploadParams = new ImageUploadParams()
                 {
                     File = new FileDescription(file.FileName, stream),
                     Folder = "supermarket",
+                    PublicId = safeFileName // Tên tệp tùy chỉnh
+
                 };
 
                 var uploadResult =  await _cloudinary.UploadAsync(uploadParams);

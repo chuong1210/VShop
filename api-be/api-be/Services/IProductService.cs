@@ -2,6 +2,7 @@
 using api_be.Models.Responses;
 using api_be.Models.ValidatorRequest.DefaultBase;
 using api_be.ValidatorRequest.DefaultBase;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api_be.Services
 {
@@ -15,7 +16,7 @@ namespace api_be.Services
         public Task<Result<ProductDto>> Detail(DetailBaseCommand request );
         public Task<PaginatedResult<List<ProductDto>>> GetList(ListBaseCommand request);
         public Task<PaginatedResult<List<PromotionComboProductDto>>> GetListPromotionComBo(ListBaseCommand request);
-        public Task<Result<bool>> upload(IFormFile file);
+      
 
 
     }
