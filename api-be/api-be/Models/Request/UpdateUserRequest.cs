@@ -2,7 +2,7 @@
 
 namespace api_be.Models.Request
 {
-    public class UpdateUserRequest:IBaseUser
+    public record UpdateUserRequest:IBaseUser
     {
         public string? Email { get; set; }
 

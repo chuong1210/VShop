@@ -201,7 +201,7 @@ namespace api_be.Services.Imps
                 var newUser = await _context.Set<User>().AddAsync(user);
                 await _context.SaveChangesAsync();
 
-                var verificationToken = new EmailVerification
+                var verificationToken = new UserVerification
                 {
                     UserId = user.Id,
                     Token = Convert.ToBase64String(Guid.NewGuid().ToByteArray()),
@@ -254,7 +254,7 @@ namespace api_be.Services.Imps
 
 
 
-                await _context.Set<EmailVerification>().AddAsync(verificationToken);
+                await _context.Set<UserVerification>().AddAsync(verificationToken);
                 await _context.SaveChangesAsync();
 
                 // Generate verification link
@@ -290,7 +290,7 @@ namespace api_be.Services.Imps
                     return Result<bool>.Failure(errorMessages, StatusCodes.Status400BadRequest);
                 }
 
-                var verificationToken = await _context.Set<EmailVerification>()
+                var verificationToken = await _context.Set<UserVerification>()
                     .Include(t => t.User)
                     .FirstOrDefaultAsync(t => t.Token == request.Token);
 
@@ -345,7 +345,7 @@ namespace api_be.Services.Imps
                 }
 
                 // Generate new verification token
-                var verificationToken = new EmailVerification
+                var verificationToken = new UserVerification
                 {
                     UserId = user.Id,
                     Token = Convert.ToBase64String(Guid.NewGuid().ToByteArray()),
@@ -354,7 +354,7 @@ namespace api_be.Services.Imps
                     IsUsed = false
                 };
 
-                await _context.Set<EmailVerification>().AddAsync(verificationToken);
+                await _context.Set<UserVerification>().AddAsync(verificationToken);
                 await _context.SaveChangesAsync();
 
                 // Generate verification link
@@ -620,7 +620,7 @@ namespace api_be.Services.Imps
                 }
 
                 // Generate new password reset token
-                var resetToken = new EmailVerification
+                var resetToken = new UserVerification
                 {
                     UserId = user.Id,
                     Token = Convert.ToBase64String(Guid.NewGuid().ToByteArray()),
@@ -629,7 +629,7 @@ namespace api_be.Services.Imps
                     IsUsed = false
                 };
 
-                await _context.Set<EmailVerification>().AddAsync(resetToken);
+                await _context.Set<UserVerification>().AddAsync(resetToken);
                 await _context.SaveChangesAsync();
 
                 // Generate reset link
@@ -660,7 +660,7 @@ namespace api_be.Services.Imps
                     return Result<bool>.Failure(errorMessages, StatusCodes.Status400BadRequest);
                 }
 
-                var resetToken = await _context.Set<EmailVerification>()
+                var resetToken = await _context.Set<UserVerification>()
                     .Include(t => t.User)
                     .FirstOrDefaultAsync(t => t.Token == request.Token);
 

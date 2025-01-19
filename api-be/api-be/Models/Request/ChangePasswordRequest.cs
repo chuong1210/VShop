@@ -1,6 +1,6 @@
 ﻿namespace api_be.Models.Request
 {
-    public class ChangePasswordRequest
+    public record ChangePasswordRequest
     {
         public int UserId { get; set; }
         public string CurrentPassword { get; set; }

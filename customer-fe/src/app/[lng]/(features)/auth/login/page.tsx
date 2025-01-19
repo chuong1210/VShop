@@ -4,7 +4,7 @@ import AuthSvg from "@asset/svg/svg-auth.svg";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { InputText } from "@component/form";
 import { Link, Loading } from "@component/ui";
-import { useCookies, useRouter, useTranslation } from "@hook/index";
+import { useRouter, useTranslation } from "@hook/index";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutate } from "@root/src/hooks/mutations";
 import { defaultLoginValues, getLoginSchema } from "@schema/index";

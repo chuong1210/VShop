@@ -1,8 +1,9 @@
-﻿namespace api_be.Models.Responses
+﻿using api_be.Models.Common;
+
+namespace api_be.Models.Responses
 {
-    public class LoginDto
+    public record LoginDto :BaseDto
     {
-        public int Id { get; set; }
 
         public DateTime? Exp { get; set; }
 

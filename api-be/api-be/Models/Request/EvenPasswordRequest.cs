@@ -1,14 +1,14 @@
 ﻿namespace api_be.Models.Request
 {
-    public class ForgotPasswordRequest
+    public record ForgotPasswordRequest
     {
-        public string Email { get; set; }
+        public string? Email { get; set; }
     }
 
-    public class ResetPasswordRequest
+    public record ResetPasswordRequest
     {
-        public string Token { get; set; }
-        public string NewPassword { get; set; }
-        public string ConfirmPassword { get; set; }
+        public string? Token { get; set; }
+        public string? NewPassword { get; set; }
+        public string ?ConfirmPassword { get; set; }
     }
 }

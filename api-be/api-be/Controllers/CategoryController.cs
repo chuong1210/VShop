@@ -67,19 +67,19 @@ namespace api_be.Controllers
         }
 
         // 3. Get Category Details
-        [HttpGet("detail/{id}")]
-        //[HttpGet("detail")]
+        //[HttpGet("detail/{id}")]
+        [HttpGet("detail")]
 
-        public async Task<IActionResult> GetDetail([FromRoute] int id, [FromQuery] bool isAllDetal)
+        public async Task<IActionResult> GetDetail([FromQuery] int Id, [FromQuery] bool isAllDetal)//[FromRoute] int id
         {
-            var request = new DetailBaseCommand { Id = id , IsAllDetail=isAllDetal};
+            var request = new DetailBaseCommand { Id = Id , IsAllDetail=isAllDetal};
 
             var result = await _categoryService.Detail(request);
             if (result.Succeeded)
             {
                 return StatusCode(result.Code, result);
             }
-            throw new NotFoundException(Modules.Category.Module, id.ToString());
+            throw new NotFoundException(Modules.Category.Module, Id.ToString());
         }
 
         // 4. Get List of Categories (with Pagination)

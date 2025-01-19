@@ -18,6 +18,14 @@ using CloudinaryDotNet;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+builder.Configuration.AddJsonFile("client_secrets.json", optional: false, reloadOnChange: true);
+
+// Lấy các thông tin cấu hình từ `client_secrets.json`
+var googleConfig = builder.Configuration.GetSection("Authentication:Google");
+var githubConfig = builder.Configuration.GetSection("Authentication:GitHub");
+var cloudinaryConfig = builder.Configuration.GetSection("Authentication:Cloudinary");
+var facebookConfig = builder.Configuration.GetSection("Authentication:Facebook");
+
 // Add services to the container.
 var JWTSetting = builder.Configuration.GetSection("JWTSetting");
 
@@ -180,7 +188,7 @@ builder.Services.AddControllers()
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddApplicationServices();
+builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddPersistenceBusinessDataServices(builder.Configuration);
 
 builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
@@ -246,7 +254,6 @@ async Task InitializePermissions(IServiceProvider serviceProvider)
             .GetPermissionPoliciesFromAttributes(Assembly.GetExecutingAssembly());
     await permissionService.Create(permissions);
 }
-
 
 //dotnet ef migrations add InitialTable --context SupermarketDbContext --output-dir DB/Migrations
 //dotnet ef database update --context SupermarketDbContext

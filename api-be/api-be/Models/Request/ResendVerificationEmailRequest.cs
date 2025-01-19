@@ -1,6 +1,6 @@
 ﻿namespace api_be.Models.Request
 {
-    public class ResendVerificationEmailRequest
+    public record ResendVerificationEmailRequest
     {
         public string Email { get; set; }
 

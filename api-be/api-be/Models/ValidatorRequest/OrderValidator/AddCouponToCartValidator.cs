@@ -1,0 +1,24 @@
+﻿using api_be.Domain.Interfaces;
+using api_be.Models.Request.OrderRequest;
+using static api_be.Entities.Coupon;
+namespace api_be.Models.ValidatorRequest.OrderValidator
+{
+    public class AddCouponToCartValidator : AbstractValidator<AddCouponToCartRequest>
+    {
+        public AddCouponToCartValidator(ISupermarketDbContext pContext, int? pCustomerId)
+        {
+            RuleFor(x => x.InternalCodeCoupon)
+                .MustAsync(async (code, token) =>
+                {
+                    return await pContext.Coupons
+                    .AnyAsync(x => x.InternalCode == code &&
+                                x.Start <= DateTime.Now && DateTime.Now <= x.End &&
+                                x.Status == CouponStatus.Approve &&
+                                x.Limit > 0 &&
+                                (x.TypeC == CType.MC ||
+                                (x.TypeC == CType.SC &&
+                                x.CustomerId == pCustomerId)));
+                }).WithMessage("Mã chương trình khuyến mãi không hợp lệ!");
+        }
+    }
+}

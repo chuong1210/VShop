@@ -3,36 +3,64 @@
   "WorkspaceRootPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\services\\imps\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\services\\imps\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\services\\imps\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\services\\imps\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\db\\services\\commonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\db\\services\\commonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\models\\validatorrequest\\ordervalidator\\createordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\models\\validatorrequest\\ordervalidator\\createordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\middleware\\authorizationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\middleware\\authorizationextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\client_secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\client_secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\models\\validatorrequest\\ordervalidator\\changestatusordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\models\\validatorrequest\\ordervalidator\\changestatusordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\models\\validatorrequest\\ordervalidator\\baseorders\\baseordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\models\\validatorrequest\\ordervalidator\\baseorders\\baseordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\models\\validatorrequest\\ordervalidator\\addcoupontocartvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\models\\validatorrequest\\ordervalidator\\addcoupontocartvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\models\\validatorrequest\\ordervalidator\\cancelordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\models\\validatorrequest\\ordervalidator\\cancelordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\models\\validatorrequest\\ordervalidator\\removeproductincartvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\models\\validatorrequest\\ordervalidator\\removeproductincartvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\models\\validatorrequest\\ordervalidator\\updateproductincartvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\models\\validatorrequest\\ordervalidator\\updateproductincartvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api-be\\models\\validatorrequest\\defaultbase\\deletebasevalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{115E257D-3362-4B4D-9FCD-60D59DA1AA14}|api-be\\api-be.csproj|solutionrelative:api-be\\models\\validatorrequest\\defaultbase\\deletebasevalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -71,105 +99,196 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\appsettings.json",
-              "RelativeDocumentMoniker": "api-be\\appsettings.json",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\appsettings.json",
-              "RelativeToolTip": "api-be\\appsettings.json",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-18T14:52:27.203Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DependencyInjection.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\DependencyInjection.cs",
-              "RelativeDocumentMoniker": "api-be\\DependencyInjection.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\DependencyInjection.cs",
-              "RelativeToolTip": "api-be\\DependencyInjection.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "CommonService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\DB\\Services\\CommonService.cs",
+              "RelativeDocumentMoniker": "api-be\\DB\\Services\\CommonService.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\DB\\Services\\CommonService.cs",
+              "RelativeToolTip": "api-be\\DB\\Services\\CommonService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T14:39:28.115Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Program.cs",
-              "RelativeDocumentMoniker": "api-be\\Program.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Program.cs",
-              "RelativeToolTip": "api-be\\Program.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAAAN8AAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T14:37:26.139Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Services\\Imps\\ProductService.cs",
-              "RelativeDocumentMoniker": "api-be\\Services\\Imps\\ProductService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Services\\Imps\\ProductService.cs",
-              "RelativeToolTip": "api-be\\Services\\Imps\\ProductService.cs",
-              "ViewState": "AgIAAFQBAAAAAAAAAAAgwFsBAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T14:31:36.052Z",
+              "WhenOpened": "2025-01-19T17:32:25.568Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ExceptionMiddleware.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Middleware\\ExceptionMiddleware.cs",
-              "RelativeDocumentMoniker": "api-be\\Middleware\\ExceptionMiddleware.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Middleware\\ExceptionMiddleware.cs",
-              "RelativeToolTip": "api-be\\Middleware\\ExceptionMiddleware.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAQwCgAAAAAAAAAAAAAAA==",
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Entities\\Product.cs",
+              "RelativeDocumentMoniker": "api-be\\Entities\\Product.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Entities\\Product.cs",
+              "RelativeToolTip": "api-be\\Entities\\Product.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T14:31:49.366Z",
+              "WhenOpened": "2025-01-19T16:02:57.43Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthorizationExtensions.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Middleware\\AuthorizationExtensions.cs",
-              "RelativeDocumentMoniker": "api-be\\Middleware\\AuthorizationExtensions.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Middleware\\AuthorizationExtensions.cs",
-              "RelativeToolTip": "api-be\\Middleware\\AuthorizationExtensions.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T14:31:45.93Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "api-be\\Controllers\\ProductController.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "api-be\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAJQAAAAAAAAAAAAuwK8AAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T14:31:00.423Z",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\appsettings.json",
+              "RelativeDocumentMoniker": "api-be\\appsettings.json",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\appsettings.json",
+              "RelativeToolTip": "api-be\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-19T15:31:02.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "IProductService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Services\\IProductService.cs",
-              "RelativeDocumentMoniker": "api-be\\Services\\IProductService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Services\\IProductService.cs",
-              "RelativeToolTip": "api-be\\Services\\IProductService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA5AAAAAAAAAA==",
+              "Title": "client_secrets.json",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\client_secrets.json",
+              "RelativeDocumentMoniker": "api-be\\client_secrets.json",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\client_secrets.json",
+              "RelativeToolTip": "api-be\\client_secrets.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-19T15:26:36.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Program.cs",
+              "RelativeDocumentMoniker": "api-be\\Program.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Program.cs",
+              "RelativeToolTip": "api-be\\Program.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwBoAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-18T14:34:27.868Z",
+              "WhenOpened": "2025-01-19T15:25:56.178Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "api-be\\DependencyInjection.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\DependencyInjection.cs",
+              "RelativeToolTip": "api-be\\DependencyInjection.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAwBsAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T15:21:41.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Services\\Imps\\OrderService.cs",
+              "RelativeDocumentMoniker": "api-be\\Services\\Imps\\OrderService.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Services\\Imps\\OrderService.cs",
+              "RelativeToolTip": "api-be\\Services\\Imps\\OrderService.cs",
+              "ViewState": "AgIAACACAAAAAAAAAAArwOoBAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T13:48:09.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CreateOrderValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\CreateOrderValidator.cs",
+              "RelativeDocumentMoniker": "api-be\\Models\\ValidatorRequest\\OrderValidator\\CreateOrderValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\CreateOrderValidator.cs",
+              "RelativeToolTip": "api-be\\Models\\ValidatorRequest\\OrderValidator\\CreateOrderValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T12:38:11.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ChangeStatusOrderValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\ChangeStatusOrderValidator.cs",
+              "RelativeDocumentMoniker": "api-be\\Models\\ValidatorRequest\\OrderValidator\\ChangeStatusOrderValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\ChangeStatusOrderValidator.cs",
+              "RelativeToolTip": "api-be\\Models\\ValidatorRequest\\OrderValidator\\ChangeStatusOrderValidator.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAQwBwAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T12:37:19.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AddCouponToCartValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\AddCouponToCartValidator.cs",
+              "RelativeDocumentMoniker": "api-be\\Models\\ValidatorRequest\\OrderValidator\\AddCouponToCartValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\AddCouponToCartValidator.cs",
+              "RelativeToolTip": "api-be\\Models\\ValidatorRequest\\OrderValidator\\AddCouponToCartValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T12:37:16.119Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BaseOrderValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\BaseOrders\\BaseOrderValidator.cs",
+              "RelativeDocumentMoniker": "api-be\\Models\\ValidatorRequest\\OrderValidator\\BaseOrders\\BaseOrderValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\BaseOrders\\BaseOrderValidator.cs",
+              "RelativeToolTip": "api-be\\Models\\ValidatorRequest\\OrderValidator\\BaseOrders\\BaseOrderValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T12:34:34.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CancelOrderValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\CancelOrderValidator.cs",
+              "RelativeDocumentMoniker": "api-be\\Models\\ValidatorRequest\\OrderValidator\\CancelOrderValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\CancelOrderValidator.cs",
+              "RelativeToolTip": "api-be\\Models\\ValidatorRequest\\OrderValidator\\CancelOrderValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T12:37:20.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RemoveProductInCartValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\RemoveProductInCartValidator.cs",
+              "RelativeDocumentMoniker": "api-be\\Models\\ValidatorRequest\\OrderValidator\\RemoveProductInCartValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\RemoveProductInCartValidator.cs",
+              "RelativeToolTip": "api-be\\Models\\ValidatorRequest\\OrderValidator\\RemoveProductInCartValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T13:43:56.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "UpdateProductInCartValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\UpdateProductInCartValidator.cs",
+              "RelativeDocumentMoniker": "api-be\\Models\\ValidatorRequest\\OrderValidator\\UpdateProductInCartValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\OrderValidator\\UpdateProductInCartValidator.cs",
+              "RelativeToolTip": "api-be\\Models\\ValidatorRequest\\OrderValidator\\UpdateProductInCartValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T13:45:17.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DeleteBaseValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\DefaultBase\\DeleteBaseValidator.cs",
+              "RelativeDocumentMoniker": "api-be\\Models\\ValidatorRequest\\DefaultBase\\DeleteBaseValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\Models\\ValidatorRequest\\DefaultBase\\DeleteBaseValidator.cs",
+              "RelativeToolTip": "api-be\\Models\\ValidatorRequest\\DefaultBase\\DeleteBaseValidator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-19T12:35:08.683Z",
               "EditorCaption": ""
             }
           ]

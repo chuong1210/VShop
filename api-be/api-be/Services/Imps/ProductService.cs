@@ -9,7 +9,6 @@ using api_be.Models.Responses;
 using api_be.Models.ValidatorRequest.DefaultBase;
 using api_be.Transforms;
 using api_be.ValidatorRequest.BaseCategory;
-using api_be.ValidatorRequest.BaseOrders;
 using api_be.ValidatorRequest.BaseProduct;
 using api_be.ValidatorRequest.DefaultBase;
 using AutoMapper;
@@ -27,6 +26,7 @@ using static api_be.Entities.Product;
 using static System.Net.Mime.MediaTypeNames;
 using api_be.Models.ValidatorRequest;
 using System;
+using api_be.Models.ValidatorRequest.OrderValidator.BaseOrders;
 namespace api_be.Services.Imps
 {
     [RegisterService(ServiceLifetime.Scoped)]
@@ -95,24 +95,24 @@ namespace api_be.Services.Imps
                 }
 
                 var uploadedImages = new List<string>();
-                foreach (var image in request.Images ?? new List<string>())
-                {
-                    if (!BeValidImage(image))
-                    {
-                        return Result<ProductDto>.Failure($"Invalid image: {image}", StatusCodes.Status400BadRequest);
-                    }
+                //foreach (var image in request.Images ?? new List<string>())
+                //{
+                //    if (!BeValidImage(image))
+                //    {
+                //        return Result<ProductDto>.Failure($"Invalid image: {image}", StatusCodes.Status400BadRequest);
+                //    }
 
-                    var uploadResult = await CloudinaryExtension.UploadImageToCloudinary(image,_cloudinary);
-                    if (uploadResult != null)
-                    {
-                        uploadedImages.Add(uploadResult.SecureUrl.AbsoluteUri);
-                    }
-                }
+                //    var uploadResult = await CloudinaryExtension.UploadImageToCloudinary(image,_cloudinary);
+                //    if (uploadResult != null)
+                //    {
+                //        uploadedImages.Add(uploadResult.SecureUrl.AbsoluteUri);
+                //    }
+                //}
                 var product = _mapper.Map<Product>(request);
                 product.Type = ProductType.Option;
                 product.Status = ProductStatus.Draft;
                 product.Quantity = 0;
-                product.Images = string.Join(",", uploadedImages);
+                product.Images = _mapper.Map<String>(request.Images);// string.Join(",", request.Images);
                 product.Id = 0;
 
 
@@ -342,14 +342,6 @@ namespace api_be.Services.Imps
             }
         }
 
-        public async Task<Result<bool>> upload(IFormFile file)
-        {
-          
-                var result = await CloudinaryExtension.UploadImageAsync(file, _cloudinary);
-            return Result<bool>.Success(true, StatusCodes.Status200OK);
-
-
-        }
 
         public async Task<PaginatedResult<List<PromotionComboProductDto>>> GetListPromotionComBo(ListBaseCommand request)
         {

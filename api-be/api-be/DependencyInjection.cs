@@ -19,10 +19,15 @@ namespace api_be
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHttpContextAccessor();
 
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = configuration.GetConnectionString("Redis");
+                options.InstanceName = "ProductCache_";
+            });
             //services.AddSingleton(provider => new MapperConfiguration(cfg =>
             //{
             //    cfg.AddProfile(new MappingProfile());
@@ -43,6 +48,9 @@ namespace api_be
 
 
             services.AddScoped<IEmailService, EmailService>();
+            services.AddMemoryCache();
+            services.AddHttpClient(); // Thêm dòng này để đăng ký IHttpClientFactory
+
 
             RegisterAllServices(services);
 
