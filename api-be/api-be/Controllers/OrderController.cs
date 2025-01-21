@@ -1,7 +1,10 @@
-﻿using api_be.Middleware;
+﻿using api_be.Exceptions;
+using api_be.Middleware;
 using api_be.Models.Request.OrderRequest;
+using api_be.Models.Responses;
 using api_be.Models.ValidatorRequest.DefaultBase;
 using api_be.Services;
+using api_be.Services.Imps;
 using api_be.ValidatorRequest.DefaultBase;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -60,7 +63,7 @@ namespace api_be.Controllers
         [HttpGet("detail-cart")]
         public async Task<ActionResult> GetCart([FromQuery] DetailBaseCommand pRequest)
         {
-            var response = await _orderService.DetailCart(pRequest);
+            var response = await _orderService.DetailCart();
 
             return StatusCode(response.Code, response);
         }
@@ -111,7 +114,7 @@ namespace api_be.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Put([FromBody] UpdateProductInCartRequest pRequest)
         {
-            var response = await _orderService.UpdateInCart(pRequest);
+            var response = await _orderService.UpdateProductInCart(pRequest);
 
             return StatusCode(response.Code, response);
         }
@@ -182,5 +185,7 @@ namespace api_be.Controllers
 
             return StatusCode(response.Code, response);
         }
+
+
     }
 }

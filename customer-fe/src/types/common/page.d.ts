@@ -4,6 +4,11 @@ type PageParamType = {
 	lng: keyof typeof supportLanguage;
 };
 
+type Props = {
+	params: {
+		token: string;
+	};
+  };
 type PageType = never;
 
-export type { PageType, PageParamType };
+export type { PageType, PageParamType,Props };

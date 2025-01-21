@@ -15,6 +15,9 @@ using api_be.Extensions;
 using static api_be.Entities.Order;
 using api_be.Services;
 using api_be.DB.Services;
+using api_be.Transforms;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Sieve.Models;
 namespace api_be.Services.Imps
 {
     [RegisterService(ServiceLifetime.Scoped)]
@@ -395,7 +398,7 @@ namespace api_be.Services.Imps
         }
 
 
-        private async Task HandleAfterChangeStatusOrderUpdateQuantityProductEvent(ChangeStatusOrderRequest? Request, OrderStatus? OldStatus)
+        private async Task HandleAfterChangeStatusOrderUpdateQuantityProduct(ChangeStatusOrderRequest? Request, OrderStatus? OldStatus)
         {
             if (OldStatus == OrderStatus.Order &&
                Request.Status == OrderStatus.Approve)
@@ -477,7 +480,7 @@ namespace api_be.Services.Imps
                 await _context.SaveChangesAsync();
 
                 // Sự kiện sau khi xác nhận đơn hàng
-                await HandleAfterChangeStatusOrderUpdateQuantityProductEvent(request, oldStatus);
+                await HandleAfterChangeStatusOrderUpdateQuantityProduct(request, oldStatus);
 
                 return Result<bool>.Success(true, StatusCodes.Status200OK);
             }
@@ -603,29 +606,243 @@ namespace api_be.Services.Imps
             }
         }
 
-        public async Task<Result<CartDto>> DetailCart(DetailBaseCommand request)
+        public async Task<Result<CartDto>> DetailCart()
         {
-            throw new NotImplementedException();
+            if (_currentUserService.Type != CLAIMS_VALUES.TYPE_USER)
+            {
+                return Result<CartDto>.Failure("Vui lòng đăng ký tài khoản người dùng!",
+                    StatusCodes.Status403Forbidden);
+            }
+
+            var query = _context.Set<Order>()
+                .FilterDeleted()
+                .Where(x => x.CustomerId == _currentUserService.CustomerId &&
+                            x.Status == Order.OrderStatus.Cart);
+
+
+            query = query
+            .Include(x => x.Payment)
+            .Include(x => x.Customer)
+            .Include(x => x.Delivery)
+            .Include(x => x.StaffApproved);
+            var findEntity = await query.SingleOrDefaultAsync();
+
+            var dto = _mapper.Map<CartDto>(findEntity);
+
+            if (dto != null)
+            {
+                var details = await _context.DetailOrders
+                    .Include(x => x.Product)
+                    .Where(x => x.OrderId == dto.Id).ToListAsync();
+                dto.Details = _mapper.Map<List<DetailCartDto>>(details);
+            }
+            return Result<CartDto>.Success(dto, StatusCodes.Status200OK);
         }
 
         public async Task<Result<OrderDto>> DetailOrder(DetailBaseCommand request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                // Validate ID
+                var validator = new DetailBaseValidator(_context);
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (!validationResult.IsValid)
+                {
+                    var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                    return Result<OrderDto>.Failure(errors, StatusCodes.Status400BadRequest);
+                }
+
+        
+                var order = _context.Set<Order>().FilterDeleted().Where(x => x.Id == request.Id);
+                if (_currentUserService.Type == CLAIMS_VALUES.TYPE_USER)
+                {
+                    order = order.Where(x => x.CustomerId == _currentUserService.CustomerId);
+                }
+
+                order = order
+                        .Include(x => x.Payment)
+                        .Include(x => x.Customer)
+                        .Include(x => x.Delivery)
+                        .Include(x => x.StaffApproved);
+
+                var findEntity = await order.SingleOrDefaultAsync();
+
+                if (findEntity is null)
+                {
+                    return Result<OrderDto>.Failure(ValidatorTransform.NotExistsValue(Modules.Id, request.Id.ToString()),
+                     StatusCodes.Status404NotFound);
+                }
+
+
+
+                // Map to DTO
+
+                var orderDto = _mapper.Map<OrderDto>(findEntity);
+                var detailsOrder = await _context.DetailOrders
+                 .Include(x => x.Product)
+                 .Where(x => x.OrderId == orderDto.Id).ToListAsync();
+                orderDto.Details = _mapper.Map<List<DetailOrderDto>>(detailsOrder);
+
+                return Result<OrderDto>.Success(orderDto, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<OrderDto>.Failure($"An error occurred: {ex.Message}", StatusCodes.Status500InternalServerError);
+            }
         }
 
         public async Task<PaginatedResult<List<OrderDto>>> GetList(ListBaseCommand request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var validator = new ListBaseCommandValidator(_context);
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (!validationResult.IsValid)
+                {
+                    var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                    return PaginatedResult<List<OrderDto>>.Failure(StatusCodes.Status400BadRequest, errors);
+
+                }
+                var query = _context.Set<Order>().FilterDeleted();
+
+                //var query = _context.Categories.AsQueryable();
+
+
+                // Apply Sieve
+                var sieveModel = new SieveModel
+                {
+                    Page = request.Page,
+                    PageSize = request.PageSize,
+                    Filters = request.Filters
+                };
+
+                sieveModel = _mapper.Map<SieveModel>(request);
+
+
+                //var categories = await _sieveProcessor.Apply(sieveModel, query).ToListAsync();
+
+
+                var totalCount = await PaginatedResultBase.CountApplySieveAsync(_sieveProcessor, sieveModel, query);
+                //var totalCount = await query.CountAsync();
+
+
+                var paginatedQuery = _sieveProcessor.Apply(sieveModel, query);
+
+                var orders = await paginatedQuery.Skip((request.Page.Value - 1) * request.PageSize.Value)
+                                                .Take(request.PageSize.Value)
+                                                .ToListAsync();
+
+
+
+                var orderDtos = _mapper.Map<List<OrderDto>>(orders);
+                var paginatedResult = PaginatedResult<List<OrderDto>>.Create(orderDtos, totalCount, request.Page.Value, request.PageSize.Value, StatusCodes.Status200OK);
+
+                return paginatedResult;
+            }
+            catch (Exception ex)
+            {
+                return PaginatedResult<List<OrderDto>>.Failure(StatusCodes.Status500InternalServerError, new List<string> { ex.Message });
+            }
         }
 
-        public Task<Result<bool>> RemoveProductInCart(RemoveProductInCartRequest id)
+        public async Task<Result<bool>> RemoveProductInCart(RemoveProductInCartRequest request)
         {
-            throw new NotImplementedException();
+            // Kiểm tra nếu không phải người dùng thì không có quyền
+            if (_currentUserService.Type != CLAIMS_VALUES.TYPE_USER)
+            {
+                return Result<bool>.Failure("Vui lòng đăng ký tài khoản người dùng để đặt hàng!", StatusCodes.Status403Forbidden);
+            }
+
+            try
+            {
+                // Lấy giỏ hàng của người dùng
+                var cart = await _context.Orders
+                    .Include(x => x.Customer).ThenInclude(x => x.User)
+                    .Where(x => x.Customer.User.Id == _currentUserService.UserId &&
+                                x.Status == Order.OrderStatus.Cart)
+                    .FirstOrDefaultAsync();
+
+                var validator = new RemoveProductInCartValidator(_context, cart.Id);
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (validationResult.IsValid == false)
+                {
+                    var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+                    return Result<bool>.Failure(errorMessages, StatusCodes.Status400BadRequest);
+                }
+
+                var detailOrder = await _context.DetailOrders
+                            .Where(x => x.ProductId == request.ProductId &&
+                                        x.OrderId == cart.Id)
+                            .FirstOrDefaultAsync();
+                _context.DetailOrders.Remove(detailOrder);
+                await _context.SaveChangesAsync();
+
+                await HandleAfterUpdateProductToCart(cart.Id);
+
+                return Result<bool>.Success(true, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+            }
         }
 
-        public Task<Result<bool>> UpdateInCart(UpdateProductInCartRequest request)
+        public async Task<Result<bool>> UpdateProductInCart(UpdateProductInCartRequest request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var validator = new UpdateProductInCartValidator(_context);
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (validationResult.IsValid == false)
+                {
+                    var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+                    return Result<bool>.Failure(errorMessages, StatusCodes.Status400BadRequest);
+                }
+
+                // Kiểm tra nếu không phải người dùng thì không có quyền
+                if (_currentUserService.Type != CLAIMS_VALUES.TYPE_USER)
+                {
+                    return Result<bool>.Failure("Vui lòng đăng ký tài khoản người dùng để đặt hàng!", StatusCodes.Status403Forbidden);
+                }
+
+                // Lấy giỏ hàng của người dùng
+                var cart = await _context.Orders
+                    .Include(x => x.Customer).ThenInclude(x => x.User)
+                    .Where(x => x.Customer.User.Id == _currentUserService.UserId &&
+                                x.Status == OrderStatus.Cart)
+                    .FirstOrDefaultAsync();
+
+                var detail = await _context.DetailOrders
+                            .Where(x => x.ProductId == request.ProductId &&
+                                        x.OrderId == cart.Id)
+                            .FirstOrDefaultAsync();
+
+                // Cập nhật lại số lượng sản phẩm và lợi nhuận
+                if (detail != null)
+                {
+                    var product = await _context.Products.FindAsync(request.ProductId);
+                    int? quantity = request.Quantity;
+
+                    detail.Quantity = request.Quantity;
+                    detail.IsSelected = request.IsSelected == true ? true : false;
+                    _context.DetailOrders.Update(detail);
+                    await _context.SaveChangesAsync();
+                }
+
+                await HandleAfterUpdateProductToCart(cart.Id);
+
+                return Result<bool>.Success(true, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+            }
         }
+
+ 
     }
 }

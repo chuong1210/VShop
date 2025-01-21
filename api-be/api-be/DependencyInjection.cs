@@ -7,7 +7,7 @@ using System.Reflection;
 using api_be.Services.Imps;
 using api_be.Services;
 using AutoMapper;
-using api_be.Mapping;
+using api_be.Mapper;
 using api_be.Middleware;
 using Microsoft.AspNetCore.Authorization;
 using api_be.Domain.Interfaces;

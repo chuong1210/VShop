@@ -9,7 +9,6 @@ import { reduxStore } from '@redux/index';
 
 const request = axios.create({
 	// baseURL: process.env.NEXT_PUBLIC_API_URL,
-	// https://localhost:7288/smw-api/category
 baseURL: 'https://localhost:7288/smw-api',
 
 	headers: {

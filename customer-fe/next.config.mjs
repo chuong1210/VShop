@@ -1,9 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: ["@svgr/webpack"],
+      oneOf: [
+        {
+          issuer: /\.[jt]sx?$/,
+          use: ["@svgr/webpack"],
+        },
+        {
+          type: "asset/resource",
+        },
+      ],
     });
     return config;
   },

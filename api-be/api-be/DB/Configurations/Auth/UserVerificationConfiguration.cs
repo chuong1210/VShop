@@ -14,7 +14,7 @@ namespace api_be.DB.Configurations.Auth
             builder.Property(x => x.IsUsed).IsRequired();
 
             builder.HasOne(x => x.User)
-                .WithMany()
+                .WithMany(x=>x.UserVerifications)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
         }

@@ -2,6 +2,7 @@ const apiConfig = {
 	'register': '/user/register',
 
 	'login': '/user/login',
+	'verify-email':'user/verify-email',
 
 	'product': '/product',
 	'product-detail': '/product/detail',

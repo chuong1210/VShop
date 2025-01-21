@@ -6,7 +6,7 @@ using AutoMapper;
 using Sieve.Models;
 using api_be.Models.Responses;
 using api_be.ValidatorRequest.DefaultBase;
-namespace api_be.Mapping
+namespace api_be.Mapper
 {
     public class MappingProfile : Profile
     {
@@ -18,10 +18,20 @@ namespace api_be.Mapping
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => User.UserType.User)); // Gán loại người dùng mặc định là "User"
 
 
-             CreateMap<User, UserDto>()
-           .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.UserRoles.Select(ur => ur.Role.Name)))
-           .ReverseMap()
-           .ForMember(dest => dest.UserRoles, opt => opt.Ignore());
+            CreateMap<User, UserDto>()
+          .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.UserRoles.Select(ur => ur.Role.Name)))
+          .ReverseMap()
+          .ForMember(dest => dest.UserRoles, opt => opt.Ignore());
+            CreateMap<Customer, CustomerDto>()
+     .ReverseMap(); // Nếu cần ánh xạ ngược từ CustomerDto về Customer
+
+
+
+            //            CreateMap<User, UserDto>()
+            //    .ForMember(dest => dest.Roles, opt => opt.MapFrom(src =>
+            //        src.UserRoles != null ? src.UserRoles.Select(ur => ur.Role.Name) : new List<string>())).ReverseMap()
+            //;
+
             CreateMap<Distributor, DistributorDto>().ReverseMap();
 
             CreateMap<Category, CategoryDto>().ReverseMap();
@@ -62,6 +72,7 @@ namespace api_be.Mapping
 
 
             CreateMap<User, CreateUserRequest>().ReverseMap();
+
             CreateMap<User, UpdateUserRequest>().ReverseMap();
 
 

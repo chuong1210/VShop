@@ -2,7 +2,7 @@
 
 using api_be.DB;
 using api_be.Domain.Interfaces;
-using api_be.Mapping;
+using api_be.Mapper;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 

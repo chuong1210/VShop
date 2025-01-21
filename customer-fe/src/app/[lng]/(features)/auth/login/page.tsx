@@ -1,9 +1,9 @@
 "use client";
 
 import AuthSvg from "@asset/svg/svg-auth.svg";
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, HStack, Text } from "@chakra-ui/react";
 import { InputText } from "@component/form";
-import { Link, Loading } from "@component/ui";
+import { Image, Link, Loading } from "@component/ui";
 import { useRouter, useTranslation } from "@hook/index";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLoginMutate } from "@root/src/hooks/mutations";
@@ -140,6 +140,16 @@ const LoginPage = () => {
                 </Link>
               </Text>
             </Box>
+
+            <HStack ml={8} spacing={4}>
+              <Image alt="facebook" src="FacebookIcon" width={30} />
+
+              <Image alt="instagram" src="InstagramIcon" width={30} />
+
+              <Image alt="github" src="GithubIcon" width={30} />
+
+              <Image alt="google" src="GoogleIcon" width={30} />
+            </HStack>
           </Flex>
         </Flex>
       </Box>

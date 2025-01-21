@@ -7,4 +7,6 @@ export * from './request';
 
 export * from './cookie';
 export * from './page';
+export * from './option';
+
 

@@ -52,7 +52,7 @@ namespace api_be.Domain.Interfaces
         DbSet<StaffPositionHasRole> StaffPositionHasRoles { get; }
         DbSet<Message> Messages { get; }
         DbSet<RefreshToken> RefreshTokens { get; }
-        DbSet<UserVerification> EmailVerifications { get; }
+        DbSet<UserVerification> UserVerifications { get; }
 
 
 

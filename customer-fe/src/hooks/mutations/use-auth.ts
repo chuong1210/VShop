@@ -1,6 +1,6 @@
 import { cookies, http } from '@lib/index';
 import { useMutation } from '@tanstack/react-query';
-import { LoginResponse, LoginType, RegisterType, ResponseType } from '@type/common';
+import { LoginResponse, LoginType, RegisterType, ResponseType,VerifyEmailType } from '@type/common';
 
 const useLoginMutate = () => {
 	return useMutation<ResponseType<LoginResponse>, Error, LoginType>({
@@ -30,4 +30,17 @@ const useRegisterMutate = () => {
 };
 
 
-export { useLoginMutate, useRegisterMutate };
+
+
+ const useVerifyEmailMutate = () => {
+  return useMutation<any, Error, VerifyEmailType>({
+    mutationFn: async (data) => {
+      const request = await http.post("verify-email", data)
+      return request.data
+    },
+  })
+}
+
+
+
+export { useLoginMutate, useRegisterMutate ,useVerifyEmailMutate};

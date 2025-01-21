@@ -18,11 +18,17 @@ namespace api_be.Services.Imps
             {
                 Host = _configuration["EmailSettings:SmtpHost"],
                 Port = int.Parse(_configuration["EmailSettings:SmtpPort"]),
-                EnableSsl = true,
+                UseDefaultCredentials = false,
+
                 Credentials = new NetworkCredential(
              _configuration["EmailSettings:SmtpUsername"],
              _configuration["EmailSettings:SmtpPassword"]
-         )
+         ),
+                EnableSsl = true,
+
+                DeliveryMethod = SmtpDeliveryMethod.Network, // Đảm bảo gửi qua network
+
+
             };
 
         }

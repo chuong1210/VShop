@@ -57,7 +57,7 @@ namespace api_be.DB.Configurations.Auth
                    .HasForeignKey(up => up.UserId)
                    .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(u => u.EmailVerificationTokens)
+            builder.HasMany(u => u.UserVerifications)
                .WithOne(ev => ev.User) // Điều kiện để `EmailVerification` tham chiếu đến `User`
                .HasForeignKey(ev => ev.UserId) // Đảm bảo có khóa ngoại trong bảng `EmailVerification`
                .OnDelete(DeleteBehavior.Cascade); // Xóa tất cả các `EmailVerification` khi `User` bị xóa

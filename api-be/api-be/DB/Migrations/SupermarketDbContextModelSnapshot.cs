@@ -303,16 +303,11 @@ namespace api_be.DB.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UserId1")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("EmailVerifications");
+                    b.ToTable("UserVerifications");
                 });
 
             modelBuilder.Entity("api_be.Entities.Category", b =>
@@ -1280,13 +1275,9 @@ namespace api_be.DB.Migrations
             modelBuilder.Entity("api_be.Entities.Auth.UserVerification", b =>
                 {
                     b.HasOne("api_be.Entities.Auth.User", "User")
-                        .WithMany()
+                        .WithMany("UserVerifications")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("api_be.Entities.Auth.User", null)
-                        .WithMany("EmailVerificationTokens")
-                        .HasForeignKey("UserId1");
 
                     b.Navigation("User");
                 });
@@ -1508,11 +1499,11 @@ namespace api_be.DB.Migrations
 
             modelBuilder.Entity("api_be.Entities.Auth.User", b =>
                 {
-                    b.Navigation("EmailVerificationTokens");
-
                     b.Navigation("UserPermissions");
 
                     b.Navigation("UserRoles");
+
+                    b.Navigation("UserVerifications");
                 });
 
             modelBuilder.Entity("api_be.Entities.Customer", b =>

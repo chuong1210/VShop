@@ -45,7 +45,8 @@ namespace api_be.Entities.Auth
         public bool? IsEmailVerified { get; set; }
 
 
-        public virtual ICollection<UserVerification> EmailVerificationTokens { get; set; }
+        public virtual ICollection<UserVerification> UserVerifications { get; set; }
+
 
     }
 }
