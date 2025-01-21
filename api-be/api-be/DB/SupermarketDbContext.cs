@@ -67,7 +67,7 @@ namespace api_be.DB
 
         public DbSet<Message> Messages  => Set<Message>();
         public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
-        public DbSet<UserVerification> EmailVerifications => Set<UserVerification>();
+        public DbSet<UserVerification> UserVerifications => Set<UserVerification>();
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -196,9 +196,8 @@ namespace api_be.Services.Imps
                 user.Type = User.UserType.User;
                 user.IsEmailVerified = false; // Set email as unverified
 
-
                 // Save user to database
-                var newUser = await _context.Set<User>().AddAsync(user);
+               var newUser = await _context.Set<User>().AddAsync(user);
                 await _context.SaveChangesAsync();
 
                 var verificationToken = new UserVerification
@@ -210,7 +209,7 @@ namespace api_be.Services.Imps
                     IsUsed = false
                 };
 
-                await _context.EmailVerifications.AddAsync(verificationToken);
+                await _context.UserVerifications.AddAsync(verificationToken);
                 await _context.SaveChangesAsync();
 
                 // Publish events or additional logic if needed
@@ -224,7 +223,7 @@ namespace api_be.Services.Imps
                     Gender = request.Gender
                 };
                 var newCustomer = await _context.Customers.AddAsync(customer);
-                await _context.SaveChangesAsync(default(CancellationToken));
+                await _context.SaveChangesAsync(); //default(CancellationToken)
                 //await _context.SaveChangesAsync();
 
 
@@ -251,21 +250,47 @@ namespace api_be.Services.Imps
                     }
                 }
                 await _context.SaveChangesAsync();
+          
+                    var role = await _context.Roles.SingleOrDefaultAsync(p => p.Name == CLAIMS_VALUES.TYPE_USER);
+                    if (role != null)
+                    {
+                        var userRole = new Entities.Auth.UserRole
+                        {
+                            UserId = user.Id,
+                            RoleId = role.Id
+                        };
+                        await _context.UserRoles.AddAsync(userRole);
+                    }
 
 
 
-                await _context.Set<UserVerification>().AddAsync(verificationToken);
-                await _context.SaveChangesAsync();
+                //await _context.Set<UserVerification>().AddAsync(verificationToken);
+                //await _context.SaveChangesAsync();
 
                 // Generate verification link
-                var verificationLink = $"{_configuration["AppSettings:FrontendUrl"]}/verify-email?token={verificationToken.Token}";
+                //var verificationLink = $"{_configuration["AppSettings:FrontendUrl"]}/auth/verify-email?token={Uri.EscapeDataString(verificationToken.Token)}";
+                var verificationLink = $"{_configuration["AppSettings:FrontendUrl"]}/auth/verify-email/?token={Uri.EscapeDataString(verificationToken.Token)}";
+
 
                 // Send verification email
                 await _emailService.SendVerificationEmailAsync(user.Email, verificationLink);
+                var fullUser = await _context.Users
+                .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role)
+                .FirstOrDefaultAsync(u => u.Id == newUser.Entity.Id);
+                try
+                {
+                    var userDto = _mapper.Map<UserDto>(newUser.Entity);
+                    return Result<UserDto>.Success(userDto, StatusCodes.Status201Created);
+                }
+                catch (Exception ex)
+                {
+                    // In ra lỗi cụ thể và thông tin ánh xạ
+                    var mappingError = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                    throw new Exception($"Mapping Error: {mappingError}");
+                }
 
-                // Map to DTO and return result
-                var userDto = _mapper.Map<UserDto>(newUser.Entity);
-                return Result<UserDto>.Success(userDto, StatusCodes.Status201Created);
+                //var userDto = new UserDto { Email = newUser.Entity.Email, PhoneNumber = newUser.Entity.PhoneNumber, Type = newUser.Entity.Type, CustomerId = newUser.Entity.CustomerId }; 
             }
             catch (Exception ex)
             {
@@ -284,15 +309,17 @@ namespace api_be.Services.Imps
                 var validator = new VerifyEmailValidator();
                 var validationResult = await validator.ValidateAsync(request);
 
+                var decodedToken = Uri.UnescapeDataString(request.Token);
+
                 if (!validationResult.IsValid)
                 {
                     var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
                     return Result<bool>.Failure(errorMessages, StatusCodes.Status400BadRequest);
                 }
 
-                var verificationToken = await _context.Set<UserVerification>()
-                    .Include(t => t.User)
-                    .FirstOrDefaultAsync(t => t.Token == request.Token);
+                var verificationTokens = await _context.Set<UserVerification>()
+                    .Include(t => t.User).ToListAsync();
+                 var  verificationToken=   verificationTokens.FirstOrDefault(t => t.Token == decodedToken);
 
                 if (verificationToken == null)
                 {
@@ -610,7 +637,7 @@ namespace api_be.Services.Imps
                     .FirstOrDefaultAsync(u => u.Email == request.Email);
 
                 // Revoke any existing unused password reset tokens
-                var existingTokens = await _context.EmailVerifications
+                var existingTokens = await _context.UserVerifications
                     .Where(t => t.UserId == user.Id && !t.IsUsed && t.ExpiryDate > DateTime.UtcNow)
                     .ToListAsync();
 

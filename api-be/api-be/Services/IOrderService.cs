@@ -14,10 +14,10 @@ namespace api_be.Services
         public Task<Result<bool>> AddProductToCart(AddProductToCartRequest request);
         public Task<Result<bool>> CancelOrder(CancelOrderRequest request);
         public Task<Result<bool>> ChangeStatusOrder(ChangeStatusOrderRequest request);
-        public Task<Result<Boolean>> UpdateInCart(UpdateProductInCartRequest request);
+        public Task<Result<Boolean>> UpdateProductInCart(UpdateProductInCartRequest request);
         public Task<Result<Boolean>> RemoveProductInCart(RemoveProductInCartRequest id);
         public Task<Result<OrderDto>> DetailOrder(DetailBaseCommand request);
-        public Task<Result<CartDto>> DetailCart(DetailBaseCommand request);
+        public Task<Result<CartDto>> DetailCart();
 
         public Task<PaginatedResult<List<OrderDto>>> GetList(ListBaseCommand request);
     }

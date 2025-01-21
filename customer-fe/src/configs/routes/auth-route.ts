@@ -4,6 +4,8 @@ const authRoute = {
 	'login': '/auth/login',
 	'register': '/auth/register',
 	'reset-password': '/auth/reset-password?tab=email',
+	'verify-account': '/auth/verify-email?token=email'
+
 };
 
 const authRoutes = Object.keys(authRoute).map((key) => {

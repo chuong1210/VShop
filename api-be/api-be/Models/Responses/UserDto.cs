@@ -11,7 +11,7 @@ namespace api_be.Models.Responses
         [JsonProperty("email")]
 
         public string? Email { get; set; }
-        [JsonProperty("phoneNumber")]
+        [JsonProperty("PhoneNumber")]
 
         public string? PhoneNumber { get; set; }
 

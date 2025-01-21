@@ -32,5 +32,8 @@ type AuthenticationDataType = {
 	expires: number;
 	expires_at: number;
 };
+type VerifyEmailType = {
+	token: string
+  }
 
-export type { LoginType, RegisterType, ResetPasswordType, AuthenticationDataType, LoginResponse };
+export type { LoginType, RegisterType, ResetPasswordType, AuthenticationDataType, LoginResponse ,VerifyEmailType};

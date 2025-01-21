@@ -4,7 +4,7 @@ using api_be.Models.Responses;
 using AutoMapper;
 using Newtonsoft.Json;
 
-namespace api_be.Mapping
+namespace api_be.Mapper
 {
     public class CommonMappingProfile : Profile
     {
