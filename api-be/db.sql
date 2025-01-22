@@ -8,6 +8,13 @@ VALUES
     ('CAT006', 'Refrigerators', 'refrigerators_icon.png', 27); -- Subcategory of Home Appliances
 
 
+	INSERT INTO Categories (InternalCode, Name, Icon, ParentId)
+VALUES 
+    ('CAT007', 'Laptops', 'laptops_icon.png', 26), -- Subcategory of Electronics
+    ('CAT008', 'Kitchen Appliances', 'kitchen_appliances_icon.png', 27), -- Subcategory of Home Appliances
+    ('CAT009', 'Gaming Consoles', 'gaming_consoles_icon.png', 26), -- Subcategory of Electronics
+    ('CAT010', 'Microwaves', 'microwaves_icon.png', 27); -- Subcategory of Home Appliances
+
 	INSERT INTO Products (InternalCode, Name, Images, Price, Quantity, Describes, Feature, Specifications, Type, Status, Selling, ParentId, CategoryId, CreatedAt, UpdatedAt)
 VALUES 
     -- Smartphones
@@ -27,7 +34,73 @@ VALUES
     ('PROD008', 'Hitachi French Door', 'hitachi_fridge.jpg', 2200.00, 12, 'Elegant design with advanced cooling', 'Dual Fan Cooling', '650L Capacity', 1, 1, 4, NULL, 31, GETDATE(), GETDATE());
 
 
+
+	INSERT INTO Products (InternalCode, Name, Images, Price, Quantity, Describes, Feature, Specifications, Type, Status, Selling, ParentId, CategoryId, CreatedAt, UpdatedAt)
+VALUES 
+    -- Laptops
+    ('PROD009', 'Dell XPS 15', 'dell_xps_15.jpg', 1800.00, 20, 'High-performance laptop with 15.6-inch 4K display', '4K Display, Core i7', '16GB RAM, 1TB SSD', 1, 1, 10, NULL, 32, GETDATE(), GETDATE()),
+    ('PROD010', 'MacBook Pro 16"', 'macbook_pro.jpg', 2500.00, 15, 'Apple MacBook Pro with M1 Pro chip', 'Liquid Retina XDR Display', '16GB RAM, 1TB SSD', 1, 1, 12, NULL, 32, GETDATE(), GETDATE()),
+
+    -- Kitchen Appliances
+    ('PROD011', 'Philips Air Fryer', 'philips_air_fryer.jpg', 200.00, 50, 'Healthy frying with minimal oil', 'Rapid Air Technology', '5.0L Capacity', 1, 1, 25, NULL, 33, GETDATE(), GETDATE()),
+    ('PROD012', 'Bosch Dishwasher', 'bosch_dishwasher.jpg', 900.00, 10, 'Energy-efficient dishwasher with quiet operation', 'EcoSilence Drive', '14 Place Settings', 1, 1, 20, NULL, 33, GETDATE(), GETDATE()),
+
+    -- Gaming Consoles
+    ('PROD013', 'PlayStation 5', 'ps5.jpg', 500.00, 30, 'Next-gen gaming console with immersive features', 'Ray Tracing, Ultra-fast SSD', '825GB SSD', 1, 1, 40, NULL, 34, GETDATE(), GETDATE()),
+    ('PROD014', 'Xbox Series X', 'xbox_series_x.jpg', 500.00, 35, 'Powerful gaming console with 4K gaming support', '12 Teraflops GPU', '1TB SSD', 1, 1, 35, NULL, 34, GETDATE(), GETDATE()),
+
+    -- Microwaves
+    ('PROD015', 'Panasonic Microwave Oven', 'panasonic_microwave.jpg', 150.00, 25, 'Compact microwave with inverter technology', '1,000 Watts', '1.2 Cu. Ft.', 1, 1, 18, NULL, 35, GETDATE(), GETDATE()),
+    ('PROD016', 'Samsung Smart Oven', 'samsung_oven.jpg', 250.00, 20, 'Combination microwave and convection oven', 'Hot Blast Technology', '1.4 Cu. Ft.', 1, 1, 16, NULL, 35, GETDATE(), GETDATE());
+
+
+	INSERT INTO Promotions (InternalCode, [Name], [Start], [End] , Limit, Discount, PercentMax, [Percent], DiscountMax, Type, Status)
+VALUES 
+    ('PROMO001', '10% off for Electronics', '2025-01-01', '2025-01-31', 100, NULL, 10, 10, 200, 1, 1), -- Percent promotion
+    ('PROMO002', 'Buy 2 get 100 off', '2025-01-01', '2025-01-31', 50, 100, NULL, NULL, NULL, 0, 1); -- Discount promotion
+
+	INSERT INTO Promotions (InternalCode, [Name], [Start], [End], Limit, Discount, PercentMax, [Percent], DiscountMax, Type, Status)
+VALUES 
+    -- Promotion for TVs
+    ('PROMO003', '15% off on Televisions', '2025-02-01', '2025-02-28', 75, NULL, 15, 15, 300, 1, 1), -- Percent promotion
+
+    -- Promotion for Refrigerators
+    ('PROMO004', 'Flat $200 off on Refrigerators', '2025-02-01', '2025-02-28', 50, 200, NULL, NULL, NULL, 0, 1), -- Discount promotion
+
+    -- Promotion for Gaming Consoles
+    ('PROMO005', '5% off for Gaming Consoles', '2025-01-15', '2025-01-31', 100, NULL, 5, 5, 50, 1, 1), -- Percent promotion
+
+    -- Promotion for Kitchen Appliances
+    ('PROMO006', 'Buy 2 Kitchen Appliances, Save $150', '2025-02-01', '2025-02-28', 30, 150, NULL, NULL, NULL, 0, 1); -- Discount promotion
+
+	INSERT INTO PromotionProductRequirements ([Group], PromotionId, ProductId)
+VALUES 
+    -- Group 1: Electronics promotion (PROMO001)
+    (1, 1, 1), -- iPhone 14 Pro Max
+    (1, 1, 2), -- Samsung Galaxy S23 Ultra
+
+    -- Group 2: Washing machines promotion (PROMO002)
+    (2, 2, 5), -- Samsung Front Load Washer
+    (2, 2, 6); -- LG Twin Wash
+
+INSERT INTO PromotionProductRequirements ([Group], PromotionId, ProductId)
+VALUES 
+    -- Group 3: TVs promotion (PROMO003)
+    (3, 3, 3), -- LG OLED C3
+    (3, 3, 4), -- Sony Bravia X90L
+
+    -- Group 4: Refrigerators promotion (PROMO004)
+    (4, 4, 7), -- Samsung Family Hub
+    (4, 4, 8), -- Hitachi French Door
+
+    -- Group 5: Gaming Consoles promotion (PROMO005)
+    (5, 5, 13), -- PlayStation 5
+    (5, 5, 14), -- Xbox Series X
+
+    -- Group 6: Kitchen Appliances promotion (PROMO006)
+    (6, 6, 11), -- Philips Air Fryer
+    (6, 6, 12); -- Bosch Dishwasher
+
 	Update Products set IsDeleted = 'False' where 1=1
 	Update Products set type = '0' where 1=1
-
-		Update Categories set IsDeleted = 'False' where 1=1
+	Update Categories set IsDeleted = 'False' where 1=1

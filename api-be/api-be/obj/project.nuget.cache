@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "suEsbVW/S1g=",
+  "dgSpecHash": "DaNUtvk1ff8=",
   "success": true,
   "projectFilePath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\api-be.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,9 @@
     "C:\\Users\\chuon\\.nuget\\packages\\cloudinarydotnet\\1.15.1\\cloudinarydotnet.1.15.1.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\google.apis\\1.59.0\\google.apis.1.59.0.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\google.apis.auth\\1.59.0\\google.apis.auth.1.59.0.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\google.apis.core\\1.59.0\\google.apis.core.1.59.0.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\8.0.10\\microsoft.aspnetcore.authentication.facebook.8.0.10.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\8.0.10\\microsoft.aspnetcore.authentication.google.8.0.10.nupkg.sha512",

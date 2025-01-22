@@ -1,9 +1,12 @@
 ﻿using api_be.Domain.Interfaces;
 using api_be.Entities.Auth;
+using api_be.Exceptions;
 using api_be.Extensions;
 using api_be.Middleware;
+using api_be.Models.Request;
 using api_be.Models.Request.RoleRequest;
 using api_be.Models.Responses;
+using api_be.Models.ValidatorRequest;
 using api_be.Models.ValidatorRequest.DefaultBase;
 using api_be.Models.ValidatorRequest.RoleValidator;
 using api_be.Transforms;
@@ -12,6 +15,7 @@ using api_be.ValidatorRequest.DefaultBase;
 using Microsoft.EntityFrameworkCore;
 using Sieve.Models;
 using Sieve.Services;
+using System.Threading;
 
 namespace api_be.Services.Imps
 {
@@ -32,9 +36,87 @@ namespace api_be.Services.Imps
             _sieveProcessor = pSieveProcessor;
         }
 
-            public Task<Result<RoleDto>> AssignPermissionsForRole(AssignPermissionsForRoleRequest request)
+
+        public async Task HandleAfterAssignPermissionsForRole(AssignPermissionsForRoleRequest request)
         {
-            throw new NotImplementedException();
+            if (request.DeletePermission != null)
+            {
+                foreach (var permission in request.DeletePermission)
+                {
+                    var result = await _context.RolePermissions
+                                .Include(x => x.Permission)
+                                .FirstOrDefaultAsync(x => x.RoleId == request.RoleId &&
+                                x.Permission.Name == permission);
+                    if (result != null)
+                    {
+                        _context.RolePermissions.Remove(result);
+                    }
+                }
+            }
+
+            if (request.AddPermission != null)
+            {
+                foreach (var permission in request.AddPermission)
+                {
+                    var per = await _context.Permissions.FirstOrDefaultAsync(x => x.Name == permission);
+                    if (per != null)
+                    {
+                        await _context.RolePermissions.AddAsync(new RolePermission
+                        {
+                            RoleId = request.RoleId,
+                            PermissionId = per.Id
+                        });
+                    }
+                }
+            }
+            await _context.SaveChangesAsync();
+
+            await Task.CompletedTask;
+        }
+        public async Task<Result<RoleDto>> AssignPermissionsForRole(AssignPermissionsForRoleRequest request)
+        {
+            try
+            {
+                var validator = new AssignPermissionsForRoleValidator(_context);
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (validationResult.IsValid == false)
+                {
+                    var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+                    return Result<RoleDto>.Failure(errorMessages, StatusCodes.Status400BadRequest);
+                }
+
+                var currentPermissions = await _context.RolePermissions
+                                                .Where(x => x.RoleId == request.RoleId)
+                                                .Include(x => x.Permission)
+                                                .Select(x => x.Permission.Name)
+                                                .ToListAsync();
+
+                var addPermission = request.PermissionsName.Except(currentPermissions).ToList();
+                var deletePermission = currentPermissions.Except(request.PermissionsName).ToList();
+                request.AddPermission = addPermission;
+                request.DeletePermission = deletePermission;
+                //await HandleAfterAssignPermissionsForRole
+                //    (request.RoleId, addPermission, deletePermission);
+
+
+                await HandleAfterAssignPermissionsForRole
+                  (request);
+
+                var role = await _context.Roles
+                            .Include(x => x.RolePermissions)
+                            .ThenInclude(x => x.Permission)
+                            .Where(x => x.Id == request.RoleId)
+                            .SingleOrDefaultAsync();
+
+                var roleDto = _mapper.Map<RoleDto>(role);
+
+                return Result<RoleDto>.Success(roleDto, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<RoleDto>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+            }
         }
 
         public async Task HandleAfterCreateRole(CreateOrUpdateRoleRequest request)
@@ -91,9 +173,43 @@ namespace api_be.Services.Imps
         }
 
 
-        public Task<Result<bool>> Delete(int id)
+        public async Task<Result<bool>> Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var role = await _context.Roles
+                                    .Include(r => r.RolePermissions)
+                                    .Include(r => r.UserRoles)
+                                    .FirstOrDefaultAsync(r => r.Id == id);
+
+                if (role == null)
+                {
+                    return Result<bool>.Failure(ValidatorTransform.NotExists(Modules.Role.Module), StatusCodes.Status404NotFound);
+                }
+
+                // Xóa liên kết với RolePermissions
+                if (role.RolePermissions != null)
+                {
+                    _context.RolePermissions.RemoveRange(role.RolePermissions);
+                }
+
+                // Xóa liên kết với UserRoles
+                if (role.UserRoles != null)
+                {
+                    _context.UserRoles.RemoveRange(role.UserRoles);
+                }
+
+                // Xóa Role
+                _context.Roles.Remove(role);
+
+                await _context.SaveChangesAsync();
+
+                return Result<bool>.Success(true, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Failure($"An error occurred: {ex.Message}", StatusCodes.Status500InternalServerError);
+            }
         }
 
         public async Task<Result<RoleDto>> Detail(DetailBaseCommand request)
@@ -170,23 +286,21 @@ namespace api_be.Services.Imps
                 sieveModel = _mapper.Map<SieveModel>(request);
 
 
-                //var categories = await _sieveProcessor.Apply(sieveModel, query).ToListAsync();
 
 
                 var totalCount = await PaginatedResultBase.CountApplySieveAsync(_sieveProcessor, sieveModel, query);
-                //var totalCount = await query.CountAsync();
 
 
                 var paginatedQuery = _sieveProcessor.Apply(sieveModel, query);
 
-                var categories = await paginatedQuery.Skip((request.Page.Value - 1) * request.PageSize.Value)
+                var roles = await paginatedQuery.Skip((request.Page.Value - 1) * request.PageSize.Value)
                                                 .Take(request.PageSize.Value)
                                                 .ToListAsync();
 
 
 
-                var categoryDtos = _mapper.Map<List<RoleDto>>(categories);
-                var paginatedResult = PaginatedResult<List<RoleDto>>.Create(categoryDtos, totalCount, request.Page.Value, request.PageSize.Value, StatusCodes.Status200OK);
+                var roleDtos = _mapper.Map<List<RoleDto>>(roles);
+                var paginatedResult = PaginatedResult<List<RoleDto>>.Create(roleDtos, totalCount, request.Page.Value, request.PageSize.Value, StatusCodes.Status200OK);
 
                 return paginatedResult;
             }
@@ -240,9 +354,89 @@ namespace api_be.Services.Imps
             }
         }
 
-        public Task<Result<RoleDto>> Update(CreateOrUpdateRoleRequest request)
+        private async Task HandleAfterUpdateRole(CreateOrUpdateRoleRequest request)
         {
-            throw new NotImplementedException();
+            var oldPermissions = await _context.Set<RolePermission>()
+                      .Include(x => x.Permission)
+                      .Where(x => x.Role.Name == request.Name)
+                      .Select(x => x.Permission.Name)
+                      .ToListAsync();
+
+            var newPermissions = request.Permissions;
+
+            var create = newPermissions.Except(oldPermissions).ToList();
+            var delete = oldPermissions.Except(newPermissions).ToList();
+
+            for (int i = 0; i < create.Count(); i++)
+            {
+                var permission = await _context.Permissions
+                            .FirstOrDefaultAsync(x => x.Name == create[i]);
+
+                var per = new RolePermission
+                {
+                    RoleId = (int)request.Id,
+                    PermissionId = permission.Id
+                };
+                await _context.RolePermissions.AddAsync(per);
+            }
+            await _context.SaveChangesAsync();
+
+            for (int i = 0; i < delete.Count(); i++)
+            {
+                var del = await _context.RolePermissions
+                            .Include(x => x.Permission)
+                            .Where(x => x.RoleId == request.Id &&
+                                        x.Permission.Name == delete[i])
+                                        .FirstOrDefaultAsync();
+                _context.Set<RolePermission>().Remove(del);
+            }
+            await _context.SaveChangesAsync();
+
+            await Task.CompletedTask;
+        }
+        public async Task<Result<RoleDto>> Update(CreateOrUpdateRoleRequest request)
+        {
+
+            try
+            {
+                var validator = new CreateOrUpdateRoleValidator(_context,null);
+                var validationResult = await validator.ValidateAsync(request);
+                if (!validationResult.IsValid)
+                {
+                    var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                    return Result<RoleDto>.Failure(errors, StatusCodes.Status400BadRequest);
+                }
+
+
+       
+                var role = await _context.Roles.FindAsync(request.Id);
+
+                if (role == null)
+                {
+                    throw new BadRequestException(ValidatorTransform.NotExistsValue(Modules.Role.Module,
+                                    request.Id.ToString()));
+                }
+
+              role.CopyPropertiesFrom(request);
+
+
+                //User user = _mapper.Map<User>(request);
+
+       
+                var newEntity = _context.Set<Role>().Update(role);
+                await _context.SaveChangesAsync();
+
+                var roleDto = _mapper.Map<RoleDto>(newEntity.Entity);
+                await HandleAfterUpdateRole(request);
+
+                return (Result<RoleDto>.Success(roleDto, StatusCodes.Status200OK));
+
+            }
+            catch (Exception ex)
+            {
+                // Trả về lỗi nếu có exception
+                return Result<RoleDto>.Failure($"Đã có lỗi xảy ra: {ex.Message}", StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }

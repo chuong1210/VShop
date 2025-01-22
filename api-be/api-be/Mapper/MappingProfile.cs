@@ -6,6 +6,7 @@ using AutoMapper;
 using Sieve.Models;
 using api_be.Models.Responses;
 using api_be.ValidatorRequest.DefaultBase;
+using api_be.Models.Request.RoleRequest;
 namespace api_be.Mapper
 {
     public class MappingProfile : Profile
@@ -38,6 +39,7 @@ namespace api_be.Mapper
 
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<CreateProductRequest, Product>().ReverseMap();
+            CreateMap<CreateOrUpdateRoleRequest, Role>().ReverseMap();
 
 
             CreateMap<SupplierOrder, SupplierOrderDto>().ReverseMap();
@@ -51,6 +53,7 @@ namespace api_be.Mapper
 
 
             CreateMap<Coupon, CouponDto>().ReverseMap();
+            CreateMap<Permission, PermissionDto>().ReverseMap();
 
 
             CreateMap<Order, OrderDto>().ReverseMap();

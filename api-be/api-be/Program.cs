@@ -202,6 +202,12 @@ builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
 
 var app = builder.Build();
 
+//app.UseEndpoints(endpoints =>
+//{
+//  endpoints.MapHub<ChatHubService>("/chatHub"); // Đăng ký Hub tại endpoint "/chatHub"
+//});
+app.MapHub<ChatHubService>("/chatHub");
+
 // Configure the HTTP request pipeline.
 
 if (app.Environment.IsDevelopment())
@@ -235,11 +241,6 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapHub<ChatHubService>("/chatHub"); // Đăng ký Hub tại endpoint "/chatHub"
-});
 
 app.MapControllers();
 

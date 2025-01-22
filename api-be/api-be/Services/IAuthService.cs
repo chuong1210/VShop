@@ -9,7 +9,6 @@ namespace api_be.Services
     {
 
         public Task<Result<LoginDto>> Login(LoginAccountRequest request);
-        public Task<Result<LoginDto>> LoginSocial(LoginAccountRequest request);
 
         public Task<Result<LoginDto>> RefreshToken(RefreshTokenRequest request);
 
@@ -29,6 +28,8 @@ namespace api_be.Services
 
 
         public Task<User> ValidateTokenAsync(string request);
+        public Task<Result<LoginDto>> ValidateGoogleToken(string token);
+
         public Task<Result<UserDto>> AssignRole(AssignRoleUserRequest request);
 
 
