@@ -302,6 +302,16 @@ namespace UI.WebApi.Controllers
 
         }
 
+        [HttpPost("google")]
+        public async Task<IActionResult> GoogleLogin([FromBody] string request)
+        {
+            var result = await _authService.ValidateGoogleToken(request);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return StatusCode(result.Code, result.Messages);
+        }
 
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordRequest request)

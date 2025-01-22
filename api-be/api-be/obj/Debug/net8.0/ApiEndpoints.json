@@ -819,6 +819,22 @@
   },
   {
     "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "GoogleLogin",
+    "RelativePath": "smw-api/user/google",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
     "Method": "Login",
     "RelativePath": "smw-api/user/login",
     "HttpMethod": "POST",

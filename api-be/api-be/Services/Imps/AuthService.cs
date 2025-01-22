@@ -29,6 +29,8 @@ using System.Text;
 using System.Threading;
 using static api_be.Transforms.Modules;
 using User = api_be.Entities.Auth.User;
+using Google.Apis.Auth;
+using Microsoft.Extensions.Configuration;
 
 namespace api_be.Services.Imps
 {
@@ -567,57 +569,172 @@ namespace api_be.Services.Imps
 
         }
 
-     
-        private async Task<LoginSocialDto> ValidateGoogleTokenAsync(string externalAccessToken)
+
+
+public async Task<Result<LoginDto>> ValidateGoogleToken1(string token)
+    {
+        try
         {
-            using (var httpClient = new HttpClient())
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+
+            if (jsonToken == null)
             {
-                var response = await httpClient.GetAsync($"https://www.googleapis.com/oauth2/v3/tokeninfo?access_token={externalAccessToken}");
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<LoginSocialDto>(content);
-                }
-                return null;
+                return Result<LoginDto>.Failure("Invalid token", StatusCodes.Status400BadRequest);
             }
+
+            // Verify the token's issuer
+            if (jsonToken.Issuer != "accounts.google.com" && jsonToken.Issuer != "https://accounts.google.com")
+            {
+                return Result<LoginDto>.Failure("Invalid token issuer", StatusCodes.Status400BadRequest);
+            }
+
+            // Verify the audience (your Google Client ID)
+            var audience = _configuration["Authentication:Google:ClientId"];
+            if (!jsonToken.Audiences.Contains(audience))
+            {
+                return Result<LoginDto>.Failure("Invalid token audience", StatusCodes.Status400BadRequest);
+            }
+
+            // Verify the expiration time
+            if (jsonToken.ValidTo < DateTime.UtcNow)
+            {
+                return Result<LoginDto>.Failure("Token has expired", StatusCodes.Status400BadRequest);
+            }
+
+            // Extract user information from the token
+            var email = jsonToken.Claims.FirstOrDefault(c => c.Type == "email")?.Value;
+            var name = jsonToken.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+
+            if (string.IsNullOrEmpty(email))
+            {
+                return Result<LoginDto>.Failure("Email not found in token", StatusCodes.Status400BadRequest);
+            }
+
+            // Check if user exists
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+
+            if (user == null)
+            {
+                // Create new user
+                user = new User
+                {
+                    Email = email,
+                    UserName = email,
+                    //Name = name ?? email,
+                    IsEmailVerified = true,
+                    Type = User.UserType.User,
+                    Password = _passwordHasher.HashPassword(null, Convert.ToBase64String(Guid.NewGuid().ToByteArray()))
+                };
+
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
+
+                // Create customer profile
+                var customer = new Entities.Customer
+                {
+                    Name = name ?? email,
+                    Email = email
+                };
+
+                await _context.Customers.AddAsync(customer);
+                await _context.SaveChangesAsync();
+
+                user.CustomerId = customer.Id;
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+            }
+
+            // Generate JWT token
+            var jwtToken = await JwtExtension.GenerateToken(user, _context, _configuration);
+            var refreshToken = await JwtExtension.GenerateRefreshToken(user.Id, _context, _configuration);
+
+            await _context.SaveChangesAsync();
+
+            var loginDto = new LoginDto
+            {
+                Id = user.Id,
+                Token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
+                RefreshToken = refreshToken.Token,
+                Exp = DateTime.Now.AddMinutes(int.Parse(_configuration["JwtSettings:DurationInMinutes"]))
+            };
+
+            return Result<LoginDto>.Success(loginDto, StatusCodes.Status200OK);
         }
-        public async Task<Result<LoginDto>> LoginSocial(LoginAccountRequest pRequest)
+        catch (Exception ex)
+        {
+            return Result<LoginDto>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+        }
+    }
+
+
+    public async Task<Result<LoginDto>> ValidateGoogleToken(string token)
         {
             try
             {
-                // Validate external access token with Google
-                var googleUser = await ValidateGoogleTokenAsync(pRequest.ExternalAccessToken);
-
-                if (googleUser == null)
+                var settings = new GoogleJsonWebSignature.ValidationSettings()
                 {
-                    return Result<LoginDto>.Failure("Không thể xác thực mã thông báo Google!", StatusCodes.Status400BadRequest);
-                }
+                    Audience = new[] { _configuration["Authentication:Google:ClientId"] }
+                };
 
-                // Check if a user with the Google email exists in the database
-                var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == googleUser.Email);
+                var payload = await GoogleJsonWebSignature.ValidateAsync(token, settings);
+
+                // Check if user exists
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == payload.Email);
 
                 if (user == null)
                 {
-                    // If the user doesn't exist, you may choose to create a new user account here.
-                    // For simplicity, we'll return an error for now.
-                    return Result<LoginDto>.Failure(IdentityTransform.UserNotExists(pRequest.UserName), StatusCodes.Status400BadRequest);
+                    // Create new user
+                    user = new User
+                    {
+                        Email = payload.Email,
+                        UserName = payload.Email,
+                        //Name = payload.Name,
+                        IsEmailVerified = true,
+                        Type = User.UserType.User,
+                        Password = _passwordHasher.HashPassword(null, Convert.ToBase64String(Guid.NewGuid().ToByteArray()))
+                    };
+
+                    await _context.Users.AddAsync(user);
+                    await _context.SaveChangesAsync();
+
+                    // Create customer profile
+                    var customer = new Entities.Customer
+                    {
+                        Name = payload.Name,
+                        Email = payload.Email
+                    };
+
+                    await _context.Customers.AddAsync(customer);
+                    await _context.SaveChangesAsync();
+
+                    user.CustomerId = customer.Id;
+                    _context.Users.Update(user);
+                    await _context.SaveChangesAsync();
                 }
 
-                JwtSecurityToken jwtSecurityToken = await JwtExtension.GenerateToken(user,_context,_configuration);
+                // Generate JWT token
+                var jwtToken = await JwtExtension.GenerateToken(user, _context, _configuration);
+                var refreshToken = await JwtExtension.GenerateRefreshToken(user.Id, _context, _configuration);
 
-                LoginDto auth = new LoginDto
+                await _context.SaveChangesAsync();
+
+                var loginDto = new LoginDto
                 {
                     Id = user.Id,
-                    Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken),
+                    Token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
+                    RefreshToken = refreshToken.Token,
+                    Exp = DateTime.Now.AddMinutes(int.Parse(_configuration["JwtSettings:DurationInMinutes"]))
                 };
 
-                return Result<LoginDto>.Success(auth, StatusCodes.Status200OK);
+                return Result<LoginDto>.Success(loginDto, StatusCodes.Status200OK);
             }
             catch (Exception ex)
             {
                 return Result<LoginDto>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
             }
         }
+
 
 
         public async Task<Result<bool>> ForgotPassword(ForgotPasswordRequest request)

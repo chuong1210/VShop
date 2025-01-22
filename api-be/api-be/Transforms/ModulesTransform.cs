@@ -10,6 +10,8 @@
         public const int IdCardLength = 12;
         public const int InternalCodeMin = 3;
         public const int InternalCodeMax = 50;
+        public const int NamePermissionMin = 100;
+
         public const int PageNumberMin = 1;
         public const int PageSizeMin = 1;
         public const int MaxDescribes = 600000;
