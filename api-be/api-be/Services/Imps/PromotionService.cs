@@ -1,17 +1,24 @@
-﻿using api_be.Domain.Interfaces;
+﻿using api_be.Constants;
+using api_be.DB.Services;
+using api_be.Domain.Interfaces;
 using api_be.Entities;
+using api_be.Exceptions;
 using api_be.Extensions;
 using api_be.Models.Request.PromotionRequest;
 using api_be.Models.Responses;
 using api_be.Models.ValidatorRequest.DefaultBase;
+using api_be.Models.ValidatorRequest.OrderValidator.BaseOrders;
 using api_be.Models.ValidatorRequest.PromotionValidator;
 using api_be.Models.ValidatorRequest.PromotionValidator.BasePromotion;
 using api_be.Models.ValidatorRequest.RoleValidator;
 using api_be.Transforms;
 using api_be.ValidatorRequest.DefaultBase;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Sieve.Models;
 using Sieve.Services;
 using System.Threading;
+using Twilio.TwiML.Voice;
 using static api_be.Entities.Promotion;
 
 namespace api_be.Services.Imps
@@ -22,12 +29,14 @@ namespace api_be.Services.Imps
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly ISieveProcessor _sieveProcessor;
-        public PromotionService(ISupermarketDbContext pContext, IConfiguration pConfiguration, IMapper pMapper, ISieveProcessor pSieveProcessor)
+        private readonly ICurrentUserService _currentuserService;
+        public PromotionService(ISupermarketDbContext pContext, IConfiguration pConfiguration, IMapper pMapper, ISieveProcessor pSieveProcessor, ICurrentUserService currentuserService)
         {
             _context = pContext;
             _configuration = pConfiguration;
             _mapper = pMapper;
             _sieveProcessor = pSieveProcessor;
+            _currentuserService = currentuserService;
         }
         public async Task<Result<bool>> ApplyPromotionForProduct(ApplyPromotionForProductRequest request)
         {
@@ -143,7 +152,29 @@ namespace api_be.Services.Imps
 
         public async Task<Result<bool>> Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var promotion = await _context.Promotions
+                                    .FirstOrDefaultAsync(pr => pr.Id == id);
+
+                if (promotion == null)
+                {
+                    return Result<bool>.Failure(ValidatorTransform.NotExists(Modules.Promotion.Module), StatusCodes.Status404NotFound);
+                }
+
+    
+
+                // Xóa Role
+                _context.Set<Promotion>().Remove(promotion);
+
+                await _context.SaveChangesAsync();
+
+                return Result<bool>.Success(true, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Failure($"An error occurred: {ex.Message}", StatusCodes.Status500InternalServerError);
+            }
         }
 
         public async Task<Result<PromotionDto>> Detail(DetailBaseCommand request)
@@ -199,17 +230,90 @@ namespace api_be.Services.Imps
 
         public async Task<PaginatedResult<List<PromotionDto>>> GetList(ListBaseCommand request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var validator = new ListBaseCommandValidator(_context);
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (!validationResult.IsValid)
+                {
+                    var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                    return PaginatedResult<List<PromotionDto>>.Failure(StatusCodes.Status400BadRequest, errors);
+                }
+
+
+
+                var query = _context.Set<Promotion>().FilterDeleted();
+
+                var sieveModel = _mapper.Map<SieveModel>(request);
+                //var sieveModel = new SieveModel
+                //{
+                //    Page = request.Page,
+                //    PageSize = request.PageSize,
+                //    Filters = request.Filters,
+                //    Sorts = request.Sorts
+                //};
+       
+
+
+                int totalCount = await PaginatedResultBase.CountApplySieveAsync(_sieveProcessor, sieveModel, query);
+
+
+                var filteredQuery = _sieveProcessor.Apply(sieveModel, query);
+
+                //var totalCount = await filteredQuery.CountAsync();
+
+
+
+                var promotions = await filteredQuery
+                    .Skip((request.Page.Value - 1) * request.PageSize.Value)
+                    .Take(request.PageSize.Value)
+                    .ToListAsync();
+
+                var promotionDtos = _mapper.Map<List<PromotionDto>>(promotions);
+
+
+        
+
+
+                return PaginatedResult<List<PromotionDto>>.Create(promotionDtos, totalCount, request.Page.Value, request.PageSize.Value, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return PaginatedResult<List<PromotionDto>>.Failure(StatusCodes.Status500InternalServerError, new List<string> { ex.Message });
+            }
         }
 
-        public async Task<PaginatedResult<List<PromotionDto>>> GetListPromotionComBo(ListBaseCommand request)
-        {
-            throw new NotImplementedException();
-        }
-
+ 
         public async Task<Result<PromotionDto>> Update(CreateOrUpdatePromotionRequest request)
         {
-            throw new NotImplementedException();
+            var validator = new BasePromotionValidator(_context);
+            var validationResult = await validator.ValidateAsync(request);
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                return Result<PromotionDto>.Failure(errors, StatusCodes.Status400BadRequest);
+            }
+
+            var findEntity = await _context.Set<Promotion>().FindAsync(request.Id);
+
+            if (findEntity == null)
+            {
+                throw new BadRequestException(ValidatorTransform.NotExistsValue(Modules.Promotion.Module,
+                                request.Id.ToString()));
+            }
+            findEntity.CopyPropertiesFrom(request);
+
+
+            var newEntity = _context.Set<Promotion>().Update(findEntity);
+            await _context.SaveChangesAsync();
+
+            var promotionDto = _mapper.Map<PromotionDto>(newEntity.Entity);
+
+            return (Result<PromotionDto>.Success(promotionDto, StatusCodes.Status200OK));
+
+
+
         }
     }
 }

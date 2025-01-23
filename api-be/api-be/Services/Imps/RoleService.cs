@@ -190,13 +190,13 @@ namespace api_be.Services.Imps
                 // Xóa liên kết với RolePermissions
                 if (role.RolePermissions != null)
                 {
-                    _context.RolePermissions.RemoveRange(role.RolePermissions);
+                    _context.Set<RolePermission>().RemoveRange(role.RolePermissions);
                 }
 
                 // Xóa liên kết với UserRoles
                 if (role.UserRoles != null)
                 {
-                    _context.UserRoles.RemoveRange(role.UserRoles);
+                    _context.Set<UserRole>().RemoveRange(role.UserRoles);
                 }
 
                 // Xóa Role

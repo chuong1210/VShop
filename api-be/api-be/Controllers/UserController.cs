@@ -303,9 +303,10 @@ namespace UI.WebApi.Controllers
         }
 
         [HttpPost("google")]
-        public async Task<IActionResult> GoogleLogin([FromBody] string request)
+        [AllowAnonymous]
+        public async Task<IActionResult> GoogleLogin([FromBody] string accessToken)
         {
-            var result = await _authService.ValidateGoogleToken(request);
+            var result = await _authService.ValidateGoogleToken(accessToken);
             if (result.Succeeded)
             {
                 return Ok(result.Data);

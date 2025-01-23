@@ -624,6 +624,7 @@ public async Task<Result<LoginDto>> ValidateGoogleToken1(string token)
                     //Name = name ?? email,
                     IsEmailVerified = true,
                     Type = User.UserType.User,
+
                     Password = _passwordHasher.HashPassword(null, Convert.ToBase64String(Guid.NewGuid().ToByteArray()))
                 };
 
@@ -724,7 +725,9 @@ public async Task<Result<LoginDto>> ValidateGoogleToken1(string token)
                     Id = user.Id,
                     Token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
                     RefreshToken = refreshToken.Token,
+
                     Exp = DateTime.Now.AddMinutes(int.Parse(_configuration["JwtSettings:DurationInMinutes"]))
+
                 };
 
                 return Result<LoginDto>.Success(loginDto, StatusCodes.Status200OK);

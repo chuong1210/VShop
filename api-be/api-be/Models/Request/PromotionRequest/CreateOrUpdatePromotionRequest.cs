@@ -1,9 +1,10 @@
 ﻿using api_be.Domain.Interfaces;
+using api_be.Models.ValidatorRequest.DefaultBase;
 using static api_be.Entities.Promotion;
 
 namespace api_be.Models.Request.PromotionRequest
 {
-    public class CreateOrUpdatePromotionRequest:IBasePromotion
+    public record CreateOrUpdatePromotionRequest:UpdateBaseCommand, IBasePromotion
     {
         public string? InternalCode { get; set; }
 
