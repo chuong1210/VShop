@@ -17,6 +17,5 @@ namespace api_be.Services
 
         public Task<Result<PromotionDto>> Detail(DetailBaseCommand request);
         public Task<PaginatedResult<List<PromotionDto>>> GetList(ListBaseCommand request);
-        public Task<PaginatedResult<List<PromotionDto>>> GetListPromotionComBo(ListBaseCommand request);
     }
 }

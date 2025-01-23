@@ -197,6 +197,19 @@ builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
          .AllowAnyMethod()
          .AllowAnyHeader();
 }));
+
+// Thêm chính sách CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") // Thay bằng URL Next.js của bạn
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials(); // Để hỗ trợ cookie/chứng chỉ
+    });
+});
+
 //builder.Services.AddControllers()
 //    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());
 
@@ -231,7 +244,7 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseCors("MyCors");
+app.UseCors("AllowSpecificOrigins"); // MyCors
 
 app.UseRouting();
 
