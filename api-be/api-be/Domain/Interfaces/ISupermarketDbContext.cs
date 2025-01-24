@@ -54,6 +54,8 @@ namespace api_be.Domain.Interfaces
         DbSet<RefreshToken> RefreshTokens { get; }
         DbSet<UserVerification> UserVerifications { get; }
 
+         DbSet<InvalidatedToken> InvalidatedTokens { get; }
+
 
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;

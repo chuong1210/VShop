@@ -105,6 +105,17 @@ namespace api_be.Extensions
             var jwtToken = DecodeJwtToken(token);
             return jwtToken?.ValidTo;
         }
+        public static string GetBearerToken(this HttpContext httpContext)
+        {
+            string authorization = httpContext.Request.Headers["Authorization"].FirstOrDefault();
+
+            if (string.IsNullOrEmpty(authorization) || !authorization.StartsWith("Bearer "))
+            {
+                return null;
+            }
+
+            return authorization.Substring("Bearer ".Length).Trim();
+        }
         public static async Task<JwtSecurityToken> GenerateToken(
   User pUser,
             ISupermarketDbContext _context,
@@ -133,14 +144,19 @@ namespace api_be.Extensions
 
             var roleClaims = roles.Select(role => new Claim(ClaimTypes.Role, role.Name));
             var permissionClaims = permissions.Select(permission => new Claim(CONSTANT_CLAIM_TYPES.Permission, permission.Name));
+            // Tạo ID duy nhất cho JWT (jti)
+            var jwtId = Guid.NewGuid().ToString();
 
             var claims = new[]
             {
+                new Claim(ClaimTypes.NameIdentifier, pUser.Id.ToString()),
                 new Claim(CONSTANT_CLAIM_TYPES.Uid, pUser.Id.ToString()),
                 new Claim(CONSTANT_CLAIM_TYPES.Type, pUser.Type.ToString()),
                 new Claim(CONSTANT_CLAIM_TYPES.Staff, pUser.StaffId.ToString()),
                 new Claim(CONSTANT_CLAIM_TYPES.Customer, pUser.CustomerId.ToString()),
                 new Claim(CONSTANT_CLAIM_TYPES.UserName, pUser.UserName),
+               new Claim(JwtRegisteredClaimNames.Jti, jwtId) // Add JwtId claim here
+
 
             }
             .Union(permissionClaims)
@@ -190,7 +206,7 @@ namespace api_be.Extensions
                     IsRevoked = false
                 };
 
-                await _context.Set<RefreshToken>().AddAsync(refreshTokenEntity);
+                //await _context.Set<RefreshToken>().AddAsync(refreshTokenEntity);
                 return refreshTokenEntity;
             }
         }

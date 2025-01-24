@@ -977,6 +977,16 @@
   },
   {
     "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "SignOut",
+    "RelativePath": "smw-api/user/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
     "Method": "Refresh",
     "RelativePath": "smw-api/user/refresh-token",
     "HttpMethod": "POST",
@@ -985,7 +995,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Models.Request.RefreshTokenRequest",
+        "Type": "api_be.Models.Request.BaseTokenRequest",
         "IsRequired": true
       }
     ],

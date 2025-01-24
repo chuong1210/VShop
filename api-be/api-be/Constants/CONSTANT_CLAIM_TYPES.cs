@@ -6,6 +6,7 @@
 
         public const string UserName = "userName";
 
+
         public const string Type = "type";
 
         public const string Permission = "permission";

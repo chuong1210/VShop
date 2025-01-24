@@ -69,6 +69,8 @@ namespace api_be.DB
         public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
         public DbSet<UserVerification> UserVerifications => Set<UserVerification>();
 
+        public DbSet<InvalidatedToken> InvalidatedTokens =>Set<InvalidatedToken>();
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
