@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using System.Security.Claims;
 using System.Text.Json.Serialization;
 using CloudinaryDotNet;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
@@ -25,6 +26,7 @@ var googleConfig = builder.Configuration.GetSection("Authentication:Google");
 var githubConfig = builder.Configuration.GetSection("Authentication:GitHub");
 var cloudinaryConfig = builder.Configuration.GetSection("Authentication:Cloudinary");
 var facebookConfig = builder.Configuration.GetSection("Authentication:Facebook");
+var redisConfig = builder.Configuration.GetSection("Redis");
 
 // Add services to the container.
 var JWTSetting = builder.Configuration.GetSection("JWTSetting");
@@ -161,6 +163,25 @@ builder.Services.AddSingleton(sp =>
     ));
 });
 
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = $"{redisConfig["Host"]}:{redisConfig["Port"]}";
+    if (!string.IsNullOrEmpty(redisConfig["Password"]))
+    {
+        options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions
+        {
+            EndPoints = { $"{redisConfig["Host"]}:{redisConfig["Port"]}" },
+            Password = redisConfig["Password"]
+        };
+    }
+});
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(provider =>
+{
+    var configuration = ConfigurationOptions.Parse($"localhost:{redisConfig["Port"]}", true); // Thay 'localhost:6379' bằng cấu hình Redis của bạn.
+    return ConnectionMultiplexer.Connect(configuration);
+});
 builder.Services.AddAuthorization(options =>
 {
     options.AddPermissionPoliciesFromAttributes(Assembly.GetExecutingAssembly());

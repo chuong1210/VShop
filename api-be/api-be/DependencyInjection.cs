@@ -23,11 +23,7 @@ namespace api_be
         {
             services.AddHttpContextAccessor();
 
-            services.AddStackExchangeRedisCache(options =>
-            {
-                options.Configuration = configuration.GetConnectionString("Redis");
-                options.InstanceName = "ProductCache_";
-            });
+
             //services.AddSingleton(provider => new MapperConfiguration(cfg =>
             //{
             //    cfg.AddProfile(new MappingProfile());

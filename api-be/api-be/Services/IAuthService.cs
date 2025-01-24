@@ -10,9 +10,11 @@ namespace api_be.Services
 
         public Task<Result<LoginDto>> Login(LoginAccountRequest request);
 
-        public Task<Result<LoginDto>> RefreshToken(RefreshTokenRequest request);
+        public Task<Result<LoginDto>> RefreshToken(BaseTokenRequest request);
 
-        public Task<Result<UserDto>> Register(RegisterAccountRequest request);
+        public Task<Result<bool>> Logout(BaseTokenRequest request);
+
+            public Task<Result<UserDto>> Register(RegisterAccountRequest request);
   
 
         public Task<Result<UserDto>> ChangePassword(ChangePasswordRequest request);

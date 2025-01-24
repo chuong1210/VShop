@@ -31,6 +31,7 @@ using static api_be.Transforms.Modules;
 using User = api_be.Entities.Auth.User;
 using Google.Apis.Auth;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 
 namespace api_be.Services.Imps
 {
@@ -43,18 +44,21 @@ namespace api_be.Services.Imps
         private readonly IMapper _mapper;
         private readonly ISieveProcessor _sieveProcessor;
         private readonly IEmailService _emailService;
+        private readonly IRedisTokenService _redisTokenService;
+
 
 
 
 
         public AuthService(ISupermarketDbContext pContext,
-       IPasswordHasher<User> passwordHasher, IConfiguration pConfiguration, IMapper pMapper, ISieveProcessor pSieveProcessor, IEmailService emailService)
+       IPasswordHasher<User> passwordHasher, IConfiguration pConfiguration, IMapper pMapper, ISieveProcessor pSieveProcessor, IEmailService emailService,IRedisTokenService redisTokenService)
         {
             _context = pContext;
             _passwordHasher = passwordHasher;
             _configuration = pConfiguration;
             _mapper = pMapper;
             _sieveProcessor = pSieveProcessor;
+            _redisTokenService = redisTokenService;
             _emailService = emailService;
         }
 
@@ -160,7 +164,11 @@ namespace api_be.Services.Imps
                 JwtSecurityToken jwtSecurityToken = await JwtExtension.GenerateToken(user,_context,_configuration);
                 var refreshToken = await JwtExtension.GenerateRefreshToken(user.Id,_context,_configuration);
                 await _context.SaveChangesAsync();
-
+                await _redisTokenService.CacheRefreshToken(
+           user.Id.ToString(),
+           refreshToken.Token,
+           refreshToken.ExpiryDate
+       );
                 LoginDto auth = new LoginDto
                 {
                     Id = user.Id,
@@ -401,12 +409,85 @@ namespace api_be.Services.Imps
         }
 
 
-        public async Task<Result<LoginDto>> RefreshToken(RefreshTokenRequest request)
+        //public async Task<Result<LoginDto>> RefreshToken(BaseTokenRequest request)
+        //{
+        //    try
+        //    {
+        //        // Validate request
+        //        var validator = new RefreshTokenValidator(_context,_configuration);
+        //        var validationResult = await validator.ValidateAsync(request);
+
+        //        if (!validationResult.IsValid)
+        //        {
+        //            var errorMessages = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+        //            return Result<LoginDto>.Failure(errorMessages, StatusCodes.Status400BadRequest);
+        //        }
+
+        //        // Find the refresh token
+        //        var refreshToken = await _context.Set<RefreshToken>()
+        //            .Include(r => r.User)
+        //            .FirstOrDefaultAsync(r => r.Token == request.RefreshToken);
+        //        var user = await ValidateTokenAsync(request.AccessToken);
+
+
+        //        if (refreshToken == null)
+        //        {
+        //            return Result<LoginDto>.Failure(IdentityTransform.InvalidRefreshToken(), StatusCodes.Status400BadRequest);
+        //        }
+
+        //        // Check if token is valid
+        //        if (refreshToken.IsUsed || refreshToken.IsRevoked || refreshToken.ExpiryDate < DateTime.UtcNow)
+        //        {
+
+        //            var userTokens = await _context.RefreshTokens
+        //       .Where(t => t.UserId == refreshToken.UserId)
+        //       .ToListAsync();
+
+        //            foreach (var token in userTokens)
+        //            {
+        //                token.IsRevoked = true;
+        //            }
+        //            await _context.SaveChangesAsync();
+
+        //            return Result<LoginDto>.Failure(IdentityTransform.InvalidRefreshToken(), StatusCodes.Status400BadRequest);
+        //        }
+
+        //        // Mark current token as used
+        //        refreshToken.IsUsed = true;
+        //        _context.Set<RefreshToken>().Update(refreshToken);
+
+        //        // Generate new JWT token
+        //        var jwtToken = await JwtExtension.GenerateToken(refreshToken.User,_context,_configuration);
+
+        //        // Generate new refresh token
+        //        var newRefreshToken = await JwtExtension.GenerateRefreshToken(refreshToken.User.Id, _context, _configuration);
+        //        await _context.SaveChangesAsync();
+
+        //        // Create response
+        //        var response = new LoginDto
+        //        {
+        //            Id = refreshToken.User.Id,
+        //            Token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
+        //            RefreshToken = newRefreshToken.Token,
+        //            Exp = DateTime.Now.AddMinutes(int.Parse(_configuration["JwtSettings:DurationInMinutes"]))
+
+
+        //        };
+
+        //        return Result<LoginDto>.Success(response, StatusCodes.Status200OK);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Result<LoginDto>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+        //    }
+        //}
+
+        public async Task<Result<LoginDto>> RefreshToken(BaseTokenRequest request)
         {
             try
             {
                 // Validate request
-                var validator = new RefreshTokenValidator(_context,_configuration);
+                var validator = new RefreshTokenValidator(_context, _configuration);
                 var validationResult = await validator.ValidateAsync(request);
 
                 if (!validationResult.IsValid)
@@ -415,55 +496,63 @@ namespace api_be.Services.Imps
                     return Result<LoginDto>.Failure(errorMessages, StatusCodes.Status400BadRequest);
                 }
 
-                // Find the refresh token
-                var refreshToken = await _context.Set<RefreshToken>()
-                    .Include(r => r.User)
-                    .FirstOrDefaultAsync(r => r.Token == request.RefreshToken);
+                // Validate the current token
                 var user = await ValidateTokenAsync(request.AccessToken);
+                if (user == null)
+                {
+                    return Result<LoginDto>.Failure(IdentityTransform.InvalidAccessToken(), StatusCodes.Status400BadRequest);
+                }
+
+                // Check if the current token is invalidated
+                var currentToken = new JwtSecurityTokenHandler().ReadJwtToken(request.AccessToken);
+                var isInvalidated = await _context.Set<InvalidatedToken>()
+              .AnyAsync(t => t.JwtId == currentToken.Id && t.ExpiryTime >= DateTime.UtcNow);
+                var jwtId = currentToken.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti)?.Value;
 
 
-                if (refreshToken == null)
+                if (await _redisTokenService.IsTokenInvalidated(jwtId) &&isInvalidated)
+                {
+                    return Result<LoginDto>.Failure(IdentityTransform.InvalidAccessToken(), StatusCodes.Status401Unauthorized);
+                }
+
+                // Retrieve cached refresh token
+                var cachedRefreshToken = await _redisTokenService.GetCachedRefreshToken(user.Id.ToString());
+                if (cachedRefreshToken != request.RefreshToken)
                 {
                     return Result<LoginDto>.Failure(IdentityTransform.InvalidRefreshToken(), StatusCodes.Status400BadRequest);
                 }
 
-                // Check if token is valid
-                if (refreshToken.IsUsed || refreshToken.IsRevoked || refreshToken.ExpiryDate < DateTime.UtcNow)
+                var invalidatedToken = new InvalidatedToken
                 {
+                    JwtId = jwtId,
+                    ExpiryTime = currentToken.ValidTo
+                };
 
-                    var userTokens = await _context.RefreshTokens
-               .Where(t => t.UserId == refreshToken.UserId)
-               .ToListAsync();
-
-                    foreach (var token in userTokens)
-                    {
-                        token.IsRevoked = true;
-                    }
-                    await _context.SaveChangesAsync();
-
-                    return Result<LoginDto>.Failure(IdentityTransform.InvalidRefreshToken(), StatusCodes.Status400BadRequest);
-                }
-
-                // Mark current token as used
-                refreshToken.IsUsed = true;
-                _context.Set<RefreshToken>().Update(refreshToken);
-
-                // Generate new JWT token
-                var jwtToken = await JwtExtension.GenerateToken(refreshToken.User,_context,_configuration);
-
-                // Generate new refresh token
-                var newRefreshToken = await JwtExtension.GenerateRefreshToken(refreshToken.User.Id, _context, _configuration);
+                _context.Set<InvalidatedToken>().Add(invalidatedToken);
                 await _context.SaveChangesAsync();
+
+
+                // Generate new tokens
+                var jwtToken = await JwtExtension.GenerateToken(user, _context, _configuration);
+                var newRefreshToken = await JwtExtension.GenerateRefreshToken(user.Id, _context, _configuration);
+
+                // Cache new refresh token
+                await _redisTokenService.CacheRefreshToken(
+                    user.Id.ToString(),
+                    newRefreshToken.Token,
+                    newRefreshToken.ExpiryDate
+                );
+
+                // Remove old cached refresh token
+                await _redisTokenService.RemoveCachedRefreshToken(user.Id.ToString());
 
                 // Create response
                 var response = new LoginDto
                 {
-                    Id = refreshToken.User.Id,
+                    Id = user.Id,
                     Token = new JwtSecurityTokenHandler().WriteToken(jwtToken),
                     RefreshToken = newRefreshToken.Token,
                     Exp = DateTime.Now.AddMinutes(int.Parse(_configuration["JwtSettings:DurationInMinutes"]))
-
-
                 };
 
                 return Result<LoginDto>.Success(response, StatusCodes.Status200OK);
@@ -484,13 +573,14 @@ namespace api_be.Services.Imps
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidateLifetime = true,
+                    ValidateLifetime = false,
                     ValidIssuer = _configuration["JwtSettings:Issuer"],
                     ValidAudience = _configuration["JwtSettings:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                 }, out var validatedToken);
 
                 var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier);  // Lấy userId từ token
+                var userIdNew = principal.FindFirstValue(CONSTANT_CLAIM_TYPES.Uid);  // Lấy userId từ token
 
                 if (userId == null)
                     return null;
@@ -505,10 +595,60 @@ namespace api_be.Services.Imps
             }
         }
 
-    
 
 
-     
+        public async Task<Result<bool>> Logout(BaseTokenRequest request)
+        {
+            try
+            {
+                // Validate request
+                var validator = new BaseTokenValidator(_context,_configuration);
+                var validationResult = await validator.ValidateAsync(request);
+                if (!validationResult.IsValid)
+                {
+                    var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                    return Result<bool>.Failure(errors, StatusCodes.Status400BadRequest);
+                }
+                // Validate the token
+                var user = await ValidateTokenAsync(request.AccessToken);
+                if (user == null)
+                {
+                    return Result<bool>.Failure(IdentityTransform.InvalidRefreshToken(), StatusCodes.Status400BadRequest);
+                }
+
+                // Get the token details
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var jwtToken = tokenHandler.ReadJwtToken(request.AccessToken);
+                var jwtId = jwtToken.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti)?.Value;
+
+                //// Add token to invalidated tokens in Redis
+                //await _redisTokenService.AddInvalidatedToken(
+                //    jwtToken.Id,
+                //    jwtToken.ValidTo
+                //);
+
+                //// Remove cached refresh token
+                //await _redisTokenService.RemoveCachedRefreshToken(user.Id.ToString());
+
+                var invalidatedToken = new InvalidatedToken
+                {
+                    JwtId = jwtId,
+                    ExpiryTime = jwtToken.ValidTo
+                };
+
+                _context.Set<InvalidatedToken>().Add(invalidatedToken);
+                await _context.SaveChangesAsync();
+
+                // Optional: Remove cached refresh token
+                await _redisTokenService.RemoveCachedRefreshToken(user.Id.ToString());
+                return Result<bool>.Success(true, StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return Result<bool>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+            }
+        }
+
         public async Task<Result<UserDto>> ChangePassword(ChangePasswordRequest request)
         {
             try

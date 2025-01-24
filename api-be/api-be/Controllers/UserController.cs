@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using api_be.Extensions;
 
 namespace UI.WebApi.Controllers
 {
@@ -105,12 +106,37 @@ namespace UI.WebApi.Controllers
 
         [HttpPost("refresh-token")]
         [AllowAnonymous]
-        public async Task<ActionResult> Refresh([FromBody] RefreshTokenRequest pRequest)
+        public async Task<ActionResult> Refresh([FromBody] BaseTokenRequest pRequest)
         {
             try
             {
                 var response = await _authService.RefreshToken(pRequest);
                 //return Ok(new { Token = token });
+                return StatusCode(response.Code, response);
+
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return Unauthorized(IdentityTransform.UnauthorizedException());
+            }
+
+        }
+
+
+        [HttpPost("logout")]
+        [AllowAnonymous]
+        public async Task<ActionResult> SignOut()
+        {
+            try
+            {
+                var token = JwtExtension.GetBearerToken(HttpContext);
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    return Unauthorized(IdentityTransform.InvalidAccessToken());
+                }
+                BaseTokenRequest baseToken= new BaseTokenRequest { AccessToken = token ,RefreshToken=token};
+                var response = await _authService.Logout(baseToken);
                 return StatusCode(response.Code, response);
 
             }
