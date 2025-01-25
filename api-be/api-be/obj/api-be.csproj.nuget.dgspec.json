@@ -143,6 +143,10 @@
             "Twilio": {
               "target": "Package",
               "version": "[7.8.2, )"
+            },
+            "VNPAY.NET": {
+              "target": "Package",
+              "version": "[8.5.0, )"
             }
           },
           "imports": [

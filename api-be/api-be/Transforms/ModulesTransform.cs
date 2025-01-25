@@ -51,6 +51,13 @@
             public const string Id = "UserId";
 
         }
+        public static class Distributor
+        {
+            public const string Module = "Distributor";
+            public const string Description = "Description";
+            public const string Id = "DistributorId";
+
+        }
 
         public static class Role
         {

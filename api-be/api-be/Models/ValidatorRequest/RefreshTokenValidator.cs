@@ -1,6 +1,7 @@
 ﻿using api_be.Domain.Interfaces;
 using api_be.Extensions;
 using api_be.Models.Request;
+using api_be.Services;
 using api_be.Transforms;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +15,9 @@ namespace api_be.Models.ValidatorRequest
     {
      
 
-        public RefreshTokenValidator(ISupermarketDbContext context, IConfiguration configuration)
+        public RefreshTokenValidator(ISupermarketDbContext context, IConfiguration configuration,IRedisTokenService redisTokenService)
         {
-           
+
 
             //// Validate refresh token existence
             //RuleFor(x => x.RefreshToken)
@@ -45,9 +46,12 @@ namespace api_be.Models.ValidatorRequest
             //            .FirstOrDefaultAsync(t => t.Token == refreshToken);
             //        return token != null && token.ExpiryDate > DateTime.UtcNow;
             //    }).WithMessage(IdentityTransform.RefreshTokenExpired());
+            Include(new BaseTokenValidator(context, redisTokenService, configuration));
 
-            // Validate access token existence and format
-            Include(new BaseTokenValidator(context,configuration));
+            RuleFor(x => x.AccessToken)
+
+    .Must(token => !JwtExtension.IsAccessTokenStillValid(token)).WithMessage(IdentityTransform.AccessTokenNotExpired()); ;
+
         }
 
    

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DaNUtvk1ff8=",
+  "dgSpecHash": "in0iukHqTUg=",
   "success": true,
   "projectFilePath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api-be\\api-be.csproj",
   "expectedPackageFiles": [
@@ -139,6 +139,7 @@
     "C:\\Users\\chuon\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\twilio\\7.8.2\\twilio.7.8.2.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\vnpay.net\\8.5.0\\vnpay.net.8.5.0.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"
   ],
   "logs": []

@@ -38,6 +38,9 @@
         public static string RefreshTokenExpired() => "Refresh token đã hết hạn.";
         public static string InvalidAccessToken() => "Access token không đúng định dạng JWT.";
         public static string AccessTokenNotExpired() => "Access token vẫn còn hiệu lực, không thể refresh.";
+        public static string AccessTokenInvalidated() => "Access token đã bị vô hiệu hóa!.";
+
+        
         public static string FailtToFetch(string? url) => $"Không thể fetch được giá trị url {url}";
 
 
