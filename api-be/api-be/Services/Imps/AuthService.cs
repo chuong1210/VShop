@@ -487,7 +487,7 @@ namespace api_be.Services.Imps
             try
             {
                 // Validate request
-                var validator = new RefreshTokenValidator(_context, _configuration);
+                var validator = new RefreshTokenValidator(_context, _configuration, _redisTokenService);
                 var validationResult = await validator.ValidateAsync(request);
 
                 if (!validationResult.IsValid)
@@ -602,7 +602,7 @@ namespace api_be.Services.Imps
             try
             {
                 // Validate request
-                var validator = new BaseTokenValidator(_context,_configuration);
+                var validator = new BaseTokenValidator(_context,_redisTokenService,_configuration);
                 var validationResult = await validator.ValidateAsync(request);
                 if (!validationResult.IsValid)
                 {
@@ -621,14 +621,14 @@ namespace api_be.Services.Imps
                 var jwtToken = tokenHandler.ReadJwtToken(request.AccessToken);
                 var jwtId = jwtToken.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti)?.Value;
 
-                //// Add token to invalidated tokens in Redis
-                //await _redisTokenService.AddInvalidatedToken(
-                //    jwtToken.Id,
-                //    jwtToken.ValidTo
-                //);
+                // Add token to invalidated tokens in Redis
+                await _redisTokenService.AddInvalidatedToken(
+                    jwtToken.Id,
+                    jwtToken.ValidTo
+                );
 
-                //// Remove cached refresh token
-                //await _redisTokenService.RemoveCachedRefreshToken(user.Id.ToString());
+                // Remove cached refresh token
+                await _redisTokenService.RemoveCachedRefreshToken(user.Id.ToString());
 
                 var invalidatedToken = new InvalidatedToken
                 {
@@ -640,7 +640,6 @@ namespace api_be.Services.Imps
                 await _context.SaveChangesAsync();
 
                 // Optional: Remove cached refresh token
-                await _redisTokenService.RemoveCachedRefreshToken(user.Id.ToString());
                 return Result<bool>.Success(true, StatusCodes.Status200OK);
             }
             catch (Exception ex)

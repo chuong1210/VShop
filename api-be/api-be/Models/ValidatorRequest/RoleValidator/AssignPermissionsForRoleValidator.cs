@@ -10,9 +10,9 @@ namespace api_be.Models.ValidatorRequest.RoleValidator
         public AssignPermissionsForRoleValidator(ISupermarketDbContext pContext)
         {
             RuleFor(x => x.RoleId)
-                .MustAsync(async (userId, token) =>
+                .MustAsync(async (roleId, token) =>
                 {
-                    return await pContext.Roles.FindAsync(userId) != null;
+                    return await pContext.Roles.FindAsync(roleId) != null;
                 }).WithMessage(ValidatorTransform.NotExists(Modules.Role.Module));
 
             RuleFor(x => x.PermissionsName)

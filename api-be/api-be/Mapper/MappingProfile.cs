@@ -7,6 +7,8 @@ using Sieve.Models;
 using api_be.Models.Responses;
 using api_be.ValidatorRequest.DefaultBase;
 using api_be.Models.Request.RoleRequest;
+using api_be.Models.Request.CouponRequest;
+using api_be.Models.Request.PromotionRequest;
 namespace api_be.Mapper
 {
     public class MappingProfile : Profile
@@ -40,6 +42,10 @@ namespace api_be.Mapper
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<CreateProductRequest, Product>().ReverseMap();
             CreateMap<CreateOrUpdateRoleRequest, Role>().ReverseMap();
+            CreateMap<CreateOrUpdateCopuponRequest, Coupon>().ReverseMap();
+            CreateMap<CreateOrUpdatePromotionRequest, Promotion>().ReverseMap();
+
+
 
 
             CreateMap<SupplierOrder, SupplierOrderDto>().ReverseMap();
