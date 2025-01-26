@@ -1,32 +1,140 @@
-﻿using api_be.Services;
+﻿using api_be.Exceptions;
+using api_be.Middleware;
+using api_be.Models.Request.PaymentRequest;
+using api_be.Models.Responses;
+using api_be.Models.ValidatorRequest.DefaultBase;
+using api_be.Services;
+using api_be.ValidatorRequest.DefaultBase;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api_be.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("~/smw-api/[controller]")]
     public class PaymenController:ControllerBase
     {
         private readonly IVNPayService _vnpayService;
-
-        public PaymenController(IVNPayService vnpayService)
+        private readonly IPaymentService _paymentService;
+        public PaymenController(IVNPayService vnpayService, IPaymentService paymentService)
         {
             _vnpayService = vnpayService;
+            _paymentService = paymentService;
         }
+        /// <summary>
+        /// Lấy danh sách phương thức thanh toán
+        /// </summary>
+        /// <remarks>
+        /// Ràng buộc: 
+        ///
+        /// </remarks>
+        [HttpGet]
+        [Permission("payment.view")]
+        public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
+        {
+            var response = await _paymentService.GetList (pRequest);
+
+            return StatusCode(response.Code, response);
+        }
+
+        /// <summary>
+        /// Lấy thông tin PT thanh toán theo id
+        /// </summary>
+        /// <remarks>
+        /// Ràng buộc: 
+        /// - Id: int, required
+        /// </remarks>
+        [HttpGet("detail")]
+        [Permission("payment.view")]
+        public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
+        {
+            var response = await _paymentService.Detail(pRequest);
+
+            return StatusCode(response.Code, response);
+        }
+
+        /// <summary>
+        /// Thêm mới phương thức thanh toán
+        /// </summary>
+        /// <remarks>
+        /// Ràng buộc:
+        /// - InternalCode: string, required, max(50)
+        /// - Name: string, required, max(190)
+        /// </remarks>
+        [HttpPost]
+        [Permission("payment.create")]
+        public async Task<ActionResult> Post([FromBody] CreateOrUpdatePaymentRequest pRequest)
+        {
+            var response = await _paymentService.Create(pRequest);
+
+            return StatusCode(response.Code, response);
+        }
+
+        /// <summary>
+        /// Sửa thông tin phương thức thanh toán
+        /// </summary>
+        /// <remarks>
+        /// Ràng buộc: 
+        /// - Id: int, required
+        /// </remarks>
+        [HttpPut]
+        [Permission("payment.update")]
+        public async Task<ActionResult> Put([FromBody] CreateOrUpdatePaymentRequest pRequest)
+        {
+            var response = await _paymentService.Update(pRequest);
+
+            return StatusCode(response.Code, response);
+        }
+
+        /// <summary>
+        /// Xóa phương thức thanh toán
+        /// </summary>
+        /// <remarks>
+        /// Ràng buộc: 
+        /// - Id: int, required
+        /// </remarks>
+        [HttpDelete]
+        [Permission("payment.delete")]
+        public async Task<ActionResult> Delete([FromQuery] int pRequest)
+        {
+            try
+            {
+                var response = await _paymentService.Delete(pRequest);
+                return StatusCode(StatusCodes.Status204NoContent);
+            }
+            catch (NotFoundException ex)
+            {
+                var responses = Result<PaymentDto>.Failure(ex.Message, StatusCodes.Status404NotFound);
+                return StatusCode(responses.Code, responses);
+            }
+            catch (BadRequestException ex)
+            {
+                var responses = Result<PaymentDto>.Failure(ex.Message, StatusCodes.Status400BadRequest);
+                return StatusCode(responses.Code, responses);
+            }
+            catch (Exception ex)
+            {
+                var responses = Result<PaymentDto>.Failure(ex.Message, StatusCodes.Status500InternalServerError);
+                return StatusCode(responses.Code, responses);
+            }
+
+    }
+
+
 
         // Tạo URL thanh toán
         [HttpGet("CreatePaymentUrl")]
-        public ActionResult<string> CreatePaymentUrl([FromQuery] double amount, [FromQuery] string description)
+        public async Task<ActionResult> CreatePaymentUrl([FromQuery] CreatePaymentUrlRequest request)
         {
             try
             {
                 var ipAddress = Request.HttpContext.Connection.RemoteIpAddress?.ToString();
-                var paymentUrl = _vnpayService.CreatePaymentUrl(amount, description, ipAddress);
-                return Ok(paymentUrl);
+                var response = _vnpayService.CreatePaymentUrlAsync(request, ipAddress);
+                return StatusCode(response.Code, response);
+
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                throw new BadRequestException(ex.Message);
             }
         }
 
@@ -44,11 +152,11 @@ namespace api_be.Controllers
                         // Xử lý đơn hàng khi thanh toán thành công
                         return Ok("Payment successful");
                     }
-                    return BadRequest("Payment failed");
+                    throw new BadRequestException("Payment failed");
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest(ex.Message);
+                    throw new BadRequestException(ex.Message);
                 }
             }
             return NotFound("No payment information found");
@@ -70,11 +178,11 @@ namespace api_be.Controllers
                         return Ok(message);
                     }
 
-                    return BadRequest(message);
+                    throw new BadRequestException(message);
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest(ex.Message);
+                    throw new BadRequestException(ex.Message);
                 }
             }
             return NotFound("No payment information found");

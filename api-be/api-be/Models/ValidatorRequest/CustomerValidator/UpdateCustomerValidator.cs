@@ -1,6 +1,6 @@
 ﻿using api_be.Domain.Interfaces;
 using api_be.Models.Request.CustomerRequest;
-using api_be.Models.ValidatorRequest.CustomerValidator.BaseCoupon;
+using api_be.Models.ValidatorRequest.CustomerValidator.BaseCustomer;
 using api_be.Models.ValidatorRequest.DefaultBase;
 
 namespace api_be.Models.ValidatorRequest.CustomerValidator

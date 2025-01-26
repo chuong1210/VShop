@@ -147,6 +147,10 @@
             "VNPAY.NET": {
               "target": "Package",
               "version": "[8.5.0, )"
+            },
+            "Vodovoz.ClosedXML.Report": {
+              "target": "Package",
+              "version": "[0.2.0.2, )"
             }
           },
           "imports": [

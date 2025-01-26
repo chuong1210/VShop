@@ -5,7 +5,7 @@ using api_be.Extensions;
 using api_be.Transforms;
 using api_be.Validators;
 
-namespace api_be.Models.ValidatorRequest.OrderValidator.BaseDistributor
+namespace api_be.Models.ValidatorRequest.DistributorValidator.BaseDistributor
 {
     public class BaseDistributorValidator : AbstractValidator<IBaseDistributor>
     {
