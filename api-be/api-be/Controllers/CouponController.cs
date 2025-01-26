@@ -28,7 +28,7 @@ namespace api_be.Controllers
         /// </remarks>
         [HttpGet]
         [Permission("coupon.view")]
-        public async Task<ActionResult> Get([FromQuery] ListBaseCommand)
+        public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _couponService.GetList(pRequest);
 
@@ -44,7 +44,7 @@ namespace api_be.Controllers
         /// </remarks>
         [HttpGet("detail")]
         [Permission("coupon.view")]
-        public async Task<ActionResult> Get([FromQuery] DetailBaseCommand)
+        public async Task<ActionResult> Get([FromQuery] DetailBaseCommand  pRequest)
         {
             var response = await _couponService.Detail(pRequest);
 

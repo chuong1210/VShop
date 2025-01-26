@@ -2,11 +2,10 @@
 using api_be.Entities;
 using api_be.Exceptions;
 using api_be.Extensions;
-using api_be.Models.Request.Distributor;
+using  api_be.Models.Request.DistributorRequest ;
 using api_be.Models.Responses;
-using api_be.Models.ValidatorRequest.CouponValidator.BaseCoupon;
 using api_be.Models.ValidatorRequest.DefaultBase;
-using api_be.Models.ValidatorRequest.OrderValidator.BaseDistributor;
+using api_be.Models.ValidatorRequest.DistributorValidator.BaseDistributor;
 using api_be.Transforms;
 using api_be.ValidatorRequest.BaseCategory;
 using api_be.ValidatorRequest.DefaultBase;

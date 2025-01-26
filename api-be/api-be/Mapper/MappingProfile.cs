@@ -9,6 +9,10 @@ using api_be.ValidatorRequest.DefaultBase;
 using api_be.Models.Request.RoleRequest;
 using api_be.Models.Request.CouponRequest;
 using api_be.Models.Request.PromotionRequest;
+using api_be.Models.Request.DeliveryRequest;
+using api_be.Models.ValidatorRequest.RoleValidator;
+using api_be.Models.Request.PaymentRequest;
+using api_be.Models.Request.DistributorRequest;
 namespace api_be.Mapper
 {
     public class MappingProfile : Profile
@@ -44,6 +48,9 @@ namespace api_be.Mapper
             CreateMap<CreateOrUpdateRoleRequest, Role>().ReverseMap();
             CreateMap<CreateOrUpdateCopuponRequest, Coupon>().ReverseMap();
             CreateMap<CreateOrUpdatePromotionRequest, Promotion>().ReverseMap();
+            CreateMap<CreateOrUpdateDeliveryRequest, Delivery>().ReverseMap();
+            CreateMap<CreateOrUpdatePaymentRequest, Payment>().ReverseMap();
+            CreateMap<CreateOrUpdateDistributorRequest, Distributor>().ReverseMap();
 
 
 

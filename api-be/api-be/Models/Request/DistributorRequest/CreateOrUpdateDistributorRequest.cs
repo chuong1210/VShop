@@ -1,7 +1,7 @@
 ﻿using api_be.Domain.Interfaces;
 using api_be.Models.ValidatorRequest.DefaultBase;
 
-namespace api_be.Models.Request.Distributor
+namespace  api_be.Models.Request.DistributorRequest 
 {
     public record CreateOrUpdateDistributorRequest:UpdateBaseCommand,IBaseDistributor
     {

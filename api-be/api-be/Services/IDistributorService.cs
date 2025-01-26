@@ -1,5 +1,5 @@
 ﻿using api_be.Models.Request;
-using api_be.Models.Request.Distributor;
+using  api_be.Models.Request.DistributorRequest ;
 using api_be.Models.Responses;
 using api_be.Models.ValidatorRequest.DefaultBase;
 using api_be.ValidatorRequest.DefaultBase;

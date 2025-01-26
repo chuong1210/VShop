@@ -58,6 +58,21 @@
             public const string Id = "DistributorId";
 
         }
+        public static class Payment
+        {
+            public const string Module = "Payment";
+            public const string Description = "Description";
+            public const string Id = "PaymentId";
+
+        }
+
+        public static class Delivery
+        {
+            public const string Module = "Delivery";
+            public const string Description = "Description";
+            public const string Id = "DeliveryId";
+
+        }
 
         public static class Role
         {

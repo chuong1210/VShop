@@ -3,6 +3,12 @@ using VNPAY.NET.Enums;
 using VNPAY.NET.Models;
 using VNPAY.NET;
 using Microsoft.Extensions.Options;
+using Twilio.Rest.Api.V2010.Account.Conference;
+using api_be.Models.ValidatorRequest.PaymentValidator;
+using api_be.Models.Responses;
+using api_be.Models.ValidatorRequest.PaymentValidator.BasePayment;
+using Microsoft.EntityFrameworkCore;
+using api_be.Models.Request.PaymentRequest;
 
 namespace api_be.Services.Imps
 {
@@ -18,13 +24,21 @@ namespace api_be.Services.Imps
             _vnpay.Initialize(_config.TmnCode, _config.HashSecret, _config.BaseUrl, _config.ReturnUrl);
         }
 
-        public string CreatePaymentUrl(double amount, string description, string ipAddress)
+        public async Result<Task<string>> CreatePaymentUrlAsync(CreatePaymentUrlRequest request, string ipAddress)
         {
+            var validator = new CreatePaymentUrlValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(e => e.ErrorMessage).ToList();
+                return Result<String>.Failure(errors, StatusCodes.Status400BadRequest);
+            }
             var paymentRequest = new PaymentRequest
             {
                 PaymentId = DateTime.Now.Ticks,
-                Money = amount,
-                Description = description,
+                Money = request.Amount ?? 0,
+                Description = request.Description ?? "",
                 IpAddress = ipAddress,
                 BankCode = BankCode.ANY,
                 CreatedDate = DateTime.Now,
@@ -32,7 +46,8 @@ namespace api_be.Services.Imps
                 Language = DisplayLanguage.Vietnamese
             };
 
-            return _vnpay.GetPaymentUrl(paymentRequest);
+            string uri = _vnpay.GetPaymentUrl(paymentRequest);
+            return Result<String>.Success(uri, StatusCodes.Status201Created);
         }
 
         public PaymentResult HandleIpnAction(IQueryCollection query)

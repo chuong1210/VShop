@@ -1,12 +1,8 @@
 ﻿using api_be.Domain.Interfaces;
 using api_be.Transforms;
 using api_be.Validators;
-using Core.Application.Common.Interfaces;
-using Core.Application.Common.Validators;
-using Core.Application.Extensions;
-using Core.Application.Transforms;
 
-namespace api_be.Models.ValidatorRequest.CustomerValidator.BaseCoupon;
+namespace api_be.Models.ValidatorRequest.CustomerValidator.BaseCustomer
 {
     public class BaseCustomerValidator : AbstractValidator<IBaseCustomer>
     {

@@ -54,7 +54,6 @@ namespace api_be.Services.Imps
         {
             try
             {
-                var product2 = await _context.Products.FindAsync(request.ProductId);
 
                 var validator = new ChangeStatusProductValidator(_context);
                 var validationResult = await validator.ValidateAsync(request);
