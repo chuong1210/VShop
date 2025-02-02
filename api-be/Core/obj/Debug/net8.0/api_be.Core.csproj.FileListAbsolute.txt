@@ -1,0 +1,13 @@
+C:\Users\chuon\Desktop\VShop\api-be\Core\obj\Debug\net8.0\api_be.Core.csproj.AssemblyReference.cache
+C:\Users\chuon\Desktop\VShop\api-be\Core\obj\Debug\net8.0\api_be.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chuon\Desktop\VShop\api-be\Core\obj\Debug\net8.0\api_be.Core.AssemblyInfoInputs.cache
+C:\Users\chuon\Desktop\VShop\api-be\Core\obj\Debug\net8.0\api_be.Core.AssemblyInfo.cs
+C:\Users\chuon\Desktop\VShop\api-be\Core\obj\Debug\net8.0\api_be.Core.csproj.CoreCompileInputs.cache
+C:\Users\chuon\Desktop\VShop\api-be\Core\obj\Debug\net8.0\api_be.Core.sourcelink.json
+C:\Users\chuon\Desktop\VShop\api-be\Core\bin\Debug\net8.0\api_be.Core.deps.json
+C:\Users\chuon\Desktop\VShop\api-be\Core\bin\Debug\net8.0\api_be.Core.dll
+C:\Users\chuon\Desktop\VShop\api-be\Core\bin\Debug\net8.0\api_be.Core.pdb
+C:\Users\chuon\Desktop\VShop\api-be\Core\obj\Debug\net8.0\api_be.Core.dll
+C:\Users\chuon\Desktop\VShop\api-be\Core\obj\Debug\net8.0\refint\api_be.Core.dll
+C:\Users\chuon\Desktop\VShop\api-be\Core\obj\Debug\net8.0\api_be.Core.pdb
+C:\Users\chuon\Desktop\VShop\api-be\Core\obj\Debug\net8.0\ref\api_be.Core.dll

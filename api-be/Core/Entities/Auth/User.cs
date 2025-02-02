@@ -1,0 +1,52 @@
+﻿using api_be.Core.Domain;
+using api_be.Core.Entities;
+using Sieve.Attributes;
+
+namespace api_be.Core.Entities.Auth
+{
+    public class User : AuditableEntity
+    {
+        public enum UserType
+        {
+            Admin,
+            SuperAdmin,
+            User
+        }
+
+        [Sieve(CanFilter = true, CanSort = true)]
+        public string? UserName { get; set; }
+
+        public string? Password { get; set; }
+
+        [Sieve(CanFilter = true, CanSort = true)]
+        public string? Email { get; set; }
+
+        [Sieve(CanFilter = true, CanSort = true)]
+        public string? PhoneNumber { get; set; }
+
+        [Sieve(CanFilter = true, CanSort = true)]
+        public UserType Type { get; set; } = UserType.User;
+
+        public List<UserRole>? UserRoles { get; set; }
+
+        public List<UserPermission>? UserPermissions { get; set; } // Thêm thuộc tính này
+
+        //Khoá ngoại
+        [Sieve(CanFilter = true, CanSort = true)]
+        public int? StaffId { get; set; }
+
+        public virtual Staff? Staff { get; set; }
+
+
+        [Sieve(CanFilter = true, CanSort = true)]
+        public int? CustomerId { get; set; }
+
+        public virtual Customer? Customer { get; set; }
+        public bool? IsEmailVerified { get; set; }
+
+
+        public virtual ICollection<UserVerification> UserVerifications { get; set; }
+
+
+    }
+}

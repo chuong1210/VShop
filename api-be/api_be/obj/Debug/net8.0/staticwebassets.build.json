@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "0Ey2wwSRebD43u1UdxqSNVFj2yWr2TRPD43tT9ZyDL8=",
+  "Source": "api_be.API",
+  "BasePath": "_content/api_be.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
