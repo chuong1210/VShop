@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "dUrA+Es+Zh8=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\chuon\\.nuget\\packages\\microsoft.csharp\\4.4.1\\microsoft.csharp.4.4.1.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.0.0\\microsoft.extensions.dependencyinjection.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\microsoft.extensions.options\\2.0.0\\microsoft.extensions.options.2.0.0.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\microsoft.extensions.primitives\\2.0.0\\microsoft.extensions.primitives.2.0.0.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\sieve\\2.5.5\\sieve.2.5.5.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\system.componentmodel.annotations\\4.4.1\\system.componentmodel.annotations.4.4.1.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.4.0\\system.runtime.compilerservices.unsafe.4.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}

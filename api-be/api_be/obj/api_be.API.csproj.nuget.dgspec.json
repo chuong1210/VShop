@@ -1,0 +1,613 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\api_be.API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\api_be.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\api_be.API.csproj",
+        "projectName": "api_be.API",
+        "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\api_be.API.csproj",
+        "packagesPath": "C:\\Users\\chuon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\chuon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\api_be.Application.csproj": {
+                "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\api_be.Application.csproj"
+              },
+              "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj": {
+                "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.27.2, )"
+            },
+            "Elastic.Clients.Elasticsearch": {
+              "target": "Package",
+              "version": "[8.17.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.11.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Facebook": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Twitter": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.AspNetCore.Authorization": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Client": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Common": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.2, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.9.0, )"
+            },
+            "MiniProfiler.AspNetCore": {
+              "target": "Package",
+              "version": "[4.5.4, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Sieve": {
+              "target": "Package",
+              "version": "[2.5.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "Twilio": {
+              "target": "Package",
+              "version": "[7.8.3, )"
+            },
+            "VNPAY.NET": {
+              "target": "Package",
+              "version": "[8.5.0, )"
+            },
+            "Vodovoz.ClosedXML.Report": {
+              "target": "Package",
+              "version": "[0.2.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\api_be.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\api_be.Application.csproj",
+        "projectName": "api_be.Application",
+        "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\api_be.Application.csproj",
+        "packagesPath": "C:\\Users\\chuon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\chuon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj": {
+                "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj"
+              },
+              "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Domain\\api_be.Domain.csproj": {
+                "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Domain\\api_be.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "ClosedXML.Report": {
+              "target": "Package",
+              "version": "[0.2.10, )"
+            },
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.27.2, )"
+            },
+            "Confluent.Kafka": {
+              "target": "Package",
+              "version": "[2.8.0, )"
+            },
+            "Elastic.Clients.Elasticsearch": {
+              "target": "Package",
+              "version": "[8.17.1, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.69.0, )"
+            },
+            "IdentityModel": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Client": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Common": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.AspNetCore.SignalR.Protocols.Json": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Features": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.IdentityModel.JsonWebTokens": {
+              "target": "Package",
+              "version": "[8.3.1, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.3.1, )"
+            },
+            "Microsoft.Net.Http.Headers": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.9.0, )"
+            },
+            "Sieve": {
+              "target": "Package",
+              "version": "[2.5.5, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.3.1, )"
+            },
+            "Twilio": {
+              "target": "Package",
+              "version": "[7.8.3, )"
+            },
+            "VNPAY.NET": {
+              "target": "Package",
+              "version": "[8.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj",
+        "projectName": "api_be.Core",
+        "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj",
+        "packagesPath": "C:\\Users\\chuon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\chuon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Sieve": {
+              "target": "Package",
+              "version": "[2.5.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Domain\\api_be.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Domain\\api_be.Domain.csproj",
+        "projectName": "api_be.Domain",
+        "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Domain\\api_be.Domain.csproj",
+        "packagesPath": "C:\\Users\\chuon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\chuon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj": {
+                "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj"
+              },
+              "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\api_be.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\api_be.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.27.2, )"
+            },
+            "Elastic.Clients.Elasticsearch": {
+              "target": "Package",
+              "version": "[8.17.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.11.0, )"
+            },
+            "Google.Apis": {
+              "target": "Package",
+              "version": "[1.69.0, )"
+            },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.69.0, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Sieve": {
+              "target": "Package",
+              "version": "[2.5.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\api_be.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\api_be.Infrastructure.csproj",
+        "projectName": "api_be.Infrastructure",
+        "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\api_be.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\chuon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\chuon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj": {
+                "projectPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\api_be.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Confluent.Kafka": {
+              "target": "Package",
+              "version": "[2.8.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[8.0.12, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

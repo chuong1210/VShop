@@ -1,0 +1,1751 @@
+[
+  {
+    "ContainingType": "api_be.Controllers.CategoryController",
+    "Method": "Create",
+    "RelativePath": "smw-api/category",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_be.Domain.Models.Request.CreateCategoryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CategoryController",
+    "Method": "Delete",
+    "RelativePath": "smw-api/category",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CategoryController",
+    "Method": "GetList",
+    "RelativePath": "smw-api/category",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CategoryController",
+    "Method": "Update",
+    "RelativePath": "smw-api/category/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "api_be.Domain.Models.Request.UpdateCategoryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CategoryController",
+    "Method": "GetDetail",
+    "RelativePath": "smw-api/category/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "isAllDetal",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CouponController",
+    "Method": "Get",
+    "RelativePath": "smw-api/coupon",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CouponController",
+    "Method": "Post",
+    "RelativePath": "smw-api/coupon",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.CouponRequest.CreateOrUpdateCopuponRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CouponController",
+    "Method": "Put",
+    "RelativePath": "smw-api/coupon",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.CouponRequest.CreateOrUpdateCopuponRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CouponController",
+    "Method": "ChangeStatus",
+    "RelativePath": "smw-api/coupon",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.CouponRequest.ChangeStatusCouponRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CouponController",
+    "Method": "Get",
+    "RelativePath": "smw-api/coupon/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CustomerController",
+    "Method": "Get",
+    "RelativePath": "smw-api/customer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CustomerController",
+    "Method": "Put",
+    "RelativePath": "smw-api/customer",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.CustomerRequest.UpdateCustomerRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CustomerController",
+    "Method": "Delete",
+    "RelativePath": "smw-api/customer",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.CustomerRequest.UpdateCustomerRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.CustomerController",
+    "Method": "Get",
+    "RelativePath": "smw-api/customer/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.DeliveryController",
+    "Method": "Get",
+    "RelativePath": "smw-api/delivery",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.DeliveryController",
+    "Method": "Post",
+    "RelativePath": "smw-api/delivery",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.DeliveryRequest.CreateOrUpdateDeliveryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.DeliveryController",
+    "Method": "Put",
+    "RelativePath": "smw-api/delivery",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.DeliveryRequest.CreateOrUpdateDeliveryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.DeliveryController",
+    "Method": "Change",
+    "RelativePath": "smw-api/delivery",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.DeliveryRequest.ChangeStatusDeliveryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.DeliveryController",
+    "Method": "Get",
+    "RelativePath": "smw-api/delivery/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.DistributorController",
+    "Method": "Get",
+    "RelativePath": "smw-api/distributor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.DistributorController",
+    "Method": "Post",
+    "RelativePath": "smw-api/distributor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.DistributorRequest.CreateOrUpdateDistributorRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.DistributorController",
+    "Method": "Put",
+    "RelativePath": "smw-api/distributor",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.DistributorRequest.CreateOrUpdateDistributorRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.DistributorController",
+    "Method": "Delete",
+    "RelativePath": "smw-api/distributor",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.DistributorController",
+    "Method": "Get",
+    "RelativePath": "smw-api/distributor/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.OrderController",
+    "Method": "Get",
+    "RelativePath": "smw-api/order",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.OrderController",
+    "Method": "Post",
+    "RelativePath": "smw-api/order/cart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.OrderRequest.AddProductToCartRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.OrderController",
+    "Method": "Put",
+    "RelativePath": "smw-api/order/cart",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.OrderRequest.UpdateProductInCartRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.OrderController",
+    "Method": "AddCoupon",
+    "RelativePath": "smw-api/order/cart-add-coupon",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.OrderRequest.AddCouponToCartRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.OrderController",
+    "Method": "Post",
+    "RelativePath": "smw-api/order/cart-remove",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.OrderRequest.RemoveProductInCartRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.OrderController",
+    "Method": "GetOrder",
+    "RelativePath": "smw-api/order/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.OrderController",
+    "Method": "GetCart",
+    "RelativePath": "smw-api/order/detail-cart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.OrderController",
+    "Method": "Put",
+    "RelativePath": "smw-api/order/order-cancel",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.OrderRequest.CancelOrderRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.OrderController",
+    "Method": "Change",
+    "RelativePath": "smw-api/order/order-change-status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.OrderRequest.ChangeStatusOrderRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.OrderController",
+    "Method": "Post",
+    "RelativePath": "smw-api/order/order-create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.OrderRequest.CreateOrderRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PaymenController",
+    "Method": "Get",
+    "RelativePath": "smw-api/paymen",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PaymenController",
+    "Method": "Post",
+    "RelativePath": "smw-api/paymen",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.PaymentRequest.CreateOrUpdatePaymentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PaymenController",
+    "Method": "Put",
+    "RelativePath": "smw-api/paymen",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.PaymentRequest.CreateOrUpdatePaymentRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PaymenController",
+    "Method": "Delete",
+    "RelativePath": "smw-api/paymen",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PaymenController",
+    "Method": "Callback",
+    "RelativePath": "smw-api/paymen/callback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "api_be.Controllers.PaymenController",
+    "Method": "CreatePaymentUrl",
+    "RelativePath": "smw-api/paymen/createpaymenturl",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Amount",
+        "Type": "System.Nullable\u00601[[System.Double, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PaymenController",
+    "Method": "Get",
+    "RelativePath": "smw-api/paymen/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PaymenController",
+    "Method": "IpnAction",
+    "RelativePath": "smw-api/paymen/ipnaction",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "Get",
+    "RelativePath": "smw-api/product",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "Search",
+    "RelativePath": "smw-api/product",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "Post",
+    "RelativePath": "smw-api/product",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.CreateProductRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "Put",
+    "RelativePath": "smw-api/product",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.UpdateProductRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "Change",
+    "RelativePath": "smw-api/product",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.ChangeStatusProductRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "Delete",
+    "RelativePath": "smw-api/product",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "GetProductImage",
+    "RelativePath": "smw-api/product/{id}/images",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "index",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "GetCombo",
+    "RelativePath": "smw-api/product/combo-products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "Get",
+    "RelativePath": "smw-api/product/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "UploadFile",
+    "RelativePath": "smw-api/product/upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ContentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentDisposition",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Headers",
+        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
+        "IsRequired": false
+      },
+      {
+        "Name": "Length",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PromotionController",
+    "Method": "Get",
+    "RelativePath": "smw-api/promotion",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PromotionController",
+    "Method": "Post",
+    "RelativePath": "smw-api/promotion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.PromotionRequest.CreateOrUpdatePromotionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PromotionController",
+    "Method": "Put",
+    "RelativePath": "smw-api/promotion",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.PromotionRequest.CreateOrUpdatePromotionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PromotionController",
+    "Method": "ChangeStatus",
+    "RelativePath": "smw-api/promotion",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.PromotionRequest.ChangeStatusPromotionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PromotionController",
+    "Method": "Apply",
+    "RelativePath": "smw-api/promotion/apply",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.PromotionRequest.ApplyPromotionForProductRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.PromotionController",
+    "Method": "Get",
+    "RelativePath": "smw-api/promotion/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.RoleController",
+    "Method": "Get",
+    "RelativePath": "smw-api/role",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.RoleController",
+    "Method": "Post",
+    "RelativePath": "smw-api/role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.RoleRequest.CreateOrUpdateRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.RoleController",
+    "Method": "Put",
+    "RelativePath": "smw-api/role",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.RoleRequest.CreateOrUpdateRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.RoleController",
+    "Method": "Delete",
+    "RelativePath": "smw-api/role",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.RoleController",
+    "Method": "AssignPermissionForRole",
+    "RelativePath": "smw-api/role/assign",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.RoleRequest.AssignPermissionsForRoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.RoleController",
+    "Method": "Get",
+    "RelativePath": "smw-api/role/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.RoleController",
+    "Method": "GetByController",
+    "RelativePath": "smw-api/role/list-with-controller",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "DeleteUser",
+    "RelativePath": "smw-api/user/{userId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "GetUser",
+    "RelativePath": "smw-api/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "AssignRolesForUser",
+    "RelativePath": "smw-api/user/assign",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.AssignRoleUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "Callback",
+    "RelativePath": "smw-api/user/callback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "provider",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "ChangePassword",
+    "RelativePath": "smw-api/user/change-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.ChangePasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "Post",
+    "RelativePath": "smw-api/user/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.CreateUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "ForgotPassword",
+    "RelativePath": "smw-api/user/forgot-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_be.Domain.Models.Request.ForgotPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "GoogleLogin",
+    "RelativePath": "smw-api/user/google",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accessToken",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "Login",
+    "RelativePath": "smw-api/user/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.LoginAccountRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "SignOut",
+    "RelativePath": "smw-api/user/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "Refresh",
+    "RelativePath": "smw-api/user/refresh-token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.BaseTokenRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "Register",
+    "RelativePath": "smw-api/user/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_be.Domain.Models.Request.RegisterAccountRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "ResendVerificationEmail",
+    "RelativePath": "smw-api/user/resend-verification-email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_be.Domain.Models.Request.ResendVerificationEmailRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "ResetPassword",
+    "RelativePath": "smw-api/user/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_be.Domain.Models.Request.ResetPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "Put",
+    "RelativePath": "smw-api/user/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Domain.Models.Request.UpdateUserRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "Get",
+    "RelativePath": "smw-api/user/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "VerifyEmail",
+    "RelativePath": "smw-api/user/verify-email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_be.Domain.Models.Request.VerifyEmailRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
