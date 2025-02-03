@@ -164,7 +164,7 @@ namespace api_be.Application.Services.Imps
                 }
                 findEntityProduct.CopyPropertiesFrom(request);
 
-
+                if(request.Images!=null)
                 findEntityProduct.Images = _mapper.Map<string>(request.Images);
 
             

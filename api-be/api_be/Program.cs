@@ -19,6 +19,7 @@ using StackExchange.Redis;
 using Elastic.Clients.Elasticsearch;
 using api_be.Application.Services.StaticService;
 using api_be.Infrastructure.DB.Interceptors;
+using api_be.Core.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
@@ -243,7 +244,13 @@ var app = builder.Build();
 //  endpoints.MapHub<ChatHubService>("/chatHub"); // Đăng ký Hub tại endpoint "/chatHub"
 //});
 app.MapHub<ChatHubService>("/chatHub");
+//app.MapGet("/event-producing", async (KafkaProducer producer, CancellationToken cancellationToken) =>
+//{
 
+//    await producer.SendMessageAsync<Product>(new Product(),"Modified");
+
+//    return "Event Sent!";
+//});
 // Configure the HTTP request pipeline.
 
 if (app.Environment.IsDevelopment())

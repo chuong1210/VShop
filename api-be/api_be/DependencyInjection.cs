@@ -17,6 +17,7 @@ using CloudinaryDotNet;
 using Elastic.Clients.Elasticsearch;
 using api_be.Application.Services.StaticService;
 using api_be.Infrastructure.DB.Interceptors;
+using api_be.Core.Entities;
 
 namespace api_be
 {
@@ -33,29 +34,38 @@ namespace api_be
             //    cfg.AddProfile(new CommonMappingProfile());
 
             //}).CreateMapper());
-
+         
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ISieveProcessor, SieveProcessor>();
 
             services.AddScoped<ISieveConfiguration, SieveConfiguration>();
 
 
+            //--------------------------Kafka---------------------------
+            //services.AddSingleton<KafkaProducer>();
+            //services.AddHostedService<KafkaProducerService>();
+            //var kafkaService = services.BuildServiceProvider().GetService<KafkaProducer>();
+            //kafkaService.CreateTopic(configuration["Kafka:ProductTopic"]);
+            //services.AddHostedService<KafkaConsumerService>();
+            //---------------------------------------------
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            var elasticClient = new ElasticsearchClient(new ElasticsearchClientSettings(new Uri(configuration["Elasticsearch:Url"])));
 
+          
             services.AddSingleton<ElasticsearchClient>(sp =>
             {
                 var settings = new ElasticsearchClientSettings(new Uri(configuration["Elasticsearch:Url"]))
                     .DefaultIndex(configuration["Elasticsearch:DefaultIndex"]);
                 return new ElasticsearchClient(settings);
             });
-            services.AddSingleton<KafkaProducer>();
 
-            //var kafkaService = services.BuildServiceProvider().GetService<KafkaProducer>();
-            //kafkaService.CreateTopic(configuration["Kafka:ProductTopic"]);
-            services.AddHostedService<KafkaConsumerService>();
+            services.AddSingleton(typeof(KafkaProducer<,>));
+            services.AddSingleton<ElasticSearchConsumer>();
+            //services.AddHostedService<KafkaStartupService>();
+            services.AddHostedService<ProductEventConsumerService>();
 
             services.AddScoped<IEmailService, EmailService>();
             services.AddMemoryCache();
@@ -91,8 +101,8 @@ namespace api_be
         }
 
 
-
-
+    
+    
         private static void RegisterAllServices(IServiceCollection services)
         {
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -126,5 +136,10 @@ namespace api_be
                 }
             }
         }
-        }
+    
+
+    }
+
+
+
 }

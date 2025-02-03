@@ -18,7 +18,8 @@ VALUES
 	INSERT INTO Products (InternalCode, Name, Images, Price, Quantity, Describes, Feature, Specifications, Type, Status, Selling, ParentId, CategoryId, CreatedAt, UpdatedAt)
 VALUES 
     -- Smartphones
-    ('PROD001', 'iPhone 14 Pro Max', 'iphone14.jpg', 1200.00, 50, 'Latest iPhone with A16 Bionic chip', '5G, 120Hz Display', '256GB, 6GB RAM', 1, 1, 20, NULL, 28, GETDATE(), GETDATE()),
+    ('PROD001', 'iPhone 14 Pro Max', ' https://res.cloudinary.com/dqxh4rmi3/image/upload/v1737270570/supermarket/qvhfdr6irqlexgrvpdrg.jpg,
+    https://res.cloudinary.com/dqxh4rmi3/image/upload/v1737624270/iphone-14-pro-max-gold-0-60ea017_vzbwaa.jpg', 1200.00, 50, 'Latest iPhone with A16 Bionic chip', '5G, 120Hz Display', '256GB, 6GB RAM', 1, 1, 20, NULL, 28, GETDATE(), GETDATE()),
     ('PROD002', 'Samsung Galaxy S23 Ultra', 'galaxy_s23.jpg', 1100.00, 40, 'Flagship Samsung smartphone with Snapdragon 8 Gen 2', '200MP Camera, S-Pen', '512GB, 12GB RAM', 1, 1, 15, NULL, 28, GETDATE(), GETDATE()),
     
     -- Televisions
