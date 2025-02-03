@@ -9,6 +9,7 @@ using api_be.Domain.Transforms;
 using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using api_be.Application.Services.StaticService;
 
 namespace UI.WebApi.Controllers
 {
@@ -19,19 +20,26 @@ namespace UI.WebApi.Controllers
     {
         private readonly IProductService _productService;
         private readonly IProductElasticsearchService _productElasticSearchService;
+        private readonly ElasticSearchConsumer _consumerService;
 
         private readonly IImageSerivce _imageSerivce;
         private readonly Cloudinary _cloudinary;
 
 
-        public ProductController(IProductService productService,Cloudinary cloudinary, IImageSerivce imageSerivce,IProductElasticsearchService productElasticsearchService)
+        public ProductController(IProductService productService,Cloudinary cloudinary, IImageSerivce imageSerivce,IProductElasticsearchService productElasticsearchService,ElasticSearchConsumer elasticSearchConsumer)
         {
             _productService = productService;
             _cloudinary = cloudinary;
             _imageSerivce = imageSerivce;
             _productElasticSearchService= productElasticsearchService;
+            _consumerService = elasticSearchConsumer; ;
         }
-
+        [HttpPost("start")]
+        public async Task<ActionResult> StartConsumer()
+        {
+            _consumerService.Start();
+            return Ok("Consumer started!");
+        }
         /// <summary>
         /// Lấy danh sách sản phẩm
         /// </summary>
@@ -56,7 +64,7 @@ namespace UI.WebApi.Controllers
         /// Ràng buộc: 
         ///
         /// </remarks>
-        [HttpGet]
+        [HttpGet("search")]
         //[Permission("product.view")]
         public async Task<ActionResult> Search([FromQuery] ListBaseCommand pRequest)
         {

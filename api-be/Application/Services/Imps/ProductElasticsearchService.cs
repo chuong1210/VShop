@@ -45,10 +45,22 @@ namespace api_be.Application.Services.Imps
             _mapper = mapper;
             _currentUserService = currentUserService;
             _sieveProcessor = sieveProcessor;
+
         }
 
         // Index name for Elasticsearch
         private const string PRODUCT_INDEX = ELASTIC_SEARCH_VALUE.PRODUCT_INDEX;
+        public async Task<IQueryable<Product>> IndexProductsAsync()
+        {
+            var products = await GetListProductAsync();
+
+            foreach (var product in products)
+            {
+                await _elasticClient.IndexAsync(product, idx => idx.Index(PRODUCT_INDEX));
+            }
+            return products;
+
+        }
         public async Task<IQueryable<Product>> GetListProductAsync()
         {
        
@@ -84,13 +96,13 @@ namespace api_be.Application.Services.Imps
                 var query = await GetListProductAsync();
          
 
-                var deleteRequest = new DeleteByQueryRequest("products")
+                var deleteRequest = new DeleteByQueryRequest(PRODUCT_INDEX)
                 {
                     Query = new MatchAllQuery()
                 };
                 await _elasticClient.DeleteByQueryAsync(deleteRequest);
 
-                var bulkRequest = new BulkRequest("products")
+                var bulkRequest = new BulkRequest(PRODUCT_INDEX)
                 {
                     Operations = new BulkOperationsCollection(
                         query.Select(p => new BulkIndexOperation<Product>(p)).ToList()
@@ -128,9 +140,11 @@ namespace api_be.Application.Services.Imps
             }
             return PaginatedResult<List<ProductDto>>.Create(results, results.Count, request.Page.Value, request.PageSize.Value, StatusCodes.Status200OK);
         }
-        public async Task<List<ProductDto>> SearchDetailedProductsAsync(string searchTerm, int page = 1, int pageSize = 10)
+
+
+        public async Task<List<ProductDto>> SearchProductsAsync(string searchTerm, int page = 1, int pageSize = 10)
         {
-            var response = await _elasticClient.SearchAsync<ProductDto>(s => s
+            var response = await _elasticClient.SearchAsync<Product>(s => s
                 .Index(PRODUCT_INDEX)
                 .Query(q => q
                     .Bool(b => b
@@ -151,12 +165,12 @@ namespace api_be.Application.Services.Imps
                 return new List<ProductDto>();
             }
 
-            return response.Documents.ToList();
+            return _mapper.Map<List<ProductDto>>( response.Documents.ToList());
         }
 
         public async Task<List<ProductDto>> SearchDetailedProductsAsync(string searchTerm)
         {
-            var response = await _elasticClient.SearchAsync<ProductDto>(s => s
+            var response = await _elasticClient.SearchAsync<Product>(s => s
                 .Index("products")
                 .Query(q => q
                     .Bool(b => b
@@ -176,9 +190,20 @@ namespace api_be.Application.Services.Imps
             }
 
             var products = response.Documents.ToList();
+           var productDtos= _mapper.Map<List<ProductDto>>(products);
+
+            //foreach (var product in products)
+            //{
+            //    if (product.Images != null && product.Images is string)
+            //    {
+            //        // Nếu images là chuỗi, chuyển đổi thành List<string>
+            //        //product.Images = new List<string> { imageString };
+            //        _mapper.Map(List<string>())(product.Images);
+            //    }
+            //}
 
             // Lấy thêm thông tin khuyến mãi và tính giá mới nếu có
-            foreach (var product in products)
+            foreach (var product in productDtos)
             {
                 (Promotion promo, decimal? discountPrice, int? group) =
                     await BaseOrderApplyPromotion.ApplyPromotionForSingleProduct(_context,_mapper.Map<Product>(product));
@@ -187,7 +212,7 @@ namespace api_be.Application.Services.Imps
                 product.PromotionDto = _mapper.Map<PromotionDto>(promo);
             }
 
-            return products;
+            return productDtos;
         }
     }
 

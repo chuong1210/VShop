@@ -734,9 +734,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymenController",
+    "ContainingType": "api_be.Controllers.PaymentController",
     "Method": "Get",
-    "RelativePath": "smw-api/paymen",
+    "RelativePath": "smw-api/payment",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -775,9 +775,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymenController",
+    "ContainingType": "api_be.Controllers.PaymentController",
     "Method": "Post",
-    "RelativePath": "smw-api/paymen",
+    "RelativePath": "smw-api/payment",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -791,9 +791,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymenController",
+    "ContainingType": "api_be.Controllers.PaymentController",
     "Method": "Put",
-    "RelativePath": "smw-api/paymen",
+    "RelativePath": "smw-api/payment",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -807,9 +807,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymenController",
+    "ContainingType": "api_be.Controllers.PaymentController",
     "Method": "Delete",
-    "RelativePath": "smw-api/paymen",
+    "RelativePath": "smw-api/payment",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -823,9 +823,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymenController",
+    "ContainingType": "api_be.Controllers.PaymentController",
     "Method": "Callback",
-    "RelativePath": "smw-api/paymen/callback",
+    "RelativePath": "smw-api/payment/callback",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -843,9 +843,9 @@
     ]
   },
   {
-    "ContainingType": "api_be.Controllers.PaymenController",
+    "ContainingType": "api_be.Controllers.PaymentController",
     "Method": "CreatePaymentUrl",
-    "RelativePath": "smw-api/paymen/createpaymenturl",
+    "RelativePath": "smw-api/payment/createpaymenturl",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -864,9 +864,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymenController",
+    "ContainingType": "api_be.Controllers.PaymentController",
     "Method": "Get",
-    "RelativePath": "smw-api/paymen/detail",
+    "RelativePath": "smw-api/payment/detail",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -885,9 +885,9 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymenController",
+    "ContainingType": "api_be.Controllers.PaymentController",
     "Method": "IpnAction",
-    "RelativePath": "smw-api/paymen/ipnaction",
+    "RelativePath": "smw-api/payment/ipnaction",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -897,47 +897,6 @@
   {
     "ContainingType": "UI.WebApi.Controllers.ProductController",
     "Method": "Get",
-    "RelativePath": "smw-api/product",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "Filters",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Sorts",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Page",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageSize",
-        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
-        "Name": "IsAllDetail",
-        "Type": "System.Boolean",
-        "IsRequired": false
-      },
-      {
-        "Name": "SearchKeyword",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "UI.WebApi.Controllers.ProductController",
-    "Method": "Search",
     "RelativePath": "smw-api/product",
     "HttpMethod": "GET",
     "IsController": true,
@@ -1121,6 +1080,57 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "Search",
+    "RelativePath": "smw-api/product/search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.ProductController",
+    "Method": "StartConsumer",
+    "RelativePath": "smw-api/product/start",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -5,6 +5,10 @@ namespace api_be.Domain.Extensions
     public static class ObjectExtension
     {
         private static Dictionary<Tuple<Type, Type>, Dictionary<string, PropertyInfo>> propertyCache = new Dictionary<Tuple<Type, Type>, Dictionary<string, PropertyInfo>>();
+        private static bool IsDefaultValue(object value, Type type)
+        {
+            return value.Equals(Activator.CreateInstance(type));
+        }
 
         public static TSource CopyPropertiesFrom<TSource>(this TSource target, object source)
         {
@@ -36,8 +40,11 @@ namespace api_be.Domain.Extensions
                 {
                     object value = sourceProperty.GetValue(source);
 
+                    if (value != null)
+                    {
+                        targetProperty.SetValue(target, value);
+                    }
 
-                    targetProperty.SetValue(target, value);
                 }
             }
 

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using api_be.Core.Entities;
 using System.Threading;
 using Azure;
+using api_be.Core.Models.Common;
 
 namespace api_be.Infrastructure.DB.Interceptors
 {
@@ -12,20 +13,20 @@ namespace api_be.Infrastructure.DB.Interceptors
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IDateTimeService _dateTime;
-        private readonly KafkaProducer _kafkaProducerService;
+        private readonly KafkaProducer<string, KafkaMessage<Product>> _producer;
 
-        public EntitySaveChangesInterceptor(ICurrentUserService currentUserService, IDateTimeService dateTime,KafkaProducer kafkaProducer)
+        public EntitySaveChangesInterceptor(ICurrentUserService currentUserService, IDateTimeService dateTime, KafkaProducer<string, KafkaMessage<Product>> kafkaProducer)
         {
             _currentUserService = currentUserService;
             _dateTime = dateTime;
-            _kafkaProducerService = kafkaProducer;
+            _producer = kafkaProducer;
             
         }
 
-        public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
+        public  override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
         {
             UpdateEntities(eventData.Context);
-            UpdateProducts(eventData.Context);
+             UpdateProducts(eventData.Context);
 
             return base.SavingChanges(eventData, result);
         }
@@ -33,6 +34,7 @@ namespace api_be.Infrastructure.DB.Interceptors
         public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
         {
             UpdateEntities(eventData.Context);
+            UpdateProducts(eventData.Context);
 
             return base.SavingChangesAsync(eventData, result, cancellationToken);
         }
@@ -74,7 +76,13 @@ namespace api_be.Infrastructure.DB.Interceptors
                     _ => "Unknown"
                 };
 
-                await _kafkaProducerService.SendMessageAsync(entry.Entity, operation);
+                var product = entry.Entity;
+                var message = new KafkaMessage<Product>
+                {
+                    Data = product,
+                    Operation = operation
+                };
+                await _producer.ProduceAsync(product.Id.ToString(), message);
             }
         }
 
@@ -109,8 +117,13 @@ namespace api_be.Infrastructure.DB.Interceptors
                             product.Status
                         }
                     };
+                    var value = new KafkaMessage<Product>
+                    {
+                        Data = product,
+                        Operation = _operation
+                    };
 
-                    await _kafkaProducerService.SendMessageAsync(_product, _operation);
+                    await _producer.ProduceAsync(product.Id.ToString(), value);
                 }
             }
         

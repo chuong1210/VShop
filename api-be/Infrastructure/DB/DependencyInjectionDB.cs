@@ -11,6 +11,7 @@ namespace api_be.Infrastructure.DB
     {
         public static IServiceCollection AddPersistenceBusinessDataServices(this IServiceCollection services, IConfiguration config)
         {
+            
             services.AddScoped<EntitySaveChangesInterceptor>();
 
             services.AddDbContext<ISupermarketDbContext, SupermarketDbContext>(options =>
