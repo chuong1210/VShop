@@ -8,8 +8,8 @@ using api_be.Domain.Models.Request;
 using api_be.Domain.Models.Responses;
 using api_be.Domain.DefaultValidatorBase;
 using api_be.Domain.Transforms;
-using api_be.Domain.ValidatorRequest.BaseCategory;
-using api_be.Domain.ValidatorRequest.BaseProduct;
+using  api_be.Application.ValidatorRequest.BaseCategory;
+using  api_be.Application.ValidatorRequest.BaseProduct;
 using AutoMapper;
 using CloudinaryDotNet;
 using Microsoft.EntityFrameworkCore;
@@ -42,9 +42,12 @@ namespace api_be.Application.Services.Imps
         private readonly Cloudinary _cloudinary;
         private readonly ILogger<ProductService> _logger;
         private readonly ICurrentUserService _currentUserService;
+        private readonly IRedisInventoryService _redisInventoryService;
 
 
-        public ProductService(ISupermarketDbContext context, IMapper mapper, ISieveProcessor sieveProcessor, Cloudinary cloudinary, ILogger<ProductService> logger, ICurrentUserService currentUserService)
+
+        public ProductService(ISupermarketDbContext context, IMapper mapper, ISieveProcessor sieveProcessor, Cloudinary cloudinary, ILogger<ProductService> logger, 
+            ICurrentUserService currentUserService, IRedisInventoryService redisInventoryService)
         {
             _context = context;
             _mapper = mapper;
@@ -52,6 +55,31 @@ namespace api_be.Application.Services.Imps
             _cloudinary = cloudinary;
             _logger = logger;
             _currentUserService = currentUserService;
+            _redisInventoryService = redisInventoryService;
+        }
+        public async Task SyncInventoryToRedisAsync()
+        {
+            try
+            {
+                var products = await _context.Products.ToListAsync(); // Lấy tất cả sản phẩm từ database
+
+                foreach (var product in products)
+                {
+                    // Lưu số lượng tồn kho của từng sản phẩm vào Redis
+                    bool success = await _redisInventoryService.SetStockLevelAsync(product.Id, product.Quantity ?? 0);
+
+                    if (!success)
+                    {
+                        _logger.LogError("Failed to sync inventory for product {ProductId} to Redis", product.Id);
+                    }
+                }
+
+                _logger.LogInformation("Inventory synchronization to Redis completed successfully.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error during inventory synchronization to Redis");
+            }
         }
         public async Task<Result<bool>> ChangeStatus(ChangeStatusProductRequest request)
         {

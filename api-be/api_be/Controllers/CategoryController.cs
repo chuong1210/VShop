@@ -32,7 +32,7 @@ namespace api_be.Controllers
             {
                 return StatusCode(result.Code, result.Data); // Return created category
             }
-            return BadRequest(result.Messages); // Return validation errors if failure
+            throw new BadRequestException(result.Messages.ToString()); // Return validation errors if failure
         }
 
         // 2. Delete Category

@@ -7,7 +7,7 @@ using api_be.Domain.Models.Request;
 using api_be.Domain.Models.Responses;
 using api_be.Domain.DefaultValidatorBase;
 using api_be.Domain.Transforms;
-using api_be.Domain.ValidatorRequest.BaseCategory;
+using  api_be.Application.ValidatorRequest.BaseCategory;
 using api_be.Domain.DefaultValidatorBase;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;

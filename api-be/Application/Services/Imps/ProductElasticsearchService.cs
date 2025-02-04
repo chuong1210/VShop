@@ -20,6 +20,7 @@ using System.Linq;
 using api_be.Core.Constants;
 using api_be.Middleware;
 using Microsoft.Extensions.DependencyInjection;
+using api_be.Domain.Exceptions;
 
 namespace api_be.Application.Services.Imps
 {
@@ -94,7 +95,6 @@ namespace api_be.Application.Services.Imps
             if (!results.Any())
             {
                 var query = await GetListProductAsync();
-         
 
                 var deleteRequest = new DeleteByQueryRequest(PRODUCT_INDEX)
                 {
@@ -110,10 +110,29 @@ namespace api_be.Application.Services.Imps
                 };
                 await _elasticClient.BulkAsync(bulkRequest);
 
-                var productsRs = query
-                         .Where(p => p.Name.Contains(request.SearchKeyword, StringComparison.OrdinalIgnoreCase))
-                         .Select(p => _mapper.Map<ProductDto>(p))
-                         .ToList();
+            //    var productsRs = await query
+            //.Where(p => p.Name.ToLower().Contains(request.SearchKeyword.ToLower()))
+            //.Select(p => _mapper.Map<ProductDto>(p))
+            //.ToListAsync();
+
+                     var keywordPattern = $"%{request.SearchKeyword}%";
+
+                var productsRs = await query
+                    .Include(p => p.Category)
+                    .Where(p => EF.Functions.Like(p.Name, keywordPattern)
+                             || EF.Functions.Like(p.Category.Name, keywordPattern)
+                             || EF.Functions.Like(p.Feature, keywordPattern)
+                             || EF.Functions.Like(p.Specifications, keywordPattern))
+                    .Select(p => _mapper.Map<ProductDto>(p))
+                    .ToListAsync();
+
+
+                if (productsRs.Any())
+                {
+                    throw new NotFoundException("No matching product found.");
+
+                }
+
                 var sieveModel = _mapper.Map<SieveModel>(request);
 
                 int totalCount = await PaginatedResultBase.CountApplySieveAsync(_sieveProcessor, sieveModel, query);
@@ -170,46 +189,77 @@ namespace api_be.Application.Services.Imps
 
         public async Task<List<ProductDto>> SearchDetailedProductsAsync(string searchTerm)
         {
-            var response = await _elasticClient.SearchAsync<Product>(s => s
-                .Index("products")
-                .Query(q => q
-                    .Bool(b => b
-                        .Should(
-                            bs => bs.Match(m => m.Field(f => f.Name).Query(searchTerm)),
-                            bs => bs.Match(m => m.Field(f => f.Category.Name).Query(searchTerm)),
-                            bs => bs.Match(m => m.Field(f => f.Feature).Query(searchTerm)),
-                            bs => bs.Match(m => m.Field(f => f.Specifications).Query(searchTerm))
-                        )
-                    )
-                )
-            );
+            //var response = await _elasticClient.SearchAsync<Product>(s => s
+            //    .Index("products")
+            //    .Query(q => q
+            //        .Bool(b => b
+            //            .Should(
+            //                bs => bs.Match(m => m.Field(f => f.Name).Query(searchTerm)),
+            //                bs => bs.Match(m => m.Field(f => f.Category.Name).Query(searchTerm)),
+            //                bs => bs.Match(m => m.Field(f => f.Feature).Query(searchTerm)),
+            //                bs => bs.Match(m => m.Field(f => f.Specifications).Query(searchTerm))
+            //            )
+            //        )
+            //    )
+            //);
 
+            var response = await _elasticClient.SearchAsync<Product>(s => s
+    .Index(PRODUCT_INDEX)
+    .Query(q => q
+         .Bool(b => b
+            .Should(
+                bs => bs.Match(m => m
+                    .Field(f => f.Name)
+                    .Query(searchTerm).Fuzziness(new Fuzziness(1))
+                ),
+                bs => bs.MatchPhrasePrefix(m => m
+                    .Field(f => f.Category.Name)
+                    .Query(searchTerm)
+                ),
+                bs => bs.MatchPhrasePrefix(m => m
+                    .Field(f => f.Feature)
+                    .Query(searchTerm)
+                ),
+                bs => bs.MatchPhrasePrefix(m => m
+                    .Field(f => f.Specifications)
+                    .Query(searchTerm)
+                )
+            )
+         )
+    )
+);
+
+         
             if (!response.IsValidResponse)
             {
                 return new List<ProductDto>();
             }
 
             var products = response.Documents.ToList();
-           var productDtos= _mapper.Map<List<ProductDto>>(products);
-
-            //foreach (var product in products)
-            //{
-            //    if (product.Images != null && product.Images is string)
-            //    {
-            //        // Nếu images là chuỗi, chuyển đổi thành List<string>
-            //        //product.Images = new List<string> { imageString };
-            //        _mapper.Map(List<string>())(product.Images);
-            //    }
-            //}
-
-            // Lấy thêm thông tin khuyến mãi và tính giá mới nếu có
-            foreach (var product in productDtos)
+            var productDtos = new List<ProductDto>();
+            if (products.Count > 0)
             {
-                (Promotion promo, decimal? discountPrice, int? group) =
-                    await BaseOrderApplyPromotion.ApplyPromotionForSingleProduct(_context,_mapper.Map<Product>(product));
+                 productDtos = _mapper.Map<List<ProductDto>>(products);
 
-                product.NewPrice = product.Price - discountPrice;
-                product.PromotionDto = _mapper.Map<PromotionDto>(promo);
+                //foreach (var product in products)
+                //{
+                //    if (product.Images != null && product.Images is string)
+                //    {
+                //        // Nếu images là chuỗi, chuyển đổi thành List<string>
+                //        //product.Images = new List<string> { imageString };
+                //        _mapper.Map(List<string>())(product.Images);
+                //    }
+                //}
+
+                // Lấy thêm thông tin khuyến mãi và tính giá mới nếu có
+                foreach (var product in productDtos)
+                {
+                    (Promotion promo, decimal? discountPrice, int? group) =
+                        await BaseOrderApplyPromotion.ApplyPromotionForSingleProduct(_context, _mapper.Map<Product>(product));
+
+                    product.NewPrice = product.Price - discountPrice;
+                    product.PromotionDto = _mapper.Map<PromotionDto>(promo);
+                }
             }
 
             return productDtos;

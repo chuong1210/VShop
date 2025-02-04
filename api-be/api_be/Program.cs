@@ -8,7 +8,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using api_be.Core.Domain.Interfaces;
 using System.IO;
-using api_be.Application.Services.Imps;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
@@ -17,9 +16,11 @@ using System.Text.Json.Serialization;
 using CloudinaryDotNet;
 using StackExchange.Redis;
 using Elastic.Clients.Elasticsearch;
-using api_be.Application.Services.StaticService;
+using api_be.Application.Services.KafkaService;
 using api_be.Infrastructure.DB.Interceptors;
 using api_be.Core.Entities;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using api_be.Application.Services.HubService;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
@@ -233,6 +234,9 @@ builder.Services.AddCors(options =>
               .AllowCredentials(); // Để hỗ trợ cookie/chứng chỉ
     });
 });
+//builder.Services.AddHostedService<KafkaStartupService>();
+
+//builder.Services.AddHostedService<ProductEventConsumerService>();
 
 //builder.Services.AddControllers()
 //    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Program>());

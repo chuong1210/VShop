@@ -1,13 +1,45 @@
 ﻿using api_be.Core.Domain;
+using api_be.Core.Domain.Interfaces;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace api_be.Core.Entities
 {
-    public class Message: AuditableEntity
+    public class Message : IAuditableEntity
     {
-        public int SenderId { get; set; } // ID của người gửi
-        public int ReceiverId { get; set; } // ID của người nhận
-        public string Content { get; set; } // Nội dung tin nhắn
-        public DateTime SentAt { get; set; } // Thời gian gửi
-        public bool IsRead { get; set; } // Đã đọc hay chưa
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+
+        [BsonElement("senderId")]
+        public int SenderId { get; set; }
+
+        [BsonElement("receiverId")]
+        public int ReceiverId { get; set; }
+
+        [BsonElement("content")]
+        public string Content { get; set; }
+
+        [BsonElement("sentAt")]
+        public DateTime SentAt { get; set; }
+
+        [BsonElement("isRead")]
+        public bool IsRead { get; set; } = false;
+
+        // Các trường cho auditable entity
+        [BsonElement("createdAt")]
+        public DateTime? CreatedAt { get; set; }
+
+        [BsonElement("createdBy")]
+        public string? CreatedBy { get; set; }
+
+        [BsonElement("updatedAt")]
+        public DateTime? UpdatedAt { get; set; }
+
+        [BsonElement("updatedBy")]
+        public string? UpdatedBy { get; set; }
+
+        [BsonElement("isDeleted")]
+        public bool? IsDeleted { get; set; }
     }
 }

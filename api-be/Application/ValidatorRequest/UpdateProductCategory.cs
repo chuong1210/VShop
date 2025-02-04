@@ -1,7 +1,7 @@
 ﻿using api_be.Core.Domain.Interfaces;
 using api_be.Domain.Models.Request;
-using api_be.Domain.ValidatorRequest.BaseCategory;
-using api_be.Domain.ValidatorRequest.BaseProduct;
+using  api_be.Application.ValidatorRequest.BaseCategory;
+using  api_be.Application.ValidatorRequest.BaseProduct;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using static api_be.Core.Entities.Product;

@@ -15,7 +15,7 @@ using api_be.Core.Entities.Auth;
 using api_be.Infrastructure.DB;
 using CloudinaryDotNet;
 using Elastic.Clients.Elasticsearch;
-using api_be.Application.Services.StaticService;
+using api_be.Application.Services.KafkaService;
 using api_be.Infrastructure.DB.Interceptors;
 using api_be.Core.Entities;
 
@@ -63,10 +63,10 @@ namespace api_be
             });
 
             services.AddSingleton(typeof(KafkaProducer<,>));
-            services.AddSingleton<ElasticSearchConsumer>();
-            //services.AddHostedService<KafkaStartupService>();
-            services.AddHostedService<ProductEventConsumerService>();
 
+            services.AddSingleton<ElasticSearchConsumer>();
+
+          
             services.AddScoped<IEmailService, EmailService>();
             services.AddMemoryCache();
             services.AddHttpClient(); // Thêm dòng này để đăng ký IHttpClientFactory
@@ -91,6 +91,10 @@ namespace api_be
 
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
+
+            //services.AddHostedService<KafkaStartupService>();
+
+            services.AddHostedService<ProductEventConsumerService>();
 
             services.AddEndpointsApiExplorer();
 

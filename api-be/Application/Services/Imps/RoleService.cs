@@ -10,7 +10,7 @@ using api_be.Application.ValidatorRequest;
 using api_be.Domain.DefaultValidatorBase;
 using api_be.Application.ValidatorRequest.RoleValidator;
 using api_be.Domain.Transforms;
-using api_be.Domain.ValidatorRequest.BaseCategory;
+using  api_be.Application.ValidatorRequest.BaseCategory;
 using Microsoft.EntityFrameworkCore;
 using Sieve.Models;
 using Sieve.Services;

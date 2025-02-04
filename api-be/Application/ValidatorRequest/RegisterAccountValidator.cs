@@ -1,7 +1,7 @@
 ﻿using api_be.Core.Domain.Interfaces;
 using api_be.Domain.Models.Request;
 using api_be.Domain.Transforms;
-using api_be.Domain.ValidatorRequest.BaseUser;
+using  api_be.Application.ValidatorRequest.BaseUser;
 using api_be.Domain.Extensions;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;

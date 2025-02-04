@@ -1,5 +1,58 @@
 [
   {
+    "ContainingType": "api_be.API.Controllers.ChatController",
+    "Method": "GetConversation",
+    "RelativePath": "api/chat/conversation",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "correspondentId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.ChatController",
+    "Method": "MarkMessageAsRead",
+    "RelativePath": "api/chat/mark-read",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.ChatController",
+    "Method": "SendMessage",
+    "RelativePath": "api/chat/send",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "api_be.Domain.Models.Request.MessageRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "api_be.Controllers.CategoryController",
     "Method": "Create",
     "RelativePath": "smw-api/category",

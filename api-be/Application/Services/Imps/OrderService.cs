@@ -6,7 +6,6 @@ using api_be.Domain.Models.Responses;
 using api_be.Domain.DefaultValidatorBase;
 using api_be.Application.ValidatorRequest.OrderValidator.BaseOrders;
 using api_be.Application.ValidatorRequest.OrderValidator;
-using api_be.Domain.DefaultValidatorBase;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using api_be.Core.Domain.Interfaces;
@@ -33,16 +32,20 @@ namespace api_be.Application.Services.Imps
         private readonly IMapper _mapper;
         private readonly ISieveProcessor _sieveProcessor;
         private readonly ICurrentUserService _currentUserService;
+        private readonly IRedisInventoryService _redisInventoryService; // Inject RedisInventoryService
+
         public OrderService(
             ISupermarketDbContext context,
             IMapper mapper,
             ISieveProcessor sieveProcessor,
-            ICurrentUserService currentUserService)
+            ICurrentUserService currentUserService,
+            IRedisInventoryService redisInventoryService)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _sieveProcessor = sieveProcessor ?? throw new ArgumentNullException(nameof(sieveProcessor));
             _currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
+            _redisInventoryService = redisInventoryService;
         }
         public async Task<Result<bool>> AddCouponToCart(AddCouponToCartRequest request)
         {
@@ -315,6 +318,16 @@ namespace api_be.Application.Services.Imps
                 {
                     var quantity = detail.Quantity + request.Quantity;
 
+                    // Kiểm tra số lượng tồn kho từ Redis
+                    int currentStock = await _redisInventoryService.GetStockLevelAsync(request.ProductId);
+
+                    if (currentStock == -1)
+                    {
+                        //lỗi từ redis
+                        return Result<bool>.Failure("Lỗi khi truy cập thông tin tồn kho.", StatusCodes.Status500InternalServerError);
+                    }
+
+
                     if (quantity > product.Quantity)
                     {
                         return Result<bool>.Failure("Số lượng sản phẩm tồn kho không đủ!", StatusCodes.Status400BadRequest);
@@ -327,6 +340,13 @@ namespace api_be.Application.Services.Imps
                 }
                 else
                 {
+                    int currentStock = await _redisInventoryService.GetStockLevelAsync(request.ProductId);
+
+                    if (currentStock == -1)
+                    {
+                        //lỗi từ redis
+                        return Result<bool>.Failure("Lỗi khi truy cập thông tin tồn kho.", StatusCodes.Status500InternalServerError);
+                    }
                     if (request.Quantity > product.Quantity)
                     {
                         return Result<bool>.Failure("Số lượng sản phẩm tồn kho không đủ!", StatusCodes.Status400BadRequest);
@@ -358,6 +378,15 @@ namespace api_be.Application.Services.Imps
                 }
 
                 await HandleAfterUpdateProductToCart(cart.Id);
+
+                // Giảm số lượng tồn kho trong Redis
+                long newStock = await _redisInventoryService.DecrementStockLevelAsync(request.ProductId, (int)request.Quantity);
+                if (newStock == -1)
+                {
+                    // Xử lý lỗi, ví dụ: hoàn tác các thay đổi trong giỏ hàng
+                    // Có thể ném một exception hoặc trả về một Result.Failure
+                    return Result<bool>.Failure("Lỗi khi cập nhật thông tin tồn kho.", StatusCodes.Status500InternalServerError);
+                }
 
                 return Result<bool>.Success(true, StatusCodes.Status200OK);
             }
@@ -420,7 +449,12 @@ namespace api_be.Application.Services.Imps
                     var parent = await _context.Products.FindAsync(item.ProductId);
                     parent.Quantity -= item.Quantity;
                     _context.Products.Update(parent);
-                    await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();// nếu dùng reds thì bỏ 3 cái trên
+
+
+
+                    //Cập nhật số lượng sản phẩm trong redis 
+                    await _redisInventoryService.DecrementStockLevelAsync(item.ProductId, item.Quantity ?? 0);
 
                     var productsSingle = await _context.Products
                             .Where(x => x.ParentId == item.ProductId)

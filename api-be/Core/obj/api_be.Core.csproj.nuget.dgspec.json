@@ -46,6 +46,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "MongoDB.Bson": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "MongoDB.Driver.Core": {
+              "target": "Package",
+              "version": "[2.30.0, )"
+            },
             "Sieve": {
               "target": "Package",
               "version": "[2.5.5, )"

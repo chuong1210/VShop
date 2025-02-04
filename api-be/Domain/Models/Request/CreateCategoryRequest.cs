@@ -11,5 +11,6 @@ namespace api_be.Domain.Models.Request
         public string? Icon { get; set; }
 
         public int? ParentId { get; set; }
+
     }
 }

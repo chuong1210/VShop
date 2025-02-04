@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 using api_be.Infrastructure.DB;
 
-namespace api_be.Domain.ValidatorRequest.BaseCategory
+namespace  api_be.Application.ValidatorRequest.BaseCategory
 {
     public class BaseCategoryValidator : AbstractValidator<IBaseCategory>
     {

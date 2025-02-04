@@ -1,6 +1,6 @@
 ﻿using api_be.Core.Domain.Interfaces;
 using api_be.Domain.Models.Request;
-using api_be.Domain.ValidatorRequest.BaseUser;
+using  api_be.Application.ValidatorRequest.BaseUser;
 using FluentValidation;
 using api_be.Infrastructure.DB;
 

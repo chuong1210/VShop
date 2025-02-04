@@ -3,7 +3,7 @@ using api_be.Core.Entities;
 using api_be.Domain.Extensions;
 using api_be.Domain.Models.Request;
 using api_be.Domain.Models.Responses;
-using api_be.Domain.ValidatorRequest.BaseProduct;
+using  api_be.Application.ValidatorRequest.BaseProduct;
 using api_be.Domain.DefaultValidatorBase;
 using ClosedXML.Excel;
 using System.Data;
