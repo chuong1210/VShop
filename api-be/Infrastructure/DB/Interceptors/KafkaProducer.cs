@@ -39,12 +39,13 @@ namespace api_be.Infrastructure.DB.Interceptors
             var config = new ProducerConfig
             {
                 BootstrapServers = _configuration["Kafka:BootstrapServers"],
-                AllowAutoCreateTopics = true,
-                Acks = Acks.All
+                AllowAutoCreateTopics = false,
+                Acks = Acks.All,
+                
             };
 
 
-            _topic = _configuration["Kafka:ProductTopic"];
+            _topic = "product-changes";// _configuration["Kafka:ProductTopic"];
             _producer = new ProducerBuilder<TKey, string>(config).Build();
             // Gửi một message test để kích hoạt Consumer
             //var testMessage = new KafkaMessage<Product>

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using api_be.Infrastructure.Services;
+using api_be.Infrastructure.Data;
 
 namespace api_be.Infrastructure.DB
 {
@@ -22,6 +23,7 @@ namespace api_be.Infrastructure.DB
                     builder.MigrationsAssembly(typeof(DependencyInjectionDB).Assembly.FullName);
                     builder.EnableRetryOnFailure();
                 }));
+            services.AddSingleton<MongoDbContext>();
 
 
             services.AddScoped<SupermarketDbContextInitialiser>();

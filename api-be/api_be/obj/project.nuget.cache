@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "uQ/0NeYVWxQ=",
+  "dgSpecHash": "2OsWU8jpA3s=",
   "success": true,
   "projectFilePath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\api_be.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chuon\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\bouncycastle.cryptography\\2.5.0\\bouncycastle.cryptography.2.5.0.nupkg.sha512",
@@ -121,6 +123,8 @@
     "C:\\Users\\chuon\\.nuget\\packages\\miniprofiler.shared\\4.5.4\\miniprofiler.shared.4.5.4.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\mongodb.bson\\3.1.0\\mongodb.bson.3.1.0.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\mongodb.driver\\3.1.0\\mongodb.driver.3.1.0.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\mongodb.driver.core\\2.30.0\\mongodb.driver.core.2.30.0.nupkg.sha512",
+    "C:\\Users\\chuon\\.nuget\\packages\\mongodb.libmongocrypt\\1.12.0\\mongodb.libmongocrypt.1.12.0.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\morelinq\\4.1.0\\morelinq.4.1.0.nupkg.sha512",
     "C:\\Users\\chuon\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",

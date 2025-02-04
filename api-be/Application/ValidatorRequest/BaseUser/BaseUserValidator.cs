@@ -5,7 +5,7 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using api_be.Infrastructure.DB;
 
-namespace api_be.Domain.ValidatorRequest.BaseUser
+namespace  api_be.Application.ValidatorRequest.BaseUser
 {
     public class BaseUserValidator : AbstractValidator<IBaseUser>
     {

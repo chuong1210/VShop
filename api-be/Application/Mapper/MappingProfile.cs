@@ -31,6 +31,8 @@ namespace api_be.Application.Mapper
           .ForMember(dest => dest.UserRoles, opt => opt.Ignore());
             CreateMap<Customer, CustomerDto>()
      .ReverseMap(); // Nếu cần ánh xạ ngược từ CustomerDto về Customer
+            CreateMap<Message, MessageDto>().ReverseMap();
+
 
 
 
@@ -51,6 +53,8 @@ namespace api_be.Application.Mapper
             CreateMap<CreateOrUpdateDeliveryRequest, Delivery>().ReverseMap();
             CreateMap<CreateOrUpdatePaymentRequest, Payment>().ReverseMap();
             CreateMap<CreateOrUpdateDistributorRequest, Distributor>().ReverseMap();
+            CreateMap<MessageRequest, Message>().ReverseMap();
+
 
 
 

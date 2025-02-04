@@ -8,7 +8,7 @@ using api_be.Application.ValidatorRequest.CouponValidator.BaseCoupon;
 using api_be.Domain.DefaultValidatorBase;
 using api_be.Application.ValidatorRequest.PaymentValidator.BasePayment;
 using api_be.Domain.Transforms;
-using api_be.Domain.ValidatorRequest.BaseCategory;
+using  api_be.Application.ValidatorRequest.BaseCategory;
 using api_be.Domain.DefaultValidatorBase;
 using Microsoft.EntityFrameworkCore;
 using Sieve.Models;

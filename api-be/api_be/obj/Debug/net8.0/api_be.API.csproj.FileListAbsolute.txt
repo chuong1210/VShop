@@ -247,3 +247,10 @@ C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\runtimes\win-x86\nat
 C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\runtimes\win-x86\native\vcruntime140.dll
 C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\runtimes\win-x86\native\zlib1.dll
 C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\runtimes\win-x86\native\zstd.dll
+C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\AWSSDK.Core.dll
+C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
+C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\MongoDB.Driver.Core.dll
+C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\MongoDB.Libmongocrypt.dll
+C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\runtimes\win\native\mongocrypt.dll

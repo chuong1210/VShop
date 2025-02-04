@@ -1,7 +1,7 @@
 ﻿using api_be.Core.Domain.Interfaces;
 using api_be.Domain.Models.Request;
 using api_be.Domain.DefaultValidatorBase;
-using api_be.Domain.ValidatorRequest.BaseCategory;
+using  api_be.Application.ValidatorRequest.BaseCategory;
 using FluentValidation;
 using api_be.Infrastructure.DB;
 

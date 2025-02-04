@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using static api_be.Core.Entities.Product;
 using api_be.Infrastructure.DB;
 
-namespace api_be.Domain.ValidatorRequest.BaseProduct
+namespace  api_be.Application.ValidatorRequest.BaseProduct
 {
     public class BaseProductValidator : AbstractValidator<IBaseProduct>
     {

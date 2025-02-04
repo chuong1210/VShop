@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api_be.API", "api_be\api_be
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api_be.Infrastructure", "Infrastructure\api_be.Infrastructure.csproj", "{590A7127-597E-4F88-949E-CFBD2DA37A6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api_be.Domain", "Domain\api_be.Domain.csproj", "{C54EF1DE-CA1C-44CE-9141-D3587348FB1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "api_be.Domain", "Domain\api_be.Domain.csproj", "{C54EF1DE-CA1C-44CE-9141-D3587348FB1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

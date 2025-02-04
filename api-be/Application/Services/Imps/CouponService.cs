@@ -10,7 +10,7 @@ using CloudinaryDotNet;
 using Sieve.Services;
 using api_be.Domain.Extensions;
 using api_be.Core.Entities;
-using api_be.Domain.ValidatorRequest.BaseProduct;
+using  api_be.Application.ValidatorRequest.BaseProduct;
 using Twilio.TwiML.Voice;
 using api_be.Domain.Transforms;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;

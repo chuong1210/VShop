@@ -9,7 +9,7 @@ using api_be.Domain.Transforms;
 using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using api_be.Application.Services.StaticService;
+using api_be.Application.Services.KafkaService;
 
 namespace UI.WebApi.Controllers
 {
