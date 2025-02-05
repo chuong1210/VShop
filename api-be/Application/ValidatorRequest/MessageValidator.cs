@@ -22,10 +22,10 @@ namespace api_be.Application.ValidatorRequest
                 .MinimumLength(1).WithMessage("Content must have at least 1 character")
                 .MaximumLength(500).WithMessage("Content cannot be more than 500 characters");
 
-            // Kiểm tra SentAt không phải là ngày trong tương lai
-            RuleFor(x => x.SentAt)
-                .NotEmpty().WithMessage("SentAt is required")
-                .LessThanOrEqualTo(DateTime.UtcNow).WithMessage("SentAt cannot be in the future");
+            //// Kiểm tra SentAt không phải là ngày trong tương lai
+            //RuleFor(x => x.SentAt)
+            //    .NotEmpty().WithMessage("SentAt is required")
+            //    .LessThanOrEqualTo(DateTime.UtcNow).WithMessage("SentAt cannot be in the future");
 
             // Kiểm tra IsRead là kiểu boolean hợp lệ
             RuleFor(x => x.IsRead)

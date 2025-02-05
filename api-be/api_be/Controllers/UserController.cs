@@ -327,8 +327,16 @@ namespace UI.WebApi.Controllers
             return StatusCode(response.Code, response);
 
         }
+        [HttpGet("message")]
+        [Permission("user.view")]  // Chỉ cho phép người dùng có quyền "Admin" mới được phép gọi endpoint này
+        public async Task<IActionResult> GetUserChatPermission()
+        {
+            var response = await _userDomainService.GetUserHasAdminRoleAndChatMessagePermission();
 
-        [HttpPost("google")]
+            return StatusCode(response.Code, response);
+
+        }
+            [HttpPost("google")]
         [AllowAnonymous]
         public async Task<IActionResult> GoogleLogin([FromBody] string accessToken)
         {

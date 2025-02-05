@@ -252,5 +252,39 @@ namespace api_be.Application.Services.Imps
             var userDto = _mapper.Map<UserDto>(UserDetail);
             return Result<UserDto>.Success(userDto, StatusCodes.Status200OK);
         }
+
+
+        public async Task<Result<UserDto>> GetUserHasAdminRoleAndChatMessagePermission()
+        {
+            try
+            {
+                // Lấy tất cả user có role là Admin.
+                var usersWithAdminRole = await _context.Set<User>()
+                    .Include(u => u.UserRoles)
+                    .ThenInclude(ur => ur.Role)
+                    .Where(u => u.UserRoles.Any(ur => ur.Role.Name == User.UserType.Admin.ToString()) && u.IsDeleted == false)
+                    .ToListAsync();
+
+                // Filter user có quyền nhắn tin.
+                var usersWithChatMessagePermission = usersWithAdminRole.Where(user =>
+                    user.UserRoles.Any(ur => ur.Role.RolePermissions.Any(rp => rp.Permission.Name == "message.chat"))).ToList();
+
+                if (usersWithChatMessagePermission.Count == 0)
+                {
+                    return Result<UserDto>.Failure(IdentityTransform.UserNotExists( Modules.User.Id), StatusCodes.Status401Unauthorized);
+                }
+
+                // Chuyển đổi thành DTO.
+                var userDtos = _mapper.Map<List<UserDto>>(usersWithChatMessagePermission);
+
+                return Result<UserDto>.Success(userDtos.FirstOrDefault(), StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+              
+                return Result<UserDto>.Failure($"Đã có lỗi xảy ra: {ex.Message}", StatusCodes.Status500InternalServerError);
+            }
+        }
+
     }
 }

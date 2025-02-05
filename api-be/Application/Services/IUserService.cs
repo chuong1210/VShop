@@ -12,5 +12,7 @@ namespace api_be.Application.Services
         public Task<Result<UserDto>> Detail(int id);
 
         public Task<PaginatedResult<List<UserDto>>> GetListUser(GetListUserRequest request);
+        public Task<Result<UserDto>> GetUserHasAdminRoleAndChatMessagePermission( );
+
     }
 }

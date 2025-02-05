@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{590A7127-597E-4F88-949E-CFBD2DA37A6E}|Infrastructure\\api_be.Infrastructure.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\infrastructure\\db\\dependencyinjectiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{590A7127-597E-4F88-949E-CFBD2DA37A6E}|Infrastructure\\api_be.Infrastructure.csproj|solutionrelative:infrastructure\\db\\dependencyinjectiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{590A7127-597E-4F88-949E-CFBD2DA37A6E}|Infrastructure\\api_be.Infrastructure.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\infrastructure\\db\\mongodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{590A7127-597E-4F88-949E-CFBD2DA37A6E}|Infrastructure\\api_be.Infrastructure.csproj|solutionrelative:infrastructure\\db\\mongodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\iroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\iroleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\hubservice\\chathubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,28 +31,40 @@
       "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\messageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\redisinventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\redisinventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\iredisinventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\iredisinventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\redistokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\redistokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{590A7127-597E-4F88-949E-CFBD2DA37A6E}|Infrastructure\\api_be.Infrastructure.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\infrastructure\\db\\dependencyinjectiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{590A7127-597E-4F88-949E-CFBD2DA37A6E}|Infrastructure\\api_be.Infrastructure.csproj|solutionrelative:infrastructure\\db\\dependencyinjectiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\validatorrequest\\messagevalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\validatorrequest\\messagevalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{590A7127-597E-4F88-949E-CFBD2DA37A6E}|Infrastructure\\api_be.Infrastructure.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\infrastructure\\db\\mongodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{590A7127-597E-4F88-949E-CFBD2DA37A6E}|Infrastructure\\api_be.Infrastructure.csproj|solutionrelative:infrastructure\\db\\mongodbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\iredisinventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\iredisinventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\hubservice\\flashsalehubservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -81,10 +93,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\productelasticsearchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\productelasticsearchservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{326485A0-2762-44CA-87BA-E7B82475D248}|Core\\api_be.Core.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\core\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -138,7 +146,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -166,106 +174,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DependencyInjection.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\DependencyInjection.cs",
-              "RelativeDocumentMoniker": "api_be\\DependencyInjection.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\DependencyInjection.cs",
-              "RelativeToolTip": "api_be\\DependencyInjection.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\UserService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\Imps\\UserService.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\UserService.cs",
+              "RelativeToolTip": "Application\\Services\\Imps\\UserService.cs",
+              "ViewState": "AgIAAPAAAAAAAAAAAAAYwAgBAABkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T16:26:57.496Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MongoDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\DB\\MongoDbContext.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\DB\\MongoDbContext.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\DB\\MongoDbContext.cs",
-              "RelativeToolTip": "Infrastructure\\DB\\MongoDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T16:25:04.33Z",
+              "WhenOpened": "2025-02-05T11:03:26.537Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "OrderService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\OrderService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\Imps\\OrderService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\OrderService.cs",
-              "RelativeToolTip": "Application\\Services\\Imps\\OrderService.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAowCkAAAANAAAAAAAAAA==",
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IAuthService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\IAuthService.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IAuthService.cs",
+              "RelativeToolTip": "Application\\Services\\IAuthService.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T16:19:28.936Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ChatHubService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\HubService\\ChatHubService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\HubService\\ChatHubService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\HubService\\ChatHubService.cs",
-              "RelativeToolTip": "Application\\Services\\HubService\\ChatHubService.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAUwBgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T12:00:56.691Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DependencyInjectionDB.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\DB\\DependencyInjectionDB.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\DB\\DependencyInjectionDB.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\DB\\DependencyInjectionDB.cs",
-              "RelativeToolTip": "Infrastructure\\DB\\DependencyInjectionDB.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:48:23.65Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "RedisInventoryService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\RedisInventoryService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\Imps\\RedisInventoryService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\RedisInventoryService.cs",
-              "RelativeToolTip": "Application\\Services\\Imps\\RedisInventoryService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T13:43:13.155Z",
+              "WhenOpened": "2025-02-05T11:03:16.504Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\appsettings.json",
-              "RelativeDocumentMoniker": "api_be\\appsettings.json",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\appsettings.json",
-              "RelativeToolTip": "api_be\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-04T11:18:19.352Z",
+              "Title": "IRoleService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IRoleService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\IRoleService.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IRoleService.cs",
+              "RelativeToolTip": "Application\\Services\\IRoleService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T11:03:10.526Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "RedisTokenService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\RedisTokenService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\Imps\\RedisTokenService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\RedisTokenService.cs",
-              "RelativeToolTip": "Application\\Services\\Imps\\RedisTokenService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "api_be\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\UserController.cs",
+              "RelativeToolTip": "api_be\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAEIBAAAAAAAAAAAqwEkBAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:20:29.125Z",
+              "WhenOpened": "2025-02-05T11:01:14.05Z",
               "EditorCaption": ""
             },
             {
@@ -276,7 +232,7 @@
               "RelativeDocumentMoniker": "Application\\Services\\Imps\\MessageService.cs",
               "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\MessageService.cs",
               "RelativeToolTip": "Application\\Services\\Imps\\MessageService.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAAwBgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACsAAAAAAAAAAAAzwCsAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-04T16:06:12.683Z",
               "EditorCaption": ""
@@ -289,14 +245,123 @@
               "RelativeDocumentMoniker": "Application\\Services\\Imps\\ProductService.cs",
               "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\ProductService.cs",
               "RelativeToolTip": "Application\\Services\\Imps\\ProductService.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAswDkAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAjwDEAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T09:41:05.782Z",
+              "WhenOpened": "2025-02-04T09:41:05.782Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChatController.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\ChatController.cs",
+              "RelativeDocumentMoniker": "api_be\\Controllers\\ChatController.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\ChatController.cs",
+              "RelativeToolTip": "api_be\\Controllers\\ChatController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAgwDoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T16:11:32.085Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\appsettings.json",
+              "RelativeDocumentMoniker": "api_be\\appsettings.json",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\appsettings.json",
+              "RelativeToolTip": "api_be\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-04T11:18:19.352Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Program.cs",
+              "RelativeDocumentMoniker": "api_be\\Program.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Program.cs",
+              "RelativeToolTip": "api_be\\Program.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAPMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T16:41:03.572Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ChatHubService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\HubService\\ChatHubService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\HubService\\ChatHubService.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\HubService\\ChatHubService.cs",
+              "RelativeToolTip": "Application\\Services\\HubService\\ChatHubService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T12:00:56.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DependencyInjectionDB.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\DB\\DependencyInjectionDB.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\DB\\DependencyInjectionDB.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\DB\\DependencyInjectionDB.cs",
+              "RelativeToolTip": "Infrastructure\\DB\\DependencyInjectionDB.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T07:16:37.008Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "ExceptionMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Middleware\\ExceptionMiddleware.cs",
+              "RelativeDocumentMoniker": "api_be\\Middleware\\ExceptionMiddleware.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Middleware\\ExceptionMiddleware.cs",
+              "RelativeToolTip": "api_be\\Middleware\\ExceptionMiddleware.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAnwB8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T11:28:57.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\OrderService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\Imps\\OrderService.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\OrderService.cs",
+              "RelativeToolTip": "Application\\Services\\Imps\\OrderService.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAACEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T16:19:28.936Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "MessageValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\ValidatorRequest\\MessageValidator.cs",
+              "RelativeDocumentMoniker": "Application\\ValidatorRequest\\MessageValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\ValidatorRequest\\MessageValidator.cs",
+              "RelativeToolTip": "Application\\ValidatorRequest\\MessageValidator.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-05T07:07:47.69Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MongoDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\DB\\MongoDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\DB\\MongoDbContext.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\DB\\MongoDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\DB\\MongoDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-04T16:25:04.33Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "IRedisInventoryService.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IRedisInventoryService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\IRedisInventoryService.cs",
@@ -304,38 +369,11 @@
               "RelativeToolTip": "Application\\Services\\IRedisInventoryService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T16:22:39.358Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T16:22:39.358Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ChatController.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\ChatController.cs",
-              "RelativeDocumentMoniker": "api_be\\Controllers\\ChatController.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\ChatController.cs",
-              "RelativeToolTip": "api_be\\Controllers\\ChatController.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAmwDgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T16:11:32.085Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "api_be\\Controllers\\CategoryController.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "api_be\\Controllers\\CategoryController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAYwCIAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T16:11:42.096Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "MappingProfile.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Mapper\\MappingProfile.cs",
               "RelativeDocumentMoniker": "Application\\Mapper\\MappingProfile.cs",
@@ -343,12 +381,11 @@
               "RelativeToolTip": "Application\\Mapper\\MappingProfile.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAQwDcAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T15:49:32.367Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T15:49:32.367Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "FlashSaleHubService.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\HubService\\FlashSaleHubService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\HubService\\FlashSaleHubService.cs",
@@ -356,12 +393,11 @@
               "RelativeToolTip": "Application\\Services\\HubService\\FlashSaleHubService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T09:39:57.931Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T09:39:57.931Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "EntitySaveChangesInterceptor.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\DB\\Interceptors\\EntitySaveChangesInterceptor.cs",
               "RelativeDocumentMoniker": "Infrastructure\\DB\\Interceptors\\EntitySaveChangesInterceptor.cs",
@@ -369,12 +405,11 @@
               "RelativeToolTip": "Infrastructure\\DB\\Interceptors\\EntitySaveChangesInterceptor.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAADwv6kAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T13:45:48.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T13:45:48.234Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "SupermarketDbContext.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Infrastructure\\DB\\SupermarketDbContext.cs",
               "RelativeDocumentMoniker": "Infrastructure\\DB\\SupermarketDbContext.cs",
@@ -382,12 +417,11 @@
               "RelativeToolTip": "Infrastructure\\DB\\SupermarketDbContext.cs",
               "ViewState": "AgIAAEUAAAAAAAAAAAA4wF8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T13:45:44.002Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T13:45:44.002Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "MemoryTokenService.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\MemoryTokenService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\Imps\\MemoryTokenService.cs",
@@ -395,12 +429,11 @@
               "RelativeToolTip": "Application\\Services\\Imps\\MemoryTokenService.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T12:01:13.294Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T12:01:13.294Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "RedisCacheService.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\RedisCacheService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\Imps\\RedisCacheService.cs",
@@ -408,12 +441,11 @@
               "RelativeToolTip": "Application\\Services\\Imps\\RedisCacheService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:20:23.935Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:20:23.935Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "ProductElasticsearchService.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\ProductElasticsearchService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\Imps\\ProductElasticsearchService.cs",
@@ -421,25 +453,11 @@
               "RelativeToolTip": "Application\\Services\\Imps\\ProductElasticsearchService.cs",
               "ViewState": "AgIAAFMAAAAAAAAAAAAvwF0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-03T14:09:59.272Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-03T14:09:59.272Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "ExceptionMiddleware.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Middleware\\ExceptionMiddleware.cs",
-              "RelativeDocumentMoniker": "api_be\\Middleware\\ExceptionMiddleware.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Middleware\\ExceptionMiddleware.cs",
-              "RelativeToolTip": "api_be\\Middleware\\ExceptionMiddleware.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAQwJUAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T11:28:57.611Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "Staff.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Entities\\Staff.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\Staff.cs",
@@ -447,12 +465,11 @@
               "RelativeToolTip": "Core\\Entities\\Staff.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAA/wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:44:06.179Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:44:06.179Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "Promotion.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Entities\\Promotion.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\Promotion.cs",
@@ -460,12 +477,11 @@
               "RelativeToolTip": "Core\\Entities\\Promotion.cs",
               "ViewState": "AgIAACUAAAAAAAAAAAA1wDgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:43:52.841Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:43:52.841Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "PromotionProductRequirement.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Entities\\PromotionProductRequirement.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\PromotionProductRequirement.cs",
@@ -473,12 +489,11 @@
               "RelativeToolTip": "Core\\Entities\\PromotionProductRequirement.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAQwBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:43:34.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:43:34.184Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 28,
               "Title": "StaffPosition.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Entities\\StaffPosition.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\StaffPosition.cs",
@@ -486,12 +501,11 @@
               "RelativeToolTip": "Core\\Entities\\StaffPosition.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:42:19.97Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:42:19.97Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "SupplierOrder.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Entities\\SupplierOrder.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\SupplierOrder.cs",
@@ -499,12 +513,11 @@
               "RelativeToolTip": "Core\\Entities\\SupplierOrder.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAzwDEAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:41:03.955Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:41:03.955Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "Product.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Entities\\Product.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\Product.cs",
@@ -512,12 +525,11 @@
               "RelativeToolTip": "Core\\Entities\\Product.cs",
               "ViewState": "AgIAACsAAAAAAAAAAAAzwD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:42:23.512Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:42:23.512Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "StaffPositionHasRole.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Entities\\StaffPositionHasRole.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\StaffPositionHasRole.cs",
@@ -525,12 +537,11 @@
               "RelativeToolTip": "Core\\Entities\\StaffPositionHasRole.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:42:17.42Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:42:17.42Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "DetailSupplierOrder.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Entities\\DetailSupplierOrder.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\DetailSupplierOrder.cs",
@@ -538,12 +549,11 @@
               "RelativeToolTip": "Core\\Entities\\DetailSupplierOrder.cs",
               "ViewState": "AgIAAAEAAAAAAAAAAAAAwBIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:42:28.112Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:42:28.112Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 31,
               "Title": "Payment.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Entities\\Payment.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\Payment.cs",
@@ -551,12 +561,11 @@
               "RelativeToolTip": "Core\\Entities\\Payment.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:42:24.69Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:42:24.69Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "Distributor.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Entities\\Distributor.cs",
               "RelativeDocumentMoniker": "Core\\Entities\\Distributor.cs",
@@ -564,12 +573,11 @@
               "RelativeToolTip": "Core\\Entities\\Distributor.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAQwBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T10:40:57.06Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T10:40:57.06Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "KafkaStartupService.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\KafkaService\\KafkaStartupService.cs",
               "RelativeDocumentMoniker": "Application\\Services\\KafkaService\\KafkaStartupService.cs",
@@ -577,8 +585,7 @@
               "RelativeToolTip": "Application\\Services\\KafkaService\\KafkaStartupService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-04T09:39:04.287Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-04T09:39:04.287Z"
             }
           ]
         }

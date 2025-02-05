@@ -80,7 +80,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                             {
                                 var path = context.HttpContext.Request.Path;
 
-                                if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/chatHub"))
+                                if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/smw-api/chatHub"))
                                 {
                                     context.Token = accessToken;
                                 }
@@ -247,7 +247,7 @@ var app = builder.Build();
 //{
 //  endpoints.MapHub<ChatHubService>("/chatHub"); // Đăng ký Hub tại endpoint "/chatHub"
 //});
-app.MapHub<ChatHubService>("/chatHub");
+app.MapHub<ChatHubService>("/smw-api/chatHub").AllowAnonymous();
 //app.MapGet("/event-producing", async (KafkaProducer producer, CancellationToken cancellationToken) =>
 //{
 
