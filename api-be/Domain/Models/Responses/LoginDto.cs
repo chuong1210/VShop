@@ -8,6 +8,8 @@ namespace api_be.Domain.Models.Responses
         public DateTime? Exp { get; set; }
 
         public string? Token { get; set; }
+        public int? userId { get; set; }
+
         public string? RefreshToken { get; set; }
 
     }

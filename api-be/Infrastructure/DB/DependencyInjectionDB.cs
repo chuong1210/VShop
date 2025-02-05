@@ -24,6 +24,8 @@ namespace api_be.Infrastructure.DB
                     builder.EnableRetryOnFailure();
                 }));
             services.AddSingleton<MongoDbContext>();
+            services.AddScoped<MongoDbInterceptor>();
+
 
 
             services.AddScoped<SupermarketDbContextInitialiser>();

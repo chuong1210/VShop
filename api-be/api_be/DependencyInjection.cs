@@ -1,5 +1,4 @@
-﻿using api_be.Config;
-using api_be.Infrastructure.Services;
+﻿using api_be.Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Sieve.Services;
@@ -18,6 +17,7 @@ using Elastic.Clients.Elasticsearch;
 using api_be.Application.Services.KafkaService;
 using api_be.Infrastructure.DB.Interceptors;
 using api_be.Core.Entities;
+using api_be.Domain.Config;
 
 namespace api_be
 {

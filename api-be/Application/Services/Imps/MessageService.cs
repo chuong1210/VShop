@@ -32,12 +32,13 @@ namespace api_be.Application.Services.Imps
         private readonly ICurrentUserService _currentUserService;
         private readonly IHubContext<ChatHubService> _chatHubContext;
 
-        public MessageService(MongoDbContext context, IMapper mapper, ICurrentUserService currentUserService, IHubContext<ChatHubService> chatHubContext)
+        public MessageService(MongoDbContext context, IMapper mapper, ICurrentUserService currentUserService, IHubContext<ChatHubService> chatHubContext, MongoDbInterceptor mongoDbInterceptor)
         {
             _messages = context.Messages;
             _mapper = mapper;
             _currentUserService = currentUserService;
             _chatHubContext = chatHubContext;
+            _mongoDbInterceptor = mongoDbInterceptor;
         }
 
         public async Task<Result<MessageDto>> InsertMessageAsync(MessageRequest request)

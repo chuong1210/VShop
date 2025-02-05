@@ -5,11 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using api_be.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api_be.API.Controllers
 {
     [ApiController]
-    [Route("api/chat")]
+    [Route("~/smw-api/[controller]")]
+    [AllowAnonymous]
     public class ChatController : ControllerBase
     {
         private readonly IMessageService _chatService;
@@ -45,9 +47,9 @@ namespace api_be.API.Controllers
         /// Đánh dấu tin nhắn đã đọc
         /// </summary>
         [HttpPost("mark-read")]
-        public async Task<IActionResult> MarkMessageAsRead([FromBody] int request)
+        public async Task<IActionResult> MarkMessageAsRead([FromBody] int messageId)
         {
-            var result = await _chatService.MarkMessageAsReadAsync(request);
+            var result = await _chatService.MarkMessageAsReadAsync(messageId);
             if (!result.Succeeded) return StatusCode(result.Code, result);
 
             return Ok(result);
