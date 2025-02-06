@@ -2,6 +2,8 @@ const apiConfig = {
 	'register': '/user/register',
 
 	'login': '/user/login',
+	'google': '/user/google',
+
 	'verify-email':'user/verify-email',
 
 	'product': '/product',
@@ -24,6 +26,9 @@ const apiConfig = {
 	'voucher': '/coupon',
 
 	'payment': '/payment',
+	'chat-conversation':'chat/conversation',
+	'chat-send': 'chat/send',
+	'chat-mark-read': 'chat/mark-read',
 };
 
 export { apiConfig };

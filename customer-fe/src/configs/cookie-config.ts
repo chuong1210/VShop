@@ -5,6 +5,8 @@ const cookieConfig = {
 	expires: 'expires',
 	expires_at: 'expires_at',
 	is_login: 'is_login',
+	user_id: 'id',
+
 };
 
 export { cookieConfig };

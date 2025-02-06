@@ -7,6 +7,7 @@ type CookieType = {
 	expires: number;
 	expires_at: number;
 	is_login: boolean;
+	user_id: number;
 };
 
 export type { CookieType };

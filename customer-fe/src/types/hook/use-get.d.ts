@@ -2,7 +2,7 @@ import { apiConfig, queryKeyConfig } from '@config/index';
 import { UseQueryOptions } from '@tanstack/react-query';
 import { KeyValueType } from '@type/common';
 
-interface CustomUseQueryOptions extends Omit<UseQueryOptions, 'queryKey'> {}
+type CustomUseQueryOptions = Omit<UseQueryOptions, ''>
 
 type UseGetType<ItemType> = {
 	api: keyof typeof apiConfig;

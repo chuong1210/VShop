@@ -3,20 +3,40 @@
 import AuthSvg from "@asset/svg/svg-auth.svg";
 import { Box, Button, Flex, HStack, Text } from "@chakra-ui/react";
 import { InputText } from "@component/form";
-import { Image, Link, Loading } from "@component/ui";
+import { Link, Loading } from "@component/ui";
 import { useRouter, useTranslation } from "@hook/index";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useLoginMutate } from "@root/src/hooks/mutations";
+import { useGoogleAuthMutate, useLoginMutate } from "@root/src/hooks/mutations";
 import { defaultLoginValues, getLoginSchema } from "@schema/index";
-import { LoginType } from "@type/common";
+import { LoginSocialResponse, LoginType } from "@type/common";
 import { useSearchParams } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { GoogleLoginButton } from "@component/auth/google-login-button";
+import { GoogleLogin } from "@react-oauth/google";
+
+declare global {
+  interface Window {
+    google?: {
+      accounts: {
+        id: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          initialize: (config: any) => void;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          renderButton: (element: HTMLElement, config: any) => void;
+          prompt: () => void;
+        };
+      };
+    };
+  }
+}
 
 const LoginPage = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const loginMutate = useLoginMutate();
   const params = useSearchParams();
+  const googleLoginMutate = useGoogleAuthMutate();
 
   const { control, handleSubmit } = useForm({
     defaultValues: defaultLoginValues,
@@ -36,6 +56,56 @@ const LoginPage = () => {
       },
     });
   };
+  const handleGoogleSuccess = (credentialResponse: LoginSocialResponse) => {
+    googleLoginMutate.mutate(credentialResponse.credential ?? "", {
+      onSuccess: () => {
+        toast.success(t("auth:login_success"));
+        router.push(params.has("to") ? params.get("to")! : "root");
+      },
+      onError: (error) => {
+        toast.error(error.message || t("auth:login_failed"));
+      },
+    });
+  };
+
+  // const handleGoogleLogin = useCallback(
+  //   (response: LoginSocialResponse) => {
+  //     const idToken = response.credential;
+  //     googleLoginMutate.mutate(
+  //       { accessToken: idToken || "" },
+  //       {
+  //         onSuccess: () => {
+  //           toast.success(t("auth:login_success"));
+  //           if (params.has("to")) {
+  //             router.push(params.get("to")!);
+  //             return;
+  //           }
+  //           router.push("root");
+  //         },
+  //         onError: (error) => {
+  //           toast.error(error.message || t("auth:login_failed"));
+  //         },
+  //       }
+  //     );
+  //   },
+  //   [googleLoginMutate, params, router, t]
+  // );
+  // useEffect(() => {
+  //   console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
+  //   if (window.google && window.google.accounts) {
+  //     window.google.accounts.id.initialize({
+  //       client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID, // Thay thế bằng Google Client ID của bạn
+  //       callback: handleGoogleLogin,
+  //     });
+  //     const googleButton = document.getElementById("googleLoginButton");
+  //     if (googleButton) {
+  //       window.google.accounts.id.renderButton(googleButton, {
+  //         theme: "outline",
+  //         size: "large",
+  //       });
+  //     }
+  //   }
+  // }, [handleGoogleLogin]);
 
   return (
     <Flex flexWrap="wrap" backgroundColor="white" minHeight="100vh">
@@ -140,21 +210,20 @@ const LoginPage = () => {
                 </Link>
               </Text>
             </Box>
-
-            <HStack ml={8} spacing={4}>
-              <Image alt="facebook" src="FacebookIcon" width={30} />
-
-              <Image alt="instagram" src="InstagramIcon" width={30} />
-
-              <Image alt="github" src="GithubIcon" width={30} />
-
-              <Image alt="google" src="GoogleIcon" width={30} />
+            <HStack ml={8} spacing={4} justify="center">
+              <div id="googleLoginButton">
+                <GoogleLogin onSuccess={handleGoogleSuccess} />
+              </div>
             </HStack>
+
+            <GoogleLoginButton
+              onClick={handleGoogleSuccess}
+              isLoading={googleLoginMutate.isPending}
+            />
           </Flex>
         </Flex>
       </Box>
     </Flex>
   );
 };
-
 export default LoginPage;

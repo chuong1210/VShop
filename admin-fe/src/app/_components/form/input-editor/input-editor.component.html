@@ -14,11 +14,11 @@
 
 <ckeditor
 	class="text-sm"
-	[editor]="Editor"
 	[(ngModel)]="value"
 	(change)="_onChange($event)"
 	[disabled]="disabled"
 />
+<!-- [editor]="Editor" -->
 
 <p
 	*ngIf="errorMessage"

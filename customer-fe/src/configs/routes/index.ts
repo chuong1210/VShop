@@ -2,7 +2,7 @@ import { authRoute } from './auth-route';
 import { privateRoute } from './private-route';
 import { pubicRoute } from './public-route';
 
-const baseURL = 'http://localhost:8888/';
+const baseURL = 'http://localhost:3000/';
 
 const routeConfig = {
 	...authRoute,

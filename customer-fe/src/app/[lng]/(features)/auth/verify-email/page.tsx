@@ -22,8 +22,8 @@ const VerifyEmailPage = () => {
   const [hasVerified, setHasVerified] = useState<boolean>(false); // Thêm state kiểm soát
 
   const token = searchParams.get("token");
-  const token1 = token ? decodeURIComponent(token) : null;
-  const encodedToken = token ? encodeURIComponent(token) : null;
+  // const token1 = token ? decodeURIComponent(token) : null;
+  // const encodedToken = token ? encodeURIComponent(token) : null;
 
   console.log("Token:", token);
 

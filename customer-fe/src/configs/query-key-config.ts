@@ -62,6 +62,24 @@ const queryKeyConfig: {
 	'product-combo': {
 		default: (filter) => ['list', 'product-combos', filter],
 	},
+	'google': {
+		default: () => [],
+	},
+	'verify-email': {
+		default: () => [],
+	},
+	'chat-conversation': {
+		default: () => [],
+
+	},
+	'chat-send': {
+		default: () => [],
+
+	},
+	'chat-mark-read': {
+		default: () => [],
+
+	}
 };
 
 export { queryKeyConfig };
