@@ -1,16 +1,14 @@
 ﻿using api_be.Domain.Constants;
 using api_be.Core.Domain.Interfaces;
 using api_be.Core.Entities;
-using api_be.Domain.Models.Responses;
-using api_be.Application.ValidatorRequest.OrderValidator.BaseOrders;
-using api_be.Domain.DefaultValidatorBase;
+using api_be.Application.Responses;
 using api_be.Infrastructure.DB;
 using System.Text.Json;
 using Elastic.Clients.Elasticsearch;
 using AutoMapper;
 using Elastic.Clients.Elasticsearch.Core.Bulk;
 using Elastic.Clients.Elasticsearch.QueryDsl;
-using api_be.Domain.Models.Request;
+using api_be.Application.Models.Request;
 using Microsoft.AspNetCore.Http;
 using Sieve.Models;
 using api_be.Domain.Extensions;
@@ -21,6 +19,9 @@ using api_be.Core.Constants;
 using api_be.Middleware;
 using Microsoft.Extensions.DependencyInjection;
 using api_be.Domain.Exceptions;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Application.Models.ValidatorRequest.OrderValidator.BaseOrders;
 
 namespace api_be.Application.Services.Imps
 {

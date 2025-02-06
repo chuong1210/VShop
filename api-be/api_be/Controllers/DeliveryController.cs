@@ -1,11 +1,12 @@
 ﻿
 
 using api_be.Middleware;
-using api_be.Domain.Models.Request.DeliveryRequest;
-using api_be.Domain.DefaultValidatorBase;
+using api_be.Application.Models.Request.DeliveryRequest;
 using api_be.Application.Services;
-using api_be.Domain.DefaultValidatorBase;
 using Microsoft.AspNetCore.Mvc;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+
 
 namespace api_be.Controllers
 {

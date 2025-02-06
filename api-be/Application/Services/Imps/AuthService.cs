@@ -4,12 +4,10 @@ using api_be.Core.Domain.Interfaces;
 using api_be.Core.Entities.Auth;
 using api_be.Domain.Exceptions;
 using api_be.Domain.Extensions;
-using api_be.Domain.Models;
-using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Responses;
-using api_be.Application.ValidatorRequest;
+using api_be.Application.Models.Request;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest;
 using api_be.Domain.Transforms;
-using api_be.Validator;
 using AutoMapper;
 using Azure.Core;
 using FluentValidation;
@@ -34,6 +32,8 @@ using Newtonsoft.Json.Linq;
 using api_be.Infrastructure.DB;
 using api_be.Core;
 using Microsoft.AspNetCore.Http;
+using api_be.Domain.ResultResponses;
+
 namespace api_be.Application.Services.Imps
 {
     public class AuthService : IAuthService

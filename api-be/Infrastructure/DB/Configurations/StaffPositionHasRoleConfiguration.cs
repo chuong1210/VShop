@@ -12,11 +12,14 @@ namespace api_be.Infrastructure.DB.Configurations
 
             builder.HasOne(x => x.Role)
                    .WithMany()
-                   .HasForeignKey(x => x.RoleId);
+                   .HasForeignKey(x => x.RoleId).OnDelete(DeleteBehavior.Cascade);
+            ;
 
             builder.HasOne(x => x.StaffPosition)
                    .WithMany()
-                   .HasForeignKey(x => x.StaffPositionId);
+                   .HasForeignKey(x => x.StaffPositionId).OnDelete(DeleteBehavior.Cascade);
+            ;
+
         }
     }
 }

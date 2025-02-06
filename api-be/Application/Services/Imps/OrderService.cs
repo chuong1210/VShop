@@ -1,11 +1,9 @@
 ﻿using api_be.Domain.Constants;
 using api_be.Core.Entities;
 using api_be.Middleware;
-using api_be.Domain.Models.Request.OrderRequest;
-using api_be.Domain.Models.Responses;
-using api_be.Domain.DefaultValidatorBase;
-using api_be.Application.ValidatorRequest.OrderValidator.BaseOrders;
-using api_be.Application.ValidatorRequest.OrderValidator;
+using api_be.Application.Models.Request.OrderRequest;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest.OrderValidator;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using api_be.Core.Domain.Interfaces;
@@ -21,6 +19,9 @@ using api_be.Infrastructure.DB;
 using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Application.Models.ValidatorRequest.OrderValidator.BaseOrders;
 
 namespace api_be.Application.Services.Imps
 {

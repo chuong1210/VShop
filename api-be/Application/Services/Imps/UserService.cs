@@ -2,12 +2,10 @@
 using api_be.Core.Entities.Auth;
 using api_be.Domain.Exceptions;
 using api_be.Domain.Extensions;
-using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Responses;
-using api_be.Application.ValidatorRequest;
+using api_be.Application.Models.Request;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest;
 using api_be.Domain.Transforms;
-using api_be.Validator;
-using api_be.Domain.DefaultValidatorBase;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +14,8 @@ using Sieve.Services;
 using api_be.Infrastructure.DB;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace api_be.Application.Services.Imps
 {

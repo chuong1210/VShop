@@ -1,9 +1,8 @@
 ﻿using api_be.Application.Services.HubService;
-using api_be.Application.ValidatorRequest;
 using api_be.Core.Domain.Interfaces;
 using api_be.Core.Entities;
-using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Responses;
+using api_be.Application.Models.Request;
+using api_be.Application.Responses;
 using api_be.Infrastructure.Data;
 using api_be.Infrastructure.DB.Interceptors;
 using api_be.Middleware;
@@ -18,7 +17,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest;
 namespace api_be.Application.Services.Imps
 {
     [RegisterService(ServiceLifetime.Scoped)]

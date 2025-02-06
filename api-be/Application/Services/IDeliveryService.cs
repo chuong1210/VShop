@@ -1,9 +1,8 @@
-﻿using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Request.DeliveryRequest;
-using api_be.Domain.Models.Request.DeliveryRequest;
-using api_be.Domain.Models.Responses;
-using api_be.Domain.DefaultValidatorBase;
-using api_be.Domain.DefaultValidatorBase;
+﻿using api_be.Application.Models.Request;
+using api_be.Application.Models.Request.DeliveryRequest;
+using api_be.Application.Responses;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace api_be.Application.Services
 {

@@ -1,11 +1,13 @@
 ﻿using api_be.Core.Domain;
 using api_be.Core.Domain.Interfaces;
-using api_be.Domain.Models.Responses;
+using api_be.Application.Responses;
 using api_be.Domain.Transforms;
 using AutoMapper;
 using FluentValidation;
 using api_be.Infrastructure.DB;
 using Microsoft.AspNetCore.Http;
+using api_be.Domain.ResultResponses;
+
 namespace api_be.Application.Services.CreateBase
 {
 

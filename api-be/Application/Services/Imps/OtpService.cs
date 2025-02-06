@@ -1,6 +1,7 @@
-﻿using api_be.Domain.Models.Responses;
+﻿using api_be.Application.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
+using api_be.Domain.ResultResponses;
 
 namespace api_be.Application.Services.Imps
 {

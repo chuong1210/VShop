@@ -2,14 +2,12 @@
 using api_be.Core.Entities;
 using api_be.Domain.Exceptions;
 using api_be.Domain.Extensions;
-using api_be.Domain.Models.Request.PaymentRequest;
-using api_be.Domain.Models.Responses;
-using api_be.Application.ValidatorRequest.CouponValidator.BaseCoupon;
-using api_be.Domain.DefaultValidatorBase;
-using api_be.Application.ValidatorRequest.PaymentValidator.BasePayment;
+using api_be.Application.Models.Request.PaymentRequest;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest.CouponValidator.BaseCoupon;
+using api_be.Application.Models.ValidatorRequest.PaymentValidator.BasePayment;
 using api_be.Domain.Transforms;
-using  api_be.Application.ValidatorRequest.BaseCategory;
-using api_be.Domain.DefaultValidatorBase;
+using api_be.Application.Models.ValidatorRequest.BaseCategory;
 using Microsoft.EntityFrameworkCore;
 using Sieve.Models;
 using Sieve.Services;
@@ -19,6 +17,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using api_be.Middleware;
 using Microsoft.Extensions.DependencyInjection;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace api_be.Application.Services.Imps
 {

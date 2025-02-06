@@ -3,14 +3,13 @@ using api_be.Core.Entities.Auth;
 using api_be.Domain.Exceptions;
 using api_be.Domain.Extensions;
 using api_be.Middleware;
-using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Request.RoleRequest;
-using api_be.Domain.Models.Responses;
-using api_be.Application.ValidatorRequest;
-using api_be.Domain.DefaultValidatorBase;
-using api_be.Application.ValidatorRequest.RoleValidator;
+using api_be.Application.Models.Request;
+using api_be.Application.Models.Request.RoleRequest;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest;
+using api_be.Application.Models.ValidatorRequest.RoleValidator;
 using api_be.Domain.Transforms;
-using  api_be.Application.ValidatorRequest.BaseCategory;
+using api_be.Application.Models.ValidatorRequest.BaseCategory;
 using Microsoft.EntityFrameworkCore;
 using Sieve.Models;
 using Sieve.Services;
@@ -20,6 +19,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace api_be.Application.Services.Imps
 {

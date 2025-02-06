@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "api_be.Domain.Models.Request.CreateCategoryRequest",
+        "Type": "api_be.Application.Models.Request.CreateCategoryRequest",
         "IsRequired": true
       }
     ],
@@ -87,7 +87,7 @@
       },
       {
         "Name": "request",
-        "Type": "api_be.Domain.Models.Request.UpdateCategoryRequest",
+        "Type": "api_be.Application.Models.Request.UpdateCategoryRequest",
         "IsRequired": true
       }
     ],
@@ -161,7 +161,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "api_be.Domain.Models.Request.MessageRequest",
+        "Type": "api_be.Application.Models.Request.MessageRequest",
         "IsRequired": true
       }
     ],
@@ -218,7 +218,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.CouponRequest.CreateOrUpdateCopuponRequest",
+        "Type": "api_be.Application.Models.Request.CouponRequest.CreateOrUpdateCopuponRequest",
         "IsRequired": true
       }
     ],
@@ -234,7 +234,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.CouponRequest.CreateOrUpdateCopuponRequest",
+        "Type": "api_be.Application.Models.Request.CouponRequest.CreateOrUpdateCopuponRequest",
         "IsRequired": true
       }
     ],
@@ -250,7 +250,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.CouponRequest.ChangeStatusCouponRequest",
+        "Type": "api_be.Application.Models.Request.CouponRequest.ChangeStatusCouponRequest",
         "IsRequired": true
       }
     ],
@@ -328,7 +328,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.CustomerRequest.UpdateCustomerRequest",
+        "Type": "api_be.Application.Models.Request.CustomerRequest.UpdateCustomerRequest",
         "IsRequired": true
       }
     ],
@@ -344,7 +344,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.CustomerRequest.UpdateCustomerRequest",
+        "Type": "api_be.Application.Models.Request.CustomerRequest.UpdateCustomerRequest",
         "IsRequired": true
       }
     ],
@@ -422,7 +422,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.DeliveryRequest.CreateOrUpdateDeliveryRequest",
+        "Type": "api_be.Application.Models.Request.DeliveryRequest.CreateOrUpdateDeliveryRequest",
         "IsRequired": true
       }
     ],
@@ -438,7 +438,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.DeliveryRequest.CreateOrUpdateDeliveryRequest",
+        "Type": "api_be.Application.Models.Request.DeliveryRequest.CreateOrUpdateDeliveryRequest",
         "IsRequired": true
       }
     ],
@@ -454,7 +454,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.DeliveryRequest.ChangeStatusDeliveryRequest",
+        "Type": "api_be.Application.Models.Request.DeliveryRequest.ChangeStatusDeliveryRequest",
         "IsRequired": true
       }
     ],
@@ -532,7 +532,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.DistributorRequest.CreateOrUpdateDistributorRequest",
+        "Type": "api_be.Application.Models.Request.DistributorRequest.CreateOrUpdateDistributorRequest",
         "IsRequired": true
       }
     ],
@@ -548,7 +548,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.DistributorRequest.CreateOrUpdateDistributorRequest",
+        "Type": "api_be.Application.Models.Request.DistributorRequest.CreateOrUpdateDistributorRequest",
         "IsRequired": true
       }
     ],
@@ -574,6 +574,116 @@
     "ContainingType": "api_be.Controllers.DistributorController",
     "Method": "Get",
     "RelativePath": "smw-api/distributor/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.ImportGoodsController",
+    "Method": "Get",
+    "RelativePath": "smw-api/import-goods",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.ImportGoodsController",
+    "Method": "Post",
+    "RelativePath": "smw-api/import-goods",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Application.Models.Request.ImportGoodRequest.CreateImportGoodsRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.ImportGoodsController",
+    "Method": "Put",
+    "RelativePath": "smw-api/import-goods",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Application.Models.Request.ImportGoodRequest.UpdateImportGoodsRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.ImportGoodsController",
+    "Method": "ChangeStatus",
+    "RelativePath": "smw-api/import-goods",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Application.Models.Request.ImportGoodRequest.ChangeStatusImportGoodsRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.Controllers.ImportGoodsController",
+    "Method": "Get",
+    "RelativePath": "smw-api/import-goods/detail",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -642,7 +752,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.OrderRequest.AddProductToCartRequest",
+        "Type": "api_be.Application.Models.Request.OrderRequest.AddProductToCartRequest",
         "IsRequired": true
       }
     ],
@@ -658,7 +768,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.OrderRequest.UpdateProductInCartRequest",
+        "Type": "api_be.Application.Models.Request.OrderRequest.UpdateProductInCartRequest",
         "IsRequired": true
       }
     ],
@@ -674,7 +784,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.OrderRequest.AddCouponToCartRequest",
+        "Type": "api_be.Application.Models.Request.OrderRequest.AddCouponToCartRequest",
         "IsRequired": true
       }
     ],
@@ -690,7 +800,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.OrderRequest.RemoveProductInCartRequest",
+        "Type": "api_be.Application.Models.Request.OrderRequest.RemoveProductInCartRequest",
         "IsRequired": true
       }
     ],
@@ -748,7 +858,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.OrderRequest.CancelOrderRequest",
+        "Type": "api_be.Application.Models.Request.OrderRequest.CancelOrderRequest",
         "IsRequired": true
       }
     ],
@@ -764,7 +874,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.OrderRequest.ChangeStatusOrderRequest",
+        "Type": "api_be.Application.Models.Request.OrderRequest.ChangeStatusOrderRequest",
         "IsRequired": true
       }
     ],
@@ -780,7 +890,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.OrderRequest.CreateOrderRequest",
+        "Type": "api_be.Application.Models.Request.OrderRequest.CreateOrderRequest",
         "IsRequired": true
       }
     ],
@@ -837,7 +947,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.PaymentRequest.CreateOrUpdatePaymentRequest",
+        "Type": "api_be.Application.Models.Request.PaymentRequest.CreateOrUpdatePaymentRequest",
         "IsRequired": true
       }
     ],
@@ -853,7 +963,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.PaymentRequest.CreateOrUpdatePaymentRequest",
+        "Type": "api_be.Application.Models.Request.PaymentRequest.CreateOrUpdatePaymentRequest",
         "IsRequired": true
       }
     ],
@@ -998,7 +1108,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.CreateProductRequest",
+        "Type": "api_be.Application.Models.Request.CreateProductRequest",
         "IsRequired": true
       }
     ],
@@ -1014,7 +1124,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.UpdateProductRequest",
+        "Type": "api_be.Application.Models.Request.UpdateProductRequest",
         "IsRequired": true
       }
     ],
@@ -1030,7 +1140,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.ChangeStatusProductRequest",
+        "Type": "api_be.Application.Models.Request.ChangeStatusProductRequest",
         "IsRequired": true
       }
     ],
@@ -1278,7 +1388,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.PromotionRequest.CreateOrUpdatePromotionRequest",
+        "Type": "api_be.Application.Models.Request.PromotionRequest.CreateOrUpdatePromotionRequest",
         "IsRequired": true
       }
     ],
@@ -1294,7 +1404,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.PromotionRequest.CreateOrUpdatePromotionRequest",
+        "Type": "api_be.Application.Models.Request.PromotionRequest.CreateOrUpdatePromotionRequest",
         "IsRequired": true
       }
     ],
@@ -1310,7 +1420,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.PromotionRequest.ChangeStatusPromotionRequest",
+        "Type": "api_be.Application.Models.Request.PromotionRequest.ChangeStatusPromotionRequest",
         "IsRequired": true
       }
     ],
@@ -1326,7 +1436,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.PromotionRequest.ApplyPromotionForProductRequest",
+        "Type": "api_be.Application.Models.Request.PromotionRequest.ApplyPromotionForProductRequest",
         "IsRequired": true
       }
     ],
@@ -1404,7 +1514,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.RoleRequest.CreateOrUpdateRoleRequest",
+        "Type": "api_be.Application.Models.Request.RoleRequest.CreateOrUpdateRoleRequest",
         "IsRequired": true
       }
     ],
@@ -1420,7 +1530,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.RoleRequest.CreateOrUpdateRoleRequest",
+        "Type": "api_be.Application.Models.Request.RoleRequest.CreateOrUpdateRoleRequest",
         "IsRequired": true
       }
     ],
@@ -1452,7 +1562,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.RoleRequest.AssignPermissionsForRoleRequest",
+        "Type": "api_be.Application.Models.Request.RoleRequest.AssignPermissionsForRoleRequest",
         "IsRequired": true
       }
     ],
@@ -1562,7 +1672,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.AssignRoleUserRequest",
+        "Type": "api_be.Application.Models.Request.AssignRoleUserRequest",
         "IsRequired": true
       }
     ],
@@ -1594,7 +1704,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.ChangePasswordRequest",
+        "Type": "api_be.Application.Models.Request.ChangePasswordRequest",
         "IsRequired": true
       }
     ],
@@ -1610,7 +1720,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.CreateUserRequest",
+        "Type": "api_be.Application.Models.Request.CreateUserRequest",
         "IsRequired": true
       }
     ],
@@ -1626,7 +1736,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "api_be.Domain.Models.Request.ForgotPasswordRequest",
+        "Type": "api_be.Application.Models.Request.ForgotPasswordRequest",
         "IsRequired": true
       }
     ],
@@ -1658,7 +1768,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.LoginAccountRequest",
+        "Type": "api_be.Application.Models.Request.LoginAccountRequest",
         "IsRequired": true
       }
     ],
@@ -1676,6 +1786,16 @@
   },
   {
     "ContainingType": "UI.WebApi.Controllers.UserController",
+    "Method": "GetUserChatPermission",
+    "RelativePath": "smw-api/user/message",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UI.WebApi.Controllers.UserController",
     "Method": "Refresh",
     "RelativePath": "smw-api/user/refresh-token",
     "HttpMethod": "POST",
@@ -1684,7 +1804,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.BaseTokenRequest",
+        "Type": "api_be.Application.Models.Request.BaseTokenRequest",
         "IsRequired": true
       }
     ],
@@ -1700,7 +1820,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "api_be.Domain.Models.Request.RegisterAccountRequest",
+        "Type": "api_be.Application.Models.Request.RegisterAccountRequest",
         "IsRequired": true
       }
     ],
@@ -1716,7 +1836,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "api_be.Domain.Models.Request.ResendVerificationEmailRequest",
+        "Type": "api_be.Application.Models.Request.ResendVerificationEmailRequest",
         "IsRequired": true
       }
     ],
@@ -1732,7 +1852,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "api_be.Domain.Models.Request.ResetPasswordRequest",
+        "Type": "api_be.Application.Models.Request.ResetPasswordRequest",
         "IsRequired": true
       }
     ],
@@ -1748,7 +1868,7 @@
     "Parameters": [
       {
         "Name": "pRequest",
-        "Type": "api_be.Domain.Models.Request.UpdateUserRequest",
+        "Type": "api_be.Application.Models.Request.UpdateUserRequest",
         "IsRequired": true
       }
     ],
@@ -1805,7 +1925,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "api_be.Domain.Models.Request.VerifyEmailRequest",
+        "Type": "api_be.Application.Models.Request.VerifyEmailRequest",
         "IsRequired": true
       }
     ],

@@ -8,8 +8,10 @@ namespace api_be.Infrastructure.DB.Configurations
     {
         public void Configure(EntityTypeBuilder<StaffPosition> builder)
         {
+            builder.ToTable("StaffPositions");
+
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.InternalCode).HasMaxLength(50);
+            builder.Property(x => x.InternalCode).HasMaxLength(50).IsUnicode(false);
             builder.Property(x => x.Name).HasMaxLength(100);
         }
     }

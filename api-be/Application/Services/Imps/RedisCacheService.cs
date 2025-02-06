@@ -1,4 +1,4 @@
-﻿using api_be.Domain.DefaultValidatorBase;
+﻿using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;

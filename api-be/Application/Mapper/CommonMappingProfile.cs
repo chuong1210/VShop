@@ -1,9 +1,8 @@
-﻿
-using api_be.Domain.Models.Common;
-using api_be.Domain.Models.Responses;
+﻿using api_be.Application.Responses;
 using AutoMapper;
 using Newtonsoft.Json;
-using  api_be.Core.Domain;
+using api_be.Core.Domain;
+using api_be.Application.Models.Common;
 
 namespace api_be.Application.Mapper
 {
@@ -26,8 +25,8 @@ namespace api_be.Application.Mapper
             CreateMap<Option, string>().ConvertUsing<OptionToStringTypeConverter>();
             CreateMap<string, Option>().ConvertUsing<StringToOptionTypeConverter>();
 
-            CreateMap<List<api_be.Domain.Models.Common.Extra>, string>().ConvertUsing<ExtraToStringTypeConverter>();
-            CreateMap<string, List<api_be.Domain.Models.Common.Extra>>().ConvertUsing<StringToExtraTypeConverter>();
+            CreateMap<List<Extra>, string>().ConvertUsing<ExtraToStringTypeConverter>();
+            CreateMap<string, List<Extra>>().ConvertUsing<StringToExtraTypeConverter>();
 
 
         }
@@ -187,9 +186,9 @@ namespace api_be.Application.Mapper
     #endregion
 
     #region List<Extra> và string
-    public class ExtraToStringTypeConverter : ITypeConverter<List<api_be.Domain.Models.Common.Extra>, string>
+    public class ExtraToStringTypeConverter : ITypeConverter<List<Extra>, string>
     {
-        public string Convert(List<api_be.Domain.Models.Common.Extra> source, string destination, ResolutionContext context)
+        public string Convert(List<Extra> source, string destination, ResolutionContext context)
         {
             if (source == null || source.Count == 0)
             {
@@ -206,16 +205,16 @@ namespace api_be.Application.Mapper
         }
     }
 
-    public class StringToExtraTypeConverter : ITypeConverter<string, List<api_be.Domain.Models.Common.Extra>>
+    public class StringToExtraTypeConverter : ITypeConverter<string, List<Extra>>
     {
-        public List<api_be.Domain.Models.Common.Extra> Convert(string source, List<api_be.Domain.Models.Common.Extra> destination, ResolutionContext context)
+        public List<Extra> Convert(string source, List<Extra> destination, ResolutionContext context)
         {
             if (string.IsNullOrEmpty(source))
             {
                 return null;
             }
 
-            var extraValue = JsonConvert.DeserializeObject<List<api_be.Domain.Models.Common.Extra>>(source);
+            var extraValue = JsonConvert.DeserializeObject<List<Extra>>(source);
             return extraValue;
         }
     }
