@@ -1,15 +1,16 @@
 ﻿using api_be.Domain.Exceptions;
 using api_be.Domain.Extensions;
 using api_be.Middleware;
-using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Responses;
-using api_be.Domain.DefaultValidatorBase;
+using api_be.Application.Models.Request;
+using api_be.Application.Responses;
 using api_be.Application.Services;
 using api_be.Domain.Transforms;
 using CloudinaryDotNet;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using api_be.Application.Services.KafkaService;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace UI.WebApi.Controllers
 {

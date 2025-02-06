@@ -1,15 +1,16 @@
-﻿using api_be.Domain.Models.Common;
-using VNPAY.NET.Enums;
+﻿using VNPAY.NET.Enums;
 using VNPAY.NET.Models;
 using VNPAY.NET;
 using Microsoft.Extensions.Options;
 using Twilio.Rest.Api.V2010.Account.Conference;
-using api_be.Application.ValidatorRequest.PaymentValidator;
-using api_be.Domain.Models.Responses;
-using api_be.Application.ValidatorRequest.PaymentValidator.BasePayment;
+using api_be.Application.Models.ValidatorRequest.PaymentValidator;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest.PaymentValidator.BasePayment;
 using Microsoft.EntityFrameworkCore;
-using api_be.Domain.Models.Request.PaymentRequest;
+using api_be.Application.Models.Request.PaymentRequest;
 using Microsoft.AspNetCore.Http;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.Common;
 
 namespace api_be.Application.Services.Imps
 {

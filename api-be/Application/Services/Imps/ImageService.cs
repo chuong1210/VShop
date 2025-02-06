@@ -2,7 +2,7 @@
 
 using api_be.Domain.Extensions;
 using api_be.Middleware;
-using api_be.Domain.Models.Responses;
+using api_be.Application.Responses;
 using api_be.Domain.Transforms;
 using CloudinaryDotNet;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +11,7 @@ using System.Net.Http;
 using api_be.Infrastructure.DB;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Http;
+using api_be.Domain.ResultResponses;
 
 namespace api_be.Application.Services.Imps
 {

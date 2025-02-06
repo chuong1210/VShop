@@ -1,7 +1,6 @@
-﻿using api_be.Domain.Models.Request.CouponRequest;
-using api_be.Domain.Models.Responses;
-using api_be.Application.ValidatorRequest.CouponValidator;
-using api_be.Domain.DefaultValidatorBase;
+﻿using api_be.Application.Models.Request.CouponRequest;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest.CouponValidator;
 using Microsoft.EntityFrameworkCore;
 using static api_be.Core.Entities.Coupon;
 using System.Threading;
@@ -10,18 +9,21 @@ using CloudinaryDotNet;
 using Sieve.Services;
 using api_be.Domain.Extensions;
 using api_be.Core.Entities;
-using  api_be.Application.ValidatorRequest.BaseProduct;
+using api_be.Application.Models.ValidatorRequest.BaseProduct;
 using Twilio.TwiML.Voice;
 using api_be.Domain.Transforms;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Sieve.Models;
 using api_be.Domain.Constants;
 using api_be.Domain.Exceptions;
-using api_be.Application.ValidatorRequest.RoleValidator;
-using api_be.Application.ValidatorRequest.CouponValidator.BaseCoupon;
+using api_be.Application.Models.ValidatorRequest.RoleValidator;
+using api_be.Application.Models.ValidatorRequest.CouponValidator.BaseCoupon;
 using api_be.Infrastructure.DB;
 using Microsoft.AspNetCore.Http;
 using AutoMapper;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+
 
 namespace api_be.Application.Services.Imps
 {

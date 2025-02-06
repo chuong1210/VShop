@@ -1,9 +1,9 @@
+C:\Users\chuon\Desktop\VShop\api-be\Domain\obj\Debug\net8.0\api_be.Domain.csproj.AssemblyReference.cache
 C:\Users\chuon\Desktop\VShop\api-be\Domain\obj\Debug\net8.0\api_be.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\chuon\Desktop\VShop\api-be\Domain\obj\Debug\net8.0\api_be.Domain.AssemblyInfoInputs.cache
 C:\Users\chuon\Desktop\VShop\api-be\Domain\obj\Debug\net8.0\api_be.Domain.AssemblyInfo.cs
 C:\Users\chuon\Desktop\VShop\api-be\Domain\obj\Debug\net8.0\api_be.Domain.csproj.CoreCompileInputs.cache
 C:\Users\chuon\Desktop\VShop\api-be\Domain\obj\Debug\net8.0\api_be.Domain.sourcelink.json
-C:\Users\chuon\Desktop\VShop\api-be\Domain\obj\Debug\net8.0\api_be.Domain.csproj.AssemblyReference.cache
 C:\Users\chuon\Desktop\VShop\api-be\Domain\bin\Debug\net8.0\api_be.Domain.deps.json
 C:\Users\chuon\Desktop\VShop\api-be\Domain\bin\Debug\net8.0\api_be.Domain.dll
 C:\Users\chuon\Desktop\VShop\api-be\Domain\bin\Debug\net8.0\api_be.Domain.pdb

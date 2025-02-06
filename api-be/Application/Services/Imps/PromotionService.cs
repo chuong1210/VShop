@@ -4,13 +4,9 @@ using api_be.Core.Domain.Interfaces;
 using api_be.Core.Entities;
 using api_be.Domain.Exceptions;
 using api_be.Domain.Extensions;
-using api_be.Domain.Models.Request.PromotionRequest;
-using api_be.Domain.Models.Responses;
-using api_be.Domain.DefaultValidatorBase;
-using api_be.Application.ValidatorRequest.OrderValidator.BaseOrders;
-using api_be.Application.ValidatorRequest.PromotionValidator;
-using api_be.Application.ValidatorRequest.PromotionValidator.BasePromotion;
-using api_be.Application.ValidatorRequest.RoleValidator;
+using api_be.Application.Models.Request.PromotionRequest;
+using api_be.Application.Responses;
+
 using api_be.Domain.Transforms;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +21,10 @@ using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using api_be.Middleware;
 using Microsoft.Extensions.DependencyInjection;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Application.Models.ValidatorRequest.PromotionValidator;
+using api_be.Application.Models.ValidatorRequest.PromotionValidator.BasePromotion;
 
 namespace api_be.Application.Services.Imps
 {

@@ -1,18 +1,17 @@
 ﻿using api_be.Core.Entities;
 using api_be.Core.Entities.Auth;
-using api_be.Domain.Models;
-using api_be.Domain.Models.Request;
+using api_be.Application.Models.Request;
 using AutoMapper;
 using Sieve.Models;
-using api_be.Domain.Models.Responses;
-using api_be.Domain.DefaultValidatorBase;
-using api_be.Domain.Models.Request.RoleRequest;
-using api_be.Domain.Models.Request.CouponRequest;
-using api_be.Domain.Models.Request.PromotionRequest;
-using api_be.Domain.Models.Request.DeliveryRequest;
-using api_be.Application.ValidatorRequest.RoleValidator;
-using api_be.Domain.Models.Request.PaymentRequest;
-using api_be.Domain.Models.Request.DistributorRequest;
+using api_be.Application.Responses;
+using api_be.Application.Models.Request.RoleRequest;
+using api_be.Application.Models.Request.CouponRequest;
+using api_be.Application.Models.Request.PromotionRequest;
+using api_be.Application.Models.Request.DeliveryRequest;
+using api_be.Application.Models.ValidatorRequest.RoleValidator;
+using api_be.Application.Models.Request.PaymentRequest;
+using api_be.Application.Models.Request.DistributorRequest;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 namespace api_be.Application.Mapper
 {
     public class MappingProfile : Profile

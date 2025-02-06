@@ -1,12 +1,12 @@
 ﻿using api_be.Domain.Exceptions;
 using api_be.Middleware;
-using api_be.Domain.Models.Request.OrderRequest;
-using api_be.Domain.Models.Responses;
+using api_be.Application.Models.Request.OrderRequest;
+using api_be.Application.Responses;
 using api_be.Application.Services;
 using api_be.Application.Services.Imps;
-using api_be.Domain.DefaultValidatorBase;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace api_be.Controllers
 {

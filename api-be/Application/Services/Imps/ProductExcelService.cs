@@ -1,10 +1,9 @@
 ﻿using api_be.Core.Domain.Interfaces;
 using api_be.Core.Entities;
 using api_be.Domain.Extensions;
-using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Responses;
-using  api_be.Application.ValidatorRequest.BaseProduct;
-using api_be.Domain.DefaultValidatorBase;
+using api_be.Application.Models.Request;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest.BaseProduct;
 using ClosedXML.Excel;
 using System.Data;
 
@@ -13,6 +12,9 @@ using Microsoft.Extensions.Logging;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+
 
 namespace api_be.Application.Services.Imps
 {

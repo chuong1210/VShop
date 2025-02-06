@@ -1,6 +1,6 @@
 ﻿using api_be.Core.Entities;
 using api_be.Core.Models.Common;
-using api_be.Domain.Models.Common;
+using api_be.Application.Models.Common;
 using Confluent.Kafka;
 using Elastic.Clients.Elasticsearch;
 using Elastic.Clients.Elasticsearch.Core.Bulk;

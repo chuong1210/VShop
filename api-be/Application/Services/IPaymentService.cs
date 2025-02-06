@@ -1,8 +1,8 @@
-﻿using api_be.Domain.Models.Request.DistributorRequest;
-using api_be.Domain.Models.Request.PaymentRequest;
-using api_be.Domain.Models.Responses;
-using api_be.Domain.DefaultValidatorBase;
-using api_be.Domain.DefaultValidatorBase;
+﻿using api_be.Application.Models.Request.DistributorRequest;
+using api_be.Application.Models.Request.PaymentRequest;
+using api_be.Application.Responses;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace api_be.Application.Services
 {

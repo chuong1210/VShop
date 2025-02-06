@@ -1,7 +1,9 @@
 ﻿using System.Net;
 using System.Net.Mail;
-using api_be.Domain.Models.Common;
 using Microsoft.Extensions.Configuration;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.Common;
+
 namespace api_be.Application.Services.Imps
 {
     public class EmailService:IEmailService

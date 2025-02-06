@@ -1,8 +1,7 @@
 ﻿
 using api_be.Core.Domain.Interfaces;
 using api_be.Middleware;
-using api_be.Domain.Models;
-using api_be.Domain.Models.Request;
+using api_be.Application.Models.Request;
 using api_be.Application.Services;
 using api_be.Domain.Transforms;
 using Azure;

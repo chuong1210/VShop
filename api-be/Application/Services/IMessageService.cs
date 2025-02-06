@@ -1,11 +1,13 @@
 ﻿using api_be.Core.Entities;
-using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Responses;
+using api_be.Application.Models.Request;
+using api_be.Application.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using api_be.Domain.ResultResponses;
+
 
 namespace api_be.Application.Services
 {

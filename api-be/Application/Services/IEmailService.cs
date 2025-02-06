@@ -1,4 +1,6 @@
-﻿namespace api_be.Application.Services
+﻿using api_be.Domain.ResultResponses;
+
+namespace api_be.Application.Services
 {
     public interface IEmailService
     {

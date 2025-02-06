@@ -2,13 +2,12 @@
 using api_be.Core.Domain.Interfaces;
 using api_be.Domain.Exceptions;
 using api_be.Domain.Extensions;
-using api_be.Domain.Models.Common;
-using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Responses;
-using api_be.Domain.DefaultValidatorBase;
+using api_be.Application.Models.Common;
+using api_be.Application.Models.Request;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 using api_be.Domain.Transforms;
-using  api_be.Application.ValidatorRequest.BaseCategory;
-using api_be.Domain.DefaultValidatorBase;
+using api_be.Application.Models.ValidatorRequest.BaseCategory;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Sieve.Models;
@@ -17,6 +16,9 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using api_be.Infrastructure.DB;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Http;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+
 namespace api_be.Application.Services.Imps
 {
     public class CategoryService : ICategoryService

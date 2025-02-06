@@ -1,7 +1,8 @@
-﻿using api_be.Domain.Models.Request.PaymentRequest;
-using api_be.Domain.Models.Responses;
+﻿using api_be.Application.Models.Request.PaymentRequest;
+using api_be.Application.Responses;
 using Microsoft.AspNetCore.Http;
 using VNPAY.NET.Models;
+using api_be.Domain.ResultResponses;
 
 namespace api_be.Application.Services
 {

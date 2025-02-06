@@ -1,7 +1,6 @@
-﻿using api_be.Domain.Models.Request.DeliveryRequest;
-using api_be.Domain.Models.Responses;
-using api_be.Domain.DefaultValidatorBase;
-using api_be.Application.ValidatorRequest.DeliveryValidator;
+﻿using api_be.Application.Models.Request.DeliveryRequest;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest.DeliveryValidator;
 using Microsoft.EntityFrameworkCore;
 using static api_be.Core.Entities.Delivery;
 using System.Threading;
@@ -9,7 +8,7 @@ using api_be.Core.Domain.Interfaces;
 using Sieve.Services;
 using api_be.Domain.Extensions;
 using api_be.Core.Entities;
-using api_be.Application.ValidatorRequest.DeliveryValidator.BaseDelivery;
+using api_be.Application.Models.ValidatorRequest.DeliveryValidator.BaseDelivery;
 using api_be.Domain.Exceptions;
 using api_be.Domain.Transforms;
 using Sieve.Models;
@@ -21,6 +20,8 @@ using Azure.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using AutoMapper;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace api_be.Application.Services.Imps
 {

@@ -2,11 +2,12 @@
 
 using api_be.Domain.Exceptions;
 using api_be.Middleware;
-using api_be.Domain.Models.Request.RoleRequest;
-using api_be.Domain.Models.Responses;
-using api_be.Domain.DefaultValidatorBase;
+using api_be.Application.Models.Request.RoleRequest;
+using api_be.Application.Responses;
 using api_be.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace api_be.Controllers
 {

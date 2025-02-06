@@ -1,11 +1,13 @@
 ﻿using api_be.Core.Domain.Interfaces;
-using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Responses;
+using api_be.Application.Models.Request;
+using api_be.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using api_be.Application.Services;
 using Microsoft.AspNetCore.Authorization;
+using api_be.Domain.ResultResponses;
+
 
 namespace api_be.API.Controllers
 {

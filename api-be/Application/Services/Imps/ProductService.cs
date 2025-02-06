@@ -4,12 +4,12 @@ using api_be.Core.Entities;
 using api_be.Core.Domain.Interfaces;
 using api_be.Domain.Exceptions;
 using api_be.Domain.Extensions;
-using api_be.Domain.Models.Request;
-using api_be.Domain.Models.Responses;
-using api_be.Domain.DefaultValidatorBase;
+using api_be.Application.Models.Request;
+using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 using api_be.Domain.Transforms;
-using  api_be.Application.ValidatorRequest.BaseCategory;
-using  api_be.Application.ValidatorRequest.BaseProduct;
+using api_be.Application.Models.ValidatorRequest.BaseCategory;
+using api_be.Application.Models.ValidatorRequest.BaseProduct;
 using AutoMapper;
 using CloudinaryDotNet;
 using Microsoft.EntityFrameworkCore;
@@ -23,13 +23,16 @@ using static api_be.Domain.Extensions.ValidatorExtension;
 using api_be.Middleware;
 using static api_be.Core.Entities.Product;
 using static System.Net.Mime.MediaTypeNames;
-using api_be.Application.ValidatorRequest;
+using api_be.Application.Models.ValidatorRequest;
 using System;
-using api_be.Application.ValidatorRequest.OrderValidator.BaseOrders;
 using api_be.Infrastructure.DB;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
+using api_be.Domain.ResultResponses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Application.Models.ValidatorRequest.OrderValidator.BaseOrders;
+
 namespace api_be.Application.Services.Imps
 {
     [RegisterService(ServiceLifetime.Scoped)]
