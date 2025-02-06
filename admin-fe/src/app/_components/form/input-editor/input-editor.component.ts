@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
@@ -6,8 +7,10 @@ import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 @Component({
 	selector: 'app-input-editor-component',
 	templateUrl: './input-editor.component.html',
+
 })
 export class InputEditorComponent implements OnChanges {
+
 	@Input() label: string = '';
 	@Input() required: boolean = false;
 	@Input() disabled: boolean = false;
@@ -16,7 +19,7 @@ export class InputEditorComponent implements OnChanges {
 
 	@Output() onChange = new EventEmitter<string>();
 
-	Editor = ClassicEditor;
+	Editor =ClassicEditor;
 
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes['value'] && changes['value'].currentValue) {

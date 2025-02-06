@@ -3,6 +3,7 @@ const parse = (object?: any) => {
 		if (object) {
 			return JSON.parse(object);
 		}
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	} catch (error) {}
 
 	return object;

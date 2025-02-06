@@ -8,8 +8,8 @@ import { cookies } from './cookies';
 import { reduxStore } from '@redux/index';
 
 const request = axios.create({
-	// baseURL: process.env.NEXT_PUBLIC_API_URL,
-baseURL: 'https://localhost:7288/smw-api',
+	 baseURL: process.env.NEXT_PUBLIC_API_URL,
+// baseURL: 'https://localhost:7288/smw-api',
 
 	headers: {
 		accept: 'application/json',
@@ -67,6 +67,7 @@ const post = <T = any>(
 	data: any,
 	configs?: AxiosRequestConfig,
 ): Promise<AxiosResponse<ResponseType<T>, any>> => {
+	configs={...configs,headers: {'Content-Type': 'application/json'}}
 	const response = request.post(apiConfig[path], data, configs);
 
 	return response;

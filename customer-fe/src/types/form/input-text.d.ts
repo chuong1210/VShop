@@ -1,5 +1,4 @@
-import { BoxProps, FlexProps, InputProps, TextProps } from '@chakra-ui/react';
-import { HTMLAttributes, InputHTMLAttributes } from 'react';
+import {  FlexProps, InputProps, TextProps } from '@chakra-ui/react';
 
 type InputTextType = {
 	container?: FlexProps;

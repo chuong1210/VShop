@@ -18,6 +18,17 @@ type LoginResponse = {
 	id: number;
 	token: string;
 	exp: string;
+	userId: string;
+
+};
+
+type LoginSocialResponse = {
+	id?: number;
+	token?: string;
+	refreshToken?: string;
+	exp?: string;
+	credential?:string;
+
 };
 
 type ResetPasswordType = {
@@ -35,5 +46,9 @@ type AuthenticationDataType = {
 type VerifyEmailType = {
 	token: string
   }
-
-export type { LoginType, RegisterType, ResetPasswordType, AuthenticationDataType, LoginResponse ,VerifyEmailType};
+  type GoogleLoginType = {
+	accessToken: string;
+  };
+  
+  
+export type { LoginType,LoginSocialResponse, RegisterType, ResetPasswordType, AuthenticationDataType, LoginResponse ,VerifyEmailType,GoogleLoginType};

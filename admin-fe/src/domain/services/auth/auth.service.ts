@@ -20,7 +20,8 @@
 //     return this.loggedIn;
 //   }
 // }
-import { Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
 import { TokenData } from 'core/types/types';
 import { jwtDecode } from 'jwt-decode';
 
@@ -28,7 +29,14 @@ import { jwtDecode } from 'jwt-decode';
 	providedIn: 'root',
 })
 export class AuthService {
-	constructor() {}
+  localStorage?:Storage;
+
+  constructor(
+    @Inject(DOCUMENT) private document: Document
+  ) {
+    this.localStorage = document.defaultView?.localStorage;
+  }
+
 
 	setToken(token: string): void {
 		localStorage.setItem('authToken', token);
