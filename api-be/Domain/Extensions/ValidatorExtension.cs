@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 
 namespace api_be.Domain.Extensions
 {
@@ -90,6 +91,16 @@ namespace api_be.Domain.Extensions
             return genders.Contains(pGender);
         }
 
+        public static string RemoveNonAscii(string input)
+        {
+            return Encoding.ASCII.GetString(Encoding.ASCII.GetBytes(input))
+                                 .Replace("?", ""); // Xóa ký tự không hợp lệ
+        }
+   
+            public static long GetTimeStamp(this DateTime date)
+            {
+                return (long)(date.ToUniversalTime() - new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds;
+            }
         public static string[] GetGender()
         {
             return new string[]

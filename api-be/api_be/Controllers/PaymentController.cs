@@ -1,13 +1,13 @@
 ﻿using api_be.Domain.Exceptions;
 using api_be.Middleware;
 using api_be.Application.Models.Request.PaymentRequest;
-using api_be.Application.Responses;
 using api_be.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using api_be.Domain.ResultResponses;
 using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Application.Responses.PaymentResponse;
 
-namespace api_be.Controllers
+namespace api_be.API.Controllers
 {
     [ApiController]
     [Route("~/smw-api/[controller]")]

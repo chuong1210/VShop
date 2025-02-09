@@ -9,7 +9,7 @@ using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 using api_be.Application.Models.Request.ImportGoodRequest;
 
 
-namespace api_be.Controllers
+namespace api_be.API.Controllers
 {
     [Route("~/smw-api/import-goods")]
     [ApiController]

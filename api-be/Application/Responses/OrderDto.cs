@@ -1,4 +1,5 @@
 ﻿using api_be.Application.Models.Common;
+using api_be.Application.Responses.PaymentResponse;
 using static api_be.Core.Entities.Order;
 
 namespace api_be.Application.Responses

@@ -12,6 +12,12 @@ using api_be.Application.Models.ValidatorRequest.RoleValidator;
 using api_be.Application.Models.Request.PaymentRequest;
 using api_be.Application.Models.Request.DistributorRequest;
 using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Application.Models.ValidatorRequest.StaffValidator;
+using api_be.Application.Models.Request.StaffRequest;
+using api_be.Application.Models.Request.SupplierOrderRequest;
+using api_be.Application.Models.Request.ImportGoodRequest;
+using api_be.Application.Models.Request.StaffPossitionRequest;
+using api_be.Application.Responses.PaymentResponse;
 namespace api_be.Application.Mapper
 {
     public class MappingProfile : Profile
@@ -40,11 +46,6 @@ namespace api_be.Application.Mapper
             //        src.UserRoles != null ? src.UserRoles.Select(ur => ur.Role.Name) : new List<string>())).ReverseMap()
             //;
 
-            CreateMap<Distributor, DistributorDto>().ReverseMap();
-
-            CreateMap<Category, CategoryDto>().ReverseMap();
-
-            CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<CreateProductRequest, Product>().ReverseMap();
             CreateMap<CreateOrUpdateRoleRequest, Role>().ReverseMap();
             CreateMap<CreateOrUpdateCopuponRequest, Coupon>().ReverseMap();
@@ -53,8 +54,24 @@ namespace api_be.Application.Mapper
             CreateMap<CreateOrUpdatePaymentRequest, Payment>().ReverseMap();
             CreateMap<CreateOrUpdateDistributorRequest, Distributor>().ReverseMap();
             CreateMap<MessageRequest, Message>().ReverseMap();
+            CreateMap<CreateOrUpdateStaffRequest, Staff>().ReverseMap();
+            CreateMap<CreateOrUpdateSupplierOrderRequest, SupplierOrder>().ReverseMap();
+            CreateMap<CreateImportGoodsRequest, SupplierOrder>().ReverseMap();
+            CreateMap<UpdateImportGoodsRequest, SupplierOrder>().ReverseMap();
+            CreateMap<CreateOrUpdateStaffPositionRequest, StaffPosition>().ReverseMap();
+            CreateMap<CreateOrUpdateStaffRequest, Staff>().ReverseMap();
 
 
+
+
+
+
+
+            CreateMap<Distributor, DistributorDto>().ReverseMap();
+
+            CreateMap<Category, CategoryDto>().ReverseMap();
+
+            CreateMap<Product, ProductDto>().ReverseMap();
 
 
 
@@ -62,6 +79,8 @@ namespace api_be.Application.Mapper
 
             CreateMap<Payment, PaymentDto>().ReverseMap();
 
+
+            CreateMap<Staff, StaffDto>().ReverseMap();
 
             CreateMap<StaffPosition, StaffPositionDto>().ReverseMap();
 

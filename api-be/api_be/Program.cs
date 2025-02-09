@@ -21,6 +21,7 @@ using api_be.Infrastructure.DB.Interceptors;
 using api_be.Core.Entities;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using api_be.Application.Services.HubService;
+using api_be.Application.Models.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
@@ -153,11 +154,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         }
                     };
                 });
-                    
-                
+
+builder.Services.Configure<VNPayConfig>(builder.Configuration.GetSection(VNPayConfig.ConfigName));
+builder.Services.Configure<ZaloPayConfig>(builder.Configuration.GetSection(ZaloPayConfig.ConfigName));
 
 
-builder.Services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
+
 builder.Services.AddSingleton(sp =>
 {
     var config = builder.Configuration.GetSection("Cloudinary");
@@ -187,6 +189,8 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(provider =>
     var configuration = ConfigurationOptions.Parse($"localhost:{redisConfig["Port"]}", true); // Thay 'localhost:6379' bằng cấu hình Redis của bạn.
     return ConnectionMultiplexer.Connect(configuration);
 });
+builder.Services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPermissionPoliciesFromAttributes(Assembly.GetExecutingAssembly());

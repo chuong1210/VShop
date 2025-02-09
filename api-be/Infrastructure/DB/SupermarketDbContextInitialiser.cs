@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using api_be.Core.Entities.Auth;
+using api_be.Core.Entities;
+using api_be.Infrastructure.Services;
+using System.Data;
 
 namespace api_be.Infrastructure.DB
 {
@@ -115,6 +118,58 @@ namespace api_be.Infrastructure.DB
                     await _context.SaveChangesAsync(default(CancellationToken));
                 }
             }
+
+
+            DateTime created = DateTime.Now;
+
+            var defaultPositions = new List<StaffPosition>
+    {
+        new StaffPosition { InternalCode = CommonService.InternalCodeGeneration("STAFF_POSITION",created), Name = "Manager", Describes = "Quản lý cửa hàng" },
+        new StaffPosition { InternalCode = CommonService.InternalCodeGeneration("STAFF_POSITION",created), Name = "Cashier", Describes = "Nhân viên thu ngân" },
+        new StaffPosition { InternalCode = CommonService.InternalCodeGeneration("STAFF_POSITION",created), Name = "Stock Keeper", Describes = "Nhân viên kho" }
+    };
+
+            foreach (var position in defaultPositions)
+            {
+                if (!await _context.StaffPositions.AnyAsync(x => x.InternalCode == position.InternalCode))
+                {
+                    await _context.StaffPositions.AddAsync(position);
+                }
+            }
+
+            await _context.SaveChangesAsync(default(CancellationToken));
+
+            // Seed StaffPositionHasRole (Gán role mặc định cho các chức vụ)
+            var staffPositions = await _context.StaffPositions.ToListAsync();
+            var roles = await _context.Roles.ToListAsync();
+
+            foreach (var position in staffPositions)
+            {
+                var roleFind = roles.FirstOrDefault(r => r.Name.ToLower() == "admin"); // Gán role "admin" mặc định
+                if (roleFind != null)
+                {
+                    var staffPositionHasRole = new StaffPositionHasRole
+                    {
+                        StaffPositionId = position.Id,
+                        RoleId = roleFind.Id
+                    };
+
+                    if (!await _context.StaffPositionHasRoles.AnyAsync(x => x.StaffPositionId == position.Id && x.RoleId == role.Id))
+                    {
+                        await _context.StaffPositionHasRoles.AddAsync(staffPositionHasRole);
+                    }
+                }
+            }
+            await _context.SaveChangesAsync(default(CancellationToken));
+        
+
+
+
+
+
+
+
+
         }
-    }
+}
 }

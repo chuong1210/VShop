@@ -21,6 +21,8 @@ namespace api_be.Application.Services
         public Task<Result<bool>> ChangeStatus(ChangeStatusSupplierOrderRequest request);
 
         public Task<Result<SupplierOrderDto>> Detail(DetailBaseCommand request);
-        public Task<PaginatedResult<List<ImportGoodDto>>> GetList(ListBaseCommand request);
+        public Task<Result<List<ProductSupplierOrderDto>>> ProductSupplierOrder(DetailBaseCommand request);
+
+        public Task<PaginatedResult<List<SupplierOrderDto>>> GetList(ListBaseCommand request);
     }
 }

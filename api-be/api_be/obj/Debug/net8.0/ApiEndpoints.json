@@ -1,6 +1,84 @@
 [
   {
-    "ContainingType": "api_be.Controllers.CategoryController",
+    "ContainingType": "api_be.API.Controllers.AmazonS3Controller",
+    "Method": "GetFileAsync",
+    "RelativePath": "smw-api/amazons3",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pKey",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.AmazonS3Controller",
+    "Method": "UploadFile",
+    "RelativePath": "smw-api/amazons3/file",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ContentType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ContentDisposition",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Headers",
+        "Type": "Microsoft.AspNetCore.Http.IHeaderDictionary",
+        "IsRequired": false
+      },
+      {
+        "Name": "Length",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FileName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.AmazonS3Controller",
+    "Method": "UploadFileAsync",
+    "RelativePath": "smw-api/amazons3/upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pPath",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.CategoryController",
     "Method": "Create",
     "RelativePath": "smw-api/category",
     "HttpMethod": "POST",
@@ -16,7 +94,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CategoryController",
+    "ContainingType": "api_be.API.Controllers.CategoryController",
     "Method": "Delete",
     "RelativePath": "smw-api/category",
     "HttpMethod": "DELETE",
@@ -32,7 +110,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CategoryController",
+    "ContainingType": "api_be.API.Controllers.CategoryController",
     "Method": "GetList",
     "RelativePath": "smw-api/category",
     "HttpMethod": "GET",
@@ -73,7 +151,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CategoryController",
+    "ContainingType": "api_be.API.Controllers.CategoryController",
     "Method": "Update",
     "RelativePath": "smw-api/category/{id}",
     "HttpMethod": "PUT",
@@ -94,7 +172,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CategoryController",
+    "ContainingType": "api_be.API.Controllers.CategoryController",
     "Method": "GetDetail",
     "RelativePath": "smw-api/category/detail",
     "HttpMethod": "GET",
@@ -168,7 +246,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CouponController",
+    "ContainingType": "api_be.API.Controllers.CouponController",
     "Method": "Get",
     "RelativePath": "smw-api/coupon",
     "HttpMethod": "GET",
@@ -209,7 +287,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CouponController",
+    "ContainingType": "api_be.API.Controllers.CouponController",
     "Method": "Post",
     "RelativePath": "smw-api/coupon",
     "HttpMethod": "POST",
@@ -225,7 +303,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CouponController",
+    "ContainingType": "api_be.API.Controllers.CouponController",
     "Method": "Put",
     "RelativePath": "smw-api/coupon",
     "HttpMethod": "PUT",
@@ -241,7 +319,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CouponController",
+    "ContainingType": "api_be.API.Controllers.CouponController",
     "Method": "ChangeStatus",
     "RelativePath": "smw-api/coupon",
     "HttpMethod": "PATCH",
@@ -257,7 +335,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CouponController",
+    "ContainingType": "api_be.API.Controllers.CouponController",
     "Method": "Get",
     "RelativePath": "smw-api/coupon/detail",
     "HttpMethod": "GET",
@@ -278,7 +356,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CustomerController",
+    "ContainingType": "api_be.API.Controllers.CustomerController",
     "Method": "Get",
     "RelativePath": "smw-api/customer",
     "HttpMethod": "GET",
@@ -319,7 +397,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CustomerController",
+    "ContainingType": "api_be.API.Controllers.CustomerController",
     "Method": "Put",
     "RelativePath": "smw-api/customer",
     "HttpMethod": "PUT",
@@ -335,7 +413,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CustomerController",
+    "ContainingType": "api_be.API.Controllers.CustomerController",
     "Method": "Delete",
     "RelativePath": "smw-api/customer",
     "HttpMethod": "DELETE",
@@ -351,7 +429,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.CustomerController",
+    "ContainingType": "api_be.API.Controllers.CustomerController",
     "Method": "Get",
     "RelativePath": "smw-api/customer/detail",
     "HttpMethod": "GET",
@@ -372,7 +450,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.DeliveryController",
+    "ContainingType": "api_be.API.Controllers.DeliveryController",
     "Method": "Get",
     "RelativePath": "smw-api/delivery",
     "HttpMethod": "GET",
@@ -413,7 +491,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.DeliveryController",
+    "ContainingType": "api_be.API.Controllers.DeliveryController",
     "Method": "Post",
     "RelativePath": "smw-api/delivery",
     "HttpMethod": "POST",
@@ -429,7 +507,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.DeliveryController",
+    "ContainingType": "api_be.API.Controllers.DeliveryController",
     "Method": "Put",
     "RelativePath": "smw-api/delivery",
     "HttpMethod": "PUT",
@@ -445,7 +523,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.DeliveryController",
+    "ContainingType": "api_be.API.Controllers.DeliveryController",
     "Method": "Change",
     "RelativePath": "smw-api/delivery",
     "HttpMethod": "PATCH",
@@ -461,7 +539,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.DeliveryController",
+    "ContainingType": "api_be.API.Controllers.DeliveryController",
     "Method": "Get",
     "RelativePath": "smw-api/delivery/detail",
     "HttpMethod": "GET",
@@ -482,7 +560,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.DistributorController",
+    "ContainingType": "api_be.API.Controllers.DistributorController",
     "Method": "Get",
     "RelativePath": "smw-api/distributor",
     "HttpMethod": "GET",
@@ -523,7 +601,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.DistributorController",
+    "ContainingType": "api_be.API.Controllers.DistributorController",
     "Method": "Post",
     "RelativePath": "smw-api/distributor",
     "HttpMethod": "POST",
@@ -539,7 +617,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.DistributorController",
+    "ContainingType": "api_be.API.Controllers.DistributorController",
     "Method": "Put",
     "RelativePath": "smw-api/distributor",
     "HttpMethod": "PUT",
@@ -555,7 +633,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.DistributorController",
+    "ContainingType": "api_be.API.Controllers.DistributorController",
     "Method": "Delete",
     "RelativePath": "smw-api/distributor",
     "HttpMethod": "DELETE",
@@ -571,7 +649,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.DistributorController",
+    "ContainingType": "api_be.API.Controllers.DistributorController",
     "Method": "Get",
     "RelativePath": "smw-api/distributor/detail",
     "HttpMethod": "GET",
@@ -592,7 +670,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.ImportGoodsController",
+    "ContainingType": "api_be.API.Controllers.ImportGoodsController",
     "Method": "Get",
     "RelativePath": "smw-api/import-goods",
     "HttpMethod": "GET",
@@ -633,7 +711,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.ImportGoodsController",
+    "ContainingType": "api_be.API.Controllers.ImportGoodsController",
     "Method": "Post",
     "RelativePath": "smw-api/import-goods",
     "HttpMethod": "POST",
@@ -649,7 +727,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.ImportGoodsController",
+    "ContainingType": "api_be.API.Controllers.ImportGoodsController",
     "Method": "Put",
     "RelativePath": "smw-api/import-goods",
     "HttpMethod": "PUT",
@@ -665,7 +743,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.ImportGoodsController",
+    "ContainingType": "api_be.API.Controllers.ImportGoodsController",
     "Method": "ChangeStatus",
     "RelativePath": "smw-api/import-goods",
     "HttpMethod": "PATCH",
@@ -681,7 +759,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.ImportGoodsController",
+    "ContainingType": "api_be.API.Controllers.ImportGoodsController",
     "Method": "Get",
     "RelativePath": "smw-api/import-goods/detail",
     "HttpMethod": "GET",
@@ -702,7 +780,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.OrderController",
+    "ContainingType": "api_be.API.Controllers.OrderController",
     "Method": "Get",
     "RelativePath": "smw-api/order",
     "HttpMethod": "GET",
@@ -743,7 +821,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.OrderController",
+    "ContainingType": "api_be.API.Controllers.OrderController",
     "Method": "Post",
     "RelativePath": "smw-api/order/cart",
     "HttpMethod": "POST",
@@ -759,7 +837,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.OrderController",
+    "ContainingType": "api_be.API.Controllers.OrderController",
     "Method": "Put",
     "RelativePath": "smw-api/order/cart",
     "HttpMethod": "PUT",
@@ -775,7 +853,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.OrderController",
+    "ContainingType": "api_be.API.Controllers.OrderController",
     "Method": "AddCoupon",
     "RelativePath": "smw-api/order/cart-add-coupon",
     "HttpMethod": "POST",
@@ -791,7 +869,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.OrderController",
+    "ContainingType": "api_be.API.Controllers.OrderController",
     "Method": "Post",
     "RelativePath": "smw-api/order/cart-remove",
     "HttpMethod": "POST",
@@ -807,7 +885,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.OrderController",
+    "ContainingType": "api_be.API.Controllers.OrderController",
     "Method": "GetOrder",
     "RelativePath": "smw-api/order/detail",
     "HttpMethod": "GET",
@@ -828,7 +906,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.OrderController",
+    "ContainingType": "api_be.API.Controllers.OrderController",
     "Method": "GetCart",
     "RelativePath": "smw-api/order/detail-cart",
     "HttpMethod": "GET",
@@ -849,7 +927,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.OrderController",
+    "ContainingType": "api_be.API.Controllers.OrderController",
     "Method": "Put",
     "RelativePath": "smw-api/order/order-cancel",
     "HttpMethod": "PATCH",
@@ -865,7 +943,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.OrderController",
+    "ContainingType": "api_be.API.Controllers.OrderController",
     "Method": "Change",
     "RelativePath": "smw-api/order/order-change-status",
     "HttpMethod": "PATCH",
@@ -881,7 +959,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.OrderController",
+    "ContainingType": "api_be.API.Controllers.OrderController",
     "Method": "Post",
     "RelativePath": "smw-api/order/order-create",
     "HttpMethod": "POST",
@@ -897,7 +975,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymentController",
+    "ContainingType": "api_be.API.Controllers.PaymentController",
     "Method": "Get",
     "RelativePath": "smw-api/payment",
     "HttpMethod": "GET",
@@ -938,7 +1016,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymentController",
+    "ContainingType": "api_be.API.Controllers.PaymentController",
     "Method": "Post",
     "RelativePath": "smw-api/payment",
     "HttpMethod": "POST",
@@ -954,7 +1032,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymentController",
+    "ContainingType": "api_be.API.Controllers.PaymentController",
     "Method": "Put",
     "RelativePath": "smw-api/payment",
     "HttpMethod": "PUT",
@@ -970,7 +1048,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymentController",
+    "ContainingType": "api_be.API.Controllers.PaymentController",
     "Method": "Delete",
     "RelativePath": "smw-api/payment",
     "HttpMethod": "DELETE",
@@ -986,7 +1064,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymentController",
+    "ContainingType": "api_be.API.Controllers.PaymentController",
     "Method": "Callback",
     "RelativePath": "smw-api/payment/callback",
     "HttpMethod": "GET",
@@ -1006,7 +1084,7 @@
     ]
   },
   {
-    "ContainingType": "api_be.Controllers.PaymentController",
+    "ContainingType": "api_be.API.Controllers.PaymentController",
     "Method": "CreatePaymentUrl",
     "RelativePath": "smw-api/payment/createpaymenturl",
     "HttpMethod": "GET",
@@ -1022,12 +1100,62 @@
         "Name": "Description",
         "Type": "System.String",
         "IsRequired": false
+      },
+      {
+        "Name": "PaymentContent",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PaymentCurrency",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PaymentRefId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "RequiredAmount",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PaymentDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ExpireDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PaymentLanguage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MerchantId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PaymentDestinationId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Signature",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymentController",
+    "ContainingType": "api_be.API.Controllers.PaymentController",
     "Method": "Get",
     "RelativePath": "smw-api/payment/detail",
     "HttpMethod": "GET",
@@ -1048,7 +1176,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PaymentController",
+    "ContainingType": "api_be.API.Controllers.PaymentController",
     "Method": "IpnAction",
     "RelativePath": "smw-api/payment/ipnaction",
     "HttpMethod": "GET",
@@ -1338,7 +1466,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PromotionController",
+    "ContainingType": "api_be.API.Controllers.PromotionController",
     "Method": "Get",
     "RelativePath": "smw-api/promotion",
     "HttpMethod": "GET",
@@ -1379,7 +1507,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PromotionController",
+    "ContainingType": "api_be.API.Controllers.PromotionController",
     "Method": "Post",
     "RelativePath": "smw-api/promotion",
     "HttpMethod": "POST",
@@ -1395,7 +1523,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PromotionController",
+    "ContainingType": "api_be.API.Controllers.PromotionController",
     "Method": "Put",
     "RelativePath": "smw-api/promotion",
     "HttpMethod": "PUT",
@@ -1411,7 +1539,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PromotionController",
+    "ContainingType": "api_be.API.Controllers.PromotionController",
     "Method": "ChangeStatus",
     "RelativePath": "smw-api/promotion",
     "HttpMethod": "PATCH",
@@ -1427,7 +1555,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PromotionController",
+    "ContainingType": "api_be.API.Controllers.PromotionController",
     "Method": "Apply",
     "RelativePath": "smw-api/promotion/apply",
     "HttpMethod": "POST",
@@ -1443,7 +1571,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.PromotionController",
+    "ContainingType": "api_be.API.Controllers.PromotionController",
     "Method": "Get",
     "RelativePath": "smw-api/promotion/detail",
     "HttpMethod": "GET",
@@ -1464,7 +1592,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.RoleController",
+    "ContainingType": "api_be.API.Controllers.RoleController",
     "Method": "Get",
     "RelativePath": "smw-api/role",
     "HttpMethod": "GET",
@@ -1505,7 +1633,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.RoleController",
+    "ContainingType": "api_be.API.Controllers.RoleController",
     "Method": "Post",
     "RelativePath": "smw-api/role",
     "HttpMethod": "POST",
@@ -1521,7 +1649,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.RoleController",
+    "ContainingType": "api_be.API.Controllers.RoleController",
     "Method": "Put",
     "RelativePath": "smw-api/role",
     "HttpMethod": "PUT",
@@ -1537,7 +1665,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.RoleController",
+    "ContainingType": "api_be.API.Controllers.RoleController",
     "Method": "Delete",
     "RelativePath": "smw-api/role",
     "HttpMethod": "DELETE",
@@ -1553,7 +1681,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.RoleController",
+    "ContainingType": "api_be.API.Controllers.RoleController",
     "Method": "AssignPermissionForRole",
     "RelativePath": "smw-api/role/assign",
     "HttpMethod": "POST",
@@ -1569,7 +1697,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.RoleController",
+    "ContainingType": "api_be.API.Controllers.RoleController",
     "Method": "Get",
     "RelativePath": "smw-api/role/detail",
     "HttpMethod": "GET",
@@ -1590,7 +1718,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "api_be.Controllers.RoleController",
+    "ContainingType": "api_be.API.Controllers.RoleController",
     "Method": "GetByController",
     "RelativePath": "smw-api/role/list-with-controller",
     "HttpMethod": "GET",
@@ -1625,6 +1753,357 @@
       {
         "Name": "SearchKeyword",
         "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.StaffController",
+    "Method": "Get",
+    "RelativePath": "smw-api/staff",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.StaffController",
+    "Method": "Post",
+    "RelativePath": "smw-api/staff",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Application.Models.Request.StaffRequest.CreateOrUpdateStaffRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.StaffController",
+    "Method": "Put",
+    "RelativePath": "smw-api/staff",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Application.Models.Request.StaffRequest.CreateOrUpdateStaffRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.StaffController",
+    "Method": "Delete",
+    "RelativePath": "smw-api/staff",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.StaffController",
+    "Method": "Get",
+    "RelativePath": "smw-api/staff/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.StaffPositionController",
+    "Method": "Get",
+    "RelativePath": "smw-api/staffposition",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.StaffPositionController",
+    "Method": "Post",
+    "RelativePath": "smw-api/staffposition",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Application.Models.Request.StaffPossitionRequest.CreateOrUpdateStaffPositionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.StaffPositionController",
+    "Method": "Put",
+    "RelativePath": "smw-api/staffposition",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Application.Models.Request.StaffPossitionRequest.CreateOrUpdateStaffPositionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.StaffPositionController",
+    "Method": "Delete",
+    "RelativePath": "smw-api/staffposition",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.StaffPositionController",
+    "Method": "Get",
+    "RelativePath": "smw-api/staffposition/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.SupplierOrderController",
+    "Method": "Get",
+    "RelativePath": "smw-api/supplier-order",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Filters",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sorts",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Page",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchKeyword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.SupplierOrderController",
+    "Method": "Post",
+    "RelativePath": "smw-api/supplier-order",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Application.Models.Request.SupplierOrderRequest.CreateOrUpdateSupplierOrderRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.SupplierOrderController",
+    "Method": "Put",
+    "RelativePath": "smw-api/supplier-order",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Application.Models.Request.SupplierOrderRequest.CreateOrUpdateSupplierOrderRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.SupplierOrderController",
+    "Method": "ChangeStatus",
+    "RelativePath": "smw-api/supplier-order/change-status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pRequest",
+        "Type": "api_be.Application.Models.Request.SupplierOrderRequest.ChangeStatusSupplierOrderRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.SupplierOrderController",
+    "Method": "Get",
+    "RelativePath": "smw-api/supplier-order/detail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.SupplierOrderController",
+    "Method": "GetProduct",
+    "RelativePath": "smw-api/supplier-order/list-product",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsAllDetail",
+        "Type": "System.Boolean",
         "IsRequired": false
       }
     ],

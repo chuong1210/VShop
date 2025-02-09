@@ -21,6 +21,9 @@ namespace api_be.Infrastructure.DB.Configurations
                    .WithMany()
                    .HasForeignKey(x => x.ProductId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+                    //.OnDelete(DeleteBehavior.Cascade); // Kích hoạt Cascade Delete tự xóa luôn dữ liệu cha
+
         }
     }
 }

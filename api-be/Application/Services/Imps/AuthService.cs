@@ -151,10 +151,15 @@ namespace api_be.Application.Services.Imps
                                         x.UserName == request.UserName || x.PhoneNumber == request.UserName);
 
 
-                if (user == null)
+                if (user == null )
                 {
                     return Result<LoginDto>.Failure(IdentityTransform.UserNotExists(request.UserName), StatusCodes.Status400BadRequest);
                 }
+                if (user.IsEmailVerified==false)
+                {
+                    return Result<LoginDto>.Failure(IdentityTransform.InvalidAccount(), StatusCodes.Status400BadRequest);
+                }
+
                 var result = _passwordHasher.VerifyHashedPassword(user, user.Password, request.Password);
 
                 if (result != PasswordVerificationResult.Success)
@@ -166,10 +171,10 @@ namespace api_be.Application.Services.Imps
                 var refreshToken = await JwtExtension.GenerateRefreshToken(user.Id,_context,_configuration);
                 await _context.SaveChangesAsync();
                 await _redisTokenService.CacheRefreshToken(
-           user.Id.ToString(),
-           refreshToken.Token,
-           refreshToken.ExpiryDate
-       );
+                       user.Id.ToString(),
+                       refreshToken.Token,
+                       refreshToken.ExpiryDate
+                   );
                 LoginDto auth = new LoginDto
                 {
                     Id = user.Id,
