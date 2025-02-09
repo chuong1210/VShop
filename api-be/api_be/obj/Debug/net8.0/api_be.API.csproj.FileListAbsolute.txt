@@ -254,3 +254,6 @@ C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\refint\api_be.API.dl
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\api_be.API.pdb
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\api_be.API.genruntimeconfig.cache
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\ref\api_be.API.dll
+C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\AWSSDK.S3.dll
+C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\api_be.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\Microsoft.Extensions.WebEncoders.dll

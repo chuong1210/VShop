@@ -24,9 +24,13 @@ using Microsoft.EntityFrameworkCore;
 using api_be.Infrastructure.Services;
 using static api_be.Core.Entities.SupplierOrder;
 using System.Threading;
+using api_be.Middleware;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace api_be.Application.Services.Imps
 {
+    [RegisterService(ServiceLifetime.Scoped)]
+
     public class ImportGoodsService : IImportGoodsService
     {
         private readonly ISupermarketDbContext _context;

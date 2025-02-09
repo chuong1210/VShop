@@ -23,10 +23,14 @@ using Microsoft.AspNetCore.Http;
 using AutoMapper;
 using api_be.Domain.ResultResponses;
 using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Middleware;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace api_be.Application.Services.Imps
 {
+    [RegisterService(ServiceLifetime.Scoped)]
+
     public class CouponService : ICouponService
     {
         private readonly ISupermarketDbContext _context;

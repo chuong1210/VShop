@@ -13,9 +13,9 @@ namespace api_be.Application.Models.ValidatorRequest.StaffPositionValidator
 {
     public class CreateOrUpdateStaffPositionValidator : AbstractValidator<CreateOrUpdateStaffPositionRequest>
     {
-        public CreateOrUpdateStaffPositionValidator(ISupermarketDbContext pContext)
+        public CreateOrUpdateStaffPositionValidator(ISupermarketDbContext pContext, int? pCurrentId = null)
         {
-            Include(new BaseStaffPositionValidator(pContext));
+            Include(new BaseStaffPositionValidator(pContext, pCurrentId));
         }
     }
 }

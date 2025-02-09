@@ -3,124 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\istaffpositionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\istaffpositionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\amazons3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\amazons3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\istaffservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\istaffservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\amazons3controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\amazons3controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\supplierorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\supplierorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\iamazons3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\iamazons3service.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\validatorrequest\\supllierordervalidator\\createorupdatesupplierordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\validatorrequest\\supllierordervalidator\\createorupdatesupplierordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\validatorrequest\\supllierordervalidator\\changestatussupplierordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\validatorrequest\\supllierordervalidator\\changestatussupplierordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\staffpositionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\staffpositionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\isupplierorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\isupplierorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\request\\staffpossitionrequest\\createorupdatestaffpositionrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\request\\staffpossitionrequest\\createorupdatestaffpositionrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\request\\supplierorderrequest\\createorupdatesupplierorderrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\request\\supplierorderrequest\\createorupdatesupplierorderrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\request\\supplierorderrequest\\changestatussupplierorderrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\request\\supplierorderrequest\\changestatussupplierorderrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\common\\basedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\common\\basedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\validatorrequest\\staffvalidator\\createorupdatestaffvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\validatorrequest\\staffvalidator\\createorupdatestaffvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\validatorrequest\\staffvalidator\\basestaff\\basestaffvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\validatorrequest\\staffvalidator\\basestaff\\basestaffvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\validatorrequest\\staffpositionvalidator\\createorupdatestaffpositionvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\validatorrequest\\staffpositionvalidator\\createorupdatestaffpositionvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\validatorrequest\\staffpositionvalidator\\basestaffposition\\basestaffpositionvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\validatorrequest\\staffpositionvalidator\\basestaffposition\\basestaffpositionvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\validatorrequest\\rolevalidator\\baserole\\baserolevalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\validatorrequest\\rolevalidator\\baserole\\baserolevalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\validatorrequest\\baseuser\\baseuservalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\validatorrequest\\baseuser\\baseuservalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{326485A0-2762-44CA-87BA-E7B82475D248}|Core\\api_be.Core.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\core\\domain\\interfaces\\ibasestaffposition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{326485A0-2762-44CA-87BA-E7B82475D248}|Core\\api_be.Core.csproj|solutionrelative:core\\domain\\interfaces\\ibasestaffposition.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{326485A0-2762-44CA-87BA-E7B82475D248}|Core\\api_be.Core.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\core\\domain\\interfaces\\ibasesupplierorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{326485A0-2762-44CA-87BA-E7B82475D248}|Core\\api_be.Core.csproj|solutionrelative:core\\domain\\interfaces\\ibasesupplierorder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{326485A0-2762-44CA-87BA-E7B82475D248}|Core\\api_be.Core.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\core\\domain\\interfaces\\ibasestaff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{326485A0-2762-44CA-87BA-E7B82475D248}|Core\\api_be.Core.csproj|solutionrelative:core\\domain\\interfaces\\ibasestaff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\request\\messagerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\request\\messagerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\common\\vnpayconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\common\\vnpayconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\supplierordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\supplierordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\currentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\currentuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\importgoodsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\importgoodsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\importgoodscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\importgoodscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\iimportgoodsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\iimportgoodsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\deliverycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\deliverycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\validatorrequest\\supllierordervalidator\\basesupplierorder\\basesupplierordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\validatorrequest\\supllierordervalidator\\basesupplierorder\\basesupplierordervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\models\\validatorrequest\\customervalidator\\updatecustomervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\models\\validatorrequest\\customervalidator\\updatecustomervalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\mapper\\commonmappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\mapper\\commonmappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -130,230 +34,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 8,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "IBaseStaff.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Domain\\Interfaces\\IBaseStaff.cs",
-              "RelativeDocumentMoniker": "Core\\Domain\\Interfaces\\IBaseStaff.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Domain\\Interfaces\\IBaseStaff.cs",
-              "RelativeToolTip": "Core\\Domain\\Interfaces\\IBaseStaff.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:35:57.349Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SupplierOrderService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\SupplierOrderService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\Imps\\SupplierOrderService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\SupplierOrderService.cs",
-              "RelativeToolTip": "Application\\Services\\Imps\\SupplierOrderService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:51:32.635Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CreateOrUpdateSupplierOrderValidator.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\CreateOrUpdateSupplierOrderValidator.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\CreateOrUpdateSupplierOrderValidator.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\CreateOrUpdateSupplierOrderValidator.cs",
-              "RelativeToolTip": "Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\CreateOrUpdateSupplierOrderValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAABqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:51:01.383Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IStaffPositionService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IStaffPositionService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\IStaffPositionService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IStaffPositionService.cs",
-              "RelativeToolTip": "Application\\Services\\IStaffPositionService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:50:45.529Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IStaffService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IStaffService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\IStaffService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IStaffService.cs",
-              "RelativeToolTip": "Application\\Services\\IStaffService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:50:26.397Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ISupplierOrderService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\ISupplierOrderService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\ISupplierOrderService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\ISupplierOrderService.cs",
-              "RelativeToolTip": "Application\\Services\\ISupplierOrderService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:26:56.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ChangeStatusSupplierOrderValidator.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\ChangeStatusSupplierOrderValidator.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\ChangeStatusSupplierOrderValidator.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\ChangeStatusSupplierOrderValidator.cs",
-              "RelativeToolTip": "Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\ChangeStatusSupplierOrderValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:27:37.988Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CreateOrUpdateStaffPositionRequest.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Request\\StaffPossitionRequest\\CreateOrUpdateStaffPositionRequest.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\Request\\StaffPossitionRequest\\CreateOrUpdateStaffPositionRequest.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Request\\StaffPossitionRequest\\CreateOrUpdateStaffPositionRequest.cs",
-              "RelativeToolTip": "Application\\Models\\Request\\StaffPossitionRequest\\CreateOrUpdateStaffPositionRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:38:56.497Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ChangeStatusSupplierOrderRequest.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Request\\SupplierOrderRequest\\ChangeStatusSupplierOrderRequest.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\Request\\SupplierOrderRequest\\ChangeStatusSupplierOrderRequest.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Request\\SupplierOrderRequest\\ChangeStatusSupplierOrderRequest.cs",
-              "RelativeToolTip": "Application\\Models\\Request\\SupplierOrderRequest\\ChangeStatusSupplierOrderRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:28:36.304Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CreateOrUpdateSupplierOrderRequest.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Request\\SupplierOrderRequest\\CreateOrUpdateSupplierOrderRequest.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\Request\\SupplierOrderRequest\\CreateOrUpdateSupplierOrderRequest.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Request\\SupplierOrderRequest\\CreateOrUpdateSupplierOrderRequest.cs",
-              "RelativeToolTip": "Application\\Models\\Request\\SupplierOrderRequest\\CreateOrUpdateSupplierOrderRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:34:49.504Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "BaseDto.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Common\\BaseDto.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\Common\\BaseDto.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Common\\BaseDto.cs",
-              "RelativeToolTip": "Application\\Models\\Common\\BaseDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:47:16.343Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CreateOrUpdateStaffValidator.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\StaffValidator\\CreateOrUpdateStaffValidator.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\ValidatorRequest\\StaffValidator\\CreateOrUpdateStaffValidator.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\StaffValidator\\CreateOrUpdateStaffValidator.cs",
-              "RelativeToolTip": "Application\\Models\\ValidatorRequest\\StaffValidator\\CreateOrUpdateStaffValidator.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAwCIAAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:42:59.12Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "BaseStaffValidator.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\StaffValidator\\BaseStaff\\BaseStaffValidator.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\ValidatorRequest\\StaffValidator\\BaseStaff\\BaseStaffValidator.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\StaffValidator\\BaseStaff\\BaseStaffValidator.cs",
-              "RelativeToolTip": "Application\\Models\\ValidatorRequest\\StaffValidator\\BaseStaff\\BaseStaffValidator.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAC8AAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:41:51.719Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CreateOrUpdateStaffPositionValidator.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\StaffPositionValidator\\CreateOrUpdateStaffPositionValidator.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\ValidatorRequest\\StaffPositionValidator\\CreateOrUpdateStaffPositionValidator.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\StaffPositionValidator\\CreateOrUpdateStaffPositionValidator.cs",
-              "RelativeToolTip": "Application\\Models\\ValidatorRequest\\StaffPositionValidator\\CreateOrUpdateStaffPositionValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:43:13.915Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "BaseStaffPositionValidator.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\StaffPositionValidator\\BaseStaffPosition\\BaseStaffPositionValidator.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\ValidatorRequest\\StaffPositionValidator\\BaseStaffPosition\\BaseStaffPositionValidator.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\StaffPositionValidator\\BaseStaffPosition\\BaseStaffPositionValidator.cs",
-              "RelativeToolTip": "Application\\Models\\ValidatorRequest\\StaffPositionValidator\\BaseStaffPosition\\BaseStaffPositionValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:41:02.392Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "BaseRoleValidator.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\RoleValidator\\BaseRole\\BaseRoleValidator.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\ValidatorRequest\\RoleValidator\\BaseRole\\BaseRoleValidator.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\RoleValidator\\BaseRole\\BaseRoleValidator.cs",
-              "RelativeToolTip": "Application\\Models\\ValidatorRequest\\RoleValidator\\BaseRole\\BaseRoleValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:40:58.437Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "BaseUserValidator.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\BaseUser\\BaseUserValidator.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\ValidatorRequest\\BaseUser\\BaseUserValidator.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\BaseUser\\BaseUserValidator.cs",
-              "RelativeToolTip": "Application\\Models\\ValidatorRequest\\BaseUser\\BaseUserValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:38:23.359Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -380,171 +62,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "IBaseStaffPosition.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Domain\\Interfaces\\IBaseStaffPosition.cs",
-              "RelativeDocumentMoniker": "Core\\Domain\\Interfaces\\IBaseStaffPosition.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Domain\\Interfaces\\IBaseStaffPosition.cs",
-              "RelativeToolTip": "Core\\Domain\\Interfaces\\IBaseStaffPosition.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAnAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "IAmazonS3Service.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IAmazonS3Service.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\IAmazonS3Service.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IAmazonS3Service.cs",
+              "RelativeToolTip": "Application\\Services\\IAmazonS3Service.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:37:04.702Z",
+              "WhenOpened": "2025-02-09T16:09:08.133Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "IBaseSupplierOrder.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Domain\\Interfaces\\IBaseSupplierOrder.cs",
-              "RelativeDocumentMoniker": "Core\\Domain\\Interfaces\\IBaseSupplierOrder.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Core\\Domain\\Interfaces\\IBaseSupplierOrder.cs",
-              "RelativeToolTip": "Core\\Domain\\Interfaces\\IBaseSupplierOrder.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "AmazonS3Controller.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\AmazonS3Controller.cs",
+              "RelativeDocumentMoniker": "api_be\\Controllers\\AmazonS3Controller.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\AmazonS3Controller.cs",
+              "RelativeToolTip": "api_be\\Controllers\\AmazonS3Controller.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAYwEoAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T13:30:40.612Z",
+              "WhenOpened": "2025-02-09T16:05:52.804Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "MessageRequest.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Request\\MessageRequest.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\Request\\MessageRequest.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Request\\MessageRequest.cs",
-              "RelativeToolTip": "Application\\Models\\Request\\MessageRequest.cs",
+              "DocumentIndex": 0,
+              "Title": "AmazonS3Service.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\AmazonS3Service.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\Imps\\AmazonS3Service.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\AmazonS3Service.cs",
+              "RelativeToolTip": "Application\\Services\\Imps\\AmazonS3Service.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAkwG4AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T15:47:02.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Mapper\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "Application\\Mapper\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Mapper\\MappingProfile.cs",
+              "RelativeToolTip": "Application\\Mapper\\MappingProfile.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAFIAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-09T15:17:02.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CommonMappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Mapper\\CommonMappingProfile.cs",
+              "RelativeDocumentMoniker": "Application\\Mapper\\CommonMappingProfile.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Mapper\\CommonMappingProfile.cs",
+              "RelativeToolTip": "Application\\Mapper\\CommonMappingProfile.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:33:42.553Z",
+              "WhenOpened": "2025-02-09T15:17:00.037Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "VNPayConfig.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Common\\VNPayConfig.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\Common\\VNPayConfig.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\Common\\VNPayConfig.cs",
-              "RelativeToolTip": "Application\\Models\\Common\\VNPayConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "StaffPositionService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\StaffPositionService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\Imps\\StaffPositionService.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\StaffPositionService.cs",
+              "RelativeToolTip": "Application\\Services\\Imps\\StaffPositionService.cs",
+              "ViewState": "AgIAABgBAAAAAAAAAAAwwCQBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:33:18.956Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "SupplierOrderController.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\SupplierOrderController.cs",
-              "RelativeDocumentMoniker": "api_be\\Controllers\\SupplierOrderController.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\SupplierOrderController.cs",
-              "RelativeToolTip": "api_be\\Controllers\\SupplierOrderController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:33:12.291Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "StaffController.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\StaffController.cs",
-              "RelativeDocumentMoniker": "api_be\\Controllers\\StaffController.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\StaffController.cs",
-              "RelativeToolTip": "api_be\\Controllers\\StaffController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:32:39.273Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "CurrentUserService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\CurrentUserService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\Imps\\CurrentUserService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\CurrentUserService.cs",
-              "RelativeToolTip": "Application\\Services\\Imps\\CurrentUserService.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAtwBgAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T13:31:37.193Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "IImportGoodsService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IImportGoodsService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\IImportGoodsService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\IImportGoodsService.cs",
-              "RelativeToolTip": "Application\\Services\\IImportGoodsService.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:27:05.081Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "ImportGoodsService.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\ImportGoodsService.cs",
-              "RelativeDocumentMoniker": "Application\\Services\\Imps\\ImportGoodsService.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\ImportGoodsService.cs",
-              "RelativeToolTip": "Application\\Services\\Imps\\ImportGoodsService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAiwB0AAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T12:20:26.67Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "ImportGoodsController.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\ImportGoodsController.cs",
-              "RelativeDocumentMoniker": "api_be\\Controllers\\ImportGoodsController.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\ImportGoodsController.cs",
-              "RelativeToolTip": "api_be\\Controllers\\ImportGoodsController.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAQwCMAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:21:36.119Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "DeliveryController.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\DeliveryController.cs",
-              "RelativeDocumentMoniker": "api_be\\Controllers\\DeliveryController.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\DeliveryController.cs",
-              "RelativeToolTip": "api_be\\Controllers\\DeliveryController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T16:21:30.74Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "BaseSupplierOrderValidator.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\BaseSupplierOrder\\BaseSupplierOrderValidator.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\BaseSupplierOrder\\BaseSupplierOrderValidator.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\BaseSupplierOrder\\BaseSupplierOrderValidator.cs",
-              "RelativeToolTip": "Application\\Models\\ValidatorRequest\\SupllierOrderValidator\\BaseSupplierOrder\\BaseSupplierOrderValidator.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABEAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T13:30:32.214Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "UpdateCustomerValidator.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\CustomerValidator\\UpdateCustomerValidator.cs",
-              "RelativeDocumentMoniker": "Application\\Models\\ValidatorRequest\\CustomerValidator\\UpdateCustomerValidator.cs",
-              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Models\\ValidatorRequest\\CustomerValidator\\UpdateCustomerValidator.cs",
-              "RelativeToolTip": "Application\\Models\\ValidatorRequest\\CustomerValidator\\UpdateCustomerValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-06T13:24:37.754Z",
+              "WhenOpened": "2025-02-09T12:12:17.674Z",
               "EditorCaption": ""
             }
           ]

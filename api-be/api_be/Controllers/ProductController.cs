@@ -16,7 +16,6 @@ namespace UI.WebApi.Controllers
 {
     [Route("~/smw-api/[controller]")]
     [ApiController]
-    [AllowAnonymous]
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;

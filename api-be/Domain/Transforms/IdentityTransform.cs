@@ -33,6 +33,8 @@
         }
 
         public static string InvalidRefreshToken() => "Refresh token không hợp lệ.";
+        public static string InvalidAccount() => "Tài khoản chưa được xác thực. Vui lòng kiểm tra email để xác thực.";
+
         public static string RefreshTokenUsed() => "Refresh token đã được sử dụng.";
         public static string RefreshTokenRevoked() => "Refresh token đã bị thu hồi.";
         public static string RefreshTokenExpired() => "Refresh token đã hết hạn.";

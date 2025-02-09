@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
-namespace api_be.Controllers
+namespace api_be.API.Controllers
 {
     [Route("~/smw-api/[controller]")]
     [ApiController]

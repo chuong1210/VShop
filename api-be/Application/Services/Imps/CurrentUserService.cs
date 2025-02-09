@@ -30,5 +30,7 @@ namespace api_be.Application.Services.Imps
         public int? StaffId => int.Parse(_httpContextAccessor.HttpContext?.User?.FindFirstValue(CONSTANT_CLAIM_TYPES.Staff));
 
         public int? CustomerId => int.Parse(_httpContextAccessor.HttpContext?.User?.FindFirstValue(CONSTANT_CLAIM_TYPES.Customer));
+        public string? IpAddress => _httpContextAccessor?.HttpContext?.Connection?.LocalIpAddress?.ToString();
+
     }
 }

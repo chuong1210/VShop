@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.414.1" />
     <PackageReference Include="ClosedXML.Report" Version="0.2.10" />
     <PackageReference Include="CloudinaryDotNet" Version="1.27.2" />
     <PackageReference Include="Confluent.Kafka" Version="2.8.0" />
@@ -21,6 +22,7 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.Json" Version="8.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.12" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.12" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
