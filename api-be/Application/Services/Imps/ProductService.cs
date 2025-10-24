@@ -30,8 +30,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using api_be.Domain.ResultResponses;
-using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 using api_be.Application.Models.ValidatorRequest.OrderValidator.BaseOrders;
+using Newtonsoft.Json;
 
 namespace api_be.Application.Services.Imps
 {
@@ -46,11 +46,13 @@ namespace api_be.Application.Services.Imps
         private readonly ILogger<ProductService> _logger;
         private readonly ICurrentUserService _currentUserService;
         private readonly IRedisInventoryService _redisInventoryService;
+        private readonly IRedisCacheService _redisCacheService; // Inject RedisCacheService
+        private readonly TimeSpan _cacheExpiry = TimeSpan.FromHours(1);
 
 
 
         public ProductService(ISupermarketDbContext context, IMapper mapper, ISieveProcessor sieveProcessor, Cloudinary cloudinary, ILogger<ProductService> logger, 
-            ICurrentUserService currentUserService, IRedisInventoryService redisInventoryService)
+            ICurrentUserService currentUserService, IRedisInventoryService redisInventoryService, IRedisCacheService redisCacheService)
         {
             _context = context;
             _mapper = mapper;
@@ -59,6 +61,7 @@ namespace api_be.Application.Services.Imps
             _logger = logger;
             _currentUserService = currentUserService;
             _redisInventoryService = redisInventoryService;
+            _redisCacheService = redisCacheService;
         }
         public async Task SyncInventoryToRedisAsync()
         {
@@ -236,6 +239,16 @@ namespace api_be.Application.Services.Imps
 
         public async Task<Result<ProductDto>> Detail(DetailBaseCommand request)
         {
+            string cacheKey = $"product:detail:{request.Id}"; // Key cho Redis
+
+            // Thử lấy từ cache
+            var cachedProductDto = await _redisCacheService.GetAsync<ProductDto>(cacheKey);
+
+            if (cachedProductDto != null)
+            {
+                _logger.LogInformation("Returning product detail from cache for ID {ProductId}", request.Id);
+                return Result<ProductDto>.Success(cachedProductDto, StatusCodes.Status200OK);
+            }
             try
             {
                 var validator = new DetailBaseValidator(_context);
@@ -286,6 +299,10 @@ namespace api_be.Application.Services.Imps
                 productDto.NewPrice = findEntityProduct.Price - priceDiscoutMax;
                 productDto.PromotionDto = _mapper.Map<PromotionDto>(promo);
 
+                // Lưu vào cache
+                await _redisCacheService.SetAsync(cacheKey, productDto, _cacheExpiry);
+                _logger.LogInformation("Caching product detail for ID {ProductId}", request.Id);
+
 
                 return Result<ProductDto>.Success(productDto, StatusCodes.Status200OK);
             }
@@ -297,8 +314,21 @@ namespace api_be.Application.Services.Imps
 
         public async Task<PaginatedResult<List<ProductDto>>> GetList(ListBaseCommand request)
         {
+            //string cacheKey = $"product:list:{JsonConvert.SerializeObject(request)}"; // Key cho Redis, include request params
+            // Tạo cache key
+            string cacheKey = $"product:list:{request.Page}:{request.PageSize}:{request.Filters}:{request.Sorts}";
+
+            // Thử lấy dữ liệu từ cache
+            var cachedResult = await _redisCacheService.GetAsync<PaginatedResult<List<ProductDto>>>(cacheKey);
+            if (cachedResult != null)
+            {
+                _logger.LogInformation("Returning product list from cache");
+                return cachedResult;
+            }
+
             try
             {
+
                 var validator = new ListBaseCommandValidator(_context);
                 var validationResult = await validator.ValidateAsync(request);
 
@@ -366,8 +396,11 @@ namespace api_be.Application.Services.Imps
                     }
                 }
 
+                var paginatedResult = PaginatedResult<List<ProductDto>>.Create(productDtos, totalCount, request.Page.Value, request.PageSize.Value, StatusCodes.Status200OK);
+                await _redisCacheService.SetAsync(cacheKey, paginatedResult, TimeSpan.FromMinutes(30));
+                _logger.LogInformation($"Storing product list in cache. Key: {cacheKey}");
 
-                return PaginatedResult<List<ProductDto>>.Create(productDtos, totalCount, request.Page.Value, request.PageSize.Value, StatusCodes.Status200OK);
+                return paginatedResult;
             }
             catch (Exception ex)
             {

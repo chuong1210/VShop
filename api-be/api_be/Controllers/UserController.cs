@@ -15,6 +15,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using api_be.Domain.Extensions;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace UI.WebApi.Controllers
 {
@@ -45,6 +46,8 @@ namespace UI.WebApi.Controllers
         /// - Password: string 6->50
         /// </remarks>
         [HttpPost("login")]
+        [EnableRateLimiting("LoginRateLimit")] // Áp dụng Rate Limiting
+
         [AllowAnonymous]
         public async Task<ActionResult> Login([FromBody] LoginAccountRequest pRequest)
         {

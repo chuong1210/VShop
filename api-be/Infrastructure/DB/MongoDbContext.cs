@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using api_be.Core.Entities;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
 namespace api_be.Infrastructure.Data
@@ -19,5 +20,11 @@ namespace api_be.Infrastructure.Data
 
         public IMongoCollection<api_be.Core.Entities.Message> Messages =>
             _database.GetCollection<api_be.Core.Entities.Message>("Messages");
+
+        public IMongoCollection<ProductReview> ProductReviews =>
+     _database.GetCollection<ProductReview>("ProductReviews");
+
+        public IMongoCollection<ProductReviewMedia> ProductReviewMedia =>
+            _database.GetCollection<ProductReviewMedia>("ProductReviewMedia");
     }
 }

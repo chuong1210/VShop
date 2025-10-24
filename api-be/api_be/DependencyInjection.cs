@@ -64,7 +64,7 @@ namespace api_be
 
             services.AddSingleton(typeof(KafkaProducer<,>));
 
-            services.AddSingleton<ElasticSearchConsumer>();
+            services.AddSingleton<ProductKafkaConsumer>();
 
           
             services.AddScoped<IEmailService, EmailService>();
