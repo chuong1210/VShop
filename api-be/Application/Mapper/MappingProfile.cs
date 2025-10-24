@@ -114,6 +114,8 @@ namespace api_be.Application.Mapper
             CreateMap<User, UpdateUserRequest>().ReverseMap();
 
 
+            CreateMap<Message, MessageRequest>().ReverseMap();
+
 
 
         }
