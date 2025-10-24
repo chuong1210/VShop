@@ -123,6 +123,7 @@ services:
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
       KAFKA_AUTHORIZER_CLASS_NAME: kafka.security.authorizer.AclAuthorizer
       KAFKA_ALLOW_EVERYONE_IF_NO_ACL_FOUND: "true"
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
 
     depends_on:
       - zookeeper-01
@@ -130,6 +131,9 @@ services:
       - zookeeper-03
     volumes:
       - kafka-broker-02-data:/var/lib/kafka/data
+
+    networks:
+      - backend
 networks:
   backend:
     name: backend

@@ -58,7 +58,12 @@ namespace api_be.Application.Services.Imps
 
                 message.Id = ObjectId.GenerateNewId().ToString();
                 _mongoDbInterceptor.BeforeInsert(message);
-                message.SenderId = (int)_currentUserService.UserId;
+                if (_currentUserService.UserId == null)
+                {
+                    return Result<MessageDto>.Failure("User is not authenticated", StatusCodes.Status401Unauthorized);
+                }
+
+                message.SenderId = _currentUserService.UserId.Value;
                 message.SentAt = DateTime.UtcNow;
                 await _messages.InsertOneAsync(message);
                 var messageDto = _mapper.Map<MessageDto>(message);
