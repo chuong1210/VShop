@@ -46,13 +46,15 @@ namespace api_be.Application.Services.Imps
         private readonly ISieveProcessor _sieveProcessor;
         private readonly IEmailService _emailService;
         private readonly IRedisTokenService _redisTokenService;
+        private readonly IRedisCacheService _rediscacheService;
+
 
 
 
 
 
         public AuthService(ISupermarketDbContext pContext,
-       IPasswordHasher<User> passwordHasher, IConfiguration pConfiguration, IMapper pMapper, ISieveProcessor pSieveProcessor, IEmailService emailService,IRedisTokenService redisTokenService)
+       IPasswordHasher<User> passwordHasher, IConfiguration pConfiguration, IMapper pMapper, ISieveProcessor pSieveProcessor, IEmailService emailService,IRedisTokenService redisTokenService,IRedisCacheService redisCacheService)
         {
             _context = pContext;
             _passwordHasher = passwordHasher;
@@ -61,6 +63,7 @@ namespace api_be.Application.Services.Imps
             _sieveProcessor = pSieveProcessor;
             _redisTokenService = redisTokenService;
             _emailService = emailService;
+            _rediscacheService = redisCacheService;
         }
 
    
@@ -138,6 +141,13 @@ namespace api_be.Application.Services.Imps
         {
             try
             {
+                string cacheKey = $"login_fail_{request.UserName}";
+                int failCount = (await _rediscacheService.GetAsync<int?>(cacheKey)).GetValueOrDefault();
+
+                if (failCount >= 5)
+                {
+                    return Result<LoginDto>.Failure("Bạn đã nhập sai quá nhiều lần. Hãy thử lại sau 15 phút.", StatusCodes.Status429TooManyRequests);
+                }
                 var validator = new LoginAccountValidator();
                 var validationResult = await validator.ValidateAsync(request);
 
@@ -153,19 +163,27 @@ namespace api_be.Application.Services.Imps
 
                 if (user == null )
                 {
+                    await _rediscacheService.SetAsync(cacheKey, failCount + 1, TimeSpan.FromMinutes(15));
+
                     return Result<LoginDto>.Failure(IdentityTransform.UserNotExists(request.UserName), StatusCodes.Status400BadRequest);
                 }
                 if (user.IsEmailVerified==false)
                 {
+                    failCount++;
+                    await _rediscacheService.SetAsync(cacheKey, failCount, TimeSpan.FromMinutes(15));
                     return Result<LoginDto>.Failure(IdentityTransform.InvalidAccount(), StatusCodes.Status400BadRequest);
                 }
 
-                var result = _passwordHasher.VerifyHashedPassword(user, user.Password, request.Password);
+                var result =  _passwordHasher.VerifyHashedPassword(user, user.Password, request.Password);
 
                 if (result != PasswordVerificationResult.Success)
                 {
+                    failCount++;
+                    await _rediscacheService.SetAsync(cacheKey, failCount, TimeSpan.FromMinutes(15));
                     return Result<LoginDto>.Failure("Thông tin xác thực không hợp lệ!", StatusCodes.Status400BadRequest);
                 }
+
+                await _rediscacheService.RemoveAsync(cacheKey);
 
                 JwtSecurityToken jwtSecurityToken = await JwtExtension.GenerateToken(user,_context,_configuration);
                 var refreshToken = await JwtExtension.GenerateRefreshToken(user.Id,_context,_configuration);

@@ -20,13 +20,13 @@ namespace UI.WebApi.Controllers
     {
         private readonly IProductService _productService;
         private readonly IProductElasticsearchService _productElasticSearchService;
-        private readonly ElasticSearchConsumer _consumerService;
+        private readonly ProductKafkaConsumer _consumerService;
 
         private readonly IImageSerivce _imageSerivce;
         private readonly Cloudinary _cloudinary;
 
 
-        public ProductController(IProductService productService,Cloudinary cloudinary, IImageSerivce imageSerivce,IProductElasticsearchService productElasticsearchService,ElasticSearchConsumer elasticSearchConsumer)
+        public ProductController(IProductService productService,Cloudinary cloudinary, IImageSerivce imageSerivce,IProductElasticsearchService productElasticsearchService,ProductKafkaConsumer elasticSearchConsumer)
         {
             _productService = productService;
             _cloudinary = cloudinary;

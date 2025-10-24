@@ -9,10 +9,10 @@ namespace api_be.Application.Services.KafkaService
 {
     public class ProductEventConsumerService : IHostedService
     {
-        private readonly ElasticSearchConsumer _consumer;
+        private readonly ProductKafkaConsumer _consumer;
         private readonly IHostApplicationLifetime _applicationLifetime;
 
-        public ProductEventConsumerService(ElasticSearchConsumer consumer, IHostApplicationLifetime applicationLifetime)
+        public ProductEventConsumerService(ProductKafkaConsumer consumer, IHostApplicationLifetime applicationLifetime)
         {
             _consumer = consumer;
             _applicationLifetime = applicationLifetime;

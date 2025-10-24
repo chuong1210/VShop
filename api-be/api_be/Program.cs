@@ -22,6 +22,8 @@ using api_be.Core.Entities;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using api_be.Application.Services.HubService;
 using api_be.Application.Models.Common;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
@@ -171,6 +173,7 @@ builder.Services.AddSingleton(sp =>
 });
 
 
+
 builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = $"{redisConfig["Host"]}:{redisConfig["Port"]}";
@@ -190,6 +193,16 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(provider =>
     return ConnectionMultiplexer.Connect(configuration);
 });
 builder.Services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
+
+builder.Services.AddRateLimiter(_ => _
+    .AddFixedWindowLimiter(policyName: "LoginRateLimit", options =>
+    {
+        options.PermitLimit = 4;
+        options.Window = TimeSpan.FromMinutes(15);
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = 2;
+    }));
+
 
 builder.Services.AddAuthorization(options =>
 {
@@ -283,6 +296,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseCors("AllowSpecificOrigins"); // MyCors
+app.UseRateLimiter();
 
 app.UseRouting();
 

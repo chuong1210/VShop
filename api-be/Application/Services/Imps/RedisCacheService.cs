@@ -2,86 +2,71 @@
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
-
+using StackExchange.Redis;
+using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
 namespace api_be.Application.Services.Imps
 {
-    public class RedisCacheService:ICacheService
+
+
+public class RedisCacheService : IRedisCacheService
+{
+    private readonly IConnectionMultiplexer _redis;
+    private readonly ILogger<RedisCacheService> _logger;
+
+    public RedisCacheService(IConnectionMultiplexer redis, ILogger<RedisCacheService> logger)
     {
-        private readonly IDistributedCache _cache;
-        private readonly ILogger<RedisCacheService> _logger;
+        _redis = redis;
+        _logger = logger;
+    }
 
-        public RedisCacheService(IDistributedCache cache, ILogger<RedisCacheService> logger)
-        {
-            _cache = cache;
-            _logger = logger;
-        }
+    private IDatabase GetDatabase()
+    {
+        return _redis.GetDatabase();
+    }
 
-        public async Task<T> GetOrSetAsync<T>(string key, Func<Task<T>> getDataFunc, TimeSpan? expiration = null)
+    public async Task<T?> GetAsync<T>(string key)
+    {
+        try
         {
-            var cachedData = await _cache.GetAsync(key);
-            if (cachedData != null)
+            var value = await GetDatabase().StringGetAsync(key);
+            if (value.HasValue)
             {
-                try
-                {
-                    return JsonSerializer.Deserialize<T>(cachedData);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Error deserializing cached data for key: {Key}", key);
-                    await _cache.RemoveAsync(key);
-                }
+                return JsonConvert.DeserializeObject<T>(value);
             }
-
-            var data = await getDataFunc();
-            if (data != null)
-            {
-                var options = new DistributedCacheEntryOptions
-                {
-                    AbsoluteExpirationRelativeToNow = expiration ?? TimeSpan.FromMinutes(30)
-                };
-
-                try
-                {
-                    var serializedData = JsonSerializer.SerializeToUtf8Bytes(data);
-                    await _cache.SetAsync(key, serializedData, options);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Error caching data for key: {Key}", key);
-                }
-            }
-
-            return data;
+            return default;
         }
-
-        public async Task RemoveAsync(string key)
+        catch (Exception ex)
         {
-            await _cache.RemoveAsync(key);
-        }
-
-        public async Task RemoveByPrefixAsync(string prefix)
-        {
-            // Note: This is a basic implementation. For Redis, you might want to use scan command
-            // to find and delete keys by pattern
-            throw new NotImplementedException("Implement based on your cache provider");
+            _logger.LogError(ex, "Error getting data from Redis for key {Key}", key);
+            return default;
         }
     }
 
-    // Constants/CacheKeys.cs
-    public static class CacheKeys
+    public async Task SetAsync<T>(string key, T value, TimeSpan expiry)
     {
-        public const string ProductPrefix = "product_";
-        public const string ProductList = ProductPrefix + "list_";
-        public const string ProductDetail = ProductPrefix + "detail_";
-
-        public static string GetProductListKey(ListBaseCommand request)
+        try
         {
-            return $"{ProductList}{request.Page}_{request.PageSize}_{request.Filters}_{request.Sorts}";
+            var serializedValue = JsonConvert.SerializeObject(value);
+            await GetDatabase().StringSetAsync(key, serializedValue, expiry);
         }
-
-        public static string GetProductDetailKey(int productId)
+        catch (Exception ex)
         {
-            return $"{ProductDetail}{productId}";
+            _logger.LogError(ex, "Error setting data in Redis for key {Key}", key);
         }
     }
+
+    public async Task RemoveAsync(string key)
+    {
+        try
+        {
+            await GetDatabase().KeyDeleteAsync(key);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error removing data from Redis for key {Key}", key);
+        }
+    }
+}
 }
