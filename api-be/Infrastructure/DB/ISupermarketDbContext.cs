@@ -50,7 +50,6 @@ namespace api_be.Infrastructure.DB
         DbSet<DetailOrder> DetailOrders { get; }
 
         DbSet<StaffPositionHasRole> StaffPositionHasRoles { get; }
-        DbSet<Message> Messages { get; }
         DbSet<RefreshToken> RefreshTokens { get; }
         DbSet<UserVerification> UserVerifications { get; }
 

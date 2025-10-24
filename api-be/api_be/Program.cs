@@ -1,28 +1,30 @@
 ﻿using api_be;
-using api_be.Infrastructure.DB;
-using api_be.Middleware;
-using Microsoft.AspNetCore.Authorization;
-using System.Reflection;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using api_be.Application.Models.Common;
+using api_be.Application.Services;
+using api_be.Application.Services.HubService;
+using api_be.Application.Services.Imps;
+using api_be.Application.Services.KafkaService;
 using api_be.Core.Domain.Interfaces;
-using System.IO;
-using Microsoft.AspNetCore.Authentication.OAuth;
+using api_be.Core.Entities;
+using api_be.Infrastructure.DB;
+using api_be.Infrastructure.DB.Interceptors;
+using api_be.Middleware;
+using CloudinaryDotNet;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using Elastic.Clients.Elasticsearch;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
-using System.Security.Claims;
-using System.Text.Json.Serialization;
-using CloudinaryDotNet;
-using StackExchange.Redis;
-using Elastic.Clients.Elasticsearch;
-using api_be.Application.Services.KafkaService;
-using api_be.Infrastructure.DB.Interceptors;
-using api_be.Core.Entities;
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
-using api_be.Application.Services.HubService;
-using api_be.Application.Models.Common;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.IdentityModel.Tokens;
+using StackExchange.Redis;
+using System.IO;
+using System.Reflection;
+using System.Security.Claims;
+using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -226,6 +228,7 @@ builder.Services.AddControllers()
         //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
 
     });
+builder.Services.AddScoped<IRedisCacheService, RedisCacheService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -320,6 +323,7 @@ async Task InitializePermissions(IServiceProvider serviceProvider)
             .GetPermissionPoliciesFromAttributes(Assembly.GetExecutingAssembly());
     await permissionService.Create(permissions);
 }
+
 
 //dotnet ef migrations add InitialTable --context SupermarketDbContext --output-dir DB/Migrations
 //dotnet ef database update --context SupermarketDbContext

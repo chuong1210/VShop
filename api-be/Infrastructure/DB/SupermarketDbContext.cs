@@ -65,7 +65,6 @@ namespace api_be.Infrastructure.DB
 
         public DbSet<StaffPositionHasRole> StaffPositionHasRoles => Set<StaffPositionHasRole>();
 
-        public DbSet<Message> Messages  => Set<Message>();
         public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
         public DbSet<UserVerification> UserVerifications => Set<UserVerification>();
 
@@ -79,6 +78,15 @@ namespace api_be.Infrastructure.DB
 
 
             base.OnModelCreating(modelBuilder);
+            // Áp dụng cho toàn bộ entity có kiểu decimal
+            foreach (var property in modelBuilder.Model
+                .GetEntityTypes()
+                .SelectMany(t => t.GetProperties())
+                .Where(p => p.ClrType == typeof(decimal) || p.ClrType == typeof(decimal?)))
+            {
+                property.SetPrecision(18);
+                property.SetScale(2);
+            }
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(SupermarketDbContext).Assembly);
 
             //modelBuilder.ApplyConfiguration(new BaseEntityConfiguration<Role> ());
