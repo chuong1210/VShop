@@ -26,7 +26,7 @@ services:
 
   # Zookeeper (Required for Kafka)
   zookeeper:
-    image: confluentinc/cp-zookeeper:latest
+    image: confluentinc/cp-zookeeper:7.5.0
     container_name: zookeeper
     restart: unless-stopped
     networks:
@@ -106,7 +106,7 @@ services:
       - backend
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 101204
+      MONGO_INITDB_ROOT_PASSWORD: admin123
 
 networks:
   backend:
