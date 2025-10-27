@@ -13,10 +13,14 @@ const SearchPage = () => {
   const param = useSearchParam();
   const [currentPage, setCurrentPage] = useState(0);
 
+  console.log("param.keyword", param.keyword);
   const productQuery = useGet<ProductCollectionType[]>({
-    api: "product",
+    api: "product-search",
     filter: {
-      filters: `name@=${param.keyword}`,
+      searchKeyword: `${param.keyword}`,
+      page: currentPage + 1, // react-paginate dùng index bắt đầu từ 0
+      pageSize: 20,
+      // filters: `name@=${param.keyword}`,
     },
   });
 

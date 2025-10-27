@@ -316,6 +316,7 @@ namespace api_be.Application.Services.Imps
         {
             //string cacheKey = $"product:list:{JsonConvert.SerializeObject(request)}"; // Key cho Redis, include request params
             // Tạo cache key
+           await SyncInventoryToRedisAsync();
             string cacheKey = $"product:list:{request.Page}:{request.PageSize}:{request.Filters}:{request.Sorts}";
 
             // Thử lấy dữ liệu từ cache

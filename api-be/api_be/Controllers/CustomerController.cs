@@ -59,7 +59,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpPut]
-        [Permission("customer.update")]
+        //[Permission("customer.update")]
         public async Task<ActionResult> Put([FromBody] UpdateCustomerRequest pRequest)
         {
             var response = await _customerService.Update(pRequest);

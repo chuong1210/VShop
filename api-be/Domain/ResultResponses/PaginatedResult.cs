@@ -1,5 +1,6 @@
 ﻿using api_be.Core.Entities;
 using Microsoft.AspNetCore.Http;
+using System.Text.Json.Serialization;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace api_be.Domain.ResultResponses
@@ -22,12 +23,22 @@ namespace api_be.Domain.ResultResponses
             TotalCount = pCount;
         }
 
+        // Updated JsonConstructor: Parameters now match JSON keys (PascalCase)
+        [JsonConstructor]
+        public Extra(int? CurrentPage, int TotalPages, int TotalCount, int? PageSize)
+        {
+            this.CurrentPage = CurrentPage;
+            this.TotalPages = TotalPages;
+            this.TotalCount = TotalCount;
+            this.PageSize = PageSize;
+        }
     }
 
 
     public class PaginatedResult<T> : Result<T>
     {
         public Extra Extra { get; set; }
+        public PaginatedResult() { }
 
         public PaginatedResult(bool pSucceeded, int pCode, T pData = default, List<string> pMessages = null,
             int pCount = 0, int? pCurrentPage = 1, int? pPageSize = 30)

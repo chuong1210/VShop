@@ -1,3 +1,4 @@
+// Update AppPage.tsx to include one of the new components, e.g., HomeRecommendations
 "use client";
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { BaseLayout } from "@component/layout";
@@ -6,6 +7,7 @@ import {
   HomeCategory,
   HomeHotSell,
   HomeProductList,
+  HomeRecommendations, // Add this import
 } from "@component/pages/home";
 import { HomeAd } from "@component/pages/home/home-ad";
 
@@ -38,6 +40,13 @@ const AppPage = () => {
         <GridItem colSpan={12}>
           <Box p={4} boxShadow="md" borderRadius="md">
             <HomeHotSell />
+          </Box>
+        </GridItem>
+
+        {/* HomeRecommendations - New Section */}
+        <GridItem colSpan={12}>
+          <Box p={4} boxShadow="md" borderRadius="md">
+            <HomeRecommendations />
           </Box>
         </GridItem>
 

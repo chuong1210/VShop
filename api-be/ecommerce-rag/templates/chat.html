@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Điện tử - Trợ lý AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container-fluid {
+            height: 100vh;
+            padding: 20px;
+        }
+        .chat-container {
+            display: flex;
+            height: 100%;
+            gap: 20px;
+        }
+        /* Chat Box */
+        .chat-box {
+            flex: 1;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header h3 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            animation: fadeIn 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message.user {
+            justify-content: flex-end;
+        }
+        .message-content {
+            max-width: 70%;
+            padding: 12px 18px;
+            border-radius: 18px;
+            word-wrap: break-word;
+        }
+        .message.bot .message-content {
+            background: white;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .message.user .message-avatar {
+            background: #e9ecef;
+            color: #667eea;
+        }
+        /* Product Cards */
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .product-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .product-price {
+            color: #e74c3c;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        /* Chat Input */
+        .chat-input {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        .input-group input {
+            flex: 1;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .input-group button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .input-group button:hover {
+            transform: scale(1.05);
+        }
+        /* Cart Sidebar */
+        .cart-sidebar {
+            width: 350px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .cart-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        .cart-header h4 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cart-badge {
+            background: white;
+            color: #667eea;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .cart-item {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 10px;
+        }
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .cart-item-info {
+            flex: 1;
+        }
+        .cart-item-name {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .cart-item-price {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        .cart-item-quantity button {
+            width: 25px;
+            height: 25px;
+            border: none;
+            background: #667eea;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cart-footer {
+            padding: 20px;
+            border-top: 2px solid #e9ecef;
+            background: #f8f9fa;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .btn-checkout {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-checkout:hover {
+            transform: translateY(-2px);
+        }
+        .btn-add-cart {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn-add-cart:hover {
+            transform: scale(1.05);
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        .empty-cart i {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .chat-container {
+                flex-direction: column;
+            }
+            .cart-sidebar {
+                width: 100%;
+                max-height: 300px;
+            }
+        }
+        /* Loading */
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            padding: 10px;
+        }
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #667eea;
+            animation: typing 1.4s infinite;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="chat-container">
+            <!-- Chat Box -->
+            <div class="chat-box">
+                <div class="chat-header">
+                    <h3>
+                        <i class="fas fa-robot"></i>
+                        Trợ lý Mua sắm AI
+                    </h3>
+                    <a href="/admin" class="btn btn-light btn-sm">
+                        <i class="fas fa-cog"></i> Admin
+                    </a>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot">
+                        <div class="message-avatar">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="message-content">
+                            Xin chào! Tôi là trợ lý mua sắm AI của shop. Tôi có thể giúp bạn:
+                            <ul style="margin-top: 10px; padding-left: 20px;">
+                                <li>Tìm kiếm sản phẩm</li>
+                                <li>Gợi ý sản phẩm phù hợp</li>
+                                <li>Tư vấn về sản phẩm và dịch vụ</li>
+                                <li>Hỗ trợ mua hàng</li>
+                            </ul>
+                            Bạn cần tìm gì hôm nay?
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <div class="input-group">
+                        <input
+                            type="text"
+                            id="messageInput"
+                            placeholder="Nhập tin nhắn của bạn..."
+                            onkeypress="handleKeyPress(event)"
+                        >
+                        <button onclick="sendMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Cart Sidebar -->
+            <div class="cart-sidebar">
+                <div class="cart-header">
+                    <h4>
+                        <i class="fas fa-shopping-cart"></i>
+                        Giỏ hàng
+                        <span class="cart-badge" id="cartBadge">0</span>
+                    </h4>
+                </div>
+                <div class="cart-items" id="cartItems">
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>Giỏ hàng trống</p>
+                    </div>
+                </div>
+                <div class="cart-footer">
+                    <div class="cart-total">
+                        <span>Tổng cộng:</span>
+                        <span id="cartTotal">0 ₫</span>
+                    </div>
+                    <button class="btn-checkout" onclick="checkout()">
+                        <i class="fas fa-credit-card"></i> Thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    let cartData = { items: [], total: 0, count: 0 };
+  // Helper: Lấy token từ query param (hoặc localStorage)
+  function getAuthToken() {
+    // Ưu tiên query param
+    const urlParams = new URLSearchParams(window.location.search);
+    let token = urlParams.get('token') ?? "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJ1aWQiOiIxIiwidHlwZSI6IkFkbWluIiwic3RhZmYiOiIiLCJjdXN0b21lciI6IiIsInVzZXJOYW1lIjoiYWRtaW4iLCJqdGkiOiI0MDk0N2UyYS0zNjIyLTRjNDItYmQ1ZC1jNmNhNTc1NDM4MGUiLCJwZXJtaXNzaW9uIjpbInVzZXIudmlldyIsInVzZXIuY3JlYXRlIiwidXNlci5hc3NpZ24iLCJjb3Vwb24udmlldyIsImNvdXBvbi5jcmVhdGUiLCJjb3Vwb24udXBkYXRlIiwiY291cG9uLmNoYW5nZS1zdGF0dXMiLCJjdXN0b21lci52aWV3IiwiY3VzdG9tZXIudXBkYXRlIiwiY3VzdG9tZXIuZGVsZXRlIiwiZGVsaXZlcnkudmlldyIsImRlbGl2ZXJ5LmNyZWF0ZSIsImRlbGl2ZXJ5LnVwZGF0ZSIsImRlbGl2ZXJ5LmNoYW5nZS1zdGF0dXMiLCJkaXN0cmlidXRvclNlcnZpY2UudmlldyIsImRpc3RyaWJ1dG9yU2VydmljZS5jcmVhdGUiLCJkaXN0cmlidXRvclNlcnZpY2UudXBkYXRlIiwiZGlzdHJpYnV0b3JTZXJ2aWNlLmRlbGV0ZSIsImltcG9ydC1nb29kLnZpZXciLCJpbXBvcnQtZ29vZC5jcmVhdGUiLCJpbXBvcnQtZ29vZC51cGRhdGUiLCJpbXBvcnQtZ29vZC5jaGFuZ2Utc3RhdHVzIiwib3JkZXIudmlldyIsIm9yZGVyLmNoYW5nZS1zdGF0dXMiLCJwYXltZW50LnZpZXciLCJwYXltZW50LmNyZWF0ZSIsInBheW1lbnQudXBkYXRlIiwicGF5bWVudC5kZWxldGUiLCJwcm9tb3Rpb24udmlldyIsInByb21vdGlvbi5jcmVhdGUiLCJwcm9tb3Rpb24udXBkYXRlIiwicHJvbW90aW9uLmNoYW5nZS1zdGF0dXMiLCJwcm9tb3Rpb24uYXBwbHkiLCJyb2xlLnZpZXciLCJyb2xlLmNyZWF0ZSIsInJvbGUudXBkYXRlIiwicm9sZS5hc3NpZ24iLCJzdGFmZi52aWV3Iiwic3RhZmYuY3JlYXRlIiwic3RhZmYudXBkYXRlIiwic3RhZmYuZGVsZXRlIiwic3RhZmYtcG9zaXRpb24udmlldyIsInN0YWZmLXBvc2l0aW9uLmNyZWF0ZSIsInN0YWZmLXBvc2l0aW9uLnVwZGF0ZSIsInN0YWZmLXBvc2l0aW9uLmRlbGV0ZSIsInN1cHBsaWVyLW9yZGVyLnZpZXciLCJzdXBwbGllci1vcmRlci5jcmVhdGUiLCJzdXBwbGllci1vcmRlci51cGRhdGUiLCJzdXBwbGllci1vcmRlci5jaGFuZ2Utc3RhdHVzIl0sImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6ImFkbWluIiwiZXhwIjoxNzYxNTA4NTcxLCJpc3MiOiJTdXBlcm1hcmtldCIsImF1ZCI6IlN1cGVybWFya2V0VXNlciJ9.CQtLDzxwAz__5qwIPTXNbIWvQjvvS1v6EeSd-TWSOrs";
+    
+    // Fallback localStorage nếu dùng giải pháp 2
+    // if (!token) token = localStorage.getItem('chat_access_token');
+    
+    if (!token) {
+      alert('Vui lòng đăng nhập lại để sử dụng giỏ hàng');
+      window.location.href = 'http://localhost:3000/login'; // Redirect back to Next.js login
+    }
+    return token;
+  }
+  // Load cart on page load
+  window.addEventListener('load', () => {
+    loadCart();
+  });
+        // Handle Enter key press
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        // Send message
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            if (!message) return;
+            // Display user message
+            addMessage('user', message);
+            input.value = '';
+            // Show typing indicator
+            showTypingIndicator();
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query: message })
+                });
+                const data = await response.json();
+                // Remove typing indicator
+                removeTypingIndicator();
+                // Handle response
+                handleBotResponse(data);
+            } catch (error) {
+                removeTypingIndicator();
+                addMessage('bot', 'Xin lỗi, có lỗi xảy ra. Vui lòng thử lại sau.');
+                console.error('Error:', error);
+            }
+        }
+        // Add message to chat
+        function addMessage(type, content) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.innerHTML = type === 'bot' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = content;
+            if (type === 'bot') {
+                messageDiv.appendChild(avatar);
+                messageDiv.appendChild(contentDiv);
+            } else {
+                messageDiv.appendChild(contentDiv);
+                messageDiv.appendChild(avatar);
+            }
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        // Show typing indicator
+        function showTypingIndicator() {
+            const messagesContainer = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot';
+            typingDiv.id = 'typingIndicator';
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.innerHTML = '<i class="fas fa-robot"></i>';
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+            typingDiv.appendChild(avatar);
+            typingDiv.appendChild(contentDiv);
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        // Remove typing indicator
+        function removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+        // Handle bot response
+        function handleBotResponse(data) {
+            const action = data.action;
+            // Add text response
+            if (data.answer) {
+                addMessage('bot', data.answer);
+            }
+            // Handle different actions
+            if (action === 'show_products' && data.products) {
+                displayProducts(data.products);
+            } else if (action === 'get_recommendations' && data.products) {
+                displayProducts(data.products, true);
+            }
+        }
+        // Display products
+        function displayProducts(products, isRecommendation = false) {
+            if (!products || products.length === 0) {
+                addMessage('bot', 'Không tìm thấy sản phẩm nào phù hợp.');
+                return;
+            }
+            const messagesContainer = document.getElementById('chatMessages');
+            const productsContainer = document.createElement('div');
+            productsContainer.style.width = '100%';
+            products.forEach(product => {
+                const productCard = createProductCard(product, isRecommendation);
+                productsContainer.appendChild(productCard);
+            });
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot';
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.innerHTML = '<i class="fas fa-robot"></i>';
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.style.maxWidth = '90%';
+            contentDiv.appendChild(productsContainer);
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(contentDiv);
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        // Create product card
+        function createProductCard(product, isRecommendation = false) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            const image = product.Images ? product.Images.split(',')[0] : '/static/images/no-image.png';
+            const price = formatPrice(product.Price || 0);
+            card.innerHTML = `
+                ${image ? `<img src="${image}" alt="${product.Name}" onerror="this.src='/static/images/no-image.png'">` : ''}
+                <div class="product-name">${product.Name}</div>
+                <div class="product-price">${price}</div>
+                ${product.Describes ? `<div class="product-description">${truncateText(product.Describes, 100)}</div>` : ''}
+                ${product.CategoryName ? `<div class="text-muted small"><i class="fas fa-tag"></i> ${product.CategoryName}</div>` : ''}
+                <div class="d-flex gap-2 mt-2">
+                    <button class="btn-add-cart flex-fill" onclick="addToCart(${product.Id}, '${escapeHtml(product.Name)}')">
+                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ
+                    </button>
+                    ${isRecommendation ? '<span class="badge bg-success">Gợi ý</span>' : ''}
+                </div>
+            `;
+            return card;
+        }
+        // Cập nhật loadCart để xử lý cấu trúc response từ C# API
+        async function loadCart() {
+          try {
+            const token = getAuthToken();
+            const response = await fetch('/api/cart', {
+              headers: { 'Authorization': `Bearer ${token}` }
+            });
+            console.log(response);
+            const apiData = await response.json();
+            console.log('API Cart Data:', apiData); // Debug log để kiểm tra data
+            
+            // Xử lý cấu trúc nested từ C# API: apiData.data.details
+            if (apiData && apiData.data && apiData.data.details && apiData.data.details.length > 0) {
+              cartData.items = apiData.data.details.map(detail => ({
+                product_id: detail.productId,
+                quantity: detail.quantity,
+                price: detail.price,
+                name: detail.product ? detail.product.name : 'Sản phẩm không xác định',
+                image: detail.product && detail.product.images && detail.product.images.length > 0 
+                  ? detail.product.images[0] 
+                  : '/static/images/no-image.png'
+              }));
+              cartData.total = apiData.data.total || 0;
+              cartData.count = apiData.data.details.reduce((sum, detail) => sum + detail.quantity, 0);
+            } else {
+              cartData.items = [];
+              cartData.total = 0;
+              cartData.count = 0;
+            }
+            
+            updateCartUI();
+          } catch (error) {
+            console.error('Error loading cart:', error);
+          }
+        }
+        // Cập nhật addToCart
+        async function addToCart(productId, productName) {
+          try {
+            const token = getAuthToken();
+            const response = await fetch('/api/cart/add', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({ product_id: productId, quantity: 1 })
+            });
+            const data = await response.json();
+            if (data.success || response.ok) { // Adjust dựa trên C# response
+              showNotification(`Đã thêm "${productName}" vào giỏ hàng`, 'success');
+              loadCart(); // Reload để update UI
+            } else {
+              showNotification('Không thể thêm vào giỏ hàng', 'error');
+            }
+          } catch (error) {
+            console.error('Error adding to cart:', error);
+            showNotification('Có lỗi xảy ra', 'error');
+          }
+        }
+        // Cập nhật updateQuantity
+        async function updateQuantity(productId, quantity) {
+          if (quantity < 1) {
+            removeFromCart(productId);
+            return;
+          }
+          try {
+            const token = getAuthToken();
+            const response = await fetch('/api/cart/update', {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({ product_id: productId, quantity: quantity })
+            });
+            const data = await response.json();
+            if (data.success || response.ok) {
+              loadCart();
+            }
+          } catch (error) {
+            console.error('Error updating quantity:', error);
+          }
+        }
+        // Cập nhật removeFromCart
+        async function removeFromCart(productId) {
+          try {
+            const token = getAuthToken();
+            const response = await fetch(`/api/cart/remove/${productId}`, {
+              method: 'DELETE',
+              headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const data = await response.json();
+            if (data.success || response.ok) {
+              showNotification('Đã xóa sản phẩm khỏi giỏ hàng', 'success');
+              loadCart();
+            }
+          } catch (error) {
+            console.error('Error removing from cart:', error);
+          }
+        }
+        // Cập nhật checkout
+        async function checkout() {
+          if (cartData.items.length === 0) {
+            showNotification('Giỏ hàng trống', 'warning');
+            return;
+          }
+          const confirmed = confirm(`Xác nhận thanh toán ${formatPrice(cartData.total)}?`);
+          
+          if (confirmed) {
+            showNotification('Đang chuyển đến trang thanh toán...', 'info');
+            
+            // Redirect tới Next.js order (cart đã sync ở C#)
+            window.location.href = 'http://localhost:3000/vi/cart';
+            
+            // Optional: Clear cart sau (nếu cần, gọi API)
+            // const token = getAuthToken();
+            // await fetch('/api/cart/clear', { method: 'POST', headers: { 'Authorization': `Bearer ${token}` } });
+          }
+        }
+        // Update cart UI
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartBadge = document.getElementById('cartBadge');
+            const cartTotal = document.getElementById('cartTotal');
+            cartBadge.textContent = cartData.count;
+            cartTotal.textContent = formatPrice(cartData.total);
+            if (cartData.items.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>Giỏ hàng trống</p>
+                    </div>
+                `;
+                return;
+            }
+            cartItemsContainer.innerHTML = '';
+            cartData.items.forEach(item => {
+                const cartItem = createCartItem(item);
+                cartItemsContainer.appendChild(cartItem);
+            });
+        }
+        // Create cart item
+        function createCartItem(item) {
+            const div = document.createElement('div');
+            div.className = 'cart-item';
+            div.innerHTML = `
+                <img src="${item.image || '/static/images/no-image.png'}" alt="${item.name}" onerror="this.src='/static/images/no-image.png'">
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${truncateText(item.name, 30)}</div>
+                    <div class="cart-item-price">${formatPrice(item.price)}</div>
+                    <div class="cart-item-quantity">
+                        <button onclick="updateQuantity(${item.product_id}, ${item.quantity - 1})">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <span>${item.quantity}</span>
+                        <button onclick="updateQuantity(${item.product_id}, ${item.quantity + 1})">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button onclick="removeFromCart(${item.product_id})" style="background: #e74c3c; margin-left: auto;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            return div;
+        }
+       
+        // Utility functions
+        function formatPrice(price) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            }).format(price);
+        }
+        function truncateText(text, maxLength) {
+            if (!text) return '';
+            if (text.length <= maxLength) return text;
+            return text.substring(0, maxLength) + '...';
+        }
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        function showNotification(message, type = 'info') {
+            // Simple notification - in production, use a proper notification library
+            const colors = {
+                success: '#10b981',
+                error: '#ef4444',
+                warning: '#f59e0b',
+                info: '#3b82f6'
+            };
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${colors[type]};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 9999;
+                animation: slideIn 0.3s;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
+</html>

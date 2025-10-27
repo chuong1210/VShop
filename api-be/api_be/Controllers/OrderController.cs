@@ -29,7 +29,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("order.view")]
+        //[Permission("order.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _orderService.GetList(pRequest);
@@ -45,7 +45,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("order.view")]
+        //[Permission("order.view")]
         public async Task<ActionResult> GetOrder([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _orderService.DetailOrder(pRequest);
@@ -177,7 +177,7 @@ namespace api_be.API.Controllers
         /// Cart(0), Order(1), Approve(2), Transport(3), Received(4), Cancel(5)
         /// </remarks>
         [HttpPatch("order-change-status")]
-        [Permission("order.change-status")]
+        //[Permission("order.change-status")]
         public async Task<ActionResult> Change([FromBody] ChangeStatusOrderRequest pRequest)
         {
             var response = await _orderService.ChangeStatusOrder(pRequest);

@@ -242,11 +242,6 @@ C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\api_be.Domain.pdb
 C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\api_be.Infrastructure.pdb
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets.development.json
-C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets\msbuild.api_be.API.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets\msbuild.build.api_be.API.props
-C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.api_be.API.props
-C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.api_be.API.props
-C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\scopedcss\bundle\api_be.API.styles.css
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\api_be.API.csproj.Up2Date
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\api_be.API.dll
@@ -257,3 +252,11 @@ C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\ref\api_be.API.dll
 C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\AWSSDK.S3.dll
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\api_be.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\Microsoft.Extensions.WebEncoders.dll
+C:\Users\chuon\Desktop\VShop\api-be\api_be\bin\Debug\net8.0\api_be.API.staticwebassets.endpoints.json
+C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\rjimswa.dswa.cache.json
+C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets.build.json.cache
+C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

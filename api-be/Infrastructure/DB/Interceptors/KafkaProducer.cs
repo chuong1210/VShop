@@ -30,22 +30,29 @@ namespace api_be.Infrastructure.DB.Interceptors
                 using var httpClient = new HttpClient();
                 await httpClient.PostAsync("https://localhost:7288/smw-api/product/start", null);
                 _isConsumerRunning = true;
+
             }
         }
         public KafkaProducer(IConfiguration configuration, ILogger<KafkaProducer<TKey, TValue>> logger)
         {
             _configuration = configuration;
 
+          
+            _topic = _configuration["Kafka:ProductTopic"] ?? "product-changes";
+            _logger = logger;
+
             var config = new ProducerConfig
             {
                 BootstrapServers = _configuration["Kafka:BootstrapServers"],
                 AllowAutoCreateTopics = false,
                 Acks = Acks.All,
-                
+                RetryBackoffMs = 500, // Add retry backoff
+                MessageSendMaxRetries = 3 // Add retries
+
             };
 
-
-            _topic = "product-changes";// _configuration["Kafka:ProductTopic"];
+            // In KafkaProducer constructor, add this after building _producer
+            CreateTopic(_topic);
             _producer = new ProducerBuilder<TKey, string>(config).Build();
             // Gửi một message test để kích hoạt Consumer
             //var testMessage = new KafkaMessage<Product>
@@ -59,7 +66,6 @@ namespace api_be.Infrastructure.DB.Interceptors
             //    Key = (TKey)(object)testMessage.Data.Id.ToString(),
             //    Value = JsonSerializer.Serialize(testMessage)
             //});
-            _logger = logger;
         }
 
         public async Task ProduceAsync(TKey key, TValue value)

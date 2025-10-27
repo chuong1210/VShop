@@ -39,17 +39,19 @@ namespace api_be.Infrastructure.DB.Interceptors
             return base.SavingChangesAsync(eventData, result, cancellationToken);
         }
 
-      
+
 
         private async void UpdateProducts(DbContext? context)
         {
-            var entries = context.ChangeTracker.Entries<Product>();
+            var entries = context.ChangeTracker.Entries<Product>().ToList(); // <--- snapshot
 
-            var userId = _currentUserService.UserId; // Hàm lấy UserId hiện tại
+            var userId = _currentUserService.UserId;
 
-            foreach (var entry in context.ChangeTracker.Entries())
+            var allEntries = context.ChangeTracker.Entries().ToList(); // <--- snapshot toàn bộ entries
+
+            foreach (var entry in allEntries)
             {
-                if (entry.Entity is  IAuditableEntity baseEntity) // Giả sử mọi entity đều kế thừa IAuditableEntity
+                if (entry.Entity is IAuditableEntity baseEntity)
                 {
                     if (entry.State == EntityState.Added)
                     {
@@ -63,7 +65,6 @@ namespace api_be.Infrastructure.DB.Interceptors
                     }
                 }
             }
-
 
             // Gửi Kafka sau khi đã cập nhật dữ liệu
             foreach (var entry in entries)
@@ -85,6 +86,7 @@ namespace api_be.Infrastructure.DB.Interceptors
                 await _producer.ProduceAsync(product.Id.ToString(), message);
             }
         }
+
 
         private async Task UpdateEntitiesProduct(DbContext? context)
         {

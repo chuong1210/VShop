@@ -8,6 +8,8 @@ const apiConfig = {
 
 	'product': '/product',
 	'product-detail': '/product/detail',
+	'product-search': '/product/search',
+
 	'product-combo': '/product/combo-products',
 
 	'category': '/category',
@@ -29,6 +31,10 @@ const apiConfig = {
 	'chat-conversation':'chat/conversation',
 	'chat-send': 'chat/send',
 	'chat-mark-read': 'chat/mark-read',
+	'recommendations-collaborative': '/product/recommendations/collaborative',
+  'recommendations-similar': '/product/recommendations/similar',
+  'recommendations-hybrid': '/product/recommendations/hybrid',
+  'recommendations-trending': '/product/recommendations/trending',
 };
 
 export { apiConfig };

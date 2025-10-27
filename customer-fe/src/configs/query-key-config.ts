@@ -23,9 +23,13 @@ const queryKeyConfig: {
 	},
 
 	'product': {
-		default: (filter) => ['list', 'products', filter],
+		default: (filter) => ['list', 'products', ,filter],
 	},
 	'product-detail': {
+		default: (filter) => ['detail', 'product', filter],
+	},
+
+		'product-search': {
 		default: (filter) => ['detail', 'product', filter],
 	},
 
@@ -79,7 +83,19 @@ const queryKeyConfig: {
 	'chat-mark-read': {
 		default: () => [],
 
-	}
+	},
+	'recommendations-collaborative': {
+    default: (filter) => ['recommendations', 'collaborative', filter],
+  },
+  'recommendations-similar': {
+    default: (filter) => ['recommendations', 'similar', filter],
+  },
+  'recommendations-hybrid': {
+    default: (filter) => ['recommendations', 'hybrid', filter],
+  },
+  'recommendations-trending': {
+    default: (filter) => ['recommendations', 'trending', filter],
+  }
 };
 
 export { queryKeyConfig };

@@ -226,6 +226,8 @@ builder.Services.AddControllers()
     {
         //options.JsonSerializerOptions.MaxDepth = 3; // Set the desired maximum depth
         //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+
 
     });
 builder.Services.AddScoped<IRedisCacheService, RedisCacheService>();

@@ -159,7 +159,7 @@ namespace UI.WebApi.Controllers
         /////
         ///// </remarks>
         [HttpGet("users")]
-        [Permission("user.view")]
+        //[Permission("user.view")]
         public async Task<ActionResult> Get([FromQuery] GetListUserRequest pRequest)
         {
             try
@@ -191,7 +191,7 @@ namespace UI.WebApi.Controllers
         ///// - Email: required
         ///// </remarks>
         [HttpPost("create")]
-        [Permission("user.create")]
+        //[Permission("user.create")]
         public async Task<ActionResult> Post([FromBody] CreateUserRequest pRequest)
         {
             var response = await _userDomainService.Create(pRequest);
@@ -244,7 +244,7 @@ namespace UI.WebApi.Controllers
         ///// - RolesId: array int
         ///// </remarks>
         [HttpPost("assign")]
-        [Permission("user.assign")]
+        //[Permission("user.assign")]
         public async Task<ActionResult> AssignRolesForUser([FromBody] AssignRoleUserRequest pRequest)
         {
             var response = await _authService.AssignRole(pRequest);
@@ -321,7 +321,7 @@ namespace UI.WebApi.Controllers
         }
 
         [HttpGet("{userId}")]
-        [Permission("user.view")]  // Chỉ cho phép người dùng có quyền "Admin" mới được phép gọi endpoint này
+        //[Permission("user.view")]  // Chỉ cho phép người dùng có quyền "Admin" mới được phép gọi endpoint này
         public async Task<IActionResult> GetUser(int userId)
         {
             var response = await _userDomainService.Detail(userId);
@@ -330,7 +330,7 @@ namespace UI.WebApi.Controllers
 
         }
         [HttpGet("message")]
-        [Permission("user.view")]  // Chỉ cho phép người dùng có quyền "Admin" mới được phép gọi endpoint này
+        //[Permission("user.view")]  // Chỉ cho phép người dùng có quyền "Admin" mới được phép gọi endpoint này
         public async Task<IActionResult> GetUserChatPermission()
         {
             var response = await _userDomainService.GetUserHasAdminRoleAndChatMessagePermission();

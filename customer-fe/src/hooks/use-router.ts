@@ -24,7 +24,9 @@ const useRouter = () => {
 			}
 		}
 
-		return router.push(path);
+		// return router.push(path);
+		  return router.push(`${path}${_params}`);
+
 	};
 
 	return {

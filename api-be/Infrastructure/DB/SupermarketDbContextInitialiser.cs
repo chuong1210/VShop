@@ -57,7 +57,8 @@ namespace api_be.Infrastructure.DB
                 UserName = "admin",
                 Email = "administrator@localhost",
                 PhoneNumber = "0987654321",
-                Type = User.UserType.Admin
+                Type = User.UserType.Admin,
+                IsEmailVerified = true
             };
             var hashedPassword = _passwordHasher.HashPassword(administrator, "123456");
             administrator.Password = hashedPassword;
