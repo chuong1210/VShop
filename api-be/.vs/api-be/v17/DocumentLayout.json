@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\services\\imps\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\services\\imps\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\application\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9434AE90-F2E1-4F60-9789-7EA5C8D082CE}|Application\\api_be.Application.csproj|solutionrelative:application\\mapper\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\client_secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\client_secrets.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|c:\\users\\chuon\\desktop\\vshop\\api-be\\api_be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F5DA093B-8C2F-420C-9EA2-1028CE89C89F}|api_be\\api_be.API.csproj|solutionrelative:api_be\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,13 +74,90 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ExceptionMiddleware.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Middleware\\ExceptionMiddleware.cs",
+              "RelativeDocumentMoniker": "api_be\\Middleware\\ExceptionMiddleware.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Middleware\\ExceptionMiddleware.cs",
+              "RelativeToolTip": "api_be\\Middleware\\ExceptionMiddleware.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T04:18:44.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Mapper\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "Application\\Mapper\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Mapper\\MappingProfile.cs",
+              "RelativeToolTip": "Application\\Mapper\\MappingProfile.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAcwCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T04:15:53.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "api_be\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\UserController.cs",
+              "RelativeToolTip": "api_be\\Controllers\\UserController.cs",
+              "ViewState": "AgIAANAAAAAAAAAAAAAwwOUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T04:13:12.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\AuthService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\Imps\\AuthService.cs",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\Application\\Services\\Imps\\AuthService.cs",
+              "RelativeToolTip": "Application\\Services\\Imps\\AuthService.cs",
+              "ViewState": "AgIAAP0CAAAAAAAAAAASwHkBAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T04:09:58.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "client_secrets.json",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\client_secrets.json",
+              "RelativeDocumentMoniker": "api_be\\client_secrets.json",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\client_secrets.json",
+              "RelativeToolTip": "api_be\\client_secrets.json",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAA0AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-28T04:03:33.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\appsettings.json",
+              "RelativeDocumentMoniker": "api_be\\appsettings.json",
+              "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\appsettings.json",
+              "RelativeToolTip": "api_be\\appsettings.json",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-28T04:01:58.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ProductController.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "api_be\\Controllers\\ProductController.cs",
               "ToolTip": "C:\\Users\\chuon\\Desktop\\VShop\\api-be\\api_be\\Controllers\\ProductController.cs",
               "RelativeToolTip": "api_be\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAEMBAABTAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-27T18:41:28.247Z",
               "EditorCaption": ""

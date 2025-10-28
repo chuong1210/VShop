@@ -8,8 +8,6 @@ langchain-google-genai==0.0.11
 langchain-community==0.0.29
 langchain-text-splitters==0.0.1
 langchain-elasticsearch==0.2.0
-google-generativeai==0.4.1
-google-ai-generativelanguage==0.4.0
 
 elasticsearch[vectorstore-mmr]==8.19.1
 sentence-transformers==2.2.2

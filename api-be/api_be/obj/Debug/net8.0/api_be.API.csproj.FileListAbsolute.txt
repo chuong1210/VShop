@@ -259,4 +259,3 @@ C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\rjsmrazor.dswa.cache
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets.build.json.cache
 C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-C:\Users\chuon\Desktop\VShop\api-be\api_be\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

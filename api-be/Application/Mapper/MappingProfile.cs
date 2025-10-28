@@ -28,14 +28,12 @@ namespace api_be.Application.Mapper
             CreateMap<RegisterAccountRequest, User>()
                 .ForMember(dest => dest.Password, opt => opt.Ignore()) // Không ánh xạ mật khẩu trực tiếp
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => User.UserType.User)); // Gán loại người dùng mặc định là "User"
-
-
             CreateMap<User, UserDto>()
-          .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.UserRoles.Select(ur => ur.Role.Name)))
-          .ReverseMap()
-          .ForMember(dest => dest.UserRoles, opt => opt.Ignore());
+                .ForMember(dest => dest.Roles, opt => opt.MapFrom(src => src.UserRoles.Select(ur => ur.Role.Name)))
+                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => src.Customer));
+
             CreateMap<Customer, CustomerDto>()
-     .ReverseMap(); // Nếu cần ánh xạ ngược từ CustomerDto về Customer
+                .ForMember(dest => dest.User, opt => opt.Ignore()); // Bỏ ánh xạ User
 
 
 

@@ -1,4 +1,3 @@
-
 import os
 import hashlib
 import time
@@ -669,14 +668,22 @@ def search_products():
     print(json.dumps(paginated, indent=2, ensure_ascii=False))
 
     return jsonify(paginated), 200
+
 @app.route('/smw-api/recommendations/collaborative', methods=['GET'])
 def collaborative_recommendations():
-    user_id = get_user_id()
-    if user_id == 'anonymous' or user_id == 0:
+    user_id_str = get_user_id()
+    if user_id_str == 'anonymous':
         return jsonify({"error": "User ID required"}), 400
     
     try:
-        rate_limit_check(user_id)
+        user_id = int(user_id_str)
+        if user_id <= 0:
+            return jsonify({"error": "Invalid User ID"}), 400
+    except ValueError:
+        return jsonify({"error": "Invalid User ID format"}), 400
+    
+    try:
+        rate_limit_check(user_id_str)  # Keep str for cache key if needed
     except BadRequestException as e:
         return jsonify({"error": str(e)}), 429
     
@@ -765,12 +772,19 @@ def similar_products(product_id):
 
 @app.route('/smw-api/recommendations/hybrid', methods=['GET'])
 def hybrid_recommendations():
-    user_id = get_user_id()
-    if user_id == 'anonymous' or user_id == 0:
+    user_id_str = get_user_id()
+    if user_id_str == 'anonymous':
         return jsonify({"error": "User ID required"}), 400
     
     try:
-        rate_limit_check(user_id)
+        user_id = int(user_id_str)
+        if user_id <= 0:
+            return jsonify({"error": "Invalid User ID"}), 400
+    except ValueError:
+        return jsonify({"error": "Invalid User ID format"}), 400
+    
+    try:
+        rate_limit_check(user_id_str)
     except BadRequestException as e:
         return jsonify({"error": str(e)}), 429
     
@@ -814,21 +828,29 @@ def hybrid_recommendations():
 @app.route('/smw-api/recommendations/track', methods=['POST'])
 def track_interaction():
     data = request.json
-    user_id = data.get('userId', get_user_id())
-    product_id = data.get('productId')
+    user_id_str = data.get('userId', get_user_id())
+    product_id_str = data.get('productId')
     interaction_type = data.get('type', 'view')  # view, like, purchase
     
-    if not product_id or user_id == 'anonymous':
+    if not product_id_str or user_id_str == 'anonymous':
         return jsonify({"error": "User ID and Product ID required"}), 400
     
-    success = recommender.track_user_interaction(int(user_id), int(product_id), interaction_type)
+    try:
+        user_id = int(user_id_str)
+        product_id = int(product_id_str)
+        if user_id <= 0 or product_id <= 0:
+            return jsonify({"error": "Invalid IDs"}), 400
+    except ValueError:
+        return jsonify({"error": "Invalid ID format"}), 400
+    
+    success = recommender.track_user_interaction(user_id, product_id, interaction_type)
     
     if success:
         # Log to Kafka
         event = {
             "event_type": "user_interaction",
-            "user_id": user_id,
-            "product_id": product_id,
+            "user_id": user_id_str,
+            "product_id": product_id_str,
             "type": interaction_type,
             "timestamp": datetime.utcnow().isoformat()
         }
