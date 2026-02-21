@@ -29,7 +29,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("distributorService.view")]
+        //[Permission("distributorService.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _distributorService.GetList(pRequest);
@@ -45,7 +45,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("distributorService.view")]
+        //[Permission("distributorService.view")]
         public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _distributorService.Detail(pRequest);
@@ -64,7 +64,7 @@ namespace api_be.API.Controllers
         /// - Email: string, email_format
         /// </remarks>
         [HttpPost]
-        [Permission("distributorService.create")]
+        //[Permission("distributorService.create")]
         public async Task<ActionResult> Post([FromBody] CreateOrUpdateDistributorRequest pRequest)
         {
             var response = await _distributorService.Create(pRequest);
@@ -80,7 +80,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpPut]
-        [Permission("distributorService.update")]
+        //[Permission("distributorService.update")]
         public async Task<ActionResult> Put([FromBody] CreateOrUpdateDistributorRequest pRequest)
         {
             var response = await _distributorService.Update(pRequest);
@@ -96,7 +96,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpDelete]
-        [Permission("distributorService.delete")]
+        //[Permission("distributorService.delete")]
         public async Task<ActionResult> Delete([FromQuery] int pRequest)
         {
             try

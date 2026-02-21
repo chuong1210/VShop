@@ -1,24 +1,28 @@
-﻿using api_be.Core.Domain.Interfaces;
+﻿using api_be.Application.Models.Request;
+using api_be.Application.Models.ValidatorRequest;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Application.Responses;
+using api_be.Core.Domain.Interfaces;
 using api_be.Core.Entities.Auth;
 using api_be.Domain.Exceptions;
 using api_be.Domain.Extensions;
-using api_be.Application.Models.Request;
-using api_be.Application.Responses;
-using api_be.Application.Models.ValidatorRequest;
+using api_be.Domain.ResultResponses;
 using api_be.Domain.Transforms;
+using api_be.Infrastructure.DB;
+using api_be.Middleware;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Sieve.Models;
 using Sieve.Services;
-using api_be.Infrastructure.DB;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http;
-using api_be.Domain.ResultResponses;
-using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace api_be.Application.Services.Imps
 {
+    [RegisterService(ServiceLifetime.Scoped)]
+
     public class UserService:IUserService
     {
         private readonly ISupermarketDbContext _context;

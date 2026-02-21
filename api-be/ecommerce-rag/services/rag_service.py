@@ -12,20 +12,79 @@ from services.db_service import DatabaseService
 import json
 from langchain import hub  # Để pull ReAct prompt chuẩn
 from langchain_core.messages import AIMessage, HumanMessage
+from langchain.agents import AgentOutputParser
+from langchain.schema import AgentAction, AgentFinish
+import re, json
+from langchain_openai import ChatOpenAI # Dùng ChatOpenAI của LangChain để tích hợp
 
+class SafeReActParser(AgentOutputParser):
+    def parse(self, text: str):
+        # Nếu model không xuất ra Action: => Trả về Final Answer
+        if "Action:" not in text:
+            # --- XỬ LÝ LÀM SẠCH OUTPUT TẠI ĐÂY ---
+            cleaned_output = text.strip()
+            
+            # 1. Nếu có từ khóa "Final Answer:", chỉ lấy phần sau nó
+            if "Final Answer:" in cleaned_output:
+                cleaned_output = cleaned_output.split("Final Answer:")[-1].strip()
+            
+            # 2. Nếu model quên "Final Answer" mà vẫn dính "Thought:", cắt bỏ phần Thought đi
+            elif "Thought:" in cleaned_output:
+                cleaned_output = cleaned_output.split("Thought:")[-1].strip()
+            # -------------------------------------
+
+            return AgentFinish(
+                return_values={"output": cleaned_output},
+                log=text,
+            )
+
+        # --- PHẦN DƯỚI GIỮ NGUYÊN LOGIC CŨ CỦA BẠN ---
+        # Trích Thought / Action / Action Input
+        action_match = re.search(r"Action\s*:\s*(.*)", text)
+        input_match = re.search(r"Action Input\s*:\s*(.*)", text)
+
+        if action_match:
+            action = action_match.group(1).strip()
+            action_input = input_match.group(1).strip() if input_match else ""
+            try:
+                # Cố gắng parse JSON, nếu lỗi thì giữ nguyên string
+                action_input = json.loads(action_input)
+            except:
+                pass
+            return AgentAction(tool=action, tool_input=action_input, log=text)
+
+        # fallback
+        return AgentFinish(return_values={"output": text.strip()}, log=text)
+
+def safe_parse_output(output):
+    """Xử lý lỗi parser 'Missing Action' hoặc lỗi format."""
+    if "Action:" not in output:
+        return {"action": "Final Answer", "action_input": output}
+    try:
+        action_part = output.split("Action:")[1].strip()
+        if "Action Input:" in action_part:
+            name, action_input = action_part.split("Action Input:")
+            return {"action": name.strip(), "action_input": action_input.strip()}
+        return {"action": action_part.strip(), "action_input": ""}
+    except Exception as e:
+        return {"action": "Final Answer", "action_input": str(output)}
 # Parse JSON output và giới thiệu 
 class RAGService:
     def __init__(self):
         # Initialize LLM
-        self.llm = ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash",
-            google_api_key=Config.GOOGLE_API_KEY,
+        self.llm = ChatOpenAI(
+            model="x-ai/grok-3-mini-beta",  # Tên model Grok trên OpenRouter
+            openai_api_key="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",  # API Key của bạn từ OpenRouter
+            openai_api_base="https://openrouter.ai/api/v1", # Base URL của OpenRouter
             temperature=0.2,
-            convert_system_message_to_human=True , # 🟢 quan trọng
-            max_output_tokens=2000  # giới hạn output ~200 tokens (~150-180 từ)
-
-            ,streaming=False
+            max_tokens=2000,
+            default_headers={ # Thêm các header tùy chọn như bài viết hướng dẫn
+                "HTTP-Referer": "http://localhost:3000", # Thay bằng URL app của bạn
+                "X-Title": "VShop RAG Assistant", # Tên app của bạn
+            },
+            stop=["\nObservation:", "Observation"],
         )
+
 
         # Initialize database service
         self.db_service = DatabaseService()
@@ -84,7 +143,10 @@ class RAGService:
         agent = create_react_agent(
             llm=self.llm,
             tools=ALL_TOOLS,
-            prompt=prompt
+            prompt=prompt,
+            output_parser=SafeReActParser()
+
+
         )
 
         # Executor (giữ fix early_stopping)
@@ -184,58 +246,77 @@ class RAGService:
             intent = self._detect_intent(query)
             print(f"🔍 Detected intent: {intent['action']} for query: '{query}'")
 
-            # Invoke agent
+            # 1. Gọi Agent
             response_dict = self.agent.invoke({
                 "input": query
             })
-            response = response_dict.get("output", "")
-
-            # Log steps
+            
+            # Lấy câu trả lời text
+            response_text = response_dict.get("output", "")
+            
+            # Lấy các bước trung gian (Tool calls)
             intermediate_steps = response_dict.get("intermediate_steps", [])
+
+            # Log để debug
             if intermediate_steps:
                 print(f"🛠️ Tool calls: {len(intermediate_steps)}")
-                for action, obs in intermediate_steps:
-                    print(f"  - Tool: {action.tool} | Input: {action.tool_input}")
-                    print(f"    Obs: {obs[:100]}...")
 
-            # Parse products (từ obs nếu response không có)
+            # 2. TRÍCH XUẤT DỮ LIỆU SẢN PHẨM TỪ TOOL (QUAN TRỌNG NHẤT)
             products = None
-            for _, obs in intermediate_steps:
-                try:
-                    import json, re
-                    json_match = re.search(r'\[.*?\]|\{.*?\}', obs, re.DOTALL)
-                    if json_match:
-                        parsed = json.loads(json_match.group())
-                        if isinstance(parsed, list) and len(parsed) > 0 and isinstance(parsed[0], dict):
-                            products = parsed
-                            break
-                except:
-                    pass
+            
+            # Duyệt ngược từ cuối lên để lấy kết quả mới nhất
+            for action_obj, obs in reversed(intermediate_steps):
+                # Chỉ quan tâm đến tool tìm kiếm sản phẩm
+                if action_obj.tool in ["search_products", "get_products", "get_recommendations"]:
+                    try:
+                        import json, re
+                        
+                        # Tìm chuỗi JSON dạng list [...]
+                        json_match = re.search(r'\[.*\]', obs, re.DOTALL)
+                        if json_match:
+                            parsed = json.loads(json_match.group())
+                            
+                            # Kiểm tra kỹ xem có phải danh sách sản phẩm không
+                            if isinstance(parsed, list) and len(parsed) > 0 and isinstance(parsed[0], dict):
+                                # Lấy keys của phần tử đầu tiên, chuyển về chữ thường
+                                keys = [k.lower() for k in parsed[0].keys()]
+                                
+                                # Chấp nhận nếu có 'name' hoặc 'price' hoặc 'id'
+                                if any(k in keys for k in ['name', 'price', 'id', 'internal_code']):
+                                    products = parsed
+                                    print(f"✅ Extracted {len(products)} products from tool output.")
+                                    break # Tìm thấy rồi thì dừng
+                    except Exception as e:
+                        print(f"⚠️ Error parsing tool output: {e}")
+                        continue
 
-            result = {
-                "answer": response,
+            # 3. XỬ LÝ KẾT QUẢ TRẢ VỀ
+            
+            # Nếu AI trả lời kiểu "Không cần thêm..." nhưng ta ĐÃ tìm thấy products từ Tool
+            # => Ta VẪN trả về products để Frontend hiển thị
+            if products:
+                # Nếu câu trả lời của AI quá vô dụng, ta tự viết lại câu trả lời
+                if len(response_text) < 20 or "không cần" in response_text.lower():
+                    response_text = f"Dưới đây là {len(products)} sản phẩm tôi tìm thấy theo yêu cầu của bạn:"
+                
+                return {
+                    "answer": response_text,
+                    "action": "show_products", # BẮT BUỘC action này
+                    "products": products
+                }
+
+            # Trường hợp bình thường (Chat hoặc không tìm thấy sản phẩm)
+            return {
+                "answer": response_text,
                 "action": intent['action']
             }
-            if products:
-                result["products"] = products
-                result["action"] = "show_products"
-
-            self.agent.memory.save_context({"input": query}, {"output": response})
-            return result
 
         except ValueError as ve:
-            # Fallback cho early_stopping error (nếu vẫn xảy ra)
             print(f"⚠️ Agent ValueError fallback: {ve}")
             if "early_stopping_method" in str(ve):
-                # Gọi tool thủ công cho intent rõ (e.g., show_products)
-                if intent['action'] == 'show_products':
-                    from services.tools import get_products  # Import tool
-                    tool_output = get_products.invoke({"category_id": None, "limit": 10})
-                    import json
-                    products = json.loads(tool_output)
-                    response = f"Dưới đây là danh sách 10 sản phẩm hot tại VShop:\n{json.dumps(products, ensure_ascii=False, indent=2)}"
-                    return {"answer": response, "action": "show_products", "products": products}
-            # Re-raise nếu không phải early_stopping
+                # Fallback khẩn cấp nếu Agent bị ngắt
+                if intent['action'] == 'search_products':
+                     return {"answer": "Tôi đã tìm thấy sản phẩm nhưng bị ngắt quãng. Hãy thử lại.", "action": "chat"}
             raise
 
         except Exception as e:

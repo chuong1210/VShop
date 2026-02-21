@@ -14,8 +14,8 @@ import { lastValueFrom } from 'rxjs';
 	templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
-	username: string = '';
-	password: string = '';
+	username: string = 'admin';
+	password: string = '123456';
 	showPassword: boolean = false;
 	message!: string;
 

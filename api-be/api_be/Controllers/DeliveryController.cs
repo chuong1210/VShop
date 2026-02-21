@@ -29,7 +29,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("delivery.view")]
+        //[Permission("delivery.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _deliveryService.GetList(pRequest);
@@ -45,7 +45,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("delivery.view")]
+        //[Permission("delivery.view")]
         public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _deliveryService.Detail(pRequest);
@@ -79,7 +79,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpPut]
-        [Permission("delivery.update")]
+        //[Permission("delivery.update")]
         public async Task<ActionResult> Put([FromBody] CreateOrUpdateDeliveryRequest pRequest)
         {
             var response = await _deliveryService.Update(pRequest);
@@ -101,7 +101,7 @@ namespace api_be.API.Controllers
         /// (4): Cancel (Huỷ)
         /// </remarks>
         [HttpPatch]
-        [Permission("delivery.change-status")]
+        //[Permission("delivery.change-status")]
         public async Task<ActionResult> Change([FromBody] ChangeStatusDeliveryRequest pRequest)
         {
             var response = await _deliveryService.ChangeStatus(pRequest);

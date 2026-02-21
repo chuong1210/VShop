@@ -26,9 +26,11 @@ const ChatBox = () => {
   const [textareaHeight, setTextareaHeight] = useState(40);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const bgColor = useColorModeValue("white", "gray.700");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-  const primaryColor = "rgba(0, 150, 136, 0.8)"; // Light blue-green color
+  const primaryColor = "rgba(0, 150, 136, 0.8)";
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -42,8 +44,25 @@ const ChatBox = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputMessage(e.target.value);
+
+    // ✅ Trigger typing notification
+    if (chatContext && e.target.value) {
+      chatContext.startTyping();
+
+      // Clear previous timeout
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+
+      // Stop typing after 1 second of inactivity
+      typingTimeoutRef.current = setTimeout(() => {
+        chatContext.stopTyping();
+      }, 1000);
+    }
+
     if (e.target.value === "") {
       resetTextareaHeight();
+      chatContext?.stopTyping();
     } else {
       adjustTextareaHeight();
     }
@@ -52,7 +71,7 @@ const ChatBox = () => {
   const adjustTextareaHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
-      const height = Math.min(textareaRef.current.scrollHeight, 200); // Limit max height
+      const height = Math.min(textareaRef.current.scrollHeight, 200);
       textareaRef.current.style.height = `${height}px`;
       setTextareaHeight(height);
     }
@@ -69,16 +88,30 @@ const ChatBox = () => {
     return null;
   }
 
-  const { messages, sendMessage, showChat, setShowChat, currentUserId } =
-    chatContext;
+  const {
+    messages,
+    sendMessage,
+    showChat,
+    setShowChat,
+    currentUserId,
+    typingUsers,
+  } = chatContext;
 
   const handleSend = () => {
     if (inputMessage.trim()) {
       sendMessage(inputMessage);
       setInputMessage("");
       resetTextareaHeight();
+
+      // Clear typing timeout
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
     }
   };
+
+  // ✅ Check if someone is typing
+  const isTyping = typingUsers && typingUsers.size > 0;
 
   return (
     <AnimatePresence>
@@ -111,7 +144,7 @@ const ChatBox = () => {
             transition={{ delay: 0.2 }}
           >
             <Text fontWeight="bold" color={primaryColor}>
-              Chat
+              Chat với Admin
             </Text>
             <IconButton
               icon={<CloseIcon />}
@@ -128,6 +161,7 @@ const ChatBox = () => {
               _hover={{ bg: "blue.100" }}
             />
           </MotionFlex>
+
           <VStack flex={1} overflowY="auto" p={3} spacing={3} align="stretch">
             <AnimatePresence>
               {messages.map((msg: MessageCollectionType, index: number) => (
@@ -170,8 +204,19 @@ const ChatBox = () => {
                 </MotionBox>
               ))}
             </AnimatePresence>
+
+            {/* ✅ Typing indicator */}
+            {isTyping && (
+              <HStack justify="flex-start">
+                <Text fontSize="sm" color="gray.500" fontStyle="italic">
+                  Admin đang nhập...
+                </Text>
+              </HStack>
+            )}
+
             <div ref={messagesEndRef} />
           </VStack>
+
           <MotionFlex
             p={3}
             borderTop="1px"
@@ -191,7 +236,6 @@ const ChatBox = () => {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
-
                     handleSend();
                   }
                 }}

@@ -10,10 +10,14 @@ type ChatBubbleProps ={
   messages: MessageCollectionType[]
   sendMessage: (content: string) => void
   showChat: boolean
+    setCorrespondentId: (id: number) => void;
+
   setShowChat: (value: boolean) => void
   currentUserId: number | null
   startTyping: () => void; // ➕ Hàm gửi sự kiện đang nhập
   stopTyping: () => void;  // ➕ Hàm gửi sự kiện dừng nhập
+    typingUsers: Set<number>; // ✅ Add this
+
 }
 
 type  SendMessageType= {

@@ -6,7 +6,7 @@ import {
   IconButton,
   MenuDivider,
 } from "@chakra-ui/react";
-import { ChatIcon } from "@chakra-ui/icons";
+import { ChatIcon, QuestionIcon } from "@chakra-ui/icons";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChatContext } from "@provider/chat-provider";
 import { useCookies } from "@hook/index";
@@ -59,7 +59,9 @@ const ChatBubble = () => {
             Chat với Admin
           </MenuItem>
           <MenuDivider />
-          <MenuItem onClick={handleBotChat}>Chat với Bot</MenuItem>
+          <MenuItem icon={<QuestionIcon />} onClick={handleBotChat}>
+            Chat với Bot
+          </MenuItem>
         </MenuList>
       </Menu>
     </AnimatePresence>

@@ -558,24 +558,53 @@
         }
         // Create product card
         function createProductCard(product, isRecommendation = false) {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            const image = product.Images ? product.Images.split(',')[0] : '/static/images/no-image.png';
-            const price = formatPrice(product.Price || 0);
-            card.innerHTML = `
-                ${image ? `<img src="${image}" alt="${product.Name}" onerror="this.src='/static/images/no-image.png'">` : ''}
-                <div class="product-name">${product.Name}</div>
-                <div class="product-price">${price}</div>
-                ${product.Describes ? `<div class="product-description">${truncateText(product.Describes, 100)}</div>` : ''}
-                ${product.CategoryName ? `<div class="text-muted small"><i class="fas fa-tag"></i> ${product.CategoryName}</div>` : ''}
-                <div class="d-flex gap-2 mt-2">
-                    <button class="btn-add-cart flex-fill" onclick="addToCart(${product.Id}, '${escapeHtml(product.Name)}')">
-                        <i class="fas fa-cart-plus"></i> Thêm vào giỏ
-                    </button>
-                    ${isRecommendation ? '<span class="badge bg-success">Gợi ý</span>' : ''}
-                </div>
-            `;
-            return card;
+        //    if (!product.Name || (!product.Id && !product.id)) {
+        //         console.warn("Dữ liệu sản phẩm không hợp lệ:", product);
+        //         const emptyDiv = document.createElement('div');
+        //         emptyDiv.style.display = 'none';
+        //         return emptyDiv;
+        //     }
+            const pName = product.Name || product.name || "Sản phẩm không tên";
+            const pPrice = product.Price || product.price || 0;
+            const pId = product.Id || product.id || product.productId;
+            const pDesc = product.Describes || product.describes || product.description || "";
+            let pImages = product.Images || product.images;
+
+    // Kiểm tra dữ liệu rác
+    if (!pName || !pId) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.style.display = 'none';
+        return emptyDiv;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    
+    // Xử lý ảnh: API trả về List chuỗi, hoặc chuỗi ngăn cách dấu phẩy
+    let imageUrl = '/static/images/no-image.png';
+    if (Array.isArray(pImages) && pImages.length > 0) {
+        imageUrl = pImages[0];
+    } else if (typeof pImages === 'string' && pImages.includes(',')) {
+        imageUrl = pImages.split(',')[0];
+    } else if (typeof pImages === 'string' && pImages.length > 0) {
+        imageUrl = pImages;
+    }
+
+    const priceFormatted = formatPrice(pPrice);
+
+    card.innerHTML = `
+        <img src="${imageUrl}" alt="${pName}" onerror="this.src='/static/images/no-image.png'">
+        <div class="product-name">${pName}</div>
+        <div class="product-price">${priceFormatted}</div>
+        ${pDesc ? `<div class="product-description">${truncateText(pDesc, 100)}</div>` : ''}
+        <div class="d-flex gap-2 mt-2">
+            <button class="btn-add-cart flex-fill" onclick="addToCart(${pId}, '${escapeHtml(pName)}')">
+                <i class="fas fa-cart-plus"></i> Thêm vào giỏ
+            </button>
+            ${isRecommendation ? '<span class="badge bg-success">Gợi ý</span>' : ''}
+        </div>
+    `;
+    return card;
         }
         // Cập nhật loadCart để xử lý cấu trúc response từ C# API
         async function loadCart() {
@@ -616,7 +645,7 @@
         async function addToCart(productId, productName) {
           try {
             const token = getAuthToken();
-            const response = await fetch('/api/cart/add', {
+            const response = await fetch('/api/cart', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

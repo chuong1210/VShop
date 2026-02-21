@@ -26,7 +26,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("supplier-order.view")]
+        //[Permission("supplier-order.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _supplierOrderService.GetList(pRequest);
@@ -42,7 +42,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("supplier-order.view")]
+        //[Permission("supplier-order.view")]
         public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _supplierOrderService.Detail(pRequest);
@@ -58,7 +58,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("list-product")]
-        [Permission("supplier-order.view")]
+        //[Permission("supplier-order.view")]
         public async Task<ActionResult> GetProduct([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _supplierOrderService.ProductSupplierOrder(pRequest);
@@ -79,7 +79,7 @@ namespace api_be.API.Controllers
         ///     + Price: > 0
         /// </remarks>
         [HttpPost]
-        [Permission("supplier-order.create")]
+        //[Permission("supplier-order.create")]
         public async Task<ActionResult> Post([FromBody] CreateOrUpdateSupplierOrderRequest pRequest)
         {
             var response = await _supplierOrderService.Create(pRequest);
@@ -100,7 +100,7 @@ namespace api_be.API.Controllers
         ///     + Price: > 0
         /// </remarks>
         [HttpPut]
-        [Permission("supplier-order.update")]
+        //[Permission("supplier-order.update")]
         public async Task<ActionResult> Put([FromBody] CreateOrUpdateSupplierOrderRequest pRequest)
         {
             var response = await _supplierOrderService.Update(pRequest);
@@ -118,7 +118,7 @@ namespace api_be.API.Controllers
         /// Draft(0), Order(1), Cancel(2)
         /// </remarks>
         [HttpPatch("change-status")]
-        [Permission("supplier-order.change-status")]
+        //[Permission("supplier-order.change-status")]
         public async Task<ActionResult> ChangeStatus([FromBody] ChangeStatusSupplierOrderRequest pRequest)
         {
             var response = await _supplierOrderService.ChangeStatus(pRequest);

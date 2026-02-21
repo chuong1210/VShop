@@ -1,20 +1,54 @@
-<div *ngIf="data.shouldShow">
-	<a class="px-3 py-2 rounded-md hover:bg-greenlighten-1 hover:text-white cursor-pointer transition-colors flex items-center gap-3"
-		(click)="_onClick($event)" [routerLink]="data.to" routerLinkActive="menu-active">
-		<i *ngIf="data.icon" [ngClass]="data.icon"></i>
+<div class="menu-item-wrapper">
 
-		<p class="flex-1" [ngClass]="{
-				'font-semibold': data.options
-			}">
-			{{ data.label }}
-		</p>
+	<!-- Parent Menu Item -->
+	<div
+		class="menu-item group"
+		[ngClass]="{ active: isActive, expanded: isExpanded }"
+		(click)="toggleMenu()"
+	>
+		<div class="flex items-center gap-3 flex-1">
+			<div class="icon-wrapper">
+				<i [class]="data.icon" class="text-base"></i>
+			</div>
+			<span class="menu-label">{{ data.label }}</span>
+		</div>
 
-		<i *ngIf="data.options && !collapse" class="fa-solid fa-chevron-down text-xs"></i>
-
-		<i *ngIf="data.options && collapse" class="fa-solid fa-chevron-right text-xs"></i>
-	</a>
-
-	<div *ngIf="data.options && !collapse" class="ml-8 mt-0.5 flex flex-col gap-0.5">
-		<app-menu-item *ngFor="let item of data.options" [data]="item" [activeItem]="activeItem" />
+		<i
+			*ngIf="(data.options?.length ?? 0) > 0"
+			class="fa-solid fa-chevron-down transition-transform duration-300"
+			[ngClass]="{ 'rotate-180': isExpanded }"
+		></i>
 	</div>
+
+	<!-- Sub Menu Items -->
+	<div
+		*ngIf="(data.options?.length ?? 0) > 0"
+		class="submenu"
+		[ngClass]="{ expanded: isExpanded }"
+	>
+		<div
+			*ngFor="let option of data.options"
+			[routerLink]="option.to"
+			class="submenu-item"
+			[ngClass]="{ active: activeItem === option.to }"
+			(click)="onSubItemClick(option.to!)"
+		>
+			<i *ngIf="option.icon" [class]="option.icon" class="text-sm"></i>
+			<span>{{ option.label }}</span>
+		</div>
+	</div>
+
+	<!-- Direct Link (No submenu) -->
+	<div
+		*ngIf="!data.options || data.options.length === 0"
+		[routerLink]="data.to"
+		class="menu-item-link"
+		[ngClass]="{ active: activeItem === data.to }"
+	>
+		<div class="icon-wrapper">
+			<i [class]="data.icon"></i>
+		</div>
+		<span class="menu-label">{{ data.label }}</span>
+	</div>
+
 </div>

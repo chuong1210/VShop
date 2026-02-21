@@ -3,8 +3,10 @@ using api_be.Core.Domain.Interfaces;
 using api_be.Core.Entities;
 using api_be.Infrastructure.Data;
 using api_be.Infrastructure.DB.Interceptors;
+using api_be.Middleware;
 using AutoMapper;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System;
@@ -15,7 +17,9 @@ using System.Threading.Tasks;
 
 namespace api_be.Application.Services.Imps
 {
-   public class ProductReviewService
+    [RegisterService(ServiceLifetime.Scoped)]
+
+    public class ProductReviewService
     {
         private readonly IMongoCollection<ProductReview> _reviews;
         private readonly MongoDbInterceptor _mongoDbInterceptor;

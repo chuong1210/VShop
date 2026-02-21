@@ -374,6 +374,18 @@
         }
       }
     },
+    "/smw-api/chat/conversations": {
+      "get": {
+        "tags": [
+          "Chat"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/smw-api/chat/mark-read": {
       "post": {
         "tags": [

@@ -58,6 +58,7 @@ export type OptionTpe = {
 	permissions?: string[];
 	shouldShow?: boolean;
 	options?: OptionTpe[];
+  badge?: string | number;
 };
 
 export type TokenData = {

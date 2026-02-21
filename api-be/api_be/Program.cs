@@ -217,6 +217,7 @@ builder.Services.AddAuthorization(options =>
 
 });
 //builder.Services.Configure<ElasticsearchClientSettings>(options =>
+builder.Services.AddSingleton<ProductIndexInitializer>();
 
 builder.Services.AddTransient<ExceptionMiddleware>();
 
@@ -250,7 +251,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins", policy =>
     {
-        policy.WithOrigins("http://localhost:3000") // Thay bằng URL Next.js của bạn
+        policy.WithOrigins("http://localhost:3000", "http://localhost:4200") // Thay bằng URL Next.js của bạn
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials(); // Để hỗ trợ cookie/chứng chỉ

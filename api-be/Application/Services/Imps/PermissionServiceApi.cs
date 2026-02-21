@@ -1,20 +1,24 @@
-﻿using api_be.Core.Domain.Interfaces;
+﻿using api_be.Application.Models.Request;
+using api_be.Application.Models.ValidatorRequest;
+using api_be.Application.Responses;
+using api_be.Core.Domain.Interfaces;
 using api_be.Core.Entities.Auth;
 using api_be.Domain.Extensions;
-using api_be.Application.Models.Request;
-using api_be.Application.Responses;
-using api_be.Application.Models.ValidatorRequest;
+using api_be.Domain.ResultResponses;
 using api_be.Domain.Transforms;
-using Microsoft.EntityFrameworkCore;
-using Sieve.Services;
 using api_be.Infrastructure.DB;
-using Microsoft.Extensions.Configuration;
+using api_be.Middleware;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
-using api_be.Domain.ResultResponses;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Sieve.Services;
 
 namespace api_be.Application.Services.Imps
 {
+    [RegisterService(ServiceLifetime.Scoped)]
+
     public class PermissionServiceApi:IPermissionServiceApi
     {
 

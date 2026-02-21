@@ -15,6 +15,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 		MasterDataModule,
 		BusinessModule,
 		DashboardModule,
+
 		AdminLayoutComponentModule,
 	],
 	exports: [],

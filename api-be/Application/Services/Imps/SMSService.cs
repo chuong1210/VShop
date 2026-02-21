@@ -1,10 +1,14 @@
 ﻿
+using api_be.Middleware;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Twilio;
 using Twilio.Types;
 
 namespace api_be.Application.Services.Imps
 {
+    [RegisterService(ServiceLifetime.Scoped)]
+
     public class SMSService : ISMSService
     {
         private readonly IConfiguration _configuration;

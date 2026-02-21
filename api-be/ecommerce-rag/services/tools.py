@@ -73,7 +73,7 @@ def _cache_key_for_search(search_term: str, limit: int) -> str:
     return f"products:search:{search_term}:limit:{limit}"
 
 # get_products (multi-arg -> StructuredTool)
-@tool
+# @tool
 def get_products_func(category_id: Optional[int] = None, limit: int = 10) -> str:
     """
     Lấy danh sách sản phẩm từ database với caching.
@@ -108,7 +108,7 @@ get_products = StructuredTool.from_function(
 )
 
 # search_products (multi-arg -> StructuredTool)
-@tool  # Giữ decorator nếu dùng
+# @tool  # Giữ decorator nếu dùng
 def search_products_func(search_term: str, limit: int = 10) -> str:
     """
     Tìm kiếm sản phẩm theo từ khóa với caching via API call.
@@ -226,8 +226,8 @@ def get_product_details(product_id: int) -> str:
     except Exception as e:
         return json.dumps({"error": str(e)})
 
-@tool
-def get_categories() -> str:
+@tool("get_categories", args_schema=None)
+def get_categories(dummy_input: str = "") -> str:
     """
     Lấy danh sách tất cả danh mục sản phẩm với caching.
     
@@ -248,6 +248,17 @@ def get_categories() -> str:
         return result
     except Exception as e:
         return json.dumps({"error": str(e)})
+from langchain_core.pydantic_v1 import BaseModel, Field
+
+class EmptyArgs(BaseModel):
+    """Schema rỗng cho tools không cần arg (StructuredTool expects a model)."""
+    pass
+# Create StructuredTool with empty args schema
+# get_categories = StructuredTool.from_function(
+#     func=get_categories_func,
+#     name="get_categories",
+#     description="Lấy danh sách tất cả danh mục sản phẩm (không cần args).",
+# )
 
 @tool
 def get_product_context_for_rag() -> str:

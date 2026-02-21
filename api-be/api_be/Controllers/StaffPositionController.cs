@@ -29,7 +29,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("staff-position.view")]
+        //[Permission("staff-position.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _staffPositionService.GetList(pRequest);
@@ -45,7 +45,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("staff-position.view")]
+        //[Permission("staff-position.view")]
         public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _staffPositionService.Detail(pRequest);
@@ -63,7 +63,7 @@ namespace api_be.API.Controllers
         /// - Describes: ckeditor
         /// </remarks>
         [HttpPost]
-        [Permission("staff-position.create")]
+        //[Permission("staff-position.create")]
         public async Task<ActionResult> Post([FromBody] CreateOrUpdateStaffPositionRequest pRequest)
         {
             var response = await _staffPositionService.Create(pRequest);
@@ -79,7 +79,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpPut]
-        [Permission("staff-position.update")]
+        //[Permission("staff-position.update")]
         public async Task<ActionResult> Put([FromBody] CreateOrUpdateStaffPositionRequest pRequest)
         {
             var response = await _staffPositionService.Update(pRequest);
@@ -95,7 +95,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpDelete]
-        [Permission("staff-position.delete")]
+        //[Permission("staff-position.delete")]
         public async Task<ActionResult> Delete([FromQuery] int pRequest)
         {
             try

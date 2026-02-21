@@ -29,7 +29,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("staff.view")]
+        //[Permission("staff.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _staffService.GetList(pRequest);
@@ -45,7 +45,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("staff.view")]
+        //[Permission("staff.view")]
         public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _staffService.Detail(pRequest);
@@ -65,7 +65,7 @@ namespace api_be.API.Controllers
         /// - Email: string, email_format
         /// </remarks>
         [HttpPost]
-        [Permission("staff.create")]
+        //[Permission("staff.create")]
         public async Task<ActionResult> Post([FromBody] CreateOrUpdateStaffRequest pRequest)
         {
             var response = await _staffService.Create(pRequest);
@@ -81,7 +81,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpPut]
-        [Permission("staff.update")]
+        //[Permission("staff.update")]
         public async Task<ActionResult> Put([FromBody] CreateOrUpdateStaffRequest pRequest)
         {
             var response = await _staffService.Update(pRequest);
@@ -97,7 +97,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpDelete]
-        [Permission("staff.delete")]
+        //[Permission("staff.delete")]
         public async Task<ActionResult> Delete([FromQuery] int id)
         {
             try

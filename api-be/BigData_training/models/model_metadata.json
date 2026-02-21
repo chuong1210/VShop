@@ -1,9 +1,0 @@
-{
-  "model_type": "ALS",
-  "rank": 25,
-  "rmse": 1.835761950654963,
-  "mae": 1.525839932526635,
-  "trained_at": "2025-10-26T15:58:11.163070",
-  "num_user_factors": 484,
-  "num_item_factors": 667
-}

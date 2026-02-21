@@ -1,0 +1,113 @@
+LỊCH SỬ HÌNH THÀNH VÀ PHÁT TRIỂN CỬA HÀNG VSHOP
+1. Giới thiệu chung
+
+Tên doanh nghiệp: Cửa hàng VShop
+Lĩnh vực hoạt động: Bán lẻ và phân phối thiết bị điện – điện tử, linh kiện công nghệ, phụ kiện thông minh và giải pháp số hóa cho người tiêu dùng Việt Nam.
+Ngày thành lập: 26 tháng 10 năm 2025
+Người sáng lập: Võ Ngọc Nguyên Chương và Nguyễn Lê Bảo Trân
+Tuổi của nhà sáng lập khi thành lập: 21 tuổi
+Địa chỉ trụ sở chính: 140 Lê Trọng Tấn, Phường Tây Thạnh, Quận Tân Phú, Thành phố Hồ Chí Minh, Việt Nam
+
+2. Khởi nguồn ý tưởng (2024 – đầu 2025)
+
+VShop ra đời không phải từ một bản kế hoạch kinh doanh hoành tráng, mà từ một niềm đam mê công nghệ mãnh liệt và một tầm nhìn rõ ràng về sự thay đổi trong hành vi tiêu dùng Việt Nam.
+
+Trong giai đoạn 2024, khi thương mại điện tử bùng nổ, thị trường thiết bị điện – điện tử tại Việt Nam vẫn tồn tại nhiều bất cập: sản phẩm kém chất lượng, bảo hành mập mờ, và đặc biệt là thiếu tính minh bạch và dịch vụ hậu mãi tận tâm.
+
+Võ Ngọc Nguyên Chương – một sinh viên ngành Công nghệ Thông tin đam mê lập trình và khởi nghiệp – cùng Nguyễn Lê Bảo Trân – sinh viên ngành Quản trị Kinh doanh – đã cùng nhau chia sẻ một khát vọng: xây dựng một cửa hàng thiết bị điện tử “đáng tin cậy nhất cho người Việt”, nơi người mua không chỉ chọn sản phẩm, mà còn chọn được niềm tin.
+
+Cả hai bắt đầu bằng việc bán các thiết bị điện nhỏ lẻ qua các kênh online như Facebook, Shopee, và Zalo từ phòng trọ sinh viên. Dù quy mô nhỏ, nhưng chính tinh thần cầu thị, tư vấn tận tâm và hậu mãi chu đáo đã giúp họ thu hút được những khách hàng đầu tiên – tiền đề cho thương hiệu VShop sau này.
+
+3. Ngày thành lập chính thức – 26/10/2025
+
+Sau gần một năm chuẩn bị, ngày 26 tháng 10 năm 2025 được chọn làm cột mốc khai sinh chính thức của VShop.
+Địa chỉ 140 Lê Trọng Tấn, Phường Tây Thạnh, Thành phố Hồ Chí Minh trở thành trụ sở đầu tiên và cửa hàng trưng bày chính thức.
+
+Cửa hàng được khai trương trong không khí ấm cúng nhưng đầy quyết tâm. Với vốn ban đầu khiêm tốn, hai nhà sáng lập đã tự tay làm mọi việc – từ thiết kế bảng hiệu, trưng bày sản phẩm, đến lập trình website thương mại điện tử nội bộ.
+
+VShop – Viết tắt của “Visionary Shop” – được chọn để thể hiện tầm nhìn xa và tinh thần tiên phong: không chỉ là nơi bán hàng, mà là nơi mang công nghệ gần gũi hơn với mọi gia đình Việt Nam.
+
+4. Giai đoạn xây dựng thương hiệu (2025 – 2026)
+
+Ngay từ đầu, VShop định hướng ba giá trị cốt lõi:
+
+Chất lượng vượt trên lợi nhuận:
+Mỗi sản phẩm được nhập khẩu hoặc chọn lọc từ nhà cung cấp uy tín, có chứng chỉ rõ ràng, bảo hành minh bạch.
+
+Trải nghiệm khách hàng là trọng tâm:
+Đội ngũ nhân viên được đào tạo để tư vấn thân thiện, trung thực và hỗ trợ kỹ thuật tận tình sau bán hàng.
+
+Công nghệ hóa mọi quy trình:
+Ứng dụng phần mềm quản lý kho, bán hàng và hệ thống theo dõi bảo hành được phát triển in-house bởi chính Nguyên Chương.
+
+Cửa hàng sớm thu hút được cộng đồng khách hàng trẻ – những người yêu thích công nghệ, game thủ, kỹ sư điện, sinh viên kỹ thuật – bởi sự minh bạch, giá cả hợp lý và phong cách phục vụ “công nghệ nhưng ấm áp”.
+
+5. Hành trình chuyển đổi số (2026 – 2028)
+
+Đến năm 2026, VShop không chỉ dừng lại ở một cửa hàng vật lý.
+Website vshop.vn được chính thức ra mắt – một nền tảng thương mại điện tử do chính nhóm sáng lập phát triển trên nền tảng Flask và React, kết nối trực tiếp với cơ sở dữ liệu sản phẩm và hệ thống tư vấn thông minh.
+
+Năm 2027, VShop trở thành đơn vị tiên phong ứng dụng công nghệ AI trong lĩnh vực bán lẻ thiết bị điện tử ở quy mô cửa hàng.
+Cụ thể:
+
+AI Gợi ý sản phẩm: Hệ thống phân tích lịch sử mua hàng và hành vi truy cập để gợi ý thiết bị phù hợp.
+
+Chatbot VSupport: Tư vấn và hướng dẫn kỹ thuật 24/7.
+
+Quản lý tồn kho thông minh: Dự đoán nhu cầu thị trường theo mùa, tránh tồn đọng hàng hóa.
+
+Nguyễn Lê Bảo Trân phụ trách vận hành, thương hiệu và dịch vụ hậu mãi; trong khi Võ Ngọc Nguyên Chương đảm nhận công nghệ và tự động hóa. Bộ đôi trở thành biểu tượng của “sự kết hợp giữa trái tim kinh doanh và khối óc công nghệ”.
+
+6. Mở rộng mô hình và cộng đồng khách hàng (2028 – 2030)
+
+Từ năm 2028, VShop triển khai chiến lược “Đưa công nghệ tới từng hộ gia đình Việt”, mở rộng danh mục sản phẩm bao gồm:
+
+Thiết bị điện dân dụng: ổ cắm thông minh, công tắc cảm ứng, bộ điều khiển IoT.
+
+Thiết bị học tập & làm việc: laptop, màn hình, phụ kiện.
+
+Thiết bị nhà thông minh: cảm biến chuyển động, camera an ninh, khóa cửa điện tử.
+
+Cửa hàng cũng tổ chức các workshop miễn phí hướng dẫn khách hàng cài đặt và sử dụng thiết bị điện thông minh, giúp lan tỏa văn hóa “người Việt chủ động ứng dụng công nghệ”.
+
+Năm 2030, cộng đồng người dùng VShop đạt hơn 1 triệu thành viên trực tuyến, với hàng chục nghìn đánh giá tích cực.
+
+7. Tầm nhìn đến 2040
+
+VShop đặt mục tiêu trở thành:
+
+Hệ thống phân phối thiết bị điện tử hàng đầu Việt Nam, kết hợp mô hình bán lẻ truyền thống và thương mại điện tử thông minh.
+
+Nền tảng tích hợp AI và Big Data, tự động hóa toàn bộ chuỗi cung ứng, quản lý bảo hành, và gợi ý sản phẩm theo hành vi người tiêu dùng.
+
+Cộng đồng đổi mới sáng tạo, nơi những người trẻ có thể chia sẻ, học hỏi và thử nghiệm các sản phẩm công nghệ mới nhất.
+
+8. Sứ mệnh và triết lý hoạt động
+
+“Mang công nghệ đến gần hơn với con người, vì một cuộc sống tiện nghi, an toàn và thông minh.”
+
+Triết lý hoạt động:
+
+Trung thực trong từng giao dịch.
+
+Tận tâm trong từng hỗ trợ.
+
+Sáng tạo trong từng giải pháp.
+
+Phát triển bền vững cùng cộng đồng.
+
+9. Biểu tượng và ý nghĩa thương hiệu
+
+Logo VShop sử dụng chữ “V” cách điệu như biểu tượng của Victory (chiến thắng) và Vietnam (Việt Nam), màu chủ đạo là xanh dương – biểu trưng cho công nghệ, sự tin cậy và trí tuệ trẻ.
+
+Slogan:
+
+“VShop – Công nghệ cho mọi nhà.”
+
+10. Lời kết: Hành trình mới chỉ bắt đầu
+
+Hành trình từ hai sinh viên 21 tuổi với ước mơ nhỏ bé đến một thương hiệu công nghệ có uy tín tại Việt Nam là minh chứng cho niềm tin, sự kiên trì và khát vọng đổi mới không ngừng.
+
+Câu chuyện của VShop không chỉ là lịch sử của một cửa hàng thiết bị điện tử – mà là minh chứng cho tinh thần khởi nghiệp Việt Nam thế hệ mới, dám nghĩ, dám làm và dám thay đổi tương lai bằng công nghệ.
+
+“Mỗi sản phẩm bán ra là một niềm tin được gửi gắm – và VShop sẽ không bao giờ để niềm tin đó bị lãng quên.”

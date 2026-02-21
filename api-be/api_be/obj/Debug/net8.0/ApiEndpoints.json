@@ -215,6 +215,16 @@
   },
   {
     "ContainingType": "api_be.API.Controllers.ChatController",
+    "Method": "GetConversations",
+    "RelativePath": "smw-api/chat/conversations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "api_be.API.Controllers.ChatController",
     "Method": "MarkMessageAsRead",
     "RelativePath": "smw-api/chat/mark-read",
     "HttpMethod": "POST",

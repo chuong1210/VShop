@@ -1,6 +1,7 @@
 import { cookies, http } from '@lib/index';
 import { useMutation } from '@tanstack/react-query';
 import {  LoginResponse, LoginType, RegisterType, ResponseType,VerifyEmailType } from '@type/common';
+import { useCookies } from '..';
 
 const useLoginMutate = () => {
 	return useMutation<ResponseType<LoginResponse>, Error, LoginType>({
@@ -33,19 +34,32 @@ const useRegisterMutate = () => {
 
 
 const useGoogleAuthMutate = () => {
+				const cookies2 = useCookies();
+
 	return useMutation<any, Error, string>({
 		mutationFn: async (data) => {
 			const request = await http.post('google', data
 			);
 			return request;
 		},
+
 		onSuccess(response) {
 			const loginData = response.data;
 			const expires = new Date(loginData.exp);
+			cookies.set('user_id', response.data.id, { expires });
+			console.log('response.data.id', response.data.id);
+	
+
+
+
 
 			cookies.set('access_token', loginData.token, { expires });
 			cookies.set('expires_at', expires.getTime(), { expires });
 			cookies.set('is_login', true, { expires });
+
+
+					console.log('user id', cookies.get('user_id'));
+			console.log('user id', cookies2.get('user_id'));
 		},
 	});
 };

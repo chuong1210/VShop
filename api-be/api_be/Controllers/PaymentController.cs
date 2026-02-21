@@ -28,7 +28,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("payment.view")]
+        //[Permission("payment.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _paymentService.GetList (pRequest);
@@ -44,7 +44,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("payment.view")]
+        //[Permission("payment.view")]
         public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _paymentService.Detail(pRequest);
@@ -61,7 +61,7 @@ namespace api_be.API.Controllers
         /// - Name: string, required, max(190)
         /// </remarks>
         [HttpPost]
-        [Permission("payment.create")]
+        //[Permission("payment.create")]
         public async Task<ActionResult> Post([FromBody] CreateOrUpdatePaymentRequest pRequest)
         {
             var response = await _paymentService.Create(pRequest);
@@ -77,7 +77,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpPut]
-        [Permission("payment.update")]
+        //[Permission("payment.update")]
         public async Task<ActionResult> Put([FromBody] CreateOrUpdatePaymentRequest pRequest)
         {
             var response = await _paymentService.Update(pRequest);
@@ -93,7 +93,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpDelete]
-        [Permission("payment.delete")]
+        //[Permission("payment.delete")]
         public async Task<ActionResult> Delete([FromQuery] int pRequest)
         {
             try

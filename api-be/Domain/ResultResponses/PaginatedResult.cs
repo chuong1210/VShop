@@ -14,6 +14,9 @@ namespace api_be.Domain.ResultResponses
 
         public bool HasPreviousPage => CurrentPage > 1;
         public bool HasNextPage => CurrentPage < TotalPages;
+        public Extra()
+        {
+        }
 
         public Extra(int pCount, int? pCurrentPage, int? pPageSize)
         {
@@ -38,6 +41,7 @@ namespace api_be.Domain.ResultResponses
     public class PaginatedResult<T> : Result<T>
     {
         public Extra Extra { get; set; }
+
         public PaginatedResult() { }
 
         public PaginatedResult(bool pSucceeded, int pCode, T pData = default, List<string> pMessages = null,

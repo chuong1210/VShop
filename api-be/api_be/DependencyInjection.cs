@@ -52,6 +52,15 @@ namespace api_be
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductElasticsearchService, ProductElasticService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICouponService, CouponService>();
+            services.AddScoped<IImportGoodsService, ImportGoodsService>();
+
+
+
+
+
             var elasticClient = new ElasticsearchClient(new ElasticsearchClientSettings(new Uri(configuration["Elasticsearch:Url"])));
 
           

@@ -149,7 +149,7 @@ namespace api_be.Application.Services.Imps
                 product.Status = ProductStatus.Draft;
                 product.Quantity = 0;
                 product.Images = _mapper.Map<String>(request.Images);// string.Join(",", request.Images);
-                product.Id = 0;
+                //product.Id = 0;
 
 
 
@@ -368,16 +368,23 @@ namespace api_be.Application.Services.Imps
                 int totalCount = await PaginatedResultBase.CountApplySieveAsync(_sieveProcessor, sieveModel, query);
 
 
-                var filteredQuery = _sieveProcessor.Apply(sieveModel, query);
+                //var filteredQuery = _sieveProcessor.Apply(sieveModel, query);
+                var filteredQuery = _sieveProcessor.Apply(sieveModel, query, applyPagination: false);
+
+                var products = await filteredQuery
+                    .Skip((request.Page!.Value - 1) * request.PageSize!.Value)
+                    .Take(request.PageSize!.Value)
+                    .ToListAsync();
+
 
                 //var totalCount = await filteredQuery.CountAsync();
 
 
 
-                var products = await filteredQuery
-                    .Skip((request.Page.Value - 1) * request.PageSize.Value)
-                    .Take(request.PageSize.Value)
-                    .ToListAsync();
+                //var products = await filteredQuery
+                //    .Skip((request.Page.Value - 1) * request.PageSize.Value)
+                //    .Take(request.PageSize.Value)
+                //    .ToListAsync();
 
                 var productDtos = _mapper.Map<List<ProductDto>>(products);
 

@@ -1,30 +1,34 @@
 ﻿using api_be.Application.Models.Request.DeliveryRequest;
-using api_be.Application.Responses;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 using api_be.Application.Models.ValidatorRequest.DeliveryValidator;
-using Microsoft.EntityFrameworkCore;
-using static api_be.Core.Entities.Delivery;
-using System.Threading;
-using api_be.Core.Domain.Interfaces;
-using Sieve.Services;
-using api_be.Domain.Extensions;
-using api_be.Core.Entities;
 using api_be.Application.Models.ValidatorRequest.DeliveryValidator.BaseDelivery;
+using api_be.Application.Responses;
+using api_be.Core.Domain.Interfaces;
+using api_be.Core.Entities;
 using api_be.Domain.Exceptions;
+using api_be.Domain.Extensions;
+using api_be.Domain.ResultResponses;
 using api_be.Domain.Transforms;
-using Sieve.Models;
-using FluentValidation;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using api_be.Infrastructure.DB;
 using api_be.Infrastructure.Services;
-using Azure.Core;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
+using api_be.Middleware;
 using AutoMapper;
-using api_be.Domain.ResultResponses;
-using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using Azure.Core;
+using FluentValidation;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Sieve.Models;
+using Sieve.Services;
+using System.Threading;
+using static api_be.Core.Entities.Delivery;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace api_be.Application.Services.Imps
 {
+    [RegisterService(ServiceLifetime.Scoped)]
+
     public class DeliveryService : IDeliveryService
     {
         private readonly ISupermarketDbContext _context;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace api_be.Application.Responses
 {
-    public record MessageDto:BaseDto
+    public record MessageDto : BaseDto
     {
         public new string Id { get; set; }   // Ẩn Id int của BaseDto, dùng string riêng cho Message
 
@@ -16,5 +16,9 @@ namespace api_be.Application.Responses
         public string Content { get; set; }   // Nội dung tin nhắn
         public DateTime SentAt { get; set; }  // Thời gian gửi
         public bool IsRead { get; set; }      // Đã đọc hay chưa
+
+        // ✅ Add these fields
+        public string? SenderName { get; set; }
+        public string? SenderAvatar { get; set; }
     }
 }

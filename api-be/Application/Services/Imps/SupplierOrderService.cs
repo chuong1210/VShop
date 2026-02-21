@@ -12,10 +12,12 @@ using api_be.Domain.ResultResponses;
 using api_be.Domain.Transforms;
 using api_be.Infrastructure.DB;
 using api_be.Infrastructure.Services;
+using api_be.Middleware;
 using AutoMapper;
 using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Sieve.Models;
 using Sieve.Services;
 using System;
@@ -28,6 +30,8 @@ using static api_be.Core.Entities.SupplierOrder;
 
 namespace api_be.Application.Services.Imps
 {
+    [RegisterService(ServiceLifetime.Scoped)]
+
     public class SupplierOrderService : ISupplierOrderService
     {
         private readonly ISupermarketDbContext _context;

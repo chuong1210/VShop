@@ -31,7 +31,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("role.view")]
+        //[Permission("role.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _roleService.GetList(pRequest);
@@ -47,7 +47,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet("list-with-controller")]
-        [Permission("role.view")]
+        //[Permission("role.view")]
         public async Task<ActionResult> GetByController([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _roleService.GetListRoleWithPermission(pRequest);
@@ -63,7 +63,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("role.view")]
+        //[Permission("role.view")]
         public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _roleService.Detail(pRequest);
@@ -79,7 +79,7 @@ namespace api_be.API.Controllers
         /// - Name: string, required, max(190)
         /// </remarks>
         [HttpPost]
-        [Permission("role.create")]
+        //[Permission("role.create")]
         public async Task<ActionResult> Post([FromBody] CreateOrUpdateRoleRequest pRequest)
         {
             var response = await _roleService.Create(pRequest);
@@ -96,7 +96,7 @@ namespace api_be.API.Controllers
         /// - Name: string, required, max(190)
         /// </remarks>
         [HttpPut]
-        [Permission("role.update")]
+        //[Permission("role.update")]
         public async Task<ActionResult> Put([FromBody] CreateOrUpdateRoleRequest pRequest)
         {
             var response = await _roleService.Update(pRequest);
@@ -113,7 +113,7 @@ namespace api_be.API.Controllers
         /// - PermessionsName: array string
         /// </remarks>
         [HttpPost("assign")]
-        [Permission("role.assign")]
+        //[Permission("role.assign")]
         public async Task<ActionResult> AssignPermissionForRole([FromBody] AssignPermissionsForRoleRequest pRequest)
         {
             var response = await _roleService.AssignPermissionsForRole(pRequest);

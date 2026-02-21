@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace api_be.Application.Models.Request
 {
-    public record MessageRequest:IBaseMessage
+    public record MessageRequest : IBaseMessage
     {
         public int? SenderId { get; set; }
         public int? ReceiverId { get; set; }
         public string? Content { get; set; }
-        public DateTime ?SentAt { get; set; }
+        public DateTime? SentAt { get; set; }
         public bool? IsRead { get; set; }
-     
+        public string? SenderName { get; set; }
+        public string? SenderAvatar { get; set; }
+
     }
 }

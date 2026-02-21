@@ -124,42 +124,42 @@ class DataGenerator:
         reviews = []
         review_texts = {
             5: [
-                "Excellent product! Highly recommended.",
-                "Amazing quality, will buy again!",
-                "Perfect! Exceeded my expectations.",
-                "Love it! Best purchase ever.",
-                "Outstanding product, great value for money."
+                "Sản phẩm tuyệt vời! Rất đáng mua.",
+                "Chất lượng xuất sắc, sẽ mua lại!",
+                "Hoàn hảo! Vượt ngoài mong đợi.",
+                "Rất thích! Mua hàng tuyệt nhất từ trước đến giờ.",
+                "Sản phẩm xuất sắc, giá trị vượt trội."
             ],
             4: [
-                "Very good product, happy with purchase.",
-                "Good quality, meets expectations.",
-                "Satisfied with the product.",
-                "Nice product, would recommend.",
-                "Pretty good, minor improvements needed."
+                "Sản phẩm rất tốt, hài lòng với lần mua này.",
+                "Chất lượng tốt, đúng như mong đợi.",
+                "Hài lòng với sản phẩm.",
+                "Sản phẩm ổn, đáng để giới thiệu.",
+                "Khá tốt, chỉ cần cải thiện chút thôi."
             ],
             3: [
-                "It's okay, average product.",
-                "Decent but nothing special.",
-                "Meets basic requirements.",
-                "Average quality for the price.",
-                "Acceptable but could be better."
+                "Ổn, sản phẩm ở mức trung bình.",
+                "Tạm được nhưng không có gì nổi bật.",
+                "Đáp ứng nhu cầu cơ bản.",
+                "Chất lượng trung bình so với giá.",
+                "Chấp nhận được nhưng có thể tốt hơn."
             ],
             2: [
-                "Disappointed with quality.",
-                "Not as described, expected better.",
-                "Below average, not satisfied.",
-                "Poor quality for the price.",
-                "Would not recommend."
+                "Thất vọng về chất lượng.",
+                "Không như mô tả, mong đợi nhiều hơn.",
+                "Dưới mức trung bình, không hài lòng.",
+                "Chất lượng kém so với giá tiền.",
+                "Không khuyên dùng."
             ],
             1: [
-                "Terrible product, waste of money.",
-                "Very poor quality, do not buy.",
-                "Completely dissatisfied.",
-                "Worst purchase ever.",
-                "Horrible experience, refund requested."
+                "Sản phẩm tệ, phí tiền.",
+                "Chất lượng rất kém, đừng mua.",
+                "Hoàn toàn không hài lòng.",
+                "Mua hàng tệ nhất từ trước đến giờ.",
+                "Trải nghiệm tồi tệ, yêu cầu hoàn tiền."
             ]
         }
-        
+
         # Phân bổ reviews cho từng user
         for user_id, user_type in user_ids:
             if user_type == 'power':

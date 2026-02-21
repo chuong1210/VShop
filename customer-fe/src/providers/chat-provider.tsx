@@ -3,14 +3,14 @@ import {
   useContext,
   useState,
   useEffect,
+  useRef,
   type ReactNode,
 } from "react";
 import {
   HubConnection,
   HubConnectionBuilder,
-  type MessageType,
+  HubConnectionState,
 } from "@microsoft/signalr";
-import { useCookies } from "@hook/index";
 import { usePost } from "@hook/mutations";
 import { useGet } from "@hook/queries";
 import type {
@@ -18,6 +18,7 @@ import type {
   SendMessageType,
   MarkAsReadType,
 } from "@type/form";
+import { cookies } from "@lib/index";
 import { MessageCollectionType } from "@type/collection/message-collection";
 
 const ChatContext = createContext<ChatContextType | null>(null);
@@ -26,14 +27,17 @@ export const useChatContext = () => useContext(ChatContext);
 
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [connection, setConnection] = useState<HubConnection | null>(null);
-  const [messages, setMessages] = useState<MessageType[]>([]);
-  const [typingUsers, setTypingUsers] = useState<Set<number>>(new Set()); // 💡 Danh sách người đang nhập
-
+  const [messages, setMessages] = useState<any[]>([]);
+  const [typingUsers, setTypingUsers] = useState<Set<number>>(new Set());
   const [showChat, setShowChat] = useState(false);
-  const [correspondentId, setCorrespondentId] = useState<number>(3);
+  const [correspondentId, setCorrespondentId] = useState<number>(1);
 
-  const cookies = useCookies();
-  const currentUserId = cookies.get("user_id") ?? 1;
+  // ✅ Use ref to track if connection is being established
+  const isConnecting = useRef(false);
+  const connectionRef = useRef<HubConnection | null>(null);
+
+  const currentUserId = cookies.get("user_id");
+  console.log("chat provider", currentUserId);
 
   const { data: conversationData } = useGet<MessageCollectionType[]>({
     api: "chat-conversation",
@@ -46,50 +50,108 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   );
   const markAsReadMutation = usePost<string, MarkAsReadType>("chat-mark-read");
 
+  // ✅ Initialize connection ONCE
   useEffect(() => {
+    if (isConnecting.current || connectionRef.current) {
+      console.log("⚠️ Connection already exists or is being created");
+      return;
+    }
+
+    isConnecting.current = true;
+    console.log("🔧 Creating new SignalR connection...");
+
     const newConnection = new HubConnectionBuilder()
       .withUrl(`${process.env.NEXT_PUBLIC_API_URL}/chatHub`, {
         accessTokenFactory: async () => {
           const token = cookies.get("access_token");
-          return token ? token : "";
-        }, // Lấy JWT token từ localStorage
+          return token || "";
+        },
       })
-      .withAutomaticReconnect()
+      .withAutomaticReconnect({
+        nextRetryDelayInMilliseconds: (retryContext) => {
+          if (retryContext.previousRetryCount === 0) return 0;
+          if (retryContext.previousRetryCount === 1) return 2000;
+          if (retryContext.previousRetryCount === 2) return 10000;
+          return 30000;
+        },
+      })
       .build();
 
+    connectionRef.current = newConnection;
     setConnection(newConnection);
-  }, []);
 
+    return () => {
+      console.log("🧹 Cleaning up connection...");
+      if (connectionRef.current) {
+        connectionRef.current.stop().then(() => {
+          console.log("❌ Connection stopped");
+          connectionRef.current = null;
+          isConnecting.current = false;
+        });
+      }
+    };
+  }, []); // ⚠️ Empty dependency array - only run once
+
+  // ✅ Start connection and register events
   useEffect(() => {
-    if (connection) {
-      connection
-        .start()
-        .then(() => {
-          console.log("Connected to SignalR Hub!");
+    if (!connection) return;
 
-          connection.on("ReceiveMessage", (message) => {
-            setMessages((prevMessages) => [...prevMessages, message]);
-            markAsReadMutation.mutate(message.id);
-          });
+    const startConnection = async () => {
+      try {
+        // Check if already connected or connecting
+        if (
+          connection.state === HubConnectionState.Connected ||
+          connection.state === HubConnectionState.Connecting
+        ) {
+          console.log("⚠️ Already connected or connecting");
+          return;
+        }
 
-          // 📌 Nhận sự kiện khi ai đó đang nhập tin nhắn
-          connection.on("UserTyping", (senderId) => {
-            setTypingUsers((prev) => new Set(prev).add(senderId));
-          });
+        await connection.start();
+        console.log("✅ Connected to SignalR Hub!");
 
-          // 📌 Nhận sự kiện khi ai đó dừng nhập tin nhắn
-          connection.on("UserStoppedTyping", (senderId) => {
-            setTypingUsers((prev) => {
-              const newSet = new Set(prev);
-              newSet.delete(senderId);
-              return newSet;
-            });
+        // Register events
+        connection.on("ReceiveMessage", (message) => {
+          console.log("📩 Message received:", message);
+          setMessages((prevMessages) => [...prevMessages, message]);
+          markAsReadMutation.mutate({ messageId: message.id });
+        });
+
+        connection.on("UserTyping", (senderId) => {
+          console.log("📝 User typing:", senderId);
+          setTypingUsers((prev) => new Set(prev).add(senderId));
+        });
+
+        connection.on("UserStoppedTyping", (senderId) => {
+          console.log("✋ User stopped typing:", senderId);
+          setTypingUsers((prev) => {
+            const newSet = new Set(prev);
+            newSet.delete(senderId);
+            return newSet;
           });
-        })
-        .catch((e) => console.log("Connection to SignalR Hub failed: ", e));
-    }
+        });
+
+        // Handle reconnection
+        connection.onreconnecting(() => {
+          console.log("🔄 Reconnecting...");
+        });
+
+        connection.onreconnected(() => {
+          console.log("✅ Reconnected!");
+        });
+
+        connection.onclose((error) => {
+          console.error("❌ Connection closed:", error);
+        });
+      } catch (error) {
+        console.error("❌ Connection failed:", error);
+      }
+    };
+
+    startConnection();
   }, [connection, markAsReadMutation]);
 
+  // ✅ Update messages from API
   useEffect(() => {
     if (conversationData?.data) {
       setMessages(conversationData.data);
@@ -97,49 +159,49 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   }, [conversationData]);
 
   const sendMessage = async (content: string) => {
-    if (correspondentId) {
-      try {
-        const result = await sendMessageMutation.mutateAsync({
-          content,
-          receiverId: correspondentId,
-          isRead: false,
-        });
-        if (result.data) {
-          stopTyping(); // ⏹ Khi gửi tin nhắn, dừng nhập
-        }
-      } catch (e) {
-        console.error("Failed to send message:", e);
-      }
-    } else {
+    if (!correspondentId) {
       console.log("No correspondent selected.");
+      return;
+    }
+
+    try {
+      const result = await sendMessageMutation.mutateAsync({
+        content,
+        receiverId: correspondentId,
+        isRead: false,
+      });
+      if (result.data) {
+        stopTyping();
+      }
+    } catch (e) {
+      console.error("Failed to send message:", e);
     }
   };
 
-  // 📌 Gửi sự kiện "đang nhập"
   const startTyping = () => {
-    if (correspondentId) {
-      connection?.invoke("UserTyping", correspondentId).catch(console.error);
+    if (correspondentId && connection?.state === HubConnectionState.Connected) {
+      connection.invoke("UserTyping", correspondentId).catch(console.error);
     }
   };
 
-  // 📌 Gửi sự kiện "dừng nhập"
   const stopTyping = () => {
-    if (correspondentId) {
+    if (correspondentId && connection?.state === HubConnectionState.Connected) {
       connection
-        ?.invoke("UserStoppedTyping", correspondentId)
+        .invoke("UserStoppedTyping", correspondentId)
         .catch(console.error);
     }
   };
 
-  const value = {
+  const value: ChatContextType = {
     messages,
     sendMessage,
     showChat,
     setShowChat,
     setCorrespondentId,
     currentUserId,
-    startTyping, // Thêm vào context
-    stopTyping, // Thêm vào context
+    startTyping,
+    stopTyping,
+    typingUsers, // ✅ Add this if not in type
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;

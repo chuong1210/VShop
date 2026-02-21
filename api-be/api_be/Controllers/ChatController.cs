@@ -1,12 +1,13 @@
-﻿using api_be.Core.Domain.Interfaces;
-using api_be.Application.Models.Request;
+﻿using api_be.Application.Models.Request;
 using api_be.Application.Responses;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using api_be.Application.Services;
-using Microsoft.AspNetCore.Authorization;
+using api_be.Application.Services.Imps;
+using api_be.Core.Domain.Interfaces;
 using api_be.Domain.ResultResponses;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 namespace api_be.API.Controllers
@@ -45,13 +46,23 @@ namespace api_be.API.Controllers
 
         }
 
+
+        /// <summary>
+        /// Lấy danh sách cuộc trò chuyện
+        /// </summary>
+        [HttpGet("conversations")]
+        public async Task<IActionResult> GetConversations()
+        {
+            var result = await _chatService.GetConversations();
+            return StatusCode(result.Code, result);
+        }
         /// <summary>
         /// Đánh dấu tin nhắn đã đọc
         /// </summary>
         [HttpPost("mark-read")]
-        public async Task<IActionResult> MarkMessageAsRead([FromBody] int messageId)
+        public async Task<IActionResult> MarkMessageAsRead([FromBody] MarkReadRequest req)
         {
-            var result = await _chatService.MarkMessageAsReadAsync(messageId);
+            var result = await _chatService.MarkMessageAsReadAsync(req.MessageId);
             if (!result.Succeeded) return StatusCode(result.Code, result);
 
             return Ok(result);

@@ -30,7 +30,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("import-good.view")]
+        //[Permission("import-good.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _importGoodsService.GetList(pRequest);
@@ -46,7 +46,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("import-good.view")]
+        //[Permission("import-good.view")]
         public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _importGoodsService.Detail(pRequest);
@@ -65,7 +65,7 @@ namespace api_be.API.Controllers
         ///     + Quantity: > 0
         /// </remarks>
         [HttpPost]
-        [Permission("import-good.create")]
+        //[Permission("import-good.create")]
         public async Task<ActionResult> Post([FromBody] CreateImportGoodsRequest pRequest)
         {
             var response = await _importGoodsService.Create(pRequest);
@@ -84,7 +84,7 @@ namespace api_be.API.Controllers
         ///     + Quantity: > 0
         /// </remarks>
         [HttpPut]
-        [Permission("import-good.update")]
+        //[Permission("import-good.update")]
         public async Task<ActionResult> Put([FromBody] UpdateImportGoodsRequest pRequest)
         {
             var response = await _importGoodsService.Update(pRequest);
@@ -102,7 +102,7 @@ namespace api_be.API.Controllers
         /// /// - IsCancel: false - Xác nhận nhập hàng vào kho
         /// </remarks>
         [HttpPatch]
-        [Permission("import-good.change-status")]
+        //[Permission("import-good.change-status")]
         public async Task<ActionResult> ChangeStatus([FromBody] ChangeStatusImportGoodsRequest pRequest)
         {
             var response = await _importGoodsService.ChangeStatus(pRequest);

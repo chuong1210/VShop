@@ -1,11 +1,14 @@
-﻿using api_be.Core.Entities;
+﻿using api_be.Application.Models.Common;
+using api_be.Core.Entities;
 using api_be.Core.Models.Common;
-using api_be.Application.Models.Common;
+using api_be.Infrastructure.DB;
 using Confluent.Kafka;
 using Elastic.Clients.Elasticsearch;
 using Elastic.Clients.Elasticsearch.Core.Bulk;
 using Elastic.Clients.Elasticsearch.QueryDsl;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -15,7 +18,6 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Twilio.TwiML.Messaging;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace api_be.Application.Services.KafkaService
 {
@@ -174,16 +176,75 @@ namespace api_be.Application.Services.KafkaService
 
         private async Task IndexProductAsync(Product product)
         {
-            var response = await _elasticsearchClient.IndexAsync(product, idx => idx.Index("products").Id(product.Id.ToString()));
-            if (!response.IsValidResponse)
+            try
             {
+                // Load category nếu có
+                Category? category = null;
+                if (product.CategoryId.HasValue)
+                {
+                    using var scope = _serviceProvider.CreateScope();
+                    var context = scope.ServiceProvider.GetRequiredService<ISupermarketDbContext>();
+                    category = await context.Set<Category>()
+                        .FirstOrDefaultAsync(c => c.Id == product.CategoryId.Value);
+                }
 
-                _logger.LogError($"Success to delete index document: {response.Id}");
+                // Tạo object với Type và Status là INTEGER (match với Python)
+                var productForIndex = new
+                {
+                    // Product fields
+                    id = product.Id,
+                    internalCode = product.InternalCode,
+                    name = product.Name,
+                    images = product.Images?.Split(',').Select(s => s.Trim()).ToList() ?? new List<string>(),
+                    price = product.Price ?? 0,
+                    quantity = product.Quantity ?? 0,
+                    describes = product.Describes,
+                    feature = product.Feature,
+                    specifications = product.Specifications,
+                    type = (int?)product.Type,        // ← INTEGER, not string
+                    status = (int?)product.Status,    // ← INTEGER, not string
+                    selling = product.Selling,
+                    parentId = product.ParentId,
+                    categoryId = product.CategoryId,
 
+                    // Category nested object
+                    category = category != null ? new
+                    {
+                        id = category.Id,
+                        internalCode = category.InternalCode,
+                        name = category.Name,
+                        icon = category.Icon,
+                        parentId = category.ParentId
+                    } : null,
+
+                    // Auditable fields
+                    createdAt = product.CreatedAt,
+                    updatedAt = product.UpdatedAt,
+                    createdBy = product.CreatedBy,
+                    updatedBy = product.UpdatedBy,
+                    isDeleted = product.IsDeleted
+                };
+
+                var response = await _elasticsearchClient.IndexAsync(
+                    productForIndex,
+                    idx => idx.Index("products").Id(product.Id.ToString())
+                );
+
+                if (response.IsValidResponse)
+                {
+                    _logger.LogInformation(
+                        $"Successfully indexed product: ID={product.Id}, Name={product.Name}, " +
+                        $"Type={(int?)product.Type}, Status={(int?)product.Status}, Category={category?.Name ?? "N/A"}"
+                    );
+                }
+                else
+                {
+                    _logger.LogError($"Failed to index product: ID={product.Id}, Error={response.DebugInformation}");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                _logger.LogError($"Failed to index product in bulk: {response.DebugInformation}");
+                _logger.LogError(ex, $"Exception while indexing product ID={product.Id}: {ex.Message}");
             }
         }
 

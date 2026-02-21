@@ -20,7 +20,41 @@ from pydantic import BaseModel, Field
 
 app = Flask(__name__)
 CORS(app)
+import os
+import sys
 
+# Cấu hình môi trường cho Spark trên Windows
+import os
+import sys
+
+# === CẤU HÌNH MÔI TRƯỜNG WINDOWS (SỬA LẠI ĐOẠN NÀY) ===
+
+# 1. Cấu hình JAVA_HOME (Lưu ý chữ r đằng trước để Python hiểu đường dẫn Windows)
+# Hãy dán đường dẫn chính xác bạn copy được vào bên trong dấu ngoặc kép
+JAVA_PATH = r"C:\Program Files\Eclipse Adoptium\jdk-11.0.28.6-hotspot" 
+
+# Kiểm tra xem đường dẫn có tồn tại không để báo lỗi rõ ràng hơn
+if not os.path.exists(JAVA_PATH):
+    print(f"LỖI: Không tìm thấy thư mục Java tại: {JAVA_PATH}")
+    print("Vui lòng kiểm tra lại đường dẫn JAVA_HOME.")
+    sys.exit(1)
+
+os.environ['JAVA_HOME'] = JAVA_PATH
+
+# 2. Cấu hình HADOOP_HOME
+HADOOP_PATH = r"C:\hadoop"
+if not os.path.exists(HADOOP_PATH):
+    print(f"LỖI: Không tìm thấy thư mục Hadoop tại: {HADOOP_PATH}")
+    print("Vui lòng tạo thư mục C:\\hadoop và C:\\hadoop\\bin, sau đó bỏ file winutils.exe vào bin.")
+    sys.exit(1)
+
+os.environ['HADOOP_HOME'] = HADOOP_PATH
+sys.path.append(os.path.join(HADOOP_PATH, "bin"))
+
+# Thêm bin của Java và Hadoop vào PATH của hệ thống để Spark tìm thấy
+os.environ['PATH'] = os.environ['JAVA_HOME'] + "\\bin;" + os.environ['HADOOP_HOME'] + "\\bin;" + os.environ['PATH']
+
+# === KẾT THÚC CẤU HÌNH ===
 # Constants
 PRODUCT_INDEX = "products"
 DB_CONNECTION_STRING = "mssql+pyodbc://sa:101204@USER\\MSSQLSERVER01/SPMK_VSHOP?driver=ODBC+Driver+17+for+SQL+Server&TrustServerCertificate=yes"
@@ -365,7 +399,7 @@ def get_products_from_db():
         # Chỉ lấy sản phẩm active và có type = 1
         if not is_admin_or_super():
             query = text(query.text + " AND p.Status = 1")
-        query = text(query.text + " AND p.Type = 1")
+        query = text(query.text + " AND p.Type = 0")
 
         result = session.execute(query)
         products = []
@@ -908,4 +942,4 @@ if __name__ == '__main__':
     consumer_thread = threading.Thread(target=consumer.execute)
     consumer_thread.daemon = True
     consumer_thread.start()
-    app.run(debug=True)
+    app.run(debug=False, use_reloader=False)

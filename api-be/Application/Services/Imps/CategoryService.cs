@@ -1,26 +1,30 @@
-﻿using api_be.Core.Entities;
+﻿using api_be.Application.Models.Common;
+using api_be.Application.Models.Request;
+using api_be.Application.Models.ValidatorRequest.BaseCategory;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Application.Responses;
 using api_be.Core.Domain.Interfaces;
+using api_be.Core.Entities;
 using api_be.Domain.Exceptions;
 using api_be.Domain.Extensions;
-using api_be.Application.Models.Common;
-using api_be.Application.Models.Request;
-using api_be.Application.Responses;
-using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
+using api_be.Domain.ResultResponses;
 using api_be.Domain.Transforms;
-using api_be.Application.Models.ValidatorRequest.BaseCategory;
+using api_be.Infrastructure.DB;
+using api_be.Middleware;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Sieve.Models;
 using Sieve.Services;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using api_be.Infrastructure.DB;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.Http;
-using api_be.Domain.ResultResponses;
-using api_be.Application.Models.ValidatorRequest.DefaultValidatorBase;
 
 namespace api_be.Application.Services.Imps
 {
+    [RegisterService(ServiceLifetime.Scoped)]
+
     public class CategoryService : ICategoryService
     {
         private readonly ISupermarketDbContext _context;
@@ -186,9 +190,10 @@ namespace api_be.Application.Services.Imps
 
                 var totalCount = await PaginatedResultBase.CountApplySieveAsync(_sieveProcessor, sieveModel, query);
                 //var totalCount = await query.CountAsync();
+                var paginatedQuery = _sieveProcessor.Apply(sieveModel, query, applyPagination: false);
 
 
-                var paginatedQuery = _sieveProcessor.Apply(sieveModel, query);
+                //var paginatedQuery = _sieveProcessor.Apply(sieveModel, query);
 
                 var categories = await paginatedQuery.Skip((request.Page.Value - 1) * request.PageSize.Value)
                                                 .Take(request.PageSize.Value)

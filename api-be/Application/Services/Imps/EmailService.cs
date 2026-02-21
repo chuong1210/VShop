@@ -1,11 +1,15 @@
-﻿using System.Net;
-using System.Net.Mail;
-using Microsoft.Extensions.Configuration;
+﻿using api_be.Application.Models.Common;
 using api_be.Domain.ResultResponses;
-using api_be.Application.Models.Common;
+using api_be.Middleware;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net;
+using System.Net.Mail;
 
 namespace api_be.Application.Services.Imps
 {
+    [RegisterService(ServiceLifetime.Scoped)]
+
     public class EmailService:IEmailService
     {
         private readonly IConfiguration _configuration;

@@ -173,7 +173,13 @@ def get_cart():
 def remove_from_cart(product_id):
     """Xóa sản phẩm khỏi giỏ qua C# API"""
     try:
-        result, status = call_csharp_api(f'cart-remove?ProductId={product_id}', method='POST')
+        # 1. C# yêu cầu [FromBody] nên phải đóng gói thành JSON
+        json_data = {'ProductId': product_id}
+        
+        # 2. C# yêu cầu [HttpPost("cart-remove")] nên method='POST'
+        # endpoint là 'cart-remove'
+        result, status = call_csharp_api('cart-remove', method='POST', json_data=json_data)
+        
         return jsonify(result), status
     except Exception as e:
         return jsonify({'error': str(e)}), 500

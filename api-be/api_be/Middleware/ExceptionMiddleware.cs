@@ -103,33 +103,52 @@ namespace api_be.Middleware
 
                 } while (false);
 
-                if (httpContext.Response.StatusCode == StatusCodes.Status401Unauthorized)
+                if (!httpContext.Response.HasStarted)
                 {
-                    await httpContext.Response.WriteAsync("Unauthorized!");
-                }
-                else if (httpContext.Response.StatusCode == StatusCodes.Status403Forbidden)
-                {
-                    await httpContext.Response.WriteAsync("Forbidden!");
-                }
-                else if (httpContext.Response.StatusCode == StatusCodes.Status500InternalServerError)
-                {
-                    await httpContext.Response.WriteAsync("Internal Server Error!");
+                    if (httpContext.Response.StatusCode == StatusCodes.Status401Unauthorized)
+                    {
+                        await httpContext.Response.WriteAsync("Unauthorized!");
+                    }
+                    else if (httpContext.Response.StatusCode == StatusCodes.Status403Forbidden)
+                    {
+                        await httpContext.Response.WriteAsync("Forbidden!");
+                    }
+                    else if (httpContext.Response.StatusCode == StatusCodes.Status500InternalServerError)
+                    {
+                        await httpContext.Response.WriteAsync("Internal Server Error!");
+                    }
+                    else
+                    {
+                        await next(httpContext);
+                    }
                 }
                 else
                 {
-                    await next(httpContext);
+                    Console.WriteLine("Skip writing status message: response already started.");
                 }
+
             }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(httpContext, ex);
-                httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                await httpContext.Response.WriteAsync("Access Denied: " + ex.Message);
+                if (!httpContext.Response.HasStarted)
+                {
+                    await HandleExceptionAsync(httpContext, ex);
+                }
+                else
+                {
+                    Console.WriteLine("Error occurred but response already started.");
+                }
             }
+
         }
 
         private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
+            if (context.Response.HasStarted)
+            {
+                Console.WriteLine("Cannot write error: response already started.");
+                return Task.CompletedTask; // ❗ bỏ qua, không ghi nữa
+            }
             context.Response.ContentType = "application/json";
             HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
             string result = JsonConvert.SerializeObject(new ErrorDeatils

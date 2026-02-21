@@ -27,7 +27,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("customer.view")]
+        //[Permission("customer.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _customerService.GetList(pRequest);
@@ -43,7 +43,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("customer.view")]
+        //[Permission("customer.view")]
         public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _customerService.Detail(pRequest);
@@ -78,7 +78,7 @@ namespace api_be.API.Controllers
         /// - Xóa User trước rồi mới xóa Customer
         /// </remarks>
         [HttpDelete]
-        [Permission("customer.delete")]
+        //[Permission("customer.delete")]
         public async Task<ActionResult> Delete([FromBody] UpdateCustomerRequest pRequest)
         {
             var response = await _customerService.Update(pRequest);

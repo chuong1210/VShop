@@ -1,4 +1,5 @@
 version: '3.8'
+# dotnet run --urls "https://localhost:7152"
 
 services:
   # SQL Server

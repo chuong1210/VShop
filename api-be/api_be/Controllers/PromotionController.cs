@@ -32,7 +32,7 @@ namespace api_be.API.Controllers
         ///
         /// </remarks>
         [HttpGet]
-        [Permission("promotion.view")]
+        //[Permission("promotion.view")]
         public async Task<ActionResult> Get([FromQuery] ListBaseCommand pRequest)
         {
             var response = await _promotionService.GetList(pRequest);
@@ -48,7 +48,7 @@ namespace api_be.API.Controllers
         /// - Id: int, required
         /// </remarks>
         [HttpGet("detail")]
-        [Permission("promotion.view")]
+        //[Permission("promotion.view")]
         public async Task<ActionResult> Get([FromQuery] DetailBaseCommand pRequest)
         {
             var response = await _promotionService.Detail(pRequest);
@@ -74,7 +74,7 @@ namespace api_be.API.Controllers
         ///     + DiscountMax: > 0
         /// </remarks>
         [HttpPost]
-        [Permission("promotion.create")]
+        //[Permission("promotion.create")]
         public async Task<ActionResult> Post([FromBody] CreateOrUpdatePromotionRequest pRequest)
         {
             var response = await _promotionService.Create(pRequest);
@@ -91,7 +91,7 @@ namespace api_be.API.Controllers
         /// - Thông tin chỉnh sửa tương tự thông tin nhập
         /// </remarks>
         [HttpPut]
-        [Permission("promotion.update")]
+        //[Permission("promotion.update")]
         public async Task<ActionResult> Put([FromBody] CreateOrUpdatePromotionRequest pRequest)
         {
             var response = await _promotionService.Update(pRequest);
@@ -111,7 +111,7 @@ namespace api_be.API.Controllers
         ///     + Huỷ bỏ(2) => Không được thay đổi
         /// </remarks>
         [HttpPatch]
-        [Permission("promotion.change-status")]
+        //[Permission("promotion.change-status")]
         public async Task<ActionResult> ChangeStatus([FromBody] ChangeStatusPromotionRequest pRequest)
         {
             var response = await _promotionService.ChangeStatus(pRequest);
@@ -131,7 +131,7 @@ namespace api_be.API.Controllers
         ///     + Ngược lại là Group của nhóm cần cập nhật danh sách sản phẩm áp dụng
         /// </remarks>
         [HttpPost("apply")]
-        [Permission("promotion.apply")]
+        //[Permission("promotion.apply")]
         public async Task<ActionResult> Apply([FromBody] ApplyPromotionForProductRequest pRequest)
         {
             var response = await _promotionService.ApplyPromotionForProduct(pRequest);

@@ -11,6 +11,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ImageModule } from 'primeng/image';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { AppUiComponentModule } from '../ui/app-ui-component.module';
 import { AppFormService } from './app-form.service';
@@ -20,6 +22,7 @@ import { InputDateComponent } from './input-date/input-date.component';
 import { InputDialogSelectDrawMultiComponent } from './input-dialog-select-draw-multi/input-dialog-select-draw-multi.component';
 import { InputDialogSelectMultiComponent } from './input-dialog-select-multi/input-dialog-select-multi.component';
 import { InputDialogSelectComponent } from './input-dialog-select/input-dialog-select.component';
+import { InputDialogComponent } from './input-dialog/input-dialog.component';
 import { InputEditorComponent } from './input-editor/input-editor.component';
 import { InputFileComponent } from './input-file/input-file.component';
 import { InputNumberComponent } from './input-number/input-number.component';
@@ -29,13 +32,13 @@ import { InputSelectComponent } from './input-select/input-select.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { InputDateTimeComponent } from './intput-datetime/inputdatetime.component';
 import { TextareaComponent } from './textarea/textarea.component';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { ImageModule } from 'primeng/image';
-import { InputDialogComponent } from './input-dialog/input-dialog.component';
+import { InputRichTextComponent } from './input-richtext/input-richtext.component';
 
 @NgModule({
 	declarations: [
 		InputCheckboxComponent,
+    		InputRichTextComponent,
+
 		InputEditorComponent,
 		GenericTableComponent,
 		InputDateComponent,
@@ -54,9 +57,9 @@ import { InputDialogComponent } from './input-dialog/input-dialog.component';
 	],
 	imports: [
 		CommonModule,
-		CKEditorModule,
 		FormsModule,
 		ReactiveFormsModule,
+		CKEditorModule,
 		AppUiComponentModule,
 		CalendarModule,
 		DropdownModule,
@@ -64,13 +67,17 @@ import { InputDialogComponent } from './input-dialog/input-dialog.component';
 		DialogModule,
 		AccordionModule,
 		CheckboxModule,
+		RadioButtonModule,
 		ConfirmDialogModule,
 		CardModule,
 		InputTextareaModule,
 		ImageModule,
 	],
 	exports: [
+		// Components
 		InputCheckboxComponent,
+    		InputRichTextComponent,
+
 		InputEditorComponent,
 		GenericTableComponent,
 		InputDateComponent,
@@ -79,22 +86,29 @@ import { InputDialogComponent } from './input-dialog/input-dialog.component';
 		InputTextComponent,
 		InputDateTimeComponent,
 		InputPriceComponent,
-		FormsModule,
 		InputSelectComponent,
 		InputDialogSelectComponent,
+		InputDialogSelectMultiComponent,
+		InputRadioMultiComponent,
+		InputDialogSelectDrawMultiComponent,
+		TextareaComponent,
+		InputDialogComponent,
+
+		// Modules
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
 		DialogModule,
 		AccordionModule,
 		CheckboxModule,
+		RadioButtonModule,
 		ConfirmDialogModule,
 		CardModule,
-		InputDialogSelectMultiComponent,
-		InputRadioMultiComponent,
-		RadioButtonModule,
-		InputDialogSelectDrawMultiComponent,
-		TextareaComponent,
 		ImageModule,
-		InputDialogComponent,
 	],
-	providers: [AppFormService, ConfirmationService],
+	providers: [
+		AppFormService,
+		ConfirmationService
+	],
 })
 export class AppFormModule {}
