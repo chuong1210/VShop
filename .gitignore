@@ -1,2 +1,14 @@
 "api-be/ecommerce-rag/venv/" 
 .venv/
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Windows
+*.dll
+
+# PyTorch / large libs
+*.pt
+*.pth
