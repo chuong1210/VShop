@@ -274,13 +274,21 @@ The recommendation engine is built on **Apache Spark (PySpark)** and implements 
 
 #### Mathematical Formulation
 The algorithm maps users and items to a joint latent factor space of dimensionality $f$ (configured to $f = 25$ in VShop). The interaction between user $u$ and item $i$ is modeled by their inner product:
-$$\hat{r}_{ui} = x_u^T y_i$$
-where $x_u \in \mathbb{R}^{25}$ is the user factor vector, and $y_i \in \mathbb{R}^{25}$ is the item factor vector. The factors are learned by minimizing the regularized squared error loss function over all observed ratings:
-$$\mathcal{L}(X, Y) = \sum_{u, i \in \mathcal{K}} (r_{ui} - x_u^T y_i)^2 + \lambda \left( \sum_u \|x_u\|_2^2 + \sum_i \|y_i\|_2^2 \right)$$
+
+$$
+\hat{r}_{ui} = x_u^T y_i
+$$
+
+where $x$<sub>$u$</sub> $\in \mathbb{R}^{25}$ is the user factor vector, and $y$<sub>$i$</sub> $\in \mathbb{R}^{25}$ is the item factor vector. The factors are learned by minimizing the regularized squared error loss function over all observed ratings:
+
+$$
+\mathcal{L}(X, Y) = \sum_{u, i \in \mathcal{K}} (r_{ui} - x_u^T y_i)^2 + \lambda \left( \sum_u \|x_u\|_2^2 + \sum_i \|y_i\|_2^2 \right)
+$$
+
 where:
-* $\mathcal{K}$ is the set of user-item pairs for which ratings $r_{ui}$ are available (fetched from MongoDB `productReviews`).
+* $\mathcal{K}$ is the set of user-item pairs for which ratings $r$<sub>$ui$</sub> are available (fetched from MongoDB `productReviews`).
 * $\lambda$ is the regularization parameter (`regParam` set to `0.01` to prevent overfitting).
-* The non-negativity constraint ($x_u \ge 0, y_i \ge 0$) is enforced to ensure the dimensions can be interpreted as positive preference components.
+* The non-negativity constraint ($x$<sub>$u$</sub> $\ge 0, y$<sub>$i$</sub> $\ge 0$) is enforced to ensure the dimensions can be interpreted as positive preference components.
 
 ```mermaid
 flowchart TD
@@ -300,9 +308,13 @@ flowchart TD
 - **MongoDB Data Extraction**: Reviews are dynamically fetched where `isDeleted = False` and `isApproved = True`.
 - **String Indexing**: PySpark cannot process arbitrary database string UUIDs/ObjectIDs for ALS matrix operations. We implement `StringIndexer` stages for both `userId` and `productId`. The mapping models are saved to `/models/indexer_model` to allow reverse mapping during real-time serving.
 - **Evaluation**: The pipeline utilizes the `RegressionEvaluator` to measure prediction quality:
-  $$\text{RMSE} = \sqrt{\frac{1}{|\mathcal{K}_{test}|} \sum_{u,i \in \mathcal{K}_{test}} (r_{ui} - \hat{r}_{ui})^2}$$
+
+$$
+\text{RMSE} = \sqrt{\frac{1}{|\mathcal{K}_{test}|} \sum_{u,i \in \mathcal{K}_{test}} (r_{ui} - \hat{r}_{ui})^2}
+$$
+
   Metadata including training times, RMSE, and MAE is written to `model_metadata.json`.
-- **Factor Handoff**: The trained $y_i$ vectors (Item Factors) are parsed, mapped back to original database primary keys, and stored in `product_vectors.json` as a 25-dimensional float array per product, making them accessible to Content-Based vector search pipelines.
+- **Factor Handoff**: The trained $y$<sub>$i$</sub> vectors (Item Factors) are parsed, mapped back to original database primary keys, and stored in `product_vectors.json` as a 25-dimensional float array per product, making them accessible to Content-Based vector search pipelines.
 
 ### ⚡ Hybrid Serving & Real-Time Inference
 Recommendations are served via a high-performance Flask API in `recommendation_service.py` that merges collaborative preferences, similarity searches, and trending streams.
@@ -343,13 +355,21 @@ Using Elasticsearch's vector capability, the engine fetches products similar to 
 ```
 
 #### 3. Weighted Score Combination
-The Hybrid recommendation engine combines the output of Collaborative ($S_{\text{collab}}$) and Content-Based ($S_{\text{content}}$) scores using a weighted linear combination:
-$$\text{Score}_{\text{hybrid}}(p) = w_{\text{content}} \cdot S_{\text{content}}(p) + w_{\text{collab}} \cdot S_{\text{collab}}(p)$$
-where $w_{\text{content}} = 0.6$ and $w_{\text{collab}} = 0.4$.
+The Hybrid recommendation engine combines the output of Collaborative ($S$<sub>collab</sub>) and Content-Based ($S$<sub>content</sub>) scores using a weighted linear combination:
+
+$$
+\text{Score}_{\text{hybrid}}(p) = w_{\text{content}} \cdot S_{\text{content}}(p) + w_{\text{collab}} \cdot S_{\text{collab}}(p)
+$$
+
+where $w$<sub>content</sub> $= 0.6$ and $w$<sub>collab</sub> $= 0.4$.
 
 #### 4. Real-Time Tracking & Trending (Redis Sorted Sets)
 User telemetry (clicks, shopping cart additions, checkouts) is written directly to Kafka and Redis, avoiding database locking. Redis tracks trending scores using weighted sorted sets:
-$$\text{Trending Score}(p) = 0.3 \cdot \text{Views}(p) + 0.7 \cdot \text{Purchases}(p) + 0.5 \cdot \text{Likes}(p)$$
+
+$$
+\text{Trending Score}(p) = 0.3 \cdot \text{Views}(p) + 0.7 \cdot \text{Purchases}(p) + 0.5 \cdot \text{Likes}(p)
+$$
+
 - **Views**: Incremented by 1 via `ZINCRBY trending:views 1 <productId>`.
 - **Purchases**: Incremented by 3 via `ZINCRBY trending:purchases 3 <productId>`.
 - **Likes**: Incremented by 2 via `ZINCRBY trending:likes 2 <productId>`.
