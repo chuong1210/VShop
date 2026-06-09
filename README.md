@@ -135,13 +135,16 @@ classDiagram
 
 ## 🤖 4. Generative AI & Retrieval-Augmented Generation (`ecommerce-rag`)
 
-VShop integrates a cutting-edge **RAG (Retrieval-Augmented Generation)** pipeline built with Python. This module elevates the user experience by providing conversational commerce capabilities.
+VShop integrates a cutting-edge **RAG (Retrieval-Augmented Generation)** pipeline built with Python, **Flask**, and **SocketIO**. This module elevates the user experience by providing real-time, conversational commerce capabilities.
 
-### 🧠 RAG Features
-- **Semantic Search**: Understands the *intent* behind user queries rather than just keyword matching.
-- **Model Context Protocol (MCP)**: Utilizes `mcp_client.py` and `mcp_servers` to standardise the way context from the product database (Elasticsearch) is injected into the LLM context window.
-- **Conversational Assistant**: A chatbot interface (`app.py` & `admin.py`) capable of recommending products, comparing specifications, and answering customer queries based purely on the proprietary store catalog.
-- **Vector Database**: Connects to Elasticsearch (`setup_elasticsearch.py`) to store and retrieve high-dimensional product embeddings.
+### 🧠 Deep Dive: RAG Architecture & MCP
+- **LangChain & Agentic AI**: Driven by the **Gemini Pro (`gemini-pro`)** Foundational Model orchestrated via `langgraph`'s ReAct agent framework.
+- **Model Context Protocol (MCP)**: Implements `mcp_client.py` connecting securely via STDIO to three specialized Python MCP servers:
+  1. `product_server.py`: Tools for catalog retrieval (`get_products`, `search_products`).
+  2. `document_server.py`: Tools for policy and documentation lookups (`search_documents`).
+  3. `cart_server.py`: E-commerce operations (`add_to_cart`, `clear_cart`), directly proxying requests to the C# Backend.
+- **Vector Database**: Connects to **Elasticsearch**, strictly mapping a `dense_vector` field of **384 dimensions** with `cosine` similarity, optimized for the `paraphrase-multilingual-MiniLM-L12-v2` embedding model (`setup_elasticsearch.py`).
+- **Real-Time Data Sync**: Employs a background daemon (`ProductContextKafkaConsumer`) to continuously listen to Kafka topics, ensuring the RAG context remains up-to-date with backend inventory changes.
 
 ```mermaid
 sequenceDiagram
@@ -167,10 +170,14 @@ sequenceDiagram
 
 To rival industry giants, VShop utilizes a custom-built Big Data and Machine Learning pipeline that analyzes user behavior and external data to generate highly accurate product recommendations.
 
-### 📊 Big Data Features
-- **Data Ingestion (`crawl_data.py`, `data_generator.py`)**: Gathers and synthesizes massive datasets (e.g., scraping market trends, simulating traffic) to build training corpuses.
-- **Model Training (`train_model.py`)**: Uses collaborative filtering, matrix factorization, or deep learning algorithms to train recommendation models on historical purchase data.
-- **Real-Time Inference (`recommendation_service.py`, `app.py`)**: Exposes a REST/gRPC API that the Next.js frontend calls to populate "Users also bought" or "Recommended for you" sections with ultra-low latency.
+### 📊 Deep Dive: ML Architecture
+- **Data Ingestion (`crawl_data.py`)**: A robust web scraper (`GearVNToSQLCrawler`) designed to pull real-world product datasets (Laptops, PCs, Peripherals) from `gearvn.com`. It processes HTML, extracts technical specifications, handles pagination, and outputs a massive `insert_gearvn_data.sql` file to seed the SQL Server.
+- **Collaborative Filtering Model (`train_model.py`)**: 
+  - Utilizes **Apache Spark (PySpark)** to handle large-scale matrix operations.
+  - Connects to MongoDB (`api_be_db.productReviews`) to ingest user rating data.
+  - Trains an **Alternating Least Squares (ALS)** recommendation model (`pyspark.ml.recommendation.ALS`), tuned to calculate Root Mean Square Error (RMSE) and Mean Absolute Error (MAE).
+  - Extracts the resulting `itemFactors` (product embeddings) and exports them to `product_vectors.json`.
+- **Real-Time Inference (`recommendation_service.py`, `app.py`)**: Intercepts chat intents (e.g., when the RAG agent detects keywords like "gợi ý" or "recommend"). The Python Flask app merges RAG answers with real-time PySpark model inferences.
 
 ```mermaid
 graph LR
