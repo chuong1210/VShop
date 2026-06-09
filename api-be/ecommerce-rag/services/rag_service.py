@@ -74,7 +74,7 @@ class RAGService:
         # Initialize LLM
         self.llm = ChatOpenAI(
             model="x-ai/grok-3-mini-beta",  # Tên model Grok trên OpenRouter
-            openai_api_key="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",  # API Key của bạn từ OpenRouter
+            openai_api_key="",  # API Key của bạn từ OpenRouter
             openai_api_base="https://openrouter.ai/api/v1", # Base URL của OpenRouter
             temperature=0.2,
             max_tokens=2000,
