@@ -122,118 +122,253 @@ classDiagram
     Infrastructure --> Domain
 ```
 
-### 3.4 Event-Driven Messaging (Apache Kafka)
-- Configured natively using **KRaft mode** (removing Zookeeper dependency for lighter footprint).
-- Used for loose coupling: When an order is placed, an event `OrderPlacedEvent` is pushed to Kafka. Background workers consume this to send emails, update inventory, and notify the Big Data pipeline.
+### 3.4 Event-Driven Messaging & Caching (Apache Kafka & Redis)
 
-### 3.5 Elasticsearch & Kibana
-- Acts as the primary engine for full-text search across millions of SKUs.
-- Facilitates rapid fuzzy matching and filtering.
-- Kibana is included in the docker-compose stack for observability and data visualization.
+#### 📨 Apache Kafka (KRaft Mode)
+VShop utilizes Apache Kafka as the central nervous system for asynchronous communication, ensuring high throughput and fault tolerance. Configured in **KRaft mode** (eliminating the need for Zookeeper), Kafka manages several critical event streams:
+- **`OrderPlacedEvent`**: When an order is created, the API publishes to this topic. A background worker consumes this to send confirmation emails and update inventory incrementally.
+- **`ProductSyncEvent`**: Changes in the administrative dashboard trigger this topic. The Python `ProductContextKafkaConsumer` daemon listens to this and synchronizes the Elasticsearch vector database in real-time.
+- **`UserTrackingEvent`**: Clicks and views from the Next.js frontend are pushed to Kafka, which streams into the Big Data pipeline for model retraining.
+
+#### ⚡ Redis Distributed Cache
+To guarantee sub-millisecond response times, VShop implements Redis for:
+- **Cart & Session State**: Transient user cart data is stored in Redis to survive API restarts and reduce database I/O.
+- **Hot-Path Caching**: Frequently accessed data, such as homepage categories and top 10 recommended products (pre-calculated by PySpark), are cached with a Time-To-Live (TTL).
+
+```mermaid
+sequenceDiagram
+    participant FE as Next.js Frontend
+    participant API as C# Backend API
+    participant Redis as Redis Cache
+    participant Kafka as Apache Kafka
+    participant Worker as Background Worker
+    participant DB as SQL Server
+    
+    FE->>API: POST /api/orders (Submit Order)
+    API->>DB: Save Order (Status: Pending)
+    API->>Redis: Clear User Cart Cache
+    API->>Kafka: Publish `OrderPlacedEvent`
+    API-->>FE: HTTP 202 Accepted (Fast Return)
+    
+    Kafka-->>Worker: Consume `OrderPlacedEvent`
+    Worker->>DB: Update Inventory & Status
+    Worker->>Worker: Send Confirmation Email
+```
+
+### 3.5 Elasticsearch & Vector Database Architecture
+Elasticsearch acts as the backbone for both the standard full-text search and the advanced Generative AI capabilities.
+- **Standard Search**: Facilitates rapid fuzzy matching, faceted filtering (by price, category, brand), and typo-tolerance.
+- **Vector Storage**: It stores the mathematical representations of products. The schema utilizes a `dense_vector` field configured for 384 dimensions.
+
+```mermaid
+flowchart TD
+    subgraph Data Processing
+        SQL[(SQL Server Data)] --> |Extract| BERT[Sentence-Transformer Model]
+        BERT --> |Generate 384-dim Embeddings| Vec1[Semantic Vectors]
+        
+        Spark[PySpark ALS] --> |Extract itemFactors| Vec2[Collaborative Filtering Vectors]
+    end
+    
+    subgraph Elasticsearch Cluster
+        Vec1 --> |Index| Index[Config.ES_INDEX_NAME]
+        Vec2 --> |Enrich| Index
+        Index --> |Mapping| DV[dense_vector: 384 dims, cosine similarity]
+    end
+    
+    subgraph Retrieval
+        Query[User Chat Query] --> |Embed| QVec[Query Vector]
+        QVec --> |k-NN Search| Index
+        Index --> |Top K Results| RAG[LangChain RAG]
+    end
+```
 
 ---
 
 ## 🤖 4. Generative AI & Retrieval-Augmented Generation (`ecommerce-rag`)
 
-VShop integrates a cutting-edge **RAG (Retrieval-Augmented Generation)** pipeline built with Python, **Flask**, and **SocketIO**. This module elevates the user experience by providing real-time, conversational commerce capabilities and acts as a specialized intelligent agent for the entire e-commerce ecosystem.
+VShop integrates a cutting-edge **Retrieval-Augmented Generation (RAG)** system designed as a conversational shopping assistant. Rather than relying on simple static Q&A search engines, this module implements an **Agentic Workflow** that dynamic schedules tools, queries database endpoints, interacts with customer shopping carts, and processes document repositories.
 
-### 🧠 Deep Dive: LangChain & Agentic Workflow
-At the core of the RAG engine is the **Gemini Pro (`gemini-pro`)** Foundational LLM, orchestrated by `langgraph` using a **ReAct (Reason + Act)** agent framework. The system intelligently detects user intent (e.g., browsing, searching, or managing the cart) and routes the conversation to specialized tools.
+### 🧠 Agentic Architecture & LLM Orchestration
+At the core of the RAG engine is **Grok 3 Mini Beta (via OpenRouter)**, chosen for its fast inference times and robust reasoning capabilities. The orchestration is handled via **LangChain** and a **ReAct (Reasoning and Acting)** framework that loops through user input, generates thoughts, selects tools, and parses observations.
 
-- **Model Context Protocol (MCP)**: The system implements an advanced `mcp_client.py` connecting securely via STDIO to three specialized Python MCP servers:
-  1. `product_server.py`: Exposes tools like `get_products`, `search_products`, and `get_categories`.
-  2. `document_server.py`: Enables `search_documents` for querying store policies and technical guidelines.
-  3. `cart_server.py`: Executes operations like `add_to_cart`, `clear_cart`, and `remove_from_cart` by proxying the commands directly to the C# Backend using JWT tokens.
+#### Custom Output Parser (`SafeReActParser`)
+Standard ReAct loops are susceptible to formatting failures when LLMs omit structural tokens like `Action:` or output raw conversation. VShop solves this with a custom `SafeReActParser`:
+1. **Fallback Logic**: If the LLM omits the `Action:` keyword, the parser automatically treats the output as a `Final Answer`, preventing agent execution hangs.
+2. **Text Cleaning**: It filters out redundant `Thought:` and `Final Answer:` markers using regex boundaries to clean up responses before displaying them to the end user.
+3. **Pydantic Validation**: Converts unstructured JSON-like tool arguments from the LLM into typed Pydantic models (e.g. `AddToCartInput`, `SearchProductsInput`) to prevent run-time type exceptions.
 
 ```mermaid
-flowchart TB
-    User((User)) <-->|SocketIO / REST| Flask[Flask API Gateway]
-    Flask <--> LangChain[LangChain ReAct Agent]
-    
-    subgraph Model Context Protocol Servers
-        LangChain -->|Query| PS[Product Server]
-        LangChain -->|Query| DS[Document Server]
-        LangChain -->|Execute| CS[Cart Server]
-    end
-    
-    PS <--> ES[(Elasticsearch Vector DB)]
-    CS <--> CSharp[C# Core Backend API]
+flowchart TD
+    UserQuery[User Query] --> AgentExec[Agent Executor Loop]
+    AgentExec --> LLM{Grok 3 Mini}
+    LLM -->|Formatted Output| Parser[SafeReActParser]
+    LLM -->|Missing Action/Thought| Parser
+    Parser -->|Contains Action| ExecuteTool[Invoke StructuredTool]
+    Parser -->|No Action / Thought Only| FinalAnswer[Extract Final Answer]
+    ExecuteTool --> Observation[Inject Observation as Text]
+    Observation --> AgentExec
+    FinalAnswer --> ReturnUser[Response Sent to User]
 ```
 
-### 🔍 Elasticsearch & High-Dimensional Vectors
-To provide semantic search capabilities (finding products by meaning rather than keywords), the system connects to an **Elasticsearch** cluster. 
-- The schema (`setup_elasticsearch.py`) enforces a `dense_vector` field precisely configured for **384 dimensions**.
-- It utilizes `cosine` similarity, highly optimized for the state-of-the-art `paraphrase-multilingual-MiniLM-L12-v2` embedding model.
-- **Real-Time Data Sync**: A background daemon (`ProductContextKafkaConsumer`) continuously listens to Kafka topics (`ProductCreated`, `ProductUpdated`), ensuring the Elasticsearch context stays 100% in sync with the core SQL database.
+### 🔌 Model Context Protocol (MCP) Integration
+VShop features an implementation of the **Model Context Protocol (MCP)**, separating concerns by executing tools inside containerized, lightweight subprocesses communicating via standardized **JSON-RPC 2.0 over STDIO**.
+
+1. **`product_server.py`**:
+   - Exposes `get_products`, `search_products`, and `get_categories`.
+   - Utilizes a local cache (Redis) with a 5-minute TTL before falling back to database query adapters.
+2. **`document_server.py`**:
+   - Exposes `search_documents` and `add_document_to_knowledge_base`.
+   - Embeds unstructured store documents (e.g. shipping limits, returns policies, user guides) using the `paraphrase-multilingual-MiniLM-L12-v2` transformer model, and commits the dense vectors to Elasticsearch.
+3. **`cart_server.py`**:
+   - Exposes `add_product_to_cart` and `view_shopping_cart`.
+   - Directs operations to the C# Backend (`api-be`) REST API endpoints by forwarding the user's JWT credentials, ensuring cart mutations are fully authorized.
 
 ```mermaid
 sequenceDiagram
-    participant User
     participant Agent as LangChain Agent
-    participant MCP as MCP Product Server
-    participant ES as Elasticsearch (384-dim)
-    participant LLM as Gemini Pro
-    
-    User->>Agent: "Find a cheap gaming laptop under $1000"
-    Agent->>MCP: Action: search_products("cheap gaming laptop under 1000")
-    MCP->>ES: Cosine Similarity Vector Search
-    ES-->>MCP: Returns Top 5 Laptops (with metadata)
-    MCP-->>Agent: Product Context Injected
-    Agent->>LLM: Prompt + Injected Product Context
-    LLM-->>Agent: Generates accurate, contextual response
-    Agent-->>User: "Here are 3 excellent options under $1000..."
+    participant MCP as MCP Client (mcp_client.py)
+    participant Server as MCP Server (STDIO)
+    participant Core as Core Services (DB/ES/Redis)
+
+    Agent->>MCP: call_tool("search_products", {"search_term": "gaming"})
+    MCP->>Server: Write STDIO: {"jsonrpc": "2.0", "method": "tools/call", ...}
+    Server->>Core: Fetch Data with Redis Caching
+    Core-->>Server: Raw Database Entities
+    Server-->>MCP: Write STDIO: {"jsonrpc": "2.0", "result": {...}}
+    MCP-->>Agent: Observation Text (JSON payload)
+```
+
+### 🔍 Dual-Vector Elasticsearch Storage & Ingestion
+VShop employs a dual-vector schema targeting two distinct search objectives:
+
+| Feature | Embedding Model | Vector Dimensions | Similarity Metric | Use Case |
+| :--- | :--- | :--- | :--- | :--- |
+| **Semantic Search** | `vietnamese-sbert` | 768 | Cosine Similarity | Natural language search via customer frontend queries. |
+| **Agentic RAG Search** | `paraphrase-multilingual-MiniLM-L12-v2` | 384 | Cosine Similarity | Contextual documentation retrieval and cross-lingual RAG tools. |
+
+#### Real-Time Vector Synchronization Flow
+To prevent vector store desynchronization when product attributes or inventories change, VShop implements an asynchronous ingestion daemon:
+1. Core C# API writes changes to SQL Server and immediately pushes a `ProductSyncEvent` to **Apache Kafka** (`product-changes` topic).
+2. The Python background service (`ProductKafkaConsumer` / `ProductContextKafkaConsumer`) polls the topic.
+3. The consumer extracts product descriptors (`Name`, `Category`, `Features`, `Specifications`), generates new 768-dim embeddings using `vietnamese-sbert`, and updates the Elasticsearch `products` index.
+4. It invalidates corresponding Redis caches (`product:detail:<id>` and `products:*`) to maintain system-wide state integrity.
+
+```mermaid
+flowchart LR
+    Admin[Admin Panel] -->|Modify Product| SQL[(SQL Server)]
+    Admin -->|Publish Event| Kafka{Kafka Broker}
+    Kafka -->|Consume Event| Consumer[ProductKafkaConsumer]
+    Consumer -->|Generate Embeddings| SBERT[vietnamese-sbert]
+    SBERT -->|Index Document| ES[(Elasticsearch)]
+    Consumer -->|Invalidate Keys| Redis[(Redis Cache)]
 ```
 
 ---
 
 ## 📈 5. Big Data & Machine Learning Pipeline (`BigData_training`)
 
-To rival industry giants, VShop utilizes a custom-built Big Data and Machine Learning pipeline. This subsystem analyzes user behavior, scrapes competitive intelligence, and calculates highly accurate product recommendations.
+The machine learning and recommendation engine processes transactional and behavioral datasets, utilizing matrix factorization to generate personalized recommendations, and computing trending indicators based on real-time event tracking.
 
-### 🕷️ Data Ingestion & Web Crawling Engine (`crawl_data.py`)
-VShop populates its enormous catalog utilizing a sophisticated Python web scraper (`GearVNToSQLCrawler`):
-- Targets `gearvn.com` to extract real-world product datasets spanning Laptops, PCs, Peripherals, and Components.
-- The engine robustly handles HTML parsing, regex-based tag extraction, pagination, and multi-variant pricing logic (converting prices and extracting inventory metrics).
-- **Automated SQL Generation**: It outputs a massive batch-insertion SQL script (`insert_gearvn_data.sql`), dynamically generating `Categories` and `Products` with appropriate relationships, safely sanitized to seed the C# SQL Server seamlessly.
+### 📐 Collaborative Filtering: ALS Matrix Factorization
+The recommendation engine is built on **Apache Spark (PySpark)** and implements **Alternating Least Squares (ALS)** matrix factorization.
+
+#### Mathematical Formulation
+The algorithm maps users and items to a joint latent factor space of dimensionality $f$ (configured to $f = 25$ in VShop). The interaction between user $u$ and item $i$ is modeled by their inner product:
+$$\hat{r}_{ui} = x_u^T y_i$$
+where $x_u \in \mathbb{R}^{25}$ is the user factor vector, and $y_i \in \mathbb{R}^{25}$ is the item factor vector. The factors are learned by minimizing the regularized squared error loss function over all observed ratings:
+$$\mathcal{L}(X, Y) = \sum_{u, i \in \mathcal{K}} (r_{ui} - x_u^T y_i)^2 + \lambda \left( \sum_u \|x_u\|_2^2 + \sum_i \|y_i\|_2^2 \right)$$
+where:
+* $\mathcal{K}$ is the set of user-item pairs for which ratings $r_{ui}$ are available (fetched from MongoDB `productReviews`).
+* $\lambda$ is the regularization parameter (`regParam` set to `0.01` to prevent overfitting).
+* The non-negativity constraint ($x_u \ge 0, y_i \ge 0$) is enforced to ensure the dimensions can be interpreted as positive preference components.
 
 ```mermaid
-graph TD
-    Scraper[Python Crawler] -->|HTTP GET / Pagination| API[GearVN API]
-    API -->|JSON Response| Scraper
-    Scraper -->|Extract Specs & Variants| Data[Sanitized Data Models]
-    Data -->|Batch Generation| SQL[insert_gearvn_data.sql]
-    SQL -->|Seeding| MSSQL[(C# SQL Server DB)]
+flowchart TD
+    RawMongo[(MongoDB Reviews)] --> Spark[Spark Session Initialization]
+    Spark --> Cleaning[Drop Duplicates & Filter isApproved=True]
+    Cleaning --> Indexers[StringIndexer Pipeline]
+    Indexers --> Split[Random Split: 80% Train, 20% Test]
+    Split -->|Train Set| ALSAlg[ALS Model Training]
+    ALSAlg --> Eval[RegressionEvaluator]
+    Eval -->|Validate MAE & RMSE| Stats[model_metadata.json]
+    ALSAlg --> Save[Export ALS Model & Indexer Pipeline]
+    ALSAlg --> Latent[Extract itemFactors Latent Vectors]
+    Latent --> JSON[product_vectors.json]
 ```
 
-### 🧠 Collaborative Filtering Model (`train_model.py`)
-The recommendation engine analyzes historical purchase data and reviews to build personalized user experiences.
-- **Apache Spark (PySpark)**: The backbone of the matrix factorization pipeline, capable of handling distributed datasets across clusters.
-- **Data Source**: Ingests thousands of user reviews and ratings from MongoDB (`api_be_db.productReviews`).
-- **Algorithm**: Implements the **Alternating Least Squares (ALS)** recommendation algorithm (`pyspark.ml.recommendation.ALS`), configured with strict cold-start drop strategies and non-negative constraints.
-- **Model Evaluation**: Automatically calculates Root Mean Square Error (RMSE) and Mean Absolute Error (MAE) via the `RegressionEvaluator` to measure model accuracy.
-- **Vector Extraction**: After training, it extracts the deeply learned `itemFactors` (product embeddings). These learned vectors are exported to `product_vectors.json`, providing a mathematical representation of product relationships based on user behavior.
+#### Preprocessing & Code Details
+- **MongoDB Data Extraction**: Reviews are dynamically fetched where `isDeleted = False` and `isApproved = True`.
+- **String Indexing**: PySpark cannot process arbitrary database string UUIDs/ObjectIDs for ALS matrix operations. We implement `StringIndexer` stages for both `userId` and `productId`. The mapping models are saved to `/models/indexer_model` to allow reverse mapping during real-time serving.
+- **Evaluation**: The pipeline utilizes the `RegressionEvaluator` to measure prediction quality:
+  $$\text{RMSE} = \sqrt{\frac{1}{|\mathcal{K}_{test}|} \sum_{u,i \in \mathcal{K}_{test}} (r_{ui} - \hat{r}_{ui})^2}$$
+  Metadata including training times, RMSE, and MAE is written to `model_metadata.json`.
+- **Factor Handoff**: The trained $y_i$ vectors (Item Factors) are parsed, mapped back to original database primary keys, and stored in `product_vectors.json` as a 25-dimensional float array per product, making them accessible to Content-Based vector search pipelines.
 
-### ⚡ Real-Time Inference Architecture
-The trained models are served in real-time via `recommendation_service.py` and `app.py`. When the RAG Agent detects intents related to recommendations (e.g., "gợi ý", "recommend"), the system cross-references the ALS model's output and merges it with the LangChain conversational response, delivering instant, highly personalized product suggestions.
+### ⚡ Hybrid Serving & Real-Time Inference
+Recommendations are served via a high-performance Flask API in `recommendation_service.py` that merges collaborative preferences, similarity searches, and trending streams.
+
+```mermaid
+flowchart TD
+    Req[GET /recommendations/hybrid] --> Route{User Status?}
+    Route -->|Anonymous| Trend[Fetch Trending from Redis]
+    Route -->|Authenticated| Hybrid[Hybrid Resolver]
+    
+    Hybrid -->|ALS Matrix Predict| Collab[Collaborative Recs]
+    Hybrid -->|ES KNN Vector Query| Content[Similar Products]
+    
+    Collab --> Merge[Weighted Score Combiner]
+    Content --> Merge
+    
+    Merge --> Output[Sort & Paginate Result]
+```
+
+#### 1. Collaborative Filtering Prediction (ALS)
+For authenticated users, the system maps the incoming request's `userId` through the pre-loaded Spark `indexer_model`. It executes:
+```python
+recs_df = als_model.recommendForUserSubset(user_subset_df, num_recs)
+```
+yielding the top collaborative product candidates.
+
+#### 2. Content-Based KNN Retrieval
+Using Elasticsearch's vector capability, the engine fetches products similar to the user's current browsing context or historical purchases. It performs a **K-Nearest Neighbors (k-NN)** search:
+```json
+{
+  "knn": {
+    "field": "embedding",
+    "query_vector": [ ... ],
+    "k": 10,
+    "num_candidates": 50
+  }
+}
+```
+
+#### 3. Weighted Score Combination
+The Hybrid recommendation engine combines the output of Collaborative ($S_{\text{collab}}$) and Content-Based ($S_{\text{content}}$) scores using a weighted linear combination:
+$$\text{Score}_{\text{hybrid}}(p) = w_{\text{content}} \cdot S_{\text{content}}(p) + w_{\text{collab}} \cdot S_{\text{collab}}(p)$$
+where $w_{\text{content}} = 0.6$ and $w_{\text{collab}} = 0.4$.
+
+#### 4. Real-Time Tracking & Trending (Redis Sorted Sets)
+User telemetry (clicks, shopping cart additions, checkouts) is written directly to Kafka and Redis, avoiding database locking. Redis tracks trending scores using weighted sorted sets:
+$$\text{Trending Score}(p) = 0.3 \cdot \text{Views}(p) + 0.7 \cdot \text{Purchases}(p) + 0.5 \cdot \text{Likes}(p)$$
+- **Views**: Incremented by 1 via `ZINCRBY trending:views 1 <productId>`.
+- **Purchases**: Incremented by 3 via `ZINCRBY trending:purchases 3 <productId>`.
+- **Likes**: Incremented by 2 via `ZINCRBY trending:likes 2 <productId>`.
+Trending lists are computed instantly using `ZREVRANGE` across the combined scoring sets.
+
+### 🕷️ GearVN Shopify JSON Web Crawler
+VShop leverages `crawl_data.py` to seed the database with real retail datasets from GearVN:
+- **Shopify Endpoint Traversal**: The crawler utilizes GearVN's public but hidden JSON API endpoints: `https://gearvn.com/collections/<collection-slug>/products.json?limit=250&page=<page_number>`. This bypasses complex HTML DOM parsing and ensures 100% accurate product data extraction (including titles, descriptions, variants, precise prices, tags, and image URLs).
+- **Variant Processing**: The script loops through variants, calculating discount rates, inventory metrics, and structural parent-child configurations (separating base product specifications from selectable sizes/colors).
+- **Batch SQL Generation**: Rather than writing records one by one, the crawler writes bulk insert operations directly into `insert_gearvn_data.sql`. It sanitizes product strings (escaping single quotes, cleaning HTML tags, and setting category hierarchies) for immediate database seeding.
 
 ```mermaid
 flowchart LR
-    subgraph Data Sources
-        SQL[(SQL Server)]
-        Mongo[(MongoDB Reviews)]
-    end
-    
-    subgraph PySpark Pipeline
-        Mongo --> Spark[Spark Session]
-        Spark --> ALS[ALS Matrix Factorization]
-        ALS --> Eval[RMSE / MAE Evaluator]
-        Eval --> Export[itemFactors Vectors]
-    end
-    
-    subgraph Real-Time Serving
-        Export --> API[Flask API Engine]
-        NextJS[Customer Frontend] <-->|GET /recommendations| API
-    end
+    Start[Start Crawler] --> Target[Request products.json]
+    Target --> Parse[Extract JSON Fields]
+    Parse --> Variants[Loop Variants & Extract Prices]
+    Variants --> Sanitize[String Sanitization & Escape Quotes]
+    Sanitize --> GenerateSQL[Write INSERT INTO SQL]
+    GenerateSQL --> Done[insert_gearvn_data.sql Created]
 ```
 
 ---
