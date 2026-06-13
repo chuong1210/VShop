@@ -41,62 +41,61 @@ The parts of this codebase that are genuinely hard — and the reasoning behind 
 The diagram below shows the runtime topology, including the local service ports and the Kafka fan-out that powers search and AI.
 
 ```mermaid
-graph TD
-    %% Clients
-    subgraph Clients
-        C["Customer Storefront<br/>Next.js 14 · :3000"]
-        A["Admin Dashboard<br/>Angular 18 · :4200"]
+flowchart TB
+    subgraph CLIENTS["👥 Client Apps"]
+        direction LR
+        C["🛍️ Customer Storefront<br/>Next.js 14 · :3000"]
+        A["🛠️ Admin Dashboard<br/>Angular 18 · :4200"]
     end
 
-    %% .NET core
-    subgraph "Core Backend (.NET 8)"
-        CORE["ASP.NET Core API<br/>Clean Architecture · :7288"]
-        INT["EF Core SaveChanges<br/>Interceptor (CDC)"]
-        CCON["Kafka Consumer<br/>(BackgroundService)"]
-        HUB["SignalR Hubs<br/>chat · flash-sale"]
+    subgraph SERVICES["⚙️ Application &amp; AI Services"]
+        direction LR
+        CORE[".NET 8 API<br/>Clean Arch · SignalR · :7288"]
+        RAG["RAG Chat Assistant<br/>Flask · LangChain · :5001"]
+        REC["Search &amp; Recommend<br/>Flask · PySpark · :5000"]
     end
 
-    %% Python AI
-    subgraph "AI & Big Data (Python)"
-        RAG["RAG Chat Service<br/>Flask + SocketIO · :5001"]
-        REC["Search & Recommend<br/>Flask + Spark · :5000"]
-        TRAIN["ALS Trainer<br/>PySpark (batch)"]
+    K{{"📨 Apache Kafka · KRaft · :9092<br/>topic: product-changes"}}
+
+    subgraph STORES["🗄️ Data &amp; Infrastructure"]
+        direction LR
+        SQL[("SQL Server<br/>catalog · orders")]
+        MG[("MongoDB<br/>reviews")]
+        ES[("Elasticsearch<br/>products · documents")]
+        R[("Redis<br/>cache · inventory")]
     end
 
-    %% Infra
-    subgraph Infrastructure
-        K{{"Apache Kafka (KRaft)<br/>:9092"}}
-        R[("Redis · :6379")]
-        ES[("Elasticsearch · :9200<br/>products + documents")]
-        SQL[("SQL Server<br/>SPMK_VSHOP")]
-        MG[("MongoDB · :27017<br/>productReviews")]
-    end
+    TRAIN["🧠 ALS Trainer<br/>PySpark · batch"]
 
-    C <-->|REST + JWT| CORE
-    A <-->|REST + JWT| CORE
-    C <-->|WebSocket chat| RAG
-    C <-->|search / recs| REC
-    A <-->|SignalR| HUB
+    %% client → services
+    C -->|REST + JWT| CORE
+    A -->|REST · SignalR| CORE
+    C -->|chat WS| RAG
+    C -->|search · recs| REC
+    RAG -->|cart ops| CORE
 
-    CORE <--> SQL
-    CORE <--> R
-    CORE --> INT
-    INT -->|"produce: product-changes"| K
-    K -->|consume group=es-net| CCON --> ES
-    CCON -. indexes .-> ES
+    %% services → data stores
+    CORE --> SQL & R
+    REC --> SQL & ES & R
+    RAG --> ES
 
-    K -->|"consume group=product-group"| REC
-    REC -->|"embed + index"| ES
-    REC <--> SQL
-    REC <--> R
-    K -->|"consume group=rag-group"| RAG
-    RAG -->|invalidate cache| R
+    %% event-driven CDC (3-way fan-out detailed in §3.4)
+    CORE -->|publish CDC| K
+    K -->|index products| ES
+    K -->|invalidate cache| R
 
-    RAG <-->|search / retrieve| ES
-    RAG <-->|cart ops via JWT| CORE
-    TRAIN -->|read reviews| MG
-    TRAIN -->|als_model + vectors| REC
-    REC -->|"produce: recommendation_events"| K
+    %% offline training
+    MG --> TRAIN
+    TRAIN -->|models + vectors| REC
+
+    classDef client fill:#e3f2fd,stroke:#1565c0,color:#0d47a1;
+    classDef svc fill:#ede7f6,stroke:#5e35b1,color:#311b92;
+    classDef store fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20;
+    classDef bus fill:#fff3e0,stroke:#ef6c00,color:#e65100;
+    class C,A client;
+    class CORE,RAG,REC,TRAIN svc;
+    class SQL,MG,ES,R store;
+    class K bus;
 ```
 
 ---
@@ -354,14 +353,14 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    Req[/smw-api/recommendations/*] --> Route{User status?}
-    Route -->|anonymous| Trend[Redis trending]
-    Route -->|authenticated| Hybrid[Hybrid resolver]
-    Hybrid -->|recommendForUserSubset| Collab[ALS collaborative]
-    Hybrid -->|ES k-NN on embedding| Content[Similar products]
-    Collab --> Merge[Weighted merge]
+    Req["GET /smw-api/recommendations/*"] --> Route{"User status?"}
+    Route -->|anonymous| Trend["Redis trending"]
+    Route -->|authenticated| Hybrid["Hybrid resolver"]
+    Hybrid -->|"ALS recommendForUserSubset"| Collab["Collaborative recs"]
+    Hybrid -->|"ES k-NN on embedding"| Content["Similar products"]
+    Collab --> Merge["Weighted merge · 0.6 / 0.4"]
     Content --> Merge
-    Merge --> Page[promotions + paginate]
+    Merge --> Page["+ promotions · paginate"]
 ```
 
 1. **Collaborative (ALS)** — `get_user_index()` maps the request's `userId` through the indexer, then `als_model.recommendForUserSubset(...)` returns top candidate item indices.
