@@ -42,59 +42,59 @@ The diagram below shows the runtime topology, including the local service ports 
 
 ```mermaid
 flowchart TB
-    subgraph CLIENTS["👥 Client Apps"]
+    subgraph CLIENTS["Client Applications"]
         direction LR
-        C["🛍️ Customer Storefront<br/>Next.js 14 · :3000"]
-        A["🛠️ Admin Dashboard<br/>Angular 18 · :4200"]
+        C["Customer Storefront<br/>Next.js 14 · React 18 · :3000"]
+        A["Admin Dashboard<br/>Angular 18 · PrimeNG · :4200"]
     end
 
-    subgraph SERVICES["⚙️ Application &amp; AI Services"]
+    subgraph SERVICES["Application &amp; AI Services"]
         direction LR
-        CORE[".NET 8 API<br/>Clean Arch · SignalR · :7288"]
-        RAG["RAG Chat Assistant<br/>Flask · LangChain · :5001"]
+        CORE["Core API<br/>.NET 8 · Clean Arch · SignalR · :7288"]
+        RAG["RAG Assistant<br/>Flask · LangChain · :5001"]
         REC["Search &amp; Recommend<br/>Flask · PySpark · :5000"]
+        TRAIN["ALS Trainer<br/>PySpark · batch"]
     end
 
-    K{{"📨 Apache Kafka · KRaft · :9092<br/>topic: product-changes"}}
+    K{{"Apache Kafka — KRaft mode · :9092<br/>topic: product-changes"}}
 
-    subgraph STORES["🗄️ Data &amp; Infrastructure"]
+    subgraph STORES["Data &amp; Infrastructure"]
         direction LR
         SQL[("SQL Server<br/>catalog · orders")]
-        MG[("MongoDB<br/>reviews")]
         ES[("Elasticsearch<br/>products · documents")]
-        R[("Redis<br/>cache · inventory")]
+        R[("Redis<br/>cache · inventory · trending")]
+        MG[("MongoDB<br/>product reviews")]
     end
 
-    TRAIN["🧠 ALS Trainer<br/>PySpark · batch"]
-
-    %% client → services
-    C -->|REST + JWT| CORE
+    %% Presentation -> Services
+    C -->|REST · JWT| CORE
     A -->|REST · SignalR| CORE
-    C -->|chat WS| RAG
-    C -->|search · recs| REC
-    RAG -->|cart ops| CORE
+    C -->|chat WebSocket| RAG
+    C -->|search · recommendations| REC
+    RAG -->|cart ops · JWT| CORE
 
-    %% services → data stores
+    %% Services -> Data
     CORE --> SQL & R
     REC --> SQL & ES & R
     RAG --> ES
 
-    %% event-driven CDC (3-way fan-out detailed in §3.4)
-    CORE -->|publish CDC| K
-    K -->|index products| ES
-    K -->|invalidate cache| R
+    %% Change-Data-Capture: one topic, three consumers
+    CORE ==>|publish CDC event| K
+    K ==>|"1 · C# consumer to index"| ES
+    K ==>|"2 · Python embed + index"| ES
+    K ==>|"3 · Python invalidate cache"| R
 
-    %% offline training
+    %% Offline model training
     MG --> TRAIN
-    TRAIN -->|models + vectors| REC
+    TRAIN -->|als_model · item vectors| REC
 
-    classDef client fill:#e3f2fd,stroke:#1565c0,color:#0d47a1;
-    classDef svc fill:#ede7f6,stroke:#5e35b1,color:#311b92;
-    classDef store fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20;
-    classDef bus fill:#fff3e0,stroke:#ef6c00,color:#e65100;
+    classDef client fill:#eaf2fb,stroke:#3b6fb0,stroke-width:1px,color:#1c3d5e;
+    classDef svc fill:#f0ecf9,stroke:#6f5aa8,stroke-width:1px,color:#352a55;
+    classDef store fill:#eaf5ec,stroke:#4e9a5f,stroke-width:1px,color:#22442a;
+    classDef bus fill:#fdf0e3,stroke:#cf8033,stroke-width:1px,color:#6b3d12;
     class C,A client;
     class CORE,RAG,REC,TRAIN svc;
-    class SQL,MG,ES,R store;
+    class SQL,ES,R,MG store;
     class K bus;
 ```
 
